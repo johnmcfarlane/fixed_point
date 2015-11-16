@@ -38,14 +38,41 @@ To disable exception handling, add `-DEXCEPTIONS=OFF` to the `cmake` command:
 
 To run tests:
 
-    ./run_tests
+    ./fp_tests
 
 To run benchmarks:
 
-    ./run_benchmarks
+    ./fp_benchmarks
+
+To profile benchmarks:
+
+1. in *CMakeLists.txt*, append `-fno-omit-frame-pointer` to `COMMON_CXX_FLAGS`
+
+2. then run:
+   ```
+   perf stat ./run_benchmarks
+   perf report -g 'graph,0.5,caller'`
+   ```
 
 ### Windows
 
-Tested on Windows 7 Professional. Requires version 14.0 of MSBuild. (You can probably find it in `c:\Program Files (x86)\MSBuild\14.0\Bin`.)
+Tested on *Windows 7 Professional* with *CMake 3.4.0*. Requires:
 
-    msbuild vs\fixed_point_test.sln
+- MSBuild 14.0
+- CMake 2.8.4
+
+To build *vs/Release/fp_test.exe* and *vs/Release/fp_benchmark.exe*:
+
+    mkdir vs
+    cd vs
+    cmake -G "Visual Studio 14 2015" ..
+    MSBuild.exe /m fixed_point.sln /p:Configuration=Release
+
+For 64-bit builds, append `Win64` to the `-G` option above:
+
+    cmake -G "Visual Studio 14 2015 Win64" ..
+
+To clean the project files:
+
+    cd vs
+    git clean -Xdf .
