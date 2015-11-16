@@ -1,0 +1,28 @@
+matrix:
+  fast_finish: false
+  allow_failures:
+    - platform: x86
+      configuration: Debug
+    - platform: x64
+      configuration: Release
+
+platform:
+  - x86
+  - x64
+
+configuration:
+  - Debug
+  - Release
+
+build:
+  project: fixed_point.sln
+  verbosity: normal
+
+before_build:
+  - cmake
+  - cmake -G "Visual Studio 14 2015"
+  - cmake -G "Visual Studio 14 2015 Win64"
+
+after_build:
+  - ./fp_test
+  - ./fp_benchmark

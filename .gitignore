@@ -11,12 +11,7 @@ run_tests
 .idea
 
 # Visual Studio
-vs/.vs
-vs/Debug
-vs/Release
-vs/fixed_point_test.opensdf
-vs/fixed_point_test.sdf
-vs/x64
+vs
 
 # perf
 perf.data*
