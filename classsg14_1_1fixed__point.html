@@ -104,15 +104,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Public Types</h2></td></tr>
 <tr class="memitem:a0c2813efbdddb7303c65dfde81fe3cd8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c2813efbdddb7303c65dfde81fe3cd8"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a0c2813efbdddb7303c65dfde81fe3cd8">repr_type</a> = ReprType</td></tr>
-<tr class="memdesc:a0c2813efbdddb7303c65dfde81fe3cd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">alias to template parameter, <a class="el" href="classsg14_1_1fixed__point.html#ReprType">ReprType</a> <br/></td></tr>
+<tr class="memdesc:a0c2813efbdddb7303c65dfde81fe3cd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">alias to template parameter, <em>ReprType</em> <br/></td></tr>
 <tr class="separator:a0c2813efbdddb7303c65dfde81fe3cd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af55a440c41dd1550b476d0205ac176f9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af55a440c41dd1550b476d0205ac176f9"></a>
-constexpr <a class="el" href="classsg14_1_1fixed__point.html#a0c2813efbdddb7303c65dfde81fe3cd8">repr_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#af55a440c41dd1550b476d0205ac176f9">data</a> () const </td></tr>
-<tr class="memdesc:af55a440c41dd1550b476d0205ac176f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns internal representation of value <br/></td></tr>
-<tr class="separator:af55a440c41dd1550b476d0205ac176f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1424ac6d11036c717071d59f0fdf05f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1424ac6d11036c717071d59f0fdf05f"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#aa1424ac6d11036c717071d59f0fdf05f">fixed_point</a> ()</td></tr>
 <tr class="memdesc:aa1424ac6d11036c717071d59f0fdf05f"><td class="mdescLeft">&#160;</td><td class="mdescRight">default constructor <br/></td></tr>
@@ -132,6 +128,10 @@ template&lt;class FromReprType , int FromExponent&gt; </td></tr>
 <tr class="memitem:ad5ff6addcba2d3bbb976dae1383ebc00"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#ad5ff6addcba2d3bbb976dae1383ebc00">fixed_point</a> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; FromReprType, FromExponent &gt; &amp;rhs)</td></tr>
 <tr class="memdesc:ad5ff6addcba2d3bbb976dae1383ebc00"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor taking a fixed-point type <br/></td></tr>
 <tr class="separator:ad5ff6addcba2d3bbb976dae1383ebc00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af55a440c41dd1550b476d0205ac176f9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af55a440c41dd1550b476d0205ac176f9"></a>
+constexpr <a class="el" href="classsg14_1_1fixed__point.html#a0c2813efbdddb7303c65dfde81fe3cd8">repr_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#af55a440c41dd1550b476d0205ac176f9">data</a> () const </td></tr>
+<tr class="memdesc:af55a440c41dd1550b476d0205ac176f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns internal representation of value <br/></td></tr>
+<tr class="separator:af55a440c41dd1550b476d0205ac176f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2dc1043ac625ed20f08683ec8c19e683"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2dc1043ac625ed20f08683ec8c19e683"></a>
 constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a2dc1043ac625ed20f08683ec8c19e683">operator bool</a> () const </td></tr>
 <tr class="memdesc:a2dc1043ac625ed20f08683ec8c19e683"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns non-zeroness represented as boolean <br/></td></tr>
@@ -139,7 +139,7 @@ constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 <tr class="memitem:a6d65d4abe0d3cd6fbebffa7b217aaf91"><td class="memTemplParams" colspan="2"><a class="anchor" id="a6d65d4abe0d3cd6fbebffa7b217aaf91"></a>
 template&lt;class S , typename std::enable_if&lt; std::is_integral&lt; S &gt;::value, int &gt;::type Dummy = 0&gt; </td></tr>
 <tr class="memitem:a6d65d4abe0d3cd6fbebffa7b217aaf91"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a6d65d4abe0d3cd6fbebffa7b217aaf91">operator S</a> () const </td></tr>
-<tr class="memdesc:a6d65d4abe0d3cd6fbebffa7b217aaf91"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns value represented as a floating-point <br/></td></tr>
+<tr class="memdesc:a6d65d4abe0d3cd6fbebffa7b217aaf91"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns value represented as floating-point <br/></td></tr>
 <tr class="separator:a6d65d4abe0d3cd6fbebffa7b217aaf91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d65d4abe0d3cd6fbebffa7b217aaf91"><td class="memTemplParams" colspan="2"><a class="anchor" id="a6d65d4abe0d3cd6fbebffa7b217aaf91"></a>
 template&lt;class S , typename std::enable_if&lt; std::is_floating_point&lt; S &gt;::value, int &gt;::type Dummy = 0&gt; </td></tr>
@@ -195,7 +195,7 @@ static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class
 <tr class="separator:a55176ad805db984ee344209a1c16b856"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a590b5289c9bcbe3f7f55e19c326079eb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a590b5289c9bcbe3f7f55e19c326079eb"></a>
 static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a590b5289c9bcbe3f7f55e19c326079eb">exponent</a> = Exponent</td></tr>
-<tr class="memdesc:a590b5289c9bcbe3f7f55e19c326079eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">value of template parameter, <a class="el" href="classsg14_1_1fixed__point.html#Exponent">Exponent</a> <br/></td></tr>
+<tr class="memdesc:a590b5289c9bcbe3f7f55e19c326079eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">value of template parameter, <em>Exponent</em> <br/></td></tr>
 <tr class="separator:a590b5289c9bcbe3f7f55e19c326079eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a192e9fdd163c9c34418e2b4ff241da2f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a192e9fdd163c9c34418e2b4ff241da2f"></a>
 static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a192e9fdd163c9c34418e2b4ff241da2f">fractional_digits</a> = <a class="el" href="classsg14_1_1fixed__point.html#a55176ad805db984ee344209a1c16b856">digits</a>-<a class="el" href="classsg14_1_1fixed__point.html#a7040f82f68a7d00c08f7d46c4a575545">integer_digits</a></td></tr>
@@ -211,19 +211,18 @@ static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class
 class sg14::fixed_point&lt; ReprType, Exponent &gt;</h3>
 
 <p>literal arithmetic type which approximates a real number </p>
-<p><a class="anchor" id="ReprType"></a></p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ReprType</td><td>the underlying type used to represent the value <a class="anchor" id="Exponent"></a></td></tr>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ReprType</td><td>the underlying type used to represent the value </td></tr>
     <tr><td class="paramname">Exponent</td><td>the value by which to scale the integer value in order to get the real value</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section user"><dt>Examples</dt><dd></dd></dl>
-<p>To store the value, -2.75, in a 1-byte variable with 3 integer and 4 fractional digits: </p>
+<p>To define a fixed-point value 1 byte in size with a sign bit, 3 integer bits and 4 fractional bits: </p>
 <div class="fragment"><div class="line">constexpr <span class="keyword">auto</span> n = <a class="code" href="classsg14_1_1fixed__point.html#aa1424ac6d11036c717071d59f0fdf05f">fixed_point</a>&lt;char, -3&gt;{-2.75};</div>
-<div class="line">static_assert(n == -2.75, <span class="stringliteral">&quot;fixed-point type was unable to store the value&quot;</span>);</div>
-</div><!-- fragment --> </div></div><!-- contents -->
+<div class="line">static_assert(n==-2.75, <span class="stringliteral">&quot;fixed-point type was unable to store the value&quot;</span>);</div>
+</div><!-- fragment --></div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

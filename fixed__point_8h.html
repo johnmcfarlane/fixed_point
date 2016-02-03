@@ -99,7 +99,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">literal arithmetic type which approximates a real number  <a href="classsg14_1_1fixed__point.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsg14_1_1resize_3_01fixed__point_3_01ReprType_00_01Exponent_01_4_00_01NumBytes_01_4.html">sg14::resize&lt; fixed_point&lt; ReprType, Exponent &gt;, NumBytes &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts given fixed-point type to equivalent type of given size  <a href="structsg14_1_1resize_3_01fixed__point_3_01ReprType_00_01Exponent_01_4_00_01NumBytes_01_4.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">produces equivalent fixed-point type at a new size  <a href="structsg14_1_1resize_3_01fixed__point_3_01ReprType_00_01Exponent_01_4_00_01NumBytes_01_4.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -116,16 +116,15 @@ template&lt;class FixedPoint &gt; </td></tr>
 <tr class="separator:a935ea9aeebf8a42b98417850e31148bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae910b4d30652f62dca728fb1383d5b86"><td class="memTemplParams" colspan="2">template&lt;unsigned IntegerDigits, unsigned FractionalDigits = 0, class Archetype  = signed&gt; </td></tr>
 <tr class="memitem:ae910b4d30652f62dca728fb1383d5b86"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#ae910b4d30652f62dca728fb1383d5b86">sg14::make_fixed</a> = fixed_point&lt; _impl::sufficient_repr&lt; IntegerDigits+FractionalDigits+std::is_signed&lt; Archetype &gt;::value, Archetype &gt;, int(IntegerDigits)+int(std::is_signed&lt; Archetype &gt;::value)-_impl::num_bits&lt; _impl::sufficient_repr&lt; IntegerDigits+FractionalDigits+int(std::is_signed&lt; Archetype &gt;::value), Archetype &gt;&gt;()&gt;</td></tr>
-<tr class="memdesc:ae910b4d30652f62dca728fb1383d5b86"><td class="mdescLeft">&#160;</td><td class="mdescRight">specializes <a class="el" href="classsg14_1_1fixed__point.html" title="literal arithmetic type which approximates a real number ">fixed_point</a> with the given number of integer and fractional digits  <a href="#ae910b4d30652f62dca728fb1383d5b86">More...</a><br/></td></tr>
+<tr class="memdesc:ae910b4d30652f62dca728fb1383d5b86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Produce a fixed-point type with the given number of integer and fractional digits.  <a href="#ae910b4d30652f62dca728fb1383d5b86">More...</a><br/></td></tr>
 <tr class="separator:ae910b4d30652f62dca728fb1383d5b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0830a0a8206f574372e86881db0d5ae"><td class="memTemplParams" colspan="2"><a class="anchor" id="ad0830a0a8206f574372e86881db0d5ae"></a>
 template&lt;class ReprType , int IntegerDigits&gt; </td></tr>
 <tr class="memitem:ad0830a0a8206f574372e86881db0d5ae"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::make_fixed_from_repr</b> = fixed_point&lt; ReprType, IntegerDigits+std::is_signed&lt; ReprType &gt;::value-(signed) sizeof(ReprType)*CHAR_BIT &gt;</td></tr>
 <tr class="separator:ad0830a0a8206f574372e86881db0d5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5103178fc8b5447099bc9bf637e5cb1c"><td class="memTemplParams" colspan="2"><a class="anchor" id="a5103178fc8b5447099bc9bf637e5cb1c"></a>
-template&lt;unsigned IntegerDigits, unsigned FractionalDigits = 0, class Archetype  = unsigned&gt; </td></tr>
+<tr class="memitem:a5103178fc8b5447099bc9bf637e5cb1c"><td class="memTemplParams" colspan="2">template&lt;unsigned IntegerDigits, unsigned FractionalDigits = 0, class Archetype  = unsigned&gt; </td></tr>
 <tr class="memitem:a5103178fc8b5447099bc9bf637e5cb1c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a5103178fc8b5447099bc9bf637e5cb1c">sg14::make_ufixed</a> = make_fixed&lt; IntegerDigits, FractionalDigits, typename std::make_unsigned&lt; Archetype &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a> &gt;</td></tr>
-<tr class="memdesc:a5103178fc8b5447099bc9bf637e5cb1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">unsigned short-hand for <a class="el" href="namespacesg14.html#ae910b4d30652f62dca728fb1383d5b86">make_fixed</a> <br/></td></tr>
+<tr class="memdesc:a5103178fc8b5447099bc9bf637e5cb1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Produce an unsigned fixed-point type with the given number of integer and fractional digits.  <a href="#a5103178fc8b5447099bc9bf637e5cb1c">More...</a><br/></td></tr>
 <tr class="separator:a5103178fc8b5447099bc9bf637e5cb1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a987868166401b9bdde62a9619f30877b"><td class="memTemplParams" colspan="2"><a class="anchor" id="a987868166401b9bdde62a9619f30877b"></a>
 template&lt;class FixedPoint , unsigned N = 2&gt; </td></tr>
