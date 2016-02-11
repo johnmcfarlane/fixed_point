@@ -43,12 +43,16 @@ binary fixed-point arithmetic;</li>
 comfortable with integer and floating-point arithmetic;</li>
 <li>to avoid type promotion, implicit conversion or other behavior
 that might lead to surprising results;</li>
-<li>to permit a high degree of customization for anyone wishing to
-tackle such problems as rounding and error handling;</li>
 <li>to preserve significant digits at the expense of insignificant digits,
 i.e. to prefer underflow to overflow and</li>
 <li>to avoid incurring expense for unused features - including compilation time.</li>
 </ol>
+<p>More generally, the aim of this proposal is to contain within a single API
+all the tools necessary to perform binary fixed-point arithmetic.
+The design facilitates a wide range of competing compile-time strategies for
+avoiding overflow and precision loss, but implements only the simplest by default.
+Similarly, orthogonal concerns such as run-time overflow detection and rounding modes
+are deferred to the underlying integer types used as storage.</p>
 <h3>Class Template</h3>
 <p>Fixed-point numbers are specializations of</p>
 <pre><code>template &lt;class ReprType, int Exponent&gt;
@@ -721,25 +725,26 @@ It is essentially the same as the <code>trunc_shift_</code> functions
 and means that when shifting by literal values what looks looks like run-time operation
 is a compile-time calculation which guarantees no overflow or underflow.</p>
 <h3>Alternative Return Type Policies</h3>
-<p>It might be beneficial to allow straties 3) and 4) from section, <strong>Dealing With Overflow and Flushes</strong>,
-to be expressed as part of the fixed-point type as, say, a non-type template parameter
-such that fixed-point were defined as:</p>
-<pre><code>template &lt;class ReprType, int Exponent, fixed_point_policy policy = fixed_point_policy::default&gt;
-    class fixed_point;
-</code></pre>
-<p>where <code>fixed_point_policy</code> is defined as:</p>
-<pre><code>enum class fixed_point_policy {
-    default,    // the current behavior described by 1)
-    promote,    // the behavior described by 3)
-    truncate,   // the behavior described by 4)
-};
-</code></pre>
-<p>This approach would replace the free functions detailed in <strong>Named Arithmetic Functions</strong>
-as the preferred way to specify different overflow avoidance strategies.</p>
-<p>Helpers would allow conversion between types of different policies, e.g.:</p>
-<pre><code>template &lt;class ReprType, int Exponent, fixed_point_policy policy&gt;
-  fixed_point&lt;ReprType, Exponent, fixed_point_policy::promote&gt;
-    make_promote(fixed_point&lt;ReprType, Exponent, fixed_point_policy::promote&gt; const&amp;);
+<p>When devising a strategy for mitigating the risk of overflow during arithmetic operations,
+the number of integer and fractional bits stored in the result is an important choice.
+The <code>fixed_point</code> type picks one of the simpler options by default,
+but it is by no means the only viable one.</p>
+<p>The <em>fp</em> library <a href="https://github.com/mizvekov/fp">[4]</a> returns a type
+whose size matches the inputs but whose exponent is shifted to preserve high bits.
+The arithmetic types proposed in P0106
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">[9]</a>
+increase capacity to ensure that precision is preserved.
+(These two approaches share common aims with
+the <code>trunc_</code> and <code>promote_</code> named arithmetic functions proposed earlier.)
+Even greater control of the required capacity of a fixed-point type can be afforded by
+systems such as the <em>bounded::integer</em> library <a href="http://doublewise.net/c++/bounded/">[3]</a>.</p>
+<p>A common requirement among these approaches is the ability
+to specify the return type of arithmetic operations.
+For this reason, named-function arithmetic operators
+which are more expressive than those proposed so far may be necessary.</p>
+<p>These functions would specify a return type as a template parameter. For example:</p>
+<pre><code>template &lt;class Result, class Lhs, class Rhs&gt;
+constexpr Result fixed_point_multiply(const Lhs &amp; lhs, const Rhs &amp; rhs);
 </code></pre>
 <h2>VII. Prior Art</h2>
 <p>Many examples of fixed-point support in C and C++ exist. While almost
@@ -770,7 +775,7 @@ latter category of continuous-range fixed-point arithmetic
 <a href="https://github.com/mizvekov/fp">[4]</a>
 <a href="http://www.codeproject.com/Articles/37636/Fixed-Point-Class">[7]</a>
 <a href="https://github.com/viboes/fixed_point">[8]</a>. In particular, an
-existing library proposal, P0106 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3352.html">[9]</a>,
+existing library proposal, P0106 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">[9]</a>,
 aims to achieve very similar goals through similar means and warrants
 closer comparison than N1169.</p>
 <p>P0106 introduces four class templates covering the quadrant of signed
@@ -826,7 +831,7 @@ Sean Middleditch, Patrice Roy, Peter Schregle, Ryhor Spivak</p>
 <p>This paper revises <a href="http://johnmcfarlane.github.io/fixed_point/papers/p0037r0.html">P0037R0</a>:</p>
 <ul>
 <li>allows non-built-in types as template parameter to <code>fixed_point</code> to address issues such as rounding and overflow with;</li>
-<li>adds customization and compilation time to the list of design considerations;</li>
+<li>adds to the list of design considerations;</li>
 <li>adds new types, <code>resize</code> and <code>resize_t</code> to header, <code>type_traits</code>;</li>
 <li>changes parameters of <code>make_fixed</code> and <code>make_ufixed</code>;</li>
 <li>specifies behavior in case of overflow;</li>
