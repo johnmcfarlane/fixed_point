@@ -149,14 +149,15 @@ Windows</h2>
 <p>Tested on <a href="https://ci.appveyor.com/project/johnmcfarlane/fixed-point/branch/master">AppVeyor</a> and on <em>Windows 7 Professional</em> with <em>CMake 3.4.0</em>. Requires:</p>
 <ul>
 <li>MSBuild 14.0</li>
-<li>CMake 2.8.4</li>
+<li><a href="https://cmake.org/download/">CMake</a> 2.8.4</li>
 </ul>
 <p>To build <em>vs/Release/fp_test.exe</em> and <em>vs/Release/fp_benchmark.exe</em>: </p>
 <pre class="fragment">cmake .
 MSBuild.exe /m fixed_point.sln /p:Configuration=Release
 </pre><p>For 64-bit builds, append <code>Win64</code> to the <code>-G</code> option above: </p>
 <pre class="fragment">cmake -G "Visual Studio 14 2015 Win64" .
-</pre><h2><a class="anchor" id="cleaning"></a>
+</pre><p>Note that <em>fp_benchmark</em> is unlikely to produce valid results due to missing <code>escape</code> and <code>clobber</code> functions.</p>
+<h2><a class="anchor" id="cleaning"></a>
 Cleaning</h2>
 <p>To clean the project files: </p>
 <pre class="fragment">git clean -Xdff .
