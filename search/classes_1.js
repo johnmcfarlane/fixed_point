@@ -1,9 +1,4 @@
 var searchData=
 [
-  ['is_5fintegral_3c_20_5f_5fint128_20_3e',['is_integral&lt; __int128 &gt;',['../structstd_1_1is__integral_3_01____int128_01_4.html',1,'std']]],
-  ['is_5fintegral_3c_20unsigned_20_5f_5fint128_20_3e',['is_integral&lt; unsigned __int128 &gt;',['../structstd_1_1is__integral_3_01unsigned_01____int128_01_4.html',1,'std']]],
-  ['is_5fsigned_3c_20_5f_5fint128_20_3e',['is_signed&lt; __int128 &gt;',['../structstd_1_1is__signed_3_01____int128_01_4.html',1,'std']]],
-  ['is_5fsigned_3c_20unsigned_20_5f_5fint128_20_3e',['is_signed&lt; unsigned __int128 &gt;',['../structstd_1_1is__signed_3_01unsigned_01____int128_01_4.html',1,'std']]],
-  ['is_5funsigned_3c_20_5f_5fint128_20_3e',['is_unsigned&lt; __int128 &gt;',['../structstd_1_1is__unsigned_3_01____int128_01_4.html',1,'std']]],
-  ['is_5funsigned_3c_20unsigned_20_5f_5fint128_20_3e',['is_unsigned&lt; unsigned __int128 &gt;',['../structstd_1_1is__unsigned_3_01unsigned_01____int128_01_4.html',1,'std']]]
+  ['numeric_5flimits_3c_20sg14_3a_3afixed_5fpoint_3c_20reprtype_2c_20exponent_20_3e_20_3e',['numeric_limits&lt; sg14::fixed_point&lt; ReprType, Exponent &gt; &gt;',['../structstd_1_1numeric__limits_3_01sg14_1_1fixed__point_3_01ReprType_00_01Exponent_01_4_01_4.html',1,'std']]]
 ];

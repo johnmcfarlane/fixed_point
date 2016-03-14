@@ -105,11 +105,11 @@ parameters.</p>
 <p>For this reason, two aliases are defined in the style of
 <code>make_signed</code>.</p>
 <p>These aliases are declared as:</p>
-<pre><code>template &lt;unsigned IntegerDigits, unsigned FractionalDigits = 0, class Archetype = signed&gt;
+<pre><code>template &lt;int IntegerDigits, int FractionalDigits = 0, class Archetype = signed&gt;
 using make_fixed;
 </code></pre>
 <p>and</p>
-<pre><code>template &lt;unsigned IntegerDigits, unsigned FractionalDigits = 0, class Archetype = unsigned&gt;
+<pre><code>template &lt;int IntegerDigits, int FractionalDigits = 0, class Archetype = unsigned&gt;
 using make_ufixed;
 </code></pre>
 <p>They resolve to a <code>fixed_point</code> specialization with the given
@@ -154,20 +154,20 @@ can take any combination of:</p>
 <p>Where the inputs are not identical fixed-point types, a simple set of
 promotion-like rules are applied to determine the return type:</p>
 <ol>
-<li>If both arguments are fixed-point, a type is chosen which is the
-size of the larger type, is signed if either input is signed and
-has the maximum integer bits of the two inputs, i.e. cannot lose
-high-significance bits through conversion alone.</li>
+<li>If both arguments are fixed-point,
+then the result has a <code>ReprType</code> which is the common type of the <code>ReprType</code> of the inputs
+and the <code>Exponent</code> value of the input with the greater integer capacity.</li>
 <li>If one of the arguments is a floating-point type, then the type of
 the result is the smallest floating-point type of equal or greater
 size than the inputs.</li>
-<li>If one of the arguments is an integral type, then the result is the
-other, fixed-point type.</li>
+<li>If one of the arguments is an integral type,
+then the result has a <code>ReprType</code> which is the common type of the input fixed-point <code>ReprType</code> and the integral type
+and the same <code>Exponent</code> value as the input fixed-point type.</li>
 </ol>
 <p>Some examples:</p>
-<pre><code>make_ufixed&lt;5, 3&gt;{8} + make_ufixed&lt;4, 4&gt;{3} == make_ufixed&lt;5, 3&gt;{11};  
-make_ufixed&lt;5, 3&gt;{8} + 3 == make_ufixed&lt;5, 3&gt;{11};  
-make_ufixed&lt;5, 3&gt;{8} + float{3} == float{11};  
+<pre><code>fixed_point&lt;uint8_t, -3&gt;{8} + fixed_point&lt;int8_t, -4&gt;{3} == fixed_point&lt;int, -3&gt;{11};
+fixed_point&lt;uint8_t, -3&gt;{8} + 3 == fixed_point&lt;unsigned, -3&gt;{11};  
+fixed_point&lt;uint8_t, -3&gt;{8} + float{3} == float{11};  
 </code></pre>
 <p>The reasoning behind this choice is a combination of predictability
 and performance. It is explained for each rule as follows:</p>
@@ -183,6 +183,8 @@ floating-point to integer and</li>
 <li>preserves the input fixed-point type whose range is far more likely
 to be of deliberate importance to the operation.</li>
 </ol>
+<p>A guiding aim is for specializations with <code>Exponent</code> set to 0 to behave as closely as possible like their <code>ReprType</code>.
+For instance, where possible, an object of type, <code>int</code>, should be interchangeable with <code>fixed_point&lt;&gt;</code>.</p>
 <p>Shift operator overloads require an integer type as the right-hand
 parameter and return a type which is adjusted to accommodate the new
 value without risk of overflow or underflow.</p>
@@ -192,10 +194,10 @@ following the rules above before performing a comparison and returning
 <h4>Overflow</h4>
 <p>Because arithmetic operators return a result of equal capacity to
 their inputs, they carry a risk of overflow. For instance,</p>
-<pre><code>make_fixed&lt;4, 3&gt;(15) + make_fixed&lt;4, 3&gt;(1)
+<pre><code>make_ufixed&lt;2, 30&gt;(3) + make_ufixed&lt;2, 30&gt;(1)
 </code></pre>
-<p>causes overflow because because a type with 4 integer bits cannot
-store a value of 16.</p>
+<p>is zero on architectures where <code>int</code> is 4 bytes because a type with 2 integer bits cannot
+store a value of 4.</p>
 <p>The result of overflow of any bits in a fixed-point value depends
 entirely on how <code>ReprType</code> handles overflow. Thus, for built-in
 signed types, the result is undefined and for built-in unsigned types,
@@ -398,9 +400,9 @@ constexpr auto magnitude(const Fp &amp; x, const Fp &amp; y, const Fp &amp; z)
 <pre><code>namespace std {
   template &lt;class ReprType, int Exponent&gt; class fixed_point;
 
-  template &lt;unsigned IntegerDigits, unsigned FractionalDigits = 0, class Archetype = signed&gt;
+  template &lt;int IntegerDigits, int FractionalDigits = 0, class Archetype = signed&gt;
     using make_fixed;
-  template &lt;unsigned IntegerDigits, unsigned FractionalDigits = 0, class Archetype = unsigned&gt;
+  template &lt;int IntegerDigits, int FractionalDigits = 0, class Archetype = unsigned&gt;
     using make_ufixed;
   template &lt;class ReprType, int IntegerDigits&gt;
     using make_fixed_from_repr;

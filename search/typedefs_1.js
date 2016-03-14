@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['make_5ffixed',['make_fixed',['../namespacesg14.html#ae910b4d30652f62dca728fb1383d5b86',1,'sg14']]],
-  ['make_5fufixed',['make_ufixed',['../namespacesg14.html#a5103178fc8b5447099bc9bf637e5cb1c',1,'sg14']]]
+  ['repr_5ftype',['repr_type',['../classsg14_1_1fixed__point.html#a0c2813efbdddb7303c65dfde81fe3cd8',1,'sg14::fixed_point']]],
+  ['resize_5ft',['resize_t',['../namespacesg14.html#aa82857bf15669b9079e4e42e7274e3e2',1,'sg14']]]
 ];
