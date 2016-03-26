@@ -19,7 +19,7 @@ as well as SG14 at CppCon 2015 <a href="https://groups.google.com/a/isocpp.org/f
 <p>Among the observations of P0037's <code>fixed_point</code> type, some reservations were:</p>
 <ul>
 <li>it does not handle overflow;</li>
-<li>it lacks many desired rounding modes functionality;</li>
+<li>it lacks many desired rounding modes;</li>
 <li>it's capacity is limited by the capacity of the integer value used as its representational type;</li>
 <li>it possesses a most negative number whose magnitude is greater than its most positive value;</li>
 <li>it is limited to base two numbers.</li>
@@ -29,21 +29,19 @@ as well as SG14 at CppCon 2015 <a href="https://groups.google.com/a/isocpp.org/f
 <p>Most of the feedback items (including those listed above) are aimed at <code>fixed_point</code> when compared to the numeric types detailed in P0106.
 However, it is not the intent of <code>fixed_point</code> to address all of the same concerns as those types.
 Its aim is to do one job: to approximate real numbers using integers.
-In doing so, it can support as applications of fixed-point arithmetic including - but not limited to -
+In doing so, it can support many applications of fixed-point arithmetic including - but not limited to -
 general-purpose types such as P0106's <code>nonnegative</code> and <code>negatable</code>
 as well as traditional applications such as those described in P0037.</p>
-<h2>Example Numeric Types Using <code>fixed_point</code></h2>
 <p>The following section outlines an example architecture to which the <code>fixed_point</code> type might apply.
 It describes three types which can be used independently or combined to provide the major features described in P0106.</p>
+<h2>Example Numeric Types Using <code>fixed_point</code></h2>
 <h3>The <code>custom_integer</code> Class Template</h3>
-<p>The <code>custom_integer</code> type provides template parameters for fine-tuning rounding style, overflow handling and capacity</p>
-<ul>
-<li>much in the spirit of the <code>cardinal</code> and <code>integral</code> types proposed in P0106.
+<p>The <code>custom_integer</code> type provides template parameters for fine-tuning rounding style, overflow handling and capacity -
+much in the spirit of the <code>cardinal</code> and <code>integral</code> types proposed in P0106.
 For ease of comparison, it adopts the same <code>rounding</code> and <code>overflow</code> enumerations
-as detailed in P0106's accompanying paper, P0105 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0105r0.html">[6]</a>.</li>
-</ul>
+defined in P0106's accompanying paper, P0105 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0105r0.html">[6]</a>.</p>
 <pre><code class="language-c++">template &lt;
-    round Crnd = rounding::native, 
+    rounding Crnd = rounding::native, 
     overflow Covf = overflow::native, 
     int NumDigits = numeric_limits&lt;int&gt;::digits(), 
     bool IsSigned = true&gt;
@@ -60,16 +58,15 @@ Details are beyond the scope of this paper but to illustrate this composition, t
 using custom_integer = overflow_integer&lt;Covf, rounding_integer&lt;Crnd, sized_integer&lt;NumBytes, IsSigned&gt;&gt;&gt;;
 </code></pre>
 <h3>The <code>fixed_point</code> Class Template</h3>
-<p>The fixed_point type is detailed in P0037 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0037r1.html">[1]</a>.
-It should concern itself exclusively with approximating real numbers using integer types.
+<p>Unlike the P0106 types, the sole purpose of this type is to approximate real numbers using integers.
 It deliberately avoids solving problems of rounding and of run-time and compile-time overflow handling.</p>
 <pre><code>template &lt;typename ReprType = int, int Exponent = 0&gt;
 class fixed_point;
 </code></pre>
-<p>Integers are treated as the subset of fixed-point types with an exponent of zero.
-When the <code>Exponent</code> parameter of <code>fixed_point</code> is zero,
-<code>fixed_point</code> should behave as closely as possible to the integer type specified by <code>ReprType</code>.</p>
-<p>While <code>ReprType</code> defaults to a built-in, any type which behaves suitably like an integer should be applicable as a parameter.
+<p>A <code>fixed_point</code> specialization is the combination of an integer plus an exponent.
+Put another way, an integer is a fixed-point type with an exponent of zero.
+To the furthest practical extent type, <code>fixed_point&lt;T, 0&gt;</code> should be interchangeable with <code>T</code>.</p>
+<p>While the most obvious choices for <code>ReprType</code> are built-in integers, any conceptually similar type is acceptable.
 The <code>custom_integer</code> type described above is an ideal candidate for this role.
 For example, a u16.16 fixed-point type with high-fidelity rounding characteristics might be expressed as:</p>
 <pre><code>fixed_point&lt;
