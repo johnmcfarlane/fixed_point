@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['trunc_5fadd',['trunc_add',['../namespacesg14.html#a215ac5f69d54ad5d0195bf0c843ac3a8',1,'sg14']]],
-  ['trunc_5fdivide',['trunc_divide',['../namespacesg14.html#a45784c51029cad168688152ec0946ac1',1,'sg14']]],
-  ['trunc_5fmultiply',['trunc_multiply',['../namespacesg14.html#a44340babc3e71f4efd44d58c7a019363',1,'sg14']]],
-  ['trunc_5fsubtract',['trunc_subtract',['../namespacesg14.html#acf70f9935718f54299dbecfdfeb4c3a3',1,'sg14']]]
+  ['operator_20bool',['operator bool',['../classsg14_1_1fixed__point.html#a2dc1043ac625ed20f08683ec8c19e683',1,'sg14::fixed_point']]],
+  ['operator_20s',['operator S',['../classsg14_1_1fixed__point.html#a6d65d4abe0d3cd6fbebffa7b217aaf91',1,'sg14::fixed_point::operator S() const '],['../classsg14_1_1fixed__point.html#a6d65d4abe0d3cd6fbebffa7b217aaf91',1,'sg14::fixed_point::operator S() const ']]],
+  ['operator_3d',['operator=',['../classsg14_1_1fixed__point.html#a7c2c5f29d0015ef66b4d6e6c4d1bac02',1,'sg14::fixed_point::operator=(S s)'],['../classsg14_1_1fixed__point.html#a7c2c5f29d0015ef66b4d6e6c4d1bac02',1,'sg14::fixed_point::operator=(S s)'],['../classsg14_1_1fixed__point.html#a902c34b0287bbd0131cd01b2b6072a46',1,'sg14::fixed_point::operator=(const fixed_point&lt; FromReprType, FromExponent &gt; &amp;rhs)']]]
 ];

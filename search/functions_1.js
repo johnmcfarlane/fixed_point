@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['fixed_5fpoint',['fixed_point',['../classsg14_1_1fixed__point.html#aa1424ac6d11036c717071d59f0fdf05f',1,'sg14::fixed_point::fixed_point()'],['../classsg14_1_1fixed__point.html#acd967aa14a9ee6ae9e58a27fcf99aca1',1,'sg14::fixed_point::fixed_point(S s)'],['../classsg14_1_1fixed__point.html#acd967aa14a9ee6ae9e58a27fcf99aca1',1,'sg14::fixed_point::fixed_point(S s)'],['../classsg14_1_1fixed__point.html#ad5ff6addcba2d3bbb976dae1383ebc00',1,'sg14::fixed_point::fixed_point(const fixed_point&lt; FromReprType, FromExponent &gt; &amp;rhs)']]],
-  ['from_5fdata',['from_data',['../classsg14_1_1fixed__point.html#a1ac2c85b94854788fe1ae3809518c01c',1,'sg14::fixed_point']]]
+  ['elastic',['elastic',['../classsg14_1_1elastic.html#ab22146b080db2727c6e574f2d0028859',1,'sg14::elastic::elastic() noexcept'],['../classsg14_1_1elastic.html#a8d6b9d51a031d0daeb90fb2aabdee255',1,'sg14::elastic::elastic(const elastic&lt; RhsIntegerDigits, RhsFractionalDigits, RhsArchetype &gt; &amp;rhs)'],['../classsg14_1_1elastic.html#aec45c7e0124a29de586e312b012753ae',1,'sg14::elastic::elastic(const fixed_point&lt; RhsReprType, RhsExponent &gt; &amp;value)'],['../classsg14_1_1elastic.html#a50db622cd77a698599483980f1af70e8',1,'sg14::elastic::elastic(const Rhs &amp;rhs)']]]
 ];

@@ -7,13 +7,13 @@
 
 var indexSectionsWithContent =
 {
-  0: "defimnorst",
-  1: "fnrt",
+  0: "adefimnorst",
+  1: "efimnrt",
   2: "s",
-  3: "ft",
-  4: "dfot",
+  3: "eft",
+  4: "defot",
   5: "defi",
-  6: "mrt"
+  6: "amrt"
 };
 
 var indexSectionNames =

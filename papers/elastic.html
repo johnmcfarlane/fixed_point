@@ -109,6 +109,12 @@ In the case of <code>elastic</code> type, that need can be met using a private <
 In this way, <code>elastic</code> focuses on compile-time overflow handling and nothing else,
 leading to a cleaner interface, a simpler implementation
 and the opportunity to avoid the vast majority of the compile-time cost.</p>
+<p>The <code>elastic</code> type claims to avoid overflow but there are two notable exceptions to that claim.</p>
+<p>Firstly, some operations such as square root and division
+produce irrational or repeating rational numbers which exceed the prescribed number of digits.
+This is an inevitable consequence of storing values as a fixed-size single binary value.</p>
+<p>Secondly, negation of the most negative value causes positive overflow.
+This specific criticism is addressed below.</p>
 <h3>Composition</h3>
 <p>Putting all of these three components together, it is possible to express numeric types with a wide range of properties.</p>
 <p>A high-precision, exception-throwing, (but slow) real-number type might be:</p>
@@ -152,7 +158,7 @@ Users wishing to exceed this capacity must turn to <code>custom_integer</code> a
 <h3>Non-Base-2 Numbers</h3>
 <p>It has been proposed that fixed-point arithmetic be extended beyond binary to any base.</p>
 <p>It is unclear whether this means for some yet-to-be standardized built-in types which are decimal, octagonal etc.
-or whether it is proposed for use with binary integer types, using base-ten for the Exponent parameter of fixed_point.</p>
+or whether it is proposed for use with binary integer types, using base-ten for the Exponent parameter of <code>fixed_point</code>.</p>
 <p>There are concerns that the machine-level efficiency design goals of <code>fixed_point</code> might not be attainable without the use of bit-shift operations.
 This would lose a significant section of the intended audience for fixed-point and the other types discussed here.</p>
 <p>The method of specifying the base of a fixed-point type in a user-friendly way is a matter of concern.
