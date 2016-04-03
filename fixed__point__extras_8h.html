@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>fixed_point: fixed_point_utils.h File Reference</title>
+<title>fixed_point: bits/fixed_point_extras.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -78,6 +78,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_4cb89d43f92538ff4356f1c340b21854.html">bits</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
@@ -85,11 +89,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">fixed_point_utils.h File Reference</div>  </div>
+<div class="title">fixed_point_extras.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>supplemental definitions related to the <code><a class="el" href="classsg14_1_1fixed__point.html" title="literal arithmetic type which approximates a real number ">sg14::fixed_point</a></code> type  
+<p>supplemental definitions related to the <code><a class="el" href="classsg14_1_1fixed__point.html" title="literal real number approximation that uses fixed-point arithmetic ">sg14::fixed_point</a></code> type; definitions that straddle two 'homes, e.g. <a class="el" href="fixed__point_8h.html" title="essential definitions related to the sg14::fixed_point type ">fixed_point.h</a> and cmath, traits or limits  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
@@ -105,10 +109,10 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a35c3bd2c6530ba83cde9758bf8904b73"><td class="memTemplParams" colspan="2"><a class="anchor" id="a35c3bd2c6530ba83cde9758bf8904b73"></a>
+<tr class="memitem:ac87467f9051acf40521960fa722d1bda"><td class="memTemplParams" colspan="2"><a class="anchor" id="ac87467f9051acf40521960fa722d1bda"></a>
 template&lt;class ReprType , int Exponent, typename std::enable_if&lt; std::is_signed&lt; ReprType &gt;::value, int &gt;::type Dummy = 0&gt; </td></tr>
-<tr class="memitem:a35c3bd2c6530ba83cde9758bf8904b73"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::abs</b> (const fixed_point&lt; ReprType, Exponent &gt; &amp;x) noexcept-&gt; _impl::common_type_t&lt; decltype(x), decltype(-x)&gt;</td></tr>
-<tr class="separator:a35c3bd2c6530ba83cde9758bf8904b73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac87467f9051acf40521960fa722d1bda"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::abs</b> (const fixed_point&lt; ReprType, Exponent &gt; &amp;x) noexcept-&gt; _fixed_point_impl::common_type_t&lt; decltype(x), decltype(-x)&gt;</td></tr>
+<tr class="separator:ac87467f9051acf40521960fa722d1bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec9e8bd39bb3ccb2e1d6e4a8cd175ee2"><td class="memTemplParams" colspan="2"><a class="anchor" id="aec9e8bd39bb3ccb2e1d6e4a8cd175ee2"></a>
 template&lt;class ReprType , int Exponent, typename std::enable_if&lt; std::is_unsigned&lt; ReprType &gt;::value, int &gt;::type Dummy = 0&gt; </td></tr>
 <tr class="memitem:aec9e8bd39bb3ccb2e1d6e4a8cd175ee2"><td class="memTemplItemLeft" align="right" valign="top">constexpr fixed_point<br class="typebreak"/>
@@ -142,9 +146,14 @@ template&lt;class ReprType , int Exponent&gt; </td></tr>
 <tr class="memitem:a0b3c1c68fadcefaf4b6e3e9af0035871"><td class="memTemplItemLeft" align="right" valign="top">constexpr fixed_point<br class="typebreak"/>
 &lt; ReprType, Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::sin</b> (const fixed_point&lt; ReprType, Exponent &gt; &amp;x) noexcept</td></tr>
 <tr class="separator:a0b3c1c68fadcefaf4b6e3e9af0035871"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1be1db5ffc1aa63455d42e89acabf31"><td class="memTemplParams" colspan="2"><a class="anchor" id="af1be1db5ffc1aa63455d42e89acabf31"></a>
+template&lt;class ReprType , int Exponent&gt; </td></tr>
+<tr class="memitem:af1be1db5ffc1aa63455d42e89acabf31"><td class="memTemplItemLeft" align="right" valign="top">constexpr fixed_point<br class="typebreak"/>
+&lt; ReprType, Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::sqrt</b> (const fixed_point&lt; ReprType, Exponent &gt; &amp;x)</td></tr>
+<tr class="separator:af1be1db5ffc1aa63455d42e89acabf31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>supplemental definitions related to the <code><a class="el" href="classsg14_1_1fixed__point.html" title="literal arithmetic type which approximates a real number ">sg14::fixed_point</a></code> type </p>
+<div class="textblock"><p>supplemental definitions related to the <code><a class="el" href="classsg14_1_1fixed__point.html" title="literal real number approximation that uses fixed-point arithmetic ">sg14::fixed_point</a></code> type; definitions that straddle two 'homes, e.g. <a class="el" href="fixed__point_8h.html" title="essential definitions related to the sg14::fixed_point type ">fixed_point.h</a> and cmath, traits or limits </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

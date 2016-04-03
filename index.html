@@ -105,22 +105,15 @@ Usage</h1>
 <li>Add the <a href="../../include">include</a> directory to your list of system headers.</li>
 <li>Essential definitions are in <a class="el" href="fixed__point_8h.html">fixed_point.h</a>: <pre class="fragment">#include &lt;fixed_point.h&gt;
 </pre></li>
-<li>Supplemental definitions are in <a class="el" href="fixed__point__utils_8h.html">fixed_point_utils.h</a>: <pre class="fragment">#include &lt;fixed_point_utils.h&gt;
-</pre></li>
 <li>All definitions are in the <a class="el" href="namespacesg14.html">sg14</a> namespace: <pre class="fragment">using namespace sg14;
 </pre></li>
 <li><p class="startli">Use the <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> type to define variables. </p>
 <pre class="fragment">fixed_point&lt;std::int32_t, -28&gt; pi(3.1415926535);
 std::cout &lt;&lt; "pi=" &lt;&lt; std::setprecision(10) &lt;&lt; pi;
 </pre><p class="startli">Output:</p>
+<p class="startli"><em>pi=3.141592652</em></p>
 </li>
-</ol>
-<blockquote class="doxtable">
-<p>pi=3.141592652</p>
-<p></p>
-</blockquote>
-<ol type="1">
-<li>Alternatively, use <a class="el" href="namespacesg14.html#ae910b4d30652f62dca728fb1383d5b86">make_fixed</a> and <a class="el" href="namespacesg14.html#a5103178fc8b5447099bc9bf637e5cb1c">make_ufixed</a> to instantiate signed and unsigned variables with exactly the number of integer and fractional digits you require: <pre class="fragment">make_fixed&lt;3, 28&gt; pi(3.1415926535);
+<li>Alternatively, use <a class="el" href="namespacesg14.html#adfab7b3dbdbbaa871587d31890bf3b67">make_fixed</a> and <a class="el" href="namespacesg14.html#a5103178fc8b5447099bc9bf637e5cb1c">make_ufixed</a> to instantiate signed and unsigned variables with exactly the number of integer and fractional digits you require: <pre class="fragment">make_fixed&lt;3, 28&gt; pi(3.1415926535);
 </pre></li>
 </ol>
 <h1><a class="anchor" id="tests_and_benchmarks"></a>

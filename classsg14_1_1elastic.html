@@ -96,7 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>general-purpose real number approximation that avoids overflow  
+<p>literal real number approximation that uses fixed-point arithmetic and performs operations with expanded results to avoid overflow  
  <a href="classsg14_1_1elastic.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -118,35 +118,36 @@ template&lt;int RhsIntegerDigits, int RhsFractionalDigits, class RhsArchetype &g
 <tr class="memdesc:a8d6b9d51a031d0daeb90fb2aabdee255"><td class="mdescLeft">&#160;</td><td class="mdescRight">copy constructor (guaranteed never to throw) <br/></td></tr>
 <tr class="separator:a8d6b9d51a031d0daeb90fb2aabdee255"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec45c7e0124a29de586e312b012753ae"><td class="memTemplParams" colspan="2"><a class="anchor" id="aec45c7e0124a29de586e312b012753ae"></a>
-template&lt;typename RhsReprType , int RhsExponent&gt; </td></tr>
+template&lt;class RhsReprType , int RhsExponent&gt; </td></tr>
 <tr class="memitem:aec45c7e0124a29de586e312b012753ae"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1elastic.html#aec45c7e0124a29de586e312b012753ae">elastic</a> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt; &amp;value)</td></tr>
-<tr class="memdesc:aec45c7e0124a29de586e312b012753ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor taking <a class="el" href="classsg14_1_1fixed__point.html" title="literal arithmetic type which approximates a real number ">fixed_point</a> type <br/></td></tr>
+<tr class="memdesc:aec45c7e0124a29de586e312b012753ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor taking <a class="el" href="classsg14_1_1fixed__point.html" title="literal real number approximation that uses fixed-point arithmetic ">fixed_point</a> type <br/></td></tr>
 <tr class="separator:aec45c7e0124a29de586e312b012753ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50db622cd77a698599483980f1af70e8"><td class="memTemplParams" colspan="2"><a class="anchor" id="a50db622cd77a698599483980f1af70e8"></a>
 template&lt;class Rhs &gt; </td></tr>
 <tr class="memitem:a50db622cd77a698599483980f1af70e8"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1elastic.html#a50db622cd77a698599483980f1af70e8">elastic</a> (const Rhs &amp;rhs)</td></tr>
 <tr class="memdesc:a50db622cd77a698599483980f1af70e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor converting from any other type <br/></td></tr>
 <tr class="separator:a50db622cd77a698599483980f1af70e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfc7e2ed4976906a1c575bd3f0ccee0f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acfc7e2ed4976906a1c575bd3f0ccee0f"></a>
-constexpr const <a class="el" href="classsg14_1_1fixed__point.html">_fixed_point_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>_data</b> () const noexcept</td></tr>
-<tr class="separator:acfc7e2ed4976906a1c575bd3f0ccee0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a972e87e87dbb6c766035ca4dbd9c5a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a972e87e87dbb6c766035ca4dbd9c5a"></a>
+constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1elastic.html#a0a972e87e87dbb6c766035ca4dbd9c5a">operator const _fixed_point_type &amp;</a> () const </td></tr>
+<tr class="memdesc:a0a972e87e87dbb6c766035ca4dbd9c5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">conversion operator returning <a class="el" href="classsg14_1_1fixed__point.html" title="literal real number approximation that uses fixed-point arithmetic ">fixed_point</a> type <br/></td></tr>
+<tr class="separator:a0a972e87e87dbb6c766035ca4dbd9c5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:a6f4cb03255e7d5789f7b22be1c858d21"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f4cb03255e7d5789f7b22be1c858d21"></a>
 static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1elastic.html#a6f4cb03255e7d5789f7b22be1c858d21">fractional_digits</a> = FractionalDigits</td></tr>
-<tr class="memdesc:a6f4cb03255e7d5789f7b22be1c858d21"><td class="mdescLeft">&#160;</td><td class="mdescRight">the number of fractional bits of storage <br/></td></tr>
+<tr class="memdesc:a6f4cb03255e7d5789f7b22be1c858d21"><td class="mdescLeft">&#160;</td><td class="mdescRight">see <em>FractionalDigits</em> <br/></td></tr>
 <tr class="separator:a6f4cb03255e7d5789f7b22be1c858d21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1df6dbcfff01d943c611314006e5a55b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1df6dbcfff01d943c611314006e5a55b"></a>
 static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1elastic.html#a1df6dbcfff01d943c611314006e5a55b">integer_digits</a> = IntegerDigits</td></tr>
-<tr class="memdesc:a1df6dbcfff01d943c611314006e5a55b"><td class="mdescLeft">&#160;</td><td class="mdescRight">see <code>IntegerDigits</code> <br/></td></tr>
+<tr class="memdesc:a1df6dbcfff01d943c611314006e5a55b"><td class="mdescLeft">&#160;</td><td class="mdescRight">see <em>IntegerDigits</em> <br/></td></tr>
 <tr class="separator:a1df6dbcfff01d943c611314006e5a55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;int IntegerDigits, int FractionalDigits = 0, class Archetype = signed&gt;<br/>
 class sg14::elastic&lt; IntegerDigits, FractionalDigits, Archetype &gt;</h3>
 
-<p>general-purpose real number approximation that avoids overflow </p>
+<p>literal real number approximation that uses fixed-point arithmetic and performs operations with expanded results to avoid overflow </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">IntegerDigits</td><td>the number of integer bits of storage </td></tr>

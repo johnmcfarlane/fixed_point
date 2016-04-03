@@ -95,10 +95,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1elastic.html">elastic</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">general-purpose real number approximation that avoids overflow  <a href="classsg14_1_1elastic.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">literal real number approximation that uses fixed-point arithmetic and performs operations with expanded results to avoid overflow  <a href="classsg14_1_1elastic.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">literal arithmetic type which approximates a real number  <a href="classsg14_1_1fixed__point.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">literal real number approximation that uses fixed-point arithmetic  <a href="classsg14_1_1fixed__point.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsg14_1_1is__elastic.html">is_elastic</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,69 +127,37 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a935ea9aeebf8a42b98417850e31148bb"><td class="memTemplParams" colspan="2"><a class="anchor" id="a935ea9aeebf8a42b98417850e31148bb"></a>
-template&lt;class FixedPoint &gt; </td></tr>
-<tr class="memitem:a935ea9aeebf8a42b98417850e31148bb"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>demote_result</b> = <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; _impl::previous_size&lt; typename FixedPoint::repr_type &gt;, FixedPoint::exponent/2 &gt;</td></tr>
-<tr class="separator:a935ea9aeebf8a42b98417850e31148bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae910b4d30652f62dca728fb1383d5b86"><td class="memTemplParams" colspan="2">template&lt;int IntegerDigits, int FractionalDigits = 0, class Archetype  = signed&gt; </td></tr>
-<tr class="memitem:ae910b4d30652f62dca728fb1383d5b86"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#ae910b4d30652f62dca728fb1383d5b86">make_fixed</a> = <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; _impl::sufficient_repr&lt; IntegerDigits+FractionalDigits+std::is_signed&lt; Archetype &gt;::value, Archetype &gt;, int(IntegerDigits)+int(std::is_signed&lt; Archetype &gt;::value)-_impl::num_bits&lt; _impl::sufficient_repr&lt; IntegerDigits+FractionalDigits+int(std::is_signed&lt; Archetype &gt;::value), Archetype &gt;&gt;()&gt;</td></tr>
-<tr class="memdesc:ae910b4d30652f62dca728fb1383d5b86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Produce a fixed-point type with the given number of integer and fractional digits.  <a href="#ae910b4d30652f62dca728fb1383d5b86">More...</a><br/></td></tr>
-<tr class="separator:ae910b4d30652f62dca728fb1383d5b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfab7b3dbdbbaa871587d31890bf3b67"><td class="memTemplParams" colspan="2">template&lt;int IntegerDigits, int FractionalDigits = 0, class Archetype  = signed&gt; </td></tr>
+<tr class="memitem:adfab7b3dbdbbaa871587d31890bf3b67"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#adfab7b3dbdbbaa871587d31890bf3b67">make_fixed</a> = <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; _fixed_point_impl::sufficient_repr&lt; IntegerDigits+FractionalDigits+std::is_signed&lt; Archetype &gt;::value, Archetype &gt;, int(IntegerDigits)+int(std::is_signed&lt; Archetype &gt;::value)-_fixed_point_impl::num_bits&lt; _fixed_point_impl::sufficient_repr&lt; IntegerDigits+FractionalDigits+int(std::is_signed&lt; Archetype &gt;::value), Archetype &gt;&gt;()&gt;</td></tr>
+<tr class="memdesc:adfab7b3dbdbbaa871587d31890bf3b67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Produce a fixed-point type with the given number of integer and fractional digits.  <a href="#adfab7b3dbdbbaa871587d31890bf3b67">More...</a><br/></td></tr>
+<tr class="separator:adfab7b3dbdbbaa871587d31890bf3b67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0830a0a8206f574372e86881db0d5ae"><td class="memTemplParams" colspan="2"><a class="anchor" id="ad0830a0a8206f574372e86881db0d5ae"></a>
 template&lt;class ReprType , int IntegerDigits&gt; </td></tr>
 <tr class="memitem:ad0830a0a8206f574372e86881db0d5ae"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>make_fixed_from_repr</b> = <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, IntegerDigits+std::is_signed&lt; ReprType &gt;::value-(signed) sizeof(ReprType)*CHAR_BIT &gt;</td></tr>
 <tr class="separator:ad0830a0a8206f574372e86881db0d5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a578ca4b68c1f5b70c2a88517850bb825"><td class="memTemplParams" colspan="2"><a class="anchor" id="a578ca4b68c1f5b70c2a88517850bb825"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:a578ca4b68c1f5b70c2a88517850bb825"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>make_signed_t</b> = typename <a class="el" href="structsg14_1_1make__signed.html">make_signed</a>&lt; T &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
+<tr class="separator:a578ca4b68c1f5b70c2a88517850bb825"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5103178fc8b5447099bc9bf637e5cb1c"><td class="memTemplParams" colspan="2">template&lt;int IntegerDigits, int FractionalDigits = 0, class Archetype  = unsigned&gt; </td></tr>
-<tr class="memitem:a5103178fc8b5447099bc9bf637e5cb1c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a5103178fc8b5447099bc9bf637e5cb1c">make_ufixed</a> = <a class="el" href="namespacesg14.html#ae910b4d30652f62dca728fb1383d5b86">make_fixed</a>&lt; IntegerDigits, FractionalDigits, typename std::make_unsigned&lt; Archetype &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a> &gt;</td></tr>
+<tr class="memitem:a5103178fc8b5447099bc9bf637e5cb1c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a5103178fc8b5447099bc9bf637e5cb1c">make_ufixed</a> = <a class="el" href="namespacesg14.html#adfab7b3dbdbbaa871587d31890bf3b67">make_fixed</a>&lt; IntegerDigits, FractionalDigits, typename std::make_unsigned&lt; Archetype &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a> &gt;</td></tr>
 <tr class="memdesc:a5103178fc8b5447099bc9bf637e5cb1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Produce an unsigned fixed-point type with the given number of integer and fractional digits.  <a href="#a5103178fc8b5447099bc9bf637e5cb1c">More...</a><br/></td></tr>
 <tr class="separator:a5103178fc8b5447099bc9bf637e5cb1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a987868166401b9bdde62a9619f30877b"><td class="memTemplParams" colspan="2"><a class="anchor" id="a987868166401b9bdde62a9619f30877b"></a>
-template&lt;class FixedPoint , unsigned N = 2&gt; </td></tr>
-<tr class="memitem:a987868166401b9bdde62a9619f30877b"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>promote_add_result</b> = <a class="el" href="classsg14_1_1fixed__point.html">make_fixed_from_repr</a>&lt; _impl::next_size&lt; typename FixedPoint::repr_type &gt;, FixedPoint::integer_digits+_impl::capacity&lt; N-1 &gt;::value &gt;</td></tr>
-<tr class="separator:a987868166401b9bdde62a9619f30877b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae27ed98159e4fdab66525a0f970512c0"><td class="memTemplParams" colspan="2"><a class="anchor" id="ae27ed98159e4fdab66525a0f970512c0"></a>
-template&lt;class Lhs , class Rhs  = Lhs&gt; </td></tr>
-<tr class="memitem:ae27ed98159e4fdab66525a0f970512c0"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>promote_divide_result</b> = <a class="el" href="classsg14_1_1fixed__point.html">promote_result</a>&lt; _impl::common_type_t&lt; Lhs, Rhs &gt;&gt;</td></tr>
-<tr class="separator:ae27ed98159e4fdab66525a0f970512c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2962c23bbd4d437161e76873435ba16"><td class="memTemplParams" colspan="2"><a class="anchor" id="ab2962c23bbd4d437161e76873435ba16"></a>
-template&lt;class Lhs , class Rhs  = Lhs&gt; </td></tr>
-<tr class="memitem:ab2962c23bbd4d437161e76873435ba16"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>promote_multiply_result</b> = <a class="el" href="classsg14_1_1fixed__point.html">promote_result</a>&lt; _impl::common_type_t&lt; Lhs, Rhs &gt;&gt;</td></tr>
-<tr class="separator:ab2962c23bbd4d437161e76873435ba16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c041149022c78a4d498b0684cca13ef"><td class="memTemplParams" colspan="2"><a class="anchor" id="a6c041149022c78a4d498b0684cca13ef"></a>
-template&lt;class FixedPoint &gt; </td></tr>
-<tr class="memitem:a6c041149022c78a4d498b0684cca13ef"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>promote_result</b> = <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; _impl::next_size&lt; typename FixedPoint::repr_type &gt;, FixedPoint::exponent *2 &gt;</td></tr>
-<tr class="separator:a6c041149022c78a4d498b0684cca13ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12b009de69a89613be308355d1c883b2"><td class="memTemplParams" colspan="2"><a class="anchor" id="a12b009de69a89613be308355d1c883b2"></a>
-template&lt;class FixedPoint &gt; </td></tr>
-<tr class="memitem:a12b009de69a89613be308355d1c883b2"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>promote_square_result</b> = <a class="el" href="namespacesg14.html#a5103178fc8b5447099bc9bf637e5cb1c">make_ufixed</a>&lt; FixedPoint::integer_digits *2, FixedPoint::fractional_digits *2 &gt;</td></tr>
-<tr class="separator:a12b009de69a89613be308355d1c883b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68d2679e421957d1045d7467620483bb"><td class="memTemplParams" colspan="2"><a class="anchor" id="a68d2679e421957d1045d7467620483bb"></a>
-template&lt;class Lhs , class Rhs  = Lhs&gt; </td></tr>
-<tr class="memitem:a68d2679e421957d1045d7467620483bb"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>promote_subtract_result</b> = <a class="el" href="classsg14_1_1fixed__point.html">make_fixed_from_repr</a>&lt; typename _impl::next_size&lt; _impl::subtract_result_repr&lt; typename Lhs::repr_type, typename Rhs::repr_type &gt;&gt;, _impl::max(Lhs::integer_digits, Rhs::integer_digits)+1 &gt;</td></tr>
-<tr class="separator:a68d2679e421957d1045d7467620483bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a294e7154e2dd11c72ce7f32794925154"><td class="memTemplParams" colspan="2"><a class="anchor" id="a294e7154e2dd11c72ce7f32794925154"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:a294e7154e2dd11c72ce7f32794925154"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>make_unsigned_t</b> = typename <a class="el" href="structsg14_1_1make__unsigned.html">make_unsigned</a>&lt; T &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
+<tr class="separator:a294e7154e2dd11c72ce7f32794925154"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa82857bf15669b9079e4e42e7274e3e2"><td class="memTemplParams" colspan="2">template&lt;class Archetype , int NumBytes&gt; </td></tr>
 <tr class="memitem:aa82857bf15669b9079e4e42e7274e3e2"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#aa82857bf15669b9079e4e42e7274e3e2">resize_t</a> = typename <a class="el" href="structsg14_1_1resize.html">resize</a>&lt; Archetype, NumBytes &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
 <tr class="memdesc:aa82857bf15669b9079e4e42e7274e3e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">resizes a type  <a href="#aa82857bf15669b9079e4e42e7274e3e2">More...</a><br/></td></tr>
 <tr class="separator:aa82857bf15669b9079e4e42e7274e3e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05985e9b94897a21af4ac4f43e61a3c6"><td class="memTemplParams" colspan="2"><a class="anchor" id="a05985e9b94897a21af4ac4f43e61a3c6"></a>
-template&lt;class FixedPoint &gt; </td></tr>
-<tr class="memitem:a05985e9b94897a21af4ac4f43e61a3c6"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>trunc_reciprocal_result</b> = <a class="el" href="classsg14_1_1fixed__point.html">make_fixed_from_repr</a>&lt; typename FixedPoint::repr_type, FixedPoint::fractional_digits+1 &gt;</td></tr>
-<tr class="separator:a05985e9b94897a21af4ac4f43e61a3c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87c0213e1a47b1c21f34c778aadf67f7"><td class="memTemplParams" colspan="2"><a class="anchor" id="a87c0213e1a47b1c21f34c778aadf67f7"></a>
-template&lt;class FixedPoint &gt; </td></tr>
-<tr class="memitem:a87c0213e1a47b1c21f34c778aadf67f7"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>trunc_sqrt_result</b> = <a class="el" href="classsg14_1_1fixed__point.html">make_fixed_from_repr</a>&lt; _impl::sqrt_result_repr&lt; typename FixedPoint::repr_type &gt;,(FixedPoint::integer_digits+1)/2 &gt;</td></tr>
-<tr class="separator:a87c0213e1a47b1c21f34c778aadf67f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88a28a194b639494350f714043eda33f"><td class="memTemplParams" colspan="2"><a class="anchor" id="a88a28a194b639494350f714043eda33f"></a>
-template&lt;class FixedPoint &gt; </td></tr>
-<tr class="memitem:a88a28a194b639494350f714043eda33f"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>trunc_square_result</b> = <a class="el" href="classsg14_1_1fixed__point.html">make_fixed_from_repr</a>&lt; _impl::square_result_repr&lt; typename FixedPoint::repr_type &gt;, FixedPoint::integer_digits *2 &gt;</td></tr>
-<tr class="separator:a88a28a194b639494350f714043eda33f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a35c3bd2c6530ba83cde9758bf8904b73"><td class="memTemplParams" colspan="2"><a class="anchor" id="a35c3bd2c6530ba83cde9758bf8904b73"></a>
+<tr class="memitem:ac87467f9051acf40521960fa722d1bda"><td class="memTemplParams" colspan="2"><a class="anchor" id="ac87467f9051acf40521960fa722d1bda"></a>
 template&lt;class ReprType , int Exponent, typename std::enable_if&lt; std::is_signed&lt; ReprType &gt;::value, int &gt;::type Dummy = 0&gt; </td></tr>
-<tr class="memitem:a35c3bd2c6530ba83cde9758bf8904b73"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>abs</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;x) noexcept-&gt; _impl::common_type_t&lt; decltype(x), decltype(-x)&gt;</td></tr>
-<tr class="separator:a35c3bd2c6530ba83cde9758bf8904b73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac87467f9051acf40521960fa722d1bda"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>abs</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;x) noexcept-&gt; _fixed_point_impl::common_type_t&lt; decltype(x), decltype(-x)&gt;</td></tr>
+<tr class="separator:ac87467f9051acf40521960fa722d1bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec9e8bd39bb3ccb2e1d6e4a8cd175ee2"><td class="memTemplParams" colspan="2"><a class="anchor" id="aec9e8bd39bb3ccb2e1d6e4a8cd175ee2"></a>
 template&lt;class ReprType , int Exponent, typename std::enable_if&lt; std::is_unsigned&lt; ReprType &gt;::value, int &gt;::type Dummy = 0&gt; </td></tr>
 <tr class="memitem:aec9e8bd39bb3ccb2e1d6e4a8cd175ee2"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a><br class="typebreak"/>
@@ -204,15 +172,14 @@ template&lt;class ReprType , int Exponent&gt; </td></tr>
 <tr class="memitem:ab1f15e363e554d28cc666c137ede0b1e"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a><br class="typebreak"/>
 &lt; ReprType, Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>cos</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;x) noexcept</td></tr>
 <tr class="separator:ab1f15e363e554d28cc666c137ede0b1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8bf58b370cf0a11e45e3857c5615421"><td class="memTemplParams" colspan="2"><a class="anchor" id="ad8bf58b370cf0a11e45e3857c5615421"></a>
-template&lt;class FixedPoint &gt; </td></tr>
-<tr class="memitem:ad8bf58b370cf0a11e45e3857c5615421"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">demote_result</a>&lt; FixedPoint &gt;<br class="typebreak"/>
- constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>demote</b> (const FixedPoint &amp;from)</td></tr>
-<tr class="separator:ad8bf58b370cf0a11e45e3857c5615421"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c0fbbd3c5de65b3ac5b984e63f4a00b"><td class="memTemplParams" colspan="2"><a class="anchor" id="a7c0fbbd3c5de65b3ac5b984e63f4a00b"></a>
 template&lt;class Result , class Lhs , class Rhs &gt; </td></tr>
 <tr class="memitem:a7c0fbbd3c5de65b3ac5b984e63f4a00b"><td class="memTemplItemLeft" align="right" valign="top">constexpr Result&#160;</td><td class="memTemplItemRight" valign="bottom"><b>divide</b> (const Lhs &amp;lhs, const Rhs &amp;rhs)</td></tr>
 <tr class="separator:a7c0fbbd3c5de65b3ac5b984e63f4a00b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17380b10f4f77730d06edcde242340aa"><td class="memTemplParams" colspan="2">template&lt;std::int64_t Value&gt; </td></tr>
+<tr class="memitem:a17380b10f4f77730d06edcde242340aa"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a17380b10f4f77730d06edcde242340aa">elasticate</a> () -&gt; _elastic_impl::elasticate_t&lt; std::int64_t, Value &gt;</td></tr>
+<tr class="memdesc:a17380b10f4f77730d06edcde242340aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate an <a class="el" href="classsg14_1_1elastic.html">elastic</a> object of given value  <a href="#a17380b10f4f77730d06edcde242340aa">More...</a><br/></td></tr>
+<tr class="separator:a17380b10f4f77730d06edcde242340aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af07c5af1893d0d011d9ea2b2e75d70a8"><td class="memTemplParams" colspan="2"><a class="anchor" id="af07c5af1893d0d011d9ea2b2e75d70a8"></a>
 template&lt;class ReprType , int Exponent&gt; </td></tr>
 <tr class="memitem:af07c5af1893d0d011d9ea2b2e75d70a8"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a><br class="typebreak"/>
@@ -226,22 +193,22 @@ template&lt;class Result , class Lhs , class Rhs &gt; </td></tr>
 template&lt;class Result , class Rhs &gt; </td></tr>
 <tr class="memitem:a3f85b66e3951abe30faff033c6b9a5b5"><td class="memTemplItemLeft" align="right" valign="top">constexpr Result&#160;</td><td class="memTemplItemRight" valign="bottom"><b>negate</b> (const Rhs &amp;rhs)</td></tr>
 <tr class="separator:a3f85b66e3951abe30faff033c6b9a5b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1cef6b2500aeac45876a2a8dddbfd4fa"><td class="memTemplParams" colspan="2"><a class="anchor" id="a1cef6b2500aeac45876a2a8dddbfd4fa"></a>
-template&lt;class LhsElastic , class RhsElastic , typename  = std::enable_if&lt;sg14::is_elastic&lt;LhsElastic&gt;::value &amp;&amp; sg14::is_elastic&lt;LhsElastic&gt;::value&gt;&gt; </td></tr>
-<tr class="memitem:a1cef6b2500aeac45876a2a8dddbfd4fa"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator!=</b> (const LhsElastic &amp;lhs, const RhsElastic &amp;rhs) -&gt; decltype(lhs._data()!=rhs._data())</td></tr>
-<tr class="separator:a1cef6b2500aeac45876a2a8dddbfd4fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73baa8d0c213fb3bcdeb44a196b10324"><td class="memTemplParams" colspan="2"><a class="anchor" id="a73baa8d0c213fb3bcdeb44a196b10324"></a>
+template&lt;class Lhs , class Rhs &gt; </td></tr>
+<tr class="memitem:a73baa8d0c213fb3bcdeb44a196b10324"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator!=</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _elastic_impl::either_is_elastic&lt; Lhs, Rhs &gt;(), bool &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
+<tr class="separator:a73baa8d0c213fb3bcdeb44a196b10324"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7bb9b1d5a1d06d6ad462d8ba11f2888"><td class="memTemplParams" colspan="2"><a class="anchor" id="ab7bb9b1d5a1d06d6ad462d8ba11f2888"></a>
 template&lt;class ReprType , int Exponent&gt; </td></tr>
 <tr class="memitem:ab7bb9b1d5a1d06d6ad462d8ba11f2888"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;rhs)</td></tr>
 <tr class="separator:ab7bb9b1d5a1d06d6ad462d8ba11f2888"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa04ecde05304c00405a521afeed2f286"><td class="memTemplParams" colspan="2"><a class="anchor" id="aa04ecde05304c00405a521afeed2f286"></a>
-template&lt;class Lhs , class Rhs &gt; </td></tr>
-<tr class="memitem:aa04ecde05304c00405a521afeed2f286"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator!=</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _impl::is_fixed_point&lt; Lhs &gt;::value||_impl::is_fixed_point&lt; Rhs &gt;::value, bool &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
-<tr class="separator:aa04ecde05304c00405a521afeed2f286"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a537294dd862ab07b21bffbfd404de833"><td class="memTemplParams" colspan="2"><a class="anchor" id="a537294dd862ab07b21bffbfd404de833"></a>
+<tr class="memitem:ab4a8685b424020aed691def68f03ee5b"><td class="memTemplParams" colspan="2"><a class="anchor" id="ab4a8685b424020aed691def68f03ee5b"></a>
+template&lt;int LhsIntegerDigits, int LhsFractionalDigits, class LhsArchetype , int RhsIntegerDigits, int RhsFractionalDigits, class RhsArchetype &gt; </td></tr>
+<tr class="memitem:ab4a8685b424020aed691def68f03ee5b"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="classsg14_1_1elastic.html">elastic</a>&lt; LhsIntegerDigits, LhsFractionalDigits, LhsArchetype &gt; &amp;lhs, const <a class="el" href="classsg14_1_1elastic.html">elastic</a>&lt; RhsIntegerDigits, RhsFractionalDigits, RhsArchetype &gt; &amp;rhs) -&gt; <a class="el" href="classsg14_1_1elastic.html">_elastic_impl::multiply_result_type</a>&lt; LhsIntegerDigits, LhsFractionalDigits, LhsArchetype, RhsIntegerDigits, RhsFractionalDigits, RhsArchetype &gt;</td></tr>
+<tr class="separator:ab4a8685b424020aed691def68f03ee5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f0cb0aea6ef16cd5d52d76c6dd4e0b4"><td class="memTemplParams" colspan="2"><a class="anchor" id="a7f0cb0aea6ef16cd5d52d76c6dd4e0b4"></a>
 template&lt;class LhsReprType , int LhsExponent, class RhsReprType , int RhsExponent&gt; </td></tr>
-<tr class="memitem:a537294dd862ab07b21bffbfd404de833"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt; &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt; &amp;rhs) -&gt; typename _impl::default_arithmetic_policy::multiply&lt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt;, <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt;&gt;::result_type</td></tr>
-<tr class="separator:a537294dd862ab07b21bffbfd404de833"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f0cb0aea6ef16cd5d52d76c6dd4e0b4"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt; &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt; &amp;rhs) -&gt; typename _fixed_point_impl::default_arithmetic_policy::multiply&lt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt;, <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt;&gt;::result_type</td></tr>
+<tr class="separator:a7f0cb0aea6ef16cd5d52d76c6dd4e0b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04ec2df919e8bb3c5756250f30bd7c35"><td class="memTemplParams" colspan="2"><a class="anchor" id="a04ec2df919e8bb3c5756250f30bd7c35"></a>
 template&lt;class ReprType , int Exponent, class Integer , typename  = typename std::enable_if&lt;std::is_integral&lt;Integer&gt;::value&gt;::type&gt; </td></tr>
 <tr class="memitem:a04ec2df919e8bb3c5756250f30bd7c35"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;lhs, const Integer &amp;rhs) -&gt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; decltype(std::declval&lt; ReprType &gt;()*std::declval&lt; Integer &gt;()), Exponent &gt;</td></tr>
@@ -250,52 +217,56 @@ template&lt;class ReprType , int Exponent, class Integer , typename  = typename 
 template&lt;class Integer , class ReprType , int Exponent, typename  = typename std::enable_if&lt;std::is_integral&lt;Integer&gt;::value&gt;::type&gt; </td></tr>
 <tr class="memitem:ae20e45bfa2de4ec89c4851fa90c5909a"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> (const Integer &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;rhs) -&gt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; decltype(std::declval&lt; Integer &gt;()*std::declval&lt; ReprType &gt;()), Exponent &gt;</td></tr>
 <tr class="separator:ae20e45bfa2de4ec89c4851fa90c5909a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe38406ee5d2cce0b7aed404d9c0ceeb"><td class="memTemplParams" colspan="2"><a class="anchor" id="abe38406ee5d2cce0b7aed404d9c0ceeb"></a>
+<tr class="memitem:aa463a8ed50ffd886fc519df858a07585"><td class="memTemplParams" colspan="2"><a class="anchor" id="aa463a8ed50ffd886fc519df858a07585"></a>
 template&lt;class LhsReprType , int LhsExponent, class Float &gt; </td></tr>
-<tr class="memitem:abe38406ee5d2cce0b7aed404d9c0ceeb"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt; &amp;lhs, const Float &amp;rhs) -&gt; _impl::common_type_t&lt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt;, typename std::enable_if&lt; std::is_floating_point&lt; Float &gt;::value, Float &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a> &gt;</td></tr>
-<tr class="separator:abe38406ee5d2cce0b7aed404d9c0ceeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc34a999e46641af63a10652fa741847"><td class="memTemplParams" colspan="2"><a class="anchor" id="acc34a999e46641af63a10652fa741847"></a>
+<tr class="memitem:aa463a8ed50ffd886fc519df858a07585"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt; &amp;lhs, const Float &amp;rhs) -&gt; _fixed_point_impl::common_type_t&lt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt;, typename std::enable_if&lt; std::is_floating_point&lt; Float &gt;::value, Float &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a> &gt;</td></tr>
+<tr class="separator:aa463a8ed50ffd886fc519df858a07585"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61d839a5dadcf616ff59c09e4fdc162b"><td class="memTemplParams" colspan="2"><a class="anchor" id="a61d839a5dadcf616ff59c09e4fdc162b"></a>
 template&lt;class Float , class RhsReprType , int RhsExponent&gt; </td></tr>
-<tr class="memitem:acc34a999e46641af63a10652fa741847"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> (const Float &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt; &amp;rhs) -&gt; _impl::common_type_t&lt; typename std::enable_if&lt; std::is_floating_point&lt; Float &gt;::value, Float &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a>, <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt;&gt;</td></tr>
-<tr class="separator:acc34a999e46641af63a10652fa741847"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8b9632f7598242bd802273a7f164009"><td class="memTemplParams" colspan="2"><a class="anchor" id="ab8b9632f7598242bd802273a7f164009"></a>
+<tr class="memitem:a61d839a5dadcf616ff59c09e4fdc162b"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*</b> (const Float &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt; &amp;rhs) -&gt; _fixed_point_impl::common_type_t&lt; typename std::enable_if&lt; std::is_floating_point&lt; Float &gt;::value, Float &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a>, <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt;&gt;</td></tr>
+<tr class="separator:a61d839a5dadcf616ff59c09e4fdc162b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3c454db48cf7034d5af8442a8153e40"><td class="memTemplParams" colspan="2"><a class="anchor" id="ac3c454db48cf7034d5af8442a8153e40"></a>
+template&lt;int LhsIntegerDigits, int LhsFractionalDigits, class LhsArchetype , int RhsIntegerDigits, int RhsFractionalDigits, class RhsArchetype &gt; </td></tr>
+<tr class="memitem:ac3c454db48cf7034d5af8442a8153e40"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="classsg14_1_1elastic.html">elastic</a>&lt; LhsIntegerDigits, LhsFractionalDigits, LhsArchetype &gt; &amp;lhs, const <a class="el" href="classsg14_1_1elastic.html">elastic</a>&lt; RhsIntegerDigits, RhsFractionalDigits, RhsArchetype &gt; &amp;rhs) -&gt; <a class="el" href="classsg14_1_1elastic.html">_elastic_impl::add_result_type</a>&lt; LhsIntegerDigits, LhsFractionalDigits, LhsArchetype, RhsIntegerDigits, RhsFractionalDigits, RhsArchetype &gt;</td></tr>
+<tr class="separator:ac3c454db48cf7034d5af8442a8153e40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6368f79098ffb017e24d0d2f97d7f82"><td class="memTemplParams" colspan="2"><a class="anchor" id="ae6368f79098ffb017e24d0d2f97d7f82"></a>
 template&lt;class LhsReprType , int LhsExponent, class RhsReprType , int RhsExponent&gt; </td></tr>
-<tr class="memitem:ab8b9632f7598242bd802273a7f164009"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt; &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt; &amp;rhs) -&gt; typename _impl::default_arithmetic_policy::add&lt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt;, <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt;&gt;::result_type</td></tr>
-<tr class="separator:ab8b9632f7598242bd802273a7f164009"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02d9cba62d34c7a53dbb57fb08388ea3"><td class="memTemplParams" colspan="2"><a class="anchor" id="a02d9cba62d34c7a53dbb57fb08388ea3"></a>
+<tr class="memitem:ae6368f79098ffb017e24d0d2f97d7f82"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt; &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt; &amp;rhs) -&gt; typename _fixed_point_impl::default_arithmetic_policy::add&lt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt;, <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt;&gt;::result_type</td></tr>
+<tr class="separator:ae6368f79098ffb017e24d0d2f97d7f82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7915e1810c1e34b4ff09885b4e60c969"><td class="memTemplParams" colspan="2"><a class="anchor" id="a7915e1810c1e34b4ff09885b4e60c969"></a>
 template&lt;class Lhs , class Rhs &gt; </td></tr>
-<tr class="memitem:a02d9cba62d34c7a53dbb57fb08388ea3"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; _impl::common_type_t&lt; Lhs, Rhs &gt;</td></tr>
-<tr class="separator:a02d9cba62d34c7a53dbb57fb08388ea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7915e1810c1e34b4ff09885b4e60c969"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; _fixed_point_impl::common_type_t&lt; Lhs, Rhs &gt;</td></tr>
+<tr class="separator:a7915e1810c1e34b4ff09885b4e60c969"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b75bc2e76d64ace66abbfa76fb09a60"><td class="memTemplParams" colspan="2"><a class="anchor" id="a0b75bc2e76d64ace66abbfa76fb09a60"></a>
 template&lt;class LhsReprType , int Exponent, class Rhs &gt; </td></tr>
 <tr class="memitem:a0b75bc2e76d64ace66abbfa76fb09a60"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, <br class="typebreak"/>
 Exponent &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator+=</b> (<a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, Exponent &gt; &amp;lhs, const Rhs &amp;rhs)</td></tr>
 <tr class="separator:a0b75bc2e76d64ace66abbfa76fb09a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad642d2cafce42d1048c5e661ad5cc824"><td class="memTemplParams" colspan="2"><a class="anchor" id="ad642d2cafce42d1048c5e661ad5cc824"></a>
+<tr class="memitem:a5c0cdadbee97a35ed234bdf6b427bc3c"><td class="memTemplParams" colspan="2"><a class="anchor" id="a5c0cdadbee97a35ed234bdf6b427bc3c"></a>
 template&lt;int RhsIntegerDigits, int RhsFractionalDigits, class RhsArchetype &gt; </td></tr>
-<tr class="memitem:ad642d2cafce42d1048c5e661ad5cc824"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="classsg14_1_1elastic.html">elastic</a>&lt; RhsIntegerDigits, RhsFractionalDigits, RhsArchetype &gt; &amp;rhs) -&gt; <a class="el" href="classsg14_1_1elastic.html">elastic</a>&lt; RhsIntegerDigits, RhsFractionalDigits, typename <a class="el" href="structsg14_1_1make__signed.html">sg14::make_signed</a>&lt; RhsArchetype &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a> &gt;</td></tr>
-<tr class="separator:ad642d2cafce42d1048c5e661ad5cc824"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb7190441e744e47ef40a70f9e43da8b"><td class="memTemplParams" colspan="2"><a class="anchor" id="aeb7190441e744e47ef40a70f9e43da8b"></a>
+<tr class="memitem:a5c0cdadbee97a35ed234bdf6b427bc3c"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="classsg14_1_1elastic.html">elastic</a>&lt; RhsIntegerDigits, RhsFractionalDigits, RhsArchetype &gt; &amp;rhs) -&gt; <a class="el" href="classsg14_1_1elastic.html">elastic</a>&lt; RhsIntegerDigits, RhsFractionalDigits, make_signed_t&lt; RhsArchetype &gt;&gt;</td></tr>
+<tr class="separator:a5c0cdadbee97a35ed234bdf6b427bc3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5085a9336680cba92b670f56dabb384c"><td class="memTemplParams" colspan="2"><a class="anchor" id="a5085a9336680cba92b670f56dabb384c"></a>
 template&lt;class RhsReprType , int RhsExponent&gt; </td></tr>
-<tr class="memitem:aeb7190441e744e47ef40a70f9e43da8b"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt; &amp;rhs) -&gt; typename _impl::default_arithmetic_policy::negate&lt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt;&gt;::result_type</td></tr>
-<tr class="separator:aeb7190441e744e47ef40a70f9e43da8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a325e38199ffc295dd48aab280b08bfad"><td class="memTemplParams" colspan="2"><a class="anchor" id="a325e38199ffc295dd48aab280b08bfad"></a>
+<tr class="memitem:a5085a9336680cba92b670f56dabb384c"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt; &amp;rhs) -&gt; typename _fixed_point_impl::default_arithmetic_policy::negate&lt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt;&gt;::result_type</td></tr>
+<tr class="separator:a5085a9336680cba92b670f56dabb384c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad569a515132b57ef071d863a25710afe"><td class="memTemplParams" colspan="2"><a class="anchor" id="ad569a515132b57ef071d863a25710afe"></a>
 template&lt;class LhsReprType , int LhsExponent, class RhsReprType , int RhsExponent&gt; </td></tr>
-<tr class="memitem:a325e38199ffc295dd48aab280b08bfad"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt; &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt; &amp;rhs) -&gt; typename _impl::default_arithmetic_policy::subtract&lt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt;, <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt;&gt;::result_type</td></tr>
-<tr class="separator:a325e38199ffc295dd48aab280b08bfad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2a751eca75e934c1843b8fcc052add6"><td class="memTemplParams" colspan="2"><a class="anchor" id="ad2a751eca75e934c1843b8fcc052add6"></a>
+<tr class="memitem:ad569a515132b57ef071d863a25710afe"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt; &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt; &amp;rhs) -&gt; typename _fixed_point_impl::default_arithmetic_policy::subtract&lt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt;, <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt;&gt;::result_type</td></tr>
+<tr class="separator:ad569a515132b57ef071d863a25710afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c6b1e4fa8e23e8d69281c662cb292c7"><td class="memTemplParams" colspan="2"><a class="anchor" id="a2c6b1e4fa8e23e8d69281c662cb292c7"></a>
 template&lt;class Lhs , class Rhs &gt; </td></tr>
-<tr class="memitem:ad2a751eca75e934c1843b8fcc052add6"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; _impl::common_type_t&lt; Lhs, Rhs &gt;</td></tr>
-<tr class="separator:ad2a751eca75e934c1843b8fcc052add6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c6b1e4fa8e23e8d69281c662cb292c7"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; _fixed_point_impl::common_type_t&lt; Lhs, Rhs &gt;</td></tr>
+<tr class="separator:a2c6b1e4fa8e23e8d69281c662cb292c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc490ce9bb61314f9569cd7e16e7905d"><td class="memTemplParams" colspan="2"><a class="anchor" id="adc490ce9bb61314f9569cd7e16e7905d"></a>
 template&lt;class LhsReprType , int Exponent, class Rhs &gt; </td></tr>
 <tr class="memitem:adc490ce9bb61314f9569cd7e16e7905d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, <br class="typebreak"/>
 Exponent &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator-=</b> (<a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, Exponent &gt; &amp;lhs, const Rhs &amp;rhs)</td></tr>
 <tr class="separator:adc490ce9bb61314f9569cd7e16e7905d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aded5dd0937eb949259ebe8c021330707"><td class="memTemplParams" colspan="2"><a class="anchor" id="aded5dd0937eb949259ebe8c021330707"></a>
+<tr class="memitem:ad6408c796481f1a6b77d02823a8aba32"><td class="memTemplParams" colspan="2"><a class="anchor" id="ad6408c796481f1a6b77d02823a8aba32"></a>
 template&lt;class LhsReprType , int LhsExponent, class RhsReprType , int RhsExponent&gt; </td></tr>
-<tr class="memitem:aded5dd0937eb949259ebe8c021330707"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt; &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt; &amp;rhs) -&gt; typename _impl::default_arithmetic_policy::divide&lt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt;, <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt;&gt;::result_type</td></tr>
-<tr class="separator:aded5dd0937eb949259ebe8c021330707"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6408c796481f1a6b77d02823a8aba32"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt; &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt; &amp;rhs) -&gt; typename _fixed_point_impl::default_arithmetic_policy::divide&lt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt;, <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt;&gt;::result_type</td></tr>
+<tr class="separator:ad6408c796481f1a6b77d02823a8aba32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8743e25ac31c3f1c7c6e2c604be6790d"><td class="memTemplParams" colspan="2"><a class="anchor" id="a8743e25ac31c3f1c7c6e2c604be6790d"></a>
 template&lt;class ReprType , int Exponent, class Integer , typename  = typename std::enable_if&lt;std::is_integral&lt;Integer&gt;::value&gt;::type&gt; </td></tr>
 <tr class="memitem:a8743e25ac31c3f1c7c6e2c604be6790d"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;lhs, const Integer &amp;rhs) -&gt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; decltype(std::declval&lt; ReprType &gt;()/std::declval&lt; Integer &gt;()), Exponent &gt;</td></tr>
@@ -304,78 +275,58 @@ template&lt;class ReprType , int Exponent, class Integer , typename  = typename 
 template&lt;class Integer , class ReprType , int Exponent, typename  = typename std::enable_if&lt;std::is_integral&lt;Integer&gt;::value&gt;::type&gt; </td></tr>
 <tr class="memitem:a23e1f618e7f31edab95237b6b092997f"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/</b> (const Integer &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;rhs) -&gt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; decltype(std::declval&lt; Integer &gt;()/std::declval&lt; ReprType &gt;()), Exponent &gt;</td></tr>
 <tr class="separator:a23e1f618e7f31edab95237b6b092997f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0ee42344e773d98e25c3c0760d23239"><td class="memTemplParams" colspan="2"><a class="anchor" id="ac0ee42344e773d98e25c3c0760d23239"></a>
+<tr class="memitem:aaf91f8a8b40de0249180421b11e1f303"><td class="memTemplParams" colspan="2"><a class="anchor" id="aaf91f8a8b40de0249180421b11e1f303"></a>
 template&lt;class LhsReprType , int LhsExponent, class Float &gt; </td></tr>
-<tr class="memitem:ac0ee42344e773d98e25c3c0760d23239"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt; &amp;lhs, const Float &amp;rhs) -&gt; _impl::common_type_t&lt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt;, typename std::enable_if&lt; std::is_floating_point&lt; Float &gt;::value, Float &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a> &gt;</td></tr>
-<tr class="separator:ac0ee42344e773d98e25c3c0760d23239"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af13e38fc225d0d70fceea7c9118ff1b2"><td class="memTemplParams" colspan="2"><a class="anchor" id="af13e38fc225d0d70fceea7c9118ff1b2"></a>
+<tr class="memitem:aaf91f8a8b40de0249180421b11e1f303"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt; &amp;lhs, const Float &amp;rhs) -&gt; _fixed_point_impl::common_type_t&lt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsReprType, LhsExponent &gt;, typename std::enable_if&lt; std::is_floating_point&lt; Float &gt;::value, Float &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a> &gt;</td></tr>
+<tr class="separator:aaf91f8a8b40de0249180421b11e1f303"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab68cb8e7bfb260d5f4e3da3ab4335dcd"><td class="memTemplParams" colspan="2"><a class="anchor" id="ab68cb8e7bfb260d5f4e3da3ab4335dcd"></a>
 template&lt;class Float , class RhsReprType , int RhsExponent&gt; </td></tr>
-<tr class="memitem:af13e38fc225d0d70fceea7c9118ff1b2"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/</b> (const Float &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt; &amp;rhs) -&gt; _impl::common_type_t&lt; typename std::enable_if&lt; std::is_floating_point&lt; Float &gt;::value, Float &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a>, <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt;&gt;</td></tr>
-<tr class="separator:af13e38fc225d0d70fceea7c9118ff1b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a523a1157301f45106795c5771212475f"><td class="memTemplParams" colspan="2"><a class="anchor" id="a523a1157301f45106795c5771212475f"></a>
-template&lt;class LhsElastic , class RhsElastic , typename  = std::enable_if&lt;sg14::is_elastic&lt;LhsElastic&gt;::value &amp;&amp; sg14::is_elastic&lt;LhsElastic&gt;::value&gt;&gt; </td></tr>
-<tr class="memitem:a523a1157301f45106795c5771212475f"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&lt;</b> (const LhsElastic &amp;lhs, const RhsElastic &amp;rhs) -&gt; decltype(lhs._data()&lt; rhs._data())</td></tr>
-<tr class="separator:a523a1157301f45106795c5771212475f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab68cb8e7bfb260d5f4e3da3ab4335dcd"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/</b> (const Float &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt; &amp;rhs) -&gt; _fixed_point_impl::common_type_t&lt; typename std::enable_if&lt; std::is_floating_point&lt; Float &gt;::value, Float &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a>, <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsReprType, RhsExponent &gt;&gt;</td></tr>
+<tr class="separator:ab68cb8e7bfb260d5f4e3da3ab4335dcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac262113fda8ccc2c59872ecea4ffcd9d"><td class="memTemplParams" colspan="2"><a class="anchor" id="ac262113fda8ccc2c59872ecea4ffcd9d"></a>
+template&lt;class Lhs , class Rhs &gt; </td></tr>
+<tr class="memitem:ac262113fda8ccc2c59872ecea4ffcd9d"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&lt;</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _elastic_impl::either_is_elastic&lt; Lhs, Rhs &gt;(), bool &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
+<tr class="separator:ac262113fda8ccc2c59872ecea4ffcd9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7de28965214eb5e77055e396ee71d37e"><td class="memTemplParams" colspan="2"><a class="anchor" id="a7de28965214eb5e77055e396ee71d37e"></a>
 template&lt;class ReprType , int Exponent&gt; </td></tr>
 <tr class="memitem:a7de28965214eb5e77055e396ee71d37e"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&lt;</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;rhs)</td></tr>
 <tr class="separator:a7de28965214eb5e77055e396ee71d37e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6cbe42dd87a080b8cf2fe4f2a8662e0"><td class="memTemplParams" colspan="2"><a class="anchor" id="ac6cbe42dd87a080b8cf2fe4f2a8662e0"></a>
-template&lt;class Lhs , class Rhs &gt; </td></tr>
-<tr class="memitem:ac6cbe42dd87a080b8cf2fe4f2a8662e0"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&lt;</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _impl::is_fixed_point&lt; Lhs &gt;::value||_impl::is_fixed_point&lt; Rhs &gt;::value, bool &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
-<tr class="separator:ac6cbe42dd87a080b8cf2fe4f2a8662e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb5e60a9fbbd2acc30fb3f9ef8820bd9"><td class="memTemplParams" colspan="2"><a class="anchor" id="aeb5e60a9fbbd2acc30fb3f9ef8820bd9"></a>
 template&lt;class ReprType , int Exponent&gt; </td></tr>
 <tr class="memitem:aeb5e60a9fbbd2acc30fb3f9ef8820bd9"><td class="memTemplItemLeft" align="right" valign="top">::std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&lt;&lt;</b> (::std::ostream &amp;out, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;fp)</td></tr>
 <tr class="separator:aeb5e60a9fbbd2acc30fb3f9ef8820bd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8b2626b4592faf74b2e10e56bbd8c03"><td class="memTemplParams" colspan="2"><a class="anchor" id="ad8b2626b4592faf74b2e10e56bbd8c03"></a>
-template&lt;class LhsElastic , class RhsElastic , typename  = std::enable_if&lt;sg14::is_elastic&lt;LhsElastic&gt;::value &amp;&amp; sg14::is_elastic&lt;LhsElastic&gt;::value&gt;&gt; </td></tr>
-<tr class="memitem:ad8b2626b4592faf74b2e10e56bbd8c03"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&lt;=</b> (const LhsElastic &amp;lhs, const RhsElastic &amp;rhs) -&gt; decltype(lhs._data()&lt;=rhs._data())</td></tr>
-<tr class="separator:ad8b2626b4592faf74b2e10e56bbd8c03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a014a83bad4a0b87e136cc82953d095e9"><td class="memTemplParams" colspan="2"><a class="anchor" id="a014a83bad4a0b87e136cc82953d095e9"></a>
+template&lt;class Lhs , class Rhs &gt; </td></tr>
+<tr class="memitem:a014a83bad4a0b87e136cc82953d095e9"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&lt;=</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _elastic_impl::either_is_elastic&lt; Lhs, Rhs &gt;(), bool &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
+<tr class="separator:a014a83bad4a0b87e136cc82953d095e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9db87057850a91ae8695ab4115a5f105"><td class="memTemplParams" colspan="2"><a class="anchor" id="a9db87057850a91ae8695ab4115a5f105"></a>
 template&lt;class ReprType , int Exponent&gt; </td></tr>
 <tr class="memitem:a9db87057850a91ae8695ab4115a5f105"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&lt;=</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;rhs)</td></tr>
 <tr class="separator:a9db87057850a91ae8695ab4115a5f105"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac563dde63fc2e1d0feec7bfeef114edb"><td class="memTemplParams" colspan="2"><a class="anchor" id="ac563dde63fc2e1d0feec7bfeef114edb"></a>
+<tr class="memitem:a10a4e8e8b2a6b3409de3c14634bac9ea"><td class="memTemplParams" colspan="2"><a class="anchor" id="a10a4e8e8b2a6b3409de3c14634bac9ea"></a>
 template&lt;class Lhs , class Rhs &gt; </td></tr>
-<tr class="memitem:ac563dde63fc2e1d0feec7bfeef114edb"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&lt;=</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _impl::is_fixed_point&lt; Lhs &gt;::value||_impl::is_fixed_point&lt; Rhs &gt;::value, bool &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
-<tr class="separator:ac563dde63fc2e1d0feec7bfeef114edb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac11461bf8b9e6202b494ecceb5b61be9"><td class="memTemplParams" colspan="2"><a class="anchor" id="ac11461bf8b9e6202b494ecceb5b61be9"></a>
-template&lt;class LhsElastic , class RhsElastic , typename  = std::enable_if&lt;sg14::is_elastic&lt;LhsElastic&gt;::value &amp;&amp; sg14::is_elastic&lt;LhsElastic&gt;::value&gt;&gt; </td></tr>
-<tr class="memitem:ac11461bf8b9e6202b494ecceb5b61be9"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator==</b> (const LhsElastic &amp;lhs, const RhsElastic &amp;rhs) -&gt; decltype(lhs._data()==rhs._data())</td></tr>
-<tr class="separator:ac11461bf8b9e6202b494ecceb5b61be9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10a4e8e8b2a6b3409de3c14634bac9ea"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator==</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _elastic_impl::either_is_elastic&lt; Lhs, Rhs &gt;(), bool &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
+<tr class="separator:a10a4e8e8b2a6b3409de3c14634bac9ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b081eda843b4b728fd761b8705bc2be"><td class="memTemplParams" colspan="2"><a class="anchor" id="a4b081eda843b4b728fd761b8705bc2be"></a>
 template&lt;class ReprType , int Exponent&gt; </td></tr>
 <tr class="memitem:a4b081eda843b4b728fd761b8705bc2be"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;rhs)</td></tr>
 <tr class="separator:a4b081eda843b4b728fd761b8705bc2be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a495584ff0f6c55e30d10f54c8843bbc4"><td class="memTemplParams" colspan="2"><a class="anchor" id="a495584ff0f6c55e30d10f54c8843bbc4"></a>
+<tr class="memitem:afad830b4e652d4d660489d3967548815"><td class="memTemplParams" colspan="2"><a class="anchor" id="afad830b4e652d4d660489d3967548815"></a>
 template&lt;class Lhs , class Rhs &gt; </td></tr>
-<tr class="memitem:a495584ff0f6c55e30d10f54c8843bbc4"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator==</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _impl::is_fixed_point&lt; Lhs &gt;::value||_impl::is_fixed_point&lt; Rhs &gt;::value, bool &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
-<tr class="separator:a495584ff0f6c55e30d10f54c8843bbc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a368b03d184bb2f35216946c24e42af95"><td class="memTemplParams" colspan="2"><a class="anchor" id="a368b03d184bb2f35216946c24e42af95"></a>
-template&lt;class LhsElastic , class RhsElastic , typename  = std::enable_if&lt;sg14::is_elastic&lt;LhsElastic&gt;::value &amp;&amp; sg14::is_elastic&lt;LhsElastic&gt;::value&gt;&gt; </td></tr>
-<tr class="memitem:a368b03d184bb2f35216946c24e42af95"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&gt;</b> (const LhsElastic &amp;lhs, const RhsElastic &amp;rhs) -&gt; decltype(lhs._data()&gt;rhs._data())</td></tr>
-<tr class="separator:a368b03d184bb2f35216946c24e42af95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afad830b4e652d4d660489d3967548815"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&gt;</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _elastic_impl::either_is_elastic&lt; Lhs, Rhs &gt;(), bool &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
+<tr class="separator:afad830b4e652d4d660489d3967548815"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ef7cbe7591c09efa07a29747ee70f4c"><td class="memTemplParams" colspan="2"><a class="anchor" id="a0ef7cbe7591c09efa07a29747ee70f4c"></a>
 template&lt;class ReprType , int Exponent&gt; </td></tr>
 <tr class="memitem:a0ef7cbe7591c09efa07a29747ee70f4c"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&gt;</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;rhs)</td></tr>
 <tr class="separator:a0ef7cbe7591c09efa07a29747ee70f4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4cc05382283f25c0d6df2a7897290ee"><td class="memTemplParams" colspan="2"><a class="anchor" id="ad4cc05382283f25c0d6df2a7897290ee"></a>
+<tr class="memitem:a59efbc6797a29a91aca1e7058355265f"><td class="memTemplParams" colspan="2"><a class="anchor" id="a59efbc6797a29a91aca1e7058355265f"></a>
 template&lt;class Lhs , class Rhs &gt; </td></tr>
-<tr class="memitem:ad4cc05382283f25c0d6df2a7897290ee"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&gt;</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _impl::is_fixed_point&lt; Lhs &gt;::value||_impl::is_fixed_point&lt; Rhs &gt;::value, bool &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
-<tr class="separator:ad4cc05382283f25c0d6df2a7897290ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae48b07693f4103f0f0489d58312f0f04"><td class="memTemplParams" colspan="2"><a class="anchor" id="ae48b07693f4103f0f0489d58312f0f04"></a>
-template&lt;class LhsElastic , class RhsElastic , typename  = std::enable_if&lt;sg14::is_elastic&lt;LhsElastic&gt;::value &amp;&amp; sg14::is_elastic&lt;LhsElastic&gt;::value&gt;&gt; </td></tr>
-<tr class="memitem:ae48b07693f4103f0f0489d58312f0f04"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&gt;=</b> (const LhsElastic &amp;lhs, const RhsElastic &amp;rhs) -&gt; decltype(lhs._data()&gt;=rhs._data())</td></tr>
-<tr class="separator:ae48b07693f4103f0f0489d58312f0f04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59efbc6797a29a91aca1e7058355265f"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&gt;=</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _elastic_impl::either_is_elastic&lt; Lhs, Rhs &gt;(), bool &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
+<tr class="separator:a59efbc6797a29a91aca1e7058355265f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a084fc2917f0aff84d3f6b25d7915c8ba"><td class="memTemplParams" colspan="2"><a class="anchor" id="a084fc2917f0aff84d3f6b25d7915c8ba"></a>
 template&lt;class ReprType , int Exponent&gt; </td></tr>
 <tr class="memitem:a084fc2917f0aff84d3f6b25d7915c8ba"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&gt;=</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;lhs, const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;rhs)</td></tr>
 <tr class="separator:a084fc2917f0aff84d3f6b25d7915c8ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6725d836d326971a49502e45cfda78d0"><td class="memTemplParams" colspan="2"><a class="anchor" id="a6725d836d326971a49502e45cfda78d0"></a>
-template&lt;class Lhs , class Rhs &gt; </td></tr>
-<tr class="memitem:a6725d836d326971a49502e45cfda78d0"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&gt;=</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _impl::is_fixed_point&lt; Lhs &gt;::value||_impl::is_fixed_point&lt; Rhs &gt;::value, bool &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
-<tr class="separator:a6725d836d326971a49502e45cfda78d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4617cfadc80cd7ef54adb68377cd26c"><td class="memTemplParams" colspan="2"><a class="anchor" id="ad4617cfadc80cd7ef54adb68377cd26c"></a>
 template&lt;class ReprType , int Exponent&gt; </td></tr>
 <tr class="memitem:ad4617cfadc80cd7ef54adb68377cd26c"><td class="memTemplItemLeft" align="right" valign="top">::std::istream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&gt;&gt;</b> (::std::istream &amp;in, <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;fp)</td></tr>
@@ -385,36 +336,6 @@ template&lt;class ReprType , int Exponent&gt; </td></tr>
 <tr class="memitem:a1874443f94e0b91fc4f73d40af04a94f"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a><br class="typebreak"/>
 &lt; ReprType, Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>pow</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;x) noexcept</td></tr>
 <tr class="separator:a1874443f94e0b91fc4f73d40af04a94f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1cd2b120ff069a9153f55244390ec943"><td class="memTemplParams" colspan="2"><a class="anchor" id="a1cd2b120ff069a9153f55244390ec943"></a>
-template&lt;class FixedPoint &gt; </td></tr>
-<tr class="memitem:a1cd2b120ff069a9153f55244390ec943"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">promote_result</a>&lt; FixedPoint &gt;<br class="typebreak"/>
- constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>promote</b> (const FixedPoint &amp;from)</td></tr>
-<tr class="separator:a1cd2b120ff069a9153f55244390ec943"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35427c7e3b2ff0bd20e5aff783ee9171"><td class="memTemplParams" colspan="2"><a class="anchor" id="a35427c7e3b2ff0bd20e5aff783ee9171"></a>
-template&lt;class FixedPoint , class... Tail&gt; </td></tr>
-<tr class="memitem:a35427c7e3b2ff0bd20e5aff783ee9171"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">promote_add_result</a>&lt; FixedPoint, <br class="typebreak"/>
-sizeof...(Tail)+1 &gt; constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>promote_add</b> (const FixedPoint &amp;addend1, const Tail &amp;...addend_tail)</td></tr>
-<tr class="separator:a35427c7e3b2ff0bd20e5aff783ee9171"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abec31a36e8f1f276797e89408106190a"><td class="memTemplParams" colspan="2"><a class="anchor" id="abec31a36e8f1f276797e89408106190a"></a>
-template&lt;class Lhs , class Rhs &gt; </td></tr>
-<tr class="memitem:abec31a36e8f1f276797e89408106190a"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">promote_divide_result</a>&lt; Lhs, <br class="typebreak"/>
-Rhs &gt; constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>promote_divide</b> (const Lhs &amp;lhs, const Rhs &amp;rhs)</td></tr>
-<tr class="separator:abec31a36e8f1f276797e89408106190a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3cf537ce41a950ea99e36c958eca39d"><td class="memTemplParams" colspan="2"><a class="anchor" id="ad3cf537ce41a950ea99e36c958eca39d"></a>
-template&lt;class Lhs , class Rhs &gt; </td></tr>
-<tr class="memitem:ad3cf537ce41a950ea99e36c958eca39d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">promote_multiply_result</a>&lt; Lhs, <br class="typebreak"/>
-Rhs &gt; constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>promote_multiply</b> (const Lhs &amp;lhs, const Rhs &amp;rhs)</td></tr>
-<tr class="separator:ad3cf537ce41a950ea99e36c958eca39d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0424670e544c78601d0ed3124d8f5d1f"><td class="memTemplParams" colspan="2"><a class="anchor" id="a0424670e544c78601d0ed3124d8f5d1f"></a>
-template&lt;class FixedPoint &gt; </td></tr>
-<tr class="memitem:a0424670e544c78601d0ed3124d8f5d1f"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">promote_square_result</a><br class="typebreak"/>
-&lt; FixedPoint &gt; constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>promote_square</b> (const FixedPoint &amp;root)</td></tr>
-<tr class="separator:a0424670e544c78601d0ed3124d8f5d1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22ff11bc96de070d5ee4cd952c731dc8"><td class="memTemplParams" colspan="2"><a class="anchor" id="a22ff11bc96de070d5ee4cd952c731dc8"></a>
-template&lt;class Lhs , class Rhs &gt; </td></tr>
-<tr class="memitem:a22ff11bc96de070d5ee4cd952c731dc8"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">promote_subtract_result</a>&lt; Lhs, <br class="typebreak"/>
-Rhs &gt; constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>promote_subtract</b> (const Lhs &amp;lhs, const Rhs &amp;rhs)</td></tr>
-<tr class="separator:a22ff11bc96de070d5ee4cd952c731dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b3c1c68fadcefaf4b6e3e9af0035871"><td class="memTemplParams" colspan="2"><a class="anchor" id="a0b3c1c68fadcefaf4b6e3e9af0035871"></a>
 template&lt;class ReprType , int Exponent&gt; </td></tr>
 <tr class="memitem:a0b3c1c68fadcefaf4b6e3e9af0035871"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a><br class="typebreak"/>
@@ -429,59 +350,18 @@ template&lt;class ReprType , int Exponent&gt; </td></tr>
 template&lt;class Result , class Lhs , class Rhs &gt; </td></tr>
 <tr class="memitem:aacc971e5fbdeb6ff35ab7849068e7dad"><td class="memTemplItemLeft" align="right" valign="top">constexpr Result&#160;</td><td class="memTemplItemRight" valign="bottom"><b>subtract</b> (const Lhs &amp;lhs, const Rhs &amp;rhs)</td></tr>
 <tr class="separator:aacc971e5fbdeb6ff35ab7849068e7dad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a215ac5f69d54ad5d0195bf0c843ac3a8"><td class="memTemplParams" colspan="2">template&lt;class Lhs , class Rhs  = Lhs&gt; </td></tr>
-<tr class="memitem:a215ac5f69d54ad5d0195bf0c843ac3a8"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a215ac5f69d54ad5d0195bf0c843ac3a8">trunc_add</a> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename _impl::trunc_arithmetic_policy::add&lt; Lhs, Rhs &gt;::result_type</td></tr>
-<tr class="memdesc:a215ac5f69d54ad5d0195bf0c843ac3a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">truncated addition operation  <a href="#a215ac5f69d54ad5d0195bf0c843ac3a8">More...</a><br/></td></tr>
-<tr class="separator:a215ac5f69d54ad5d0195bf0c843ac3a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45784c51029cad168688152ec0946ac1"><td class="memTemplParams" colspan="2">template&lt;class Lhs , class Rhs &gt; </td></tr>
-<tr class="memitem:a45784c51029cad168688152ec0946ac1"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a45784c51029cad168688152ec0946ac1">trunc_divide</a> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename _impl::trunc_arithmetic_policy::divide&lt; Lhs, Rhs &gt;::result_type</td></tr>
-<tr class="memdesc:a45784c51029cad168688152ec0946ac1"><td class="mdescLeft">&#160;</td><td class="mdescRight">truncated division operation  <a href="#a45784c51029cad168688152ec0946ac1">More...</a><br/></td></tr>
-<tr class="separator:a45784c51029cad168688152ec0946ac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44340babc3e71f4efd44d58c7a019363"><td class="memTemplParams" colspan="2">template&lt;class Lhs , class Rhs  = Lhs&gt; </td></tr>
-<tr class="memitem:a44340babc3e71f4efd44d58c7a019363"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a44340babc3e71f4efd44d58c7a019363">trunc_multiply</a> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename _impl::trunc_arithmetic_policy::multiply&lt; Lhs, Rhs &gt;::result_type</td></tr>
-<tr class="memdesc:a44340babc3e71f4efd44d58c7a019363"><td class="mdescLeft">&#160;</td><td class="mdescRight">truncated multiplication operation  <a href="#a44340babc3e71f4efd44d58c7a019363">More...</a><br/></td></tr>
-<tr class="separator:a44340babc3e71f4efd44d58c7a019363"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a48a425db9f42cb5aaa8e659b1bfb72"><td class="memTemplParams" colspan="2"><a class="anchor" id="a5a48a425db9f42cb5aaa8e659b1bfb72"></a>
-template&lt;class FixedPoint &gt; </td></tr>
-<tr class="memitem:a5a48a425db9f42cb5aaa8e659b1bfb72"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">trunc_reciprocal_result</a><br class="typebreak"/>
-&lt; FixedPoint &gt; constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>trunc_reciprocal</b> (const FixedPoint &amp;<a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>)</td></tr>
-<tr class="separator:a5a48a425db9f42cb5aaa8e659b1bfb72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a383ad853c5e9e3f856fdf9d27bde6c5c"><td class="memTemplParams" colspan="2"><a class="anchor" id="a383ad853c5e9e3f856fdf9d27bde6c5c"></a>
-template&lt;int Integer, class ReprType , int Exponent&gt; </td></tr>
-<tr class="memitem:a383ad853c5e9e3f856fdf9d27bde6c5c"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a><br class="typebreak"/>
-&lt; ReprType, Exponent+Integer &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>trunc_shift_left</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;fp)</td></tr>
-<tr class="separator:a383ad853c5e9e3f856fdf9d27bde6c5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e2285484959cf92bf21be8ad4446d55"><td class="memTemplParams" colspan="2"><a class="anchor" id="a8e2285484959cf92bf21be8ad4446d55"></a>
-template&lt;int Integer, class ReprType , int Exponent&gt; </td></tr>
-<tr class="memitem:a8e2285484959cf92bf21be8ad4446d55"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a><br class="typebreak"/>
-&lt; ReprType, Exponent-Integer &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>trunc_shift_right</b> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, Exponent &gt; &amp;fp)</td></tr>
-<tr class="separator:a8e2285484959cf92bf21be8ad4446d55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3117326f7581dc92c36173c24ec7cdab"><td class="memTemplParams" colspan="2"><a class="anchor" id="a3117326f7581dc92c36173c24ec7cdab"></a>
-template&lt;class FixedPoint &gt; </td></tr>
-<tr class="memitem:a3117326f7581dc92c36173c24ec7cdab"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">trunc_sqrt_result</a>&lt; FixedPoint &gt;<br class="typebreak"/>
- constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>trunc_sqrt</b> (const FixedPoint &amp;square)</td></tr>
-<tr class="separator:a3117326f7581dc92c36173c24ec7cdab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaeae9404ece3d357684582e02bc88995"><td class="memTemplParams" colspan="2"><a class="anchor" id="aaeae9404ece3d357684582e02bc88995"></a>
-template&lt;class FixedPoint &gt; </td></tr>
-<tr class="memitem:aaeae9404ece3d357684582e02bc88995"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">trunc_square_result</a><br class="typebreak"/>
-&lt; FixedPoint &gt; constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><b>trunc_square</b> (const FixedPoint &amp;root)</td></tr>
-<tr class="separator:aaeae9404ece3d357684582e02bc88995"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf70f9935718f54299dbecfdfeb4c3a3"><td class="memTemplParams" colspan="2">template&lt;class Lhs , class Rhs  = Lhs&gt; </td></tr>
-<tr class="memitem:acf70f9935718f54299dbecfdfeb4c3a3"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#acf70f9935718f54299dbecfdfeb4c3a3">trunc_subtract</a> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename _impl::trunc_arithmetic_policy::subtract&lt; Lhs, Rhs &gt;::result_type</td></tr>
-<tr class="memdesc:acf70f9935718f54299dbecfdfeb4c3a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">truncated subtraction operation  <a href="#acf70f9935718f54299dbecfdfeb4c3a3">More...</a><br/></td></tr>
-<tr class="separator:acf70f9935718f54299dbecfdfeb4c3a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>study group 14 of the C++ working group </p>
 </div><h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="ae910b4d30652f62dca728fb1383d5b86"></a>
+<a class="anchor" id="adfab7b3dbdbbaa871587d31890bf3b67"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;int IntegerDigits, int FractionalDigits = 0, class Archetype  = signed&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacesg14.html#ae910b4d30652f62dca728fb1383d5b86">sg14::make_fixed</a> = typedef <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; _impl::sufficient_repr&lt;IntegerDigits+FractionalDigits+std::is_signed&lt;Archetype&gt;::value, Archetype&gt;, int(IntegerDigits) +int(std::is_signed&lt;Archetype&gt;::value) -_impl::num_bits&lt; _impl::sufficient_repr&lt; IntegerDigits+FractionalDigits+int(std::is_signed&lt;Archetype&gt;::value), Archetype&gt;&gt;()&gt;</td>
+          <td class="memname">using <a class="el" href="namespacesg14.html#adfab7b3dbdbbaa871587d31890bf3b67">sg14::make_fixed</a> = typedef <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; _fixed_point_impl::sufficient_repr&lt;IntegerDigits+FractionalDigits+std::is_signed&lt;Archetype&gt;::value, Archetype&gt;, int(IntegerDigits) +int(std::is_signed&lt;Archetype&gt;::value) -_fixed_point_impl::num_bits&lt; _fixed_point_impl::sufficient_repr&lt; IntegerDigits+FractionalDigits+int(std::is_signed&lt;Archetype&gt;::value), Archetype&gt;&gt;()&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -514,13 +394,13 @@ Resultant type is signed by default.</dd></dl>
 template&lt;int IntegerDigits, int FractionalDigits = 0, class Archetype  = unsigned&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacesg14.html#a5103178fc8b5447099bc9bf637e5cb1c">sg14::make_ufixed</a> = typedef <a class="el" href="namespacesg14.html#ae910b4d30652f62dca728fb1383d5b86">make_fixed</a>&lt; IntegerDigits, FractionalDigits, typename std::make_unsigned&lt;Archetype&gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a>&gt;</td>
+          <td class="memname">using <a class="el" href="namespacesg14.html#a5103178fc8b5447099bc9bf637e5cb1c">sg14::make_ufixed</a> = typedef <a class="el" href="namespacesg14.html#adfab7b3dbdbbaa871587d31890bf3b67">make_fixed</a>&lt; IntegerDigits, FractionalDigits, typename std::make_unsigned&lt;Archetype&gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Produce an unsigned fixed-point type with the given number of integer and fractional digits. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="namespacesg14.html#ae910b4d30652f62dca728fb1383d5b86" title="Produce a fixed-point type with the given number of integer and fractional digits. ">make_fixed</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="namespacesg14.html#adfab7b3dbdbbaa871587d31890bf3b67" title="Produce a fixed-point type with the given number of integer and fractional digits. ">make_fixed</a> </dd></dl>
 
 </div>
 </div>
@@ -558,229 +438,38 @@ template&lt;class Archetype , int NumBytes&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a215ac5f69d54ad5d0195bf0c843ac3a8"></a>
+<a class="anchor" id="a17380b10f4f77730d06edcde242340aa"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Lhs , class Rhs  = Lhs&gt; </div>
+template&lt;std::int64_t Value&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">constexpr auto sg14::trunc_add </td>
+          <td class="memname">constexpr auto sg14::elasticate </td>
           <td>(</td>
-          <td class="paramtype">const Lhs &amp;&#160;</td>
-          <td class="paramname"><em>lhs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Rhs &amp;&#160;</td>
-          <td class="paramname"><em>rhs</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; typename _impl::trunc_arithmetic_policy::add&lt;Lhs, Rhs&gt;::result_type
+          <td class="paramname"></td><td>)</td>
+          <td> -&gt; _elastic_impl::elasticate_t&lt;std::int64_t, Value&gt;
     </td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>truncated addition operation </p>
+<p>generate an <a class="el" href="classsg14_1_1elastic.html">elastic</a> object of given value </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs,ths</td><td>terms to be added</td></tr>
+    <tr><td class="paramname">Value</td><td>the integer number to be represented</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the sum of <code>lhs</code> + <code>rhs</code> </dd></dl>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Lhs,Rhs</td><td>specializations of <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section remark"><dt>Remarks</dt><dd>The function adds <code>lhs</code> to <code>rhs</code>. </dd>
-<dd>
-The return type is signed if either input is signed. </dd>
-<dd>
-The size of the return type is the larger of the two inputs. </dd>
-<dd>
-The return type contains enough integer bits to avoid overflow (*).</dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>Overflow is avoided by dropping the least-significant bit. </dd>
-<dd>
-As a result, there is a low risk the result will be in a flushed state.</dd>
-<dd>
-(*) Overflow can occur if <code>rhs</code> is the <a href="https://en.wikipedia.org/wiki/Two&apos;s_complement#Most_negative_number">most negative number</a>.</dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="namespacesg14.html#acf70f9935718f54299dbecfdfeb4c3a3" title="truncated subtraction operation ">trunc_subtract</a>, <a class="el" href="namespacesg14.html#a44340babc3e71f4efd44d58c7a019363" title="truncated multiplication operation ">trunc_multiply</a>, <a class="el" href="namespacesg14.html#a45784c51029cad168688152ec0946ac1" title="truncated division operation ">trunc_divide</a>, promote_subtract </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a45784c51029cad168688152ec0946ac1"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class Lhs , class Rhs &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr auto sg14::trunc_divide </td>
-          <td>(</td>
-          <td class="paramtype">const Lhs &amp;&#160;</td>
-          <td class="paramname"><em>lhs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Rhs &amp;&#160;</td>
-          <td class="paramname"><em>rhs</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; typename _impl::trunc_arithmetic_policy::divide&lt;Lhs, Rhs&gt;::result_type
-    </td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>truncated division operation </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">lhs</td><td>the dividend or numerator </td></tr>
-    <tr><td class="paramname">ths</td><td>the divisor or denominator</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the quotient of <code>lhs</code> / <code>rhs</code> </dd></dl>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Lhs,Rhs</td><td>specializations of <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section remark"><dt>Remarks</dt><dd>The function divides <code>lhs</code> by <code>rhs</code>. </dd>
-<dd>
-The return type is signed if either input is signed. </dd>
-<dd>
-The size of the return type is the larger of the two inputs. </dd>
-<dd>
-The return type contains enough integer bits to avoid overflow (most negative number excepted).</dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="namespacesg14.html#a215ac5f69d54ad5d0195bf0c843ac3a8" title="truncated addition operation ">trunc_add</a>, <a class="el" href="namespacesg14.html#acf70f9935718f54299dbecfdfeb4c3a3" title="truncated subtraction operation ">trunc_subtract</a>, <a class="el" href="namespacesg14.html#a44340babc3e71f4efd44d58c7a019363" title="truncated multiplication operation ">trunc_multiply</a>, promote_divide </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a44340babc3e71f4efd44d58c7a019363"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class Lhs , class Rhs  = Lhs&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr auto sg14::trunc_multiply </td>
-          <td>(</td>
-          <td class="paramtype">const Lhs &amp;&#160;</td>
-          <td class="paramname"><em>lhs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Rhs &amp;&#160;</td>
-          <td class="paramname"><em>rhs</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; typename _impl::trunc_arithmetic_policy::multiply&lt;Lhs, Rhs&gt;::result_type
-    </td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>truncated multiplication operation </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">lhs,ths</td><td>factors to be multiplied</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the product of <code>lhs</code> * <code>rhs</code> </dd></dl>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Lhs,Rhs</td><td>specializations of <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section remark"><dt>Remarks</dt><dd>The function multiplies <code>lhs</code> by <code>rhs</code>. </dd>
-<dd>
-The return type is signed if either input is signed. </dd>
-<dd>
-The size of the return type is the larger of the two inputs. </dd>
-<dd>
-The return type contains enough integer bits to avoid overflow (*).</dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>Overflow is avoided by dropping half of the lower-precision bits. </dd>
-<dd>
-As a result, there is a high risk the result will be in a flushed state.</dd>
-<dd>
-(*) Overflow can occur if <code>rhs</code> is the <a href="https://en.wikipedia.org/wiki/Two&apos;s_complement#Most_negative_number">most negative number</a>.</dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="namespacesg14.html#a215ac5f69d54ad5d0195bf0c843ac3a8" title="truncated addition operation ">trunc_add</a>, <a class="el" href="namespacesg14.html#acf70f9935718f54299dbecfdfeb4c3a3" title="truncated subtraction operation ">trunc_subtract</a>, <a class="el" href="namespacesg14.html#a45784c51029cad168688152ec0946ac1" title="truncated division operation ">trunc_divide</a>, promote_multiply </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="acf70f9935718f54299dbecfdfeb4c3a3"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class Lhs , class Rhs  = Lhs&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr auto sg14::trunc_subtract </td>
-          <td>(</td>
-          <td class="paramtype">const Lhs &amp;&#160;</td>
-          <td class="paramname"><em>lhs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Rhs &amp;&#160;</td>
-          <td class="paramname"><em>rhs</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; typename _impl::trunc_arithmetic_policy::subtract&lt;Lhs, Rhs&gt;::result_type
-    </td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>truncated subtraction operation </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">lhs</td><td>minuend from which to subtract </td></tr>
-    <tr><td class="paramname">ths</td><td>subtrahend to subtract from</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the result of <code>lhs</code> - <code>rhs</code> </dd></dl>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Lhs,Rhs</td><td>specializations of <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section remark"><dt>Remarks</dt><dd>The function subtracts <code>lhs</code> from <code>rhs</code>. </dd>
-<dd>
-The return type is signed if either input is signed. </dd>
-<dd>
-The size of the return type is the larger of the two inputs. </dd>
-<dd>
-The return type contains enough integer bits to avoid overflow (*).</dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd>Overflow is avoided by dropping the least-significant bit. </dd>
-<dd>
-As a result, there is a low risk the result will be in a flushed state.</dd>
-<dd>
-(*) Overflow can occur if <code>rhs</code> is the <a href="https://en.wikipedia.org/wiki/Two&apos;s_complement#Most_negative_number">most negative number</a>.</dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="namespacesg14.html#a215ac5f69d54ad5d0195bf0c843ac3a8" title="truncated addition operation ">trunc_add</a>, <a class="el" href="namespacesg14.html#a44340babc3e71f4efd44d58c7a019363" title="truncated multiplication operation ">trunc_multiply</a>, <a class="el" href="namespacesg14.html#a45784c51029cad168688152ec0946ac1" title="truncated division operation ">trunc_divide</a>, promote_subtract </dd></dl>
-
+<dl class="section return"><dt>Returns</dt><dd>the given value represented using an <a class="el" href="classsg14_1_1elastic.html">elastic</a> type</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The return type is guaranteed to be no larger than is necessary to represent the value.</dd></dl>
+<dl class="section user"><dt>Example</dt><dd></dd></dl>
+<p>To define an object with value 1024: </p>
+<div class="fragment"><div class="line">constexpr <span class="keyword">auto</span> n = elasticate&lt;1024&gt;();</div>
+<div class="line"></div>
+<div class="line">static_assert(n==1024, <span class="stringliteral">&quot;n now has the value, 1024&quot;</span>);</div>
+<div class="line">static_assert(<span class="keyword">sizeof</span>(n)==1, <span class="stringliteral">&quot;elasticate uses the smallest type it can&quot;</span>);</div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

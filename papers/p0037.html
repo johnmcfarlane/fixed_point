@@ -241,51 +241,43 @@ and is covered in more detail in the section, <strong>Alternative Types for <cod
 However, they represent different trade-offs and neither one is the best fit in all situations.
 Notably, where any instance of <code>c = a + b</code> is replaced with <code>a += b</code>, results may change in surprising ways.
 For these reasons, they are presented as named functions.</p>
-<h4>Type Promotion</h4>
-<p>Function template, <code>promote</code>, borrows a term from the language
-feature which avoids integer overflow prior to certain operations. It
-takes a <code>fixed_point</code> object and returns the same value represented
-by a larger <code>fixed_point</code> specialization.</p>
-<p>For example,</p>
-<pre><code>promote(make_fixed&lt;5, 2&gt;(15.5))
-</code></pre>
-<p>is equivalent to</p>
-<pre><code>make_fixed&lt;11, 4&gt;(15.5)
-</code></pre>
-<p>Complimentary function template, <code>demote</code>, reverses the process,
-returning a value of a smaller type.</p>
 <h4>Named Arithmetic Functions</h4>
-<p>The following named function templates can be used as a hassle-free
-alternative to arithmetic operators in situations where the aim is
-to avoid overflow.</p>
-<p>Unary functions:</p>
-<pre><code>trunc_reciprocal, trunc_square, trunc_sqrt,
-promote_reciprocal, promote_square
+<p>The following named function templates can be used as general-purpose alternatives to arithmetic operators, <code>-</code>, <code>+</code>, <code>*</code> and <code>/</code>.</p>
+<pre><code class="language-c++">template &lt;class Result, class Rhs&gt;
+constexpr Result negate(const Rhs&amp;);
+
+template &lt;class Result, class Lhs, class Rhs&gt;
+constexpr Result add(const Lhs&amp;, const Rhs&amp;);
+
+template &lt;class Result, class Lhs, class Rhs&gt;
+constexpr Result subtract(const Lhs&amp;, const Rhs&amp;);
+
+template &lt;class Result, class Lhs, class Rhs&gt;
+constexpr Result multiply(const Lhs&amp;, const Rhs&amp;);
+
+template &lt;class Result, class Lhs, class Rhs&gt;
+constexpr Result divide(const Lhs&amp;, const Rhs&amp;);
 </code></pre>
-<p>Binary functions:</p>
-<pre><code>trunc_add, trunc_subtract, trunc_multiply, trunc_divide
-trunc_shift_left, trunc_shift_right,
-promote_add, promote_sub, promote_multiply, promote_divide
+<p>They represent the cornerstone of all other fixed-point arithmetic
+and offer the user maximum control over the computation being performed.
+If used carefully, these functions can provide the same performance as built-in integer arithmetic.</p>
+<p>The following example loses no information and performs no shifts, effectively boiling down to <code>255*255</code>.</p>
+<pre><code class="language-c++">auto f = make_ufixed&lt;4, 4&gt;{15.9375};
+auto p = multiply&lt;make_ufixed&lt;8, 8&gt;&gt;(f, f);
+// p === make_ufixed&lt;8, 8&gt;{254.00390625}
 </code></pre>
-<p>Some notes:</p>
-<ol>
-<li>The <code>trunc_</code> functions return the result as a type no larger than
-the inputs and with an exponent adjusted to avoid overflow;</li>
-<li>the <code>promote_</code> functions return the result as a type large enough
-to avoid overflow and underflow;</li>
-<li>the <code>_multiply</code> and <code>_square</code> functions are not guaranteed to be
-available for 64-bit types;</li>
-<li>the <code>_multiply</code> and <code>_square</code> functions produce undefined behavior
-when all input parameters are the <em>most negative number</em>;</li>
-<li>the <code>_square</code> functions return an unsigned type;</li>
-<li>the <code>_add</code>, <code>_subtract</code>, <code>_multiply</code> and <code>_divide</code> functions take
-heterogeneous <code>fixed_point</code> specializations;</li>
-<li>the <code>_divide</code> and <code>_reciprocal</code> functions in no way guard against
-divide-by-zero errors;</li>
-<li>the <code>trunc_shift_</code> functions return results of the same type as
-their first input parameter but with an adjusted <code>Exponent</code> value and</li>
-<li>the list is by no means complete.</li>
-</ol>
+<p>However, these functions shield the user from none of the pitfalls of fixed-point arithmetic.
+For example, naive use of <code>multiply</code> can easily lead to surprising results.</p>
+<pre><code class="language-c++">auto f = make_ufixed&lt;4, 4&gt;{15.9375};
+auto p = multiply&lt;make_ufixed&lt;4, 4&gt;&gt;(f, f);
+// p === make_ufixed&lt;4, 4&gt;{14.00000000};
+</code></pre>
+<p>In contrast, the <code>*</code> operator uses wider intermediate types and language-level promotion rules.
+It does a better job at avoiding unnecessary narrowing and catastrophic information loss.</p>
+<pre><code class="language-c++">auto f = make_ufixed&lt;4, 4&gt;{15.9375};
+auto p = f * f;
+// p === make_fixed&lt;27, 4&gt;&gt;{254.00000000}
+</code></pre>
 <h3>Alternative Types for <code>ReprType</code></h3>
 <p>Using built-in integral types as the default underlying representation
 minimizes certain costs:</p>
@@ -304,7 +296,7 @@ For example:</p>
 <li>divide operations;</li>
 </ul>
 </li>
-<li>all of these rounding behaviors promote drift and propagate error;</li>
+<li>all of these rounding behaviors cause drift and propagate error;</li>
 <li>overflow, underflow and flush are handled silently with wrap-around or undefined behavior;</li>
 <li>divide-by-zero similarly results in undefined behavior and</li>
 <li>the range of values is limited by the largest type: <code>long long int</code>.</li>
@@ -409,18 +401,6 @@ constexpr auto magnitude(const Fp &amp; x, const Fp &amp; y, const Fp &amp; z)
 
   template &lt;class ReprType, int Exponent, int NumBytes&gt;
     struct resize&lt;fixed_point&lt;ReprType, Exponent&gt;, NumBytes&gt;;
-
-  template &lt;class FixedPoint&gt;
-    using promote_result;
-  template &lt;class FixedPoint&gt;
-    promote_result&lt;FixedPoint&gt;
-      constexpr promote(const FixedPoint &amp; from) noexcept;
-
-  template &lt;class FixedPoint&gt;
-    using demote_result;
-  template &lt;class FixedPoint&gt;
-    demote_result&lt;FixedPoint&gt;
-      constexpr demote(const FixedPoint &amp; from) noexcept;
 
   template &lt;class ReprType, int Exponent&gt;
   	constexpr bool operator==(
@@ -595,32 +575,6 @@ constexpr auto magnitude(const Fp &amp; x, const Fp &amp; y, const Fp &amp; z)
   template &lt;int Integer, class ReprType, int Exponent&gt;
   	constexpr fixed_point&lt;ReprType, Exponent - Integer&gt;
   	  trunc_shift_right(const fixed_point&lt;ReprType, Exponent&gt; &amp; fp) noexcept;
-  template &lt;class FixedPoint, unsigned N = 2&gt;
-  	using promote_add_result;
-
-  template &lt;class FixedPoint, class ... Tail&gt;
-  	promote_add_result&lt;FixedPoint, sizeof...(Tail) + 1&gt;
-  	  constexpr promote_add(const FixedPoint &amp; addend1, const Tail &amp; ... addend_tail);
-  template &lt;class Lhs, class Rhs = Lhs&gt;
-  	using promote_subtract_result
-  template &lt;class Lhs, class Rhs&gt;
-  	promote_subtract_result&lt;Lhs, Rhs&gt;
-  	  constexpr promote_subtract(const Lhs &amp; lhs, const Rhs &amp; rhs) noexcept;
-  template &lt;class Lhs, class Rhs = Lhs&gt;
-  	using promote_multiply_result;
-  template &lt;class Lhs, class Rhs&gt;
-  	promote_multiply_result&lt;Lhs, Rhs&gt;
-  	  constexpr promote_multiply(const Lhs &amp; lhs, const Rhs &amp; rhs) noexcept;
-  template &lt;class Lhs, class Rhs = Lhs&gt;
-  	using promote_divide_result;
-  template &lt;class Lhs, class Rhs&gt;
-  	promote_divide_result&lt;Lhs, Rhs&gt;
-  	  constexpr promote_divide(const Lhs &amp; lhs, const Rhs &amp; rhs) noexcept;
-  template &lt;class FixedPoint&gt;
-  	using promote_square_result;
-  template &lt;class FixedPoint&gt;
-  	promote_square_result&lt;FixedPoint&gt;
-  	  constexpr promote_square(const FixedPoint &amp; root) noexcept;
 
   template &lt;class Archetype, int NumBytes&gt;
     struct resize;
@@ -736,8 +690,6 @@ whose size matches the inputs but whose exponent is shifted to preserve high bit
 The arithmetic types proposed in P0106
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">[9]</a>
 increase capacity to ensure that precision is preserved.
-(These two approaches share common aims with
-the <code>trunc_</code> and <code>promote_</code> named arithmetic functions proposed earlier.)
 Even greater control of the required capacity of a fixed-point type can be afforded by
 systems such as the <em>bounded::integer</em> library <a href="http://doublewise.net/c++/bounded/">[3]</a>.</p>
 <p>A common requirement among these approaches is the ability
@@ -828,7 +780,7 @@ by composing fixed-point types from custom integral types.</p>
 <p>SG6: Lawrence Crowl
 SG14: Guy Davidson, Michael Wong<br />
 Contributors: Ed Ainsley, Billy Baker, Lance Dyson, Marco Foco,
-Clément Grégoire, Nicolas Guillemot, Matt Kinzelman, Joël Lamotte,
+Mathias Gaunard, Clément Grégoire, Nicolas Guillemot, Kurt Guntheroth, Matt Kinzelman, Joël Lamotte,
 Sean Middleditch, Paul Robinson, Patrice Roy, Peter Schregle, Ryhor Spivak</p>
 <h2>IX. Revisions</h2>
 <p>This paper revises <a href="http://johnmcfarlane.github.io/fixed_point/papers/p0037r0.html">P0037R0</a>:</p>

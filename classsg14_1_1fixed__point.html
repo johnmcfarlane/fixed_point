@@ -97,7 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>literal arithmetic type which approximates a real number  
+<p>literal real number approximation that uses fixed-point arithmetic  
  <a href="classsg14_1_1fixed__point.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -190,7 +190,7 @@ static constexpr <a class="el" href="classsg14_1_1fixed__point.html">fixed_point
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:a55176ad805db984ee344209a1c16b856"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55176ad805db984ee344209a1c16b856"></a>
-static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a55176ad805db984ee344209a1c16b856">digits</a> = _impl::num_bits&lt;ReprType&gt;()-std::is_signed&lt;<a class="el" href="classsg14_1_1fixed__point.html#a0c2813efbdddb7303c65dfde81fe3cd8">repr_type</a>&gt;::value</td></tr>
+static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a55176ad805db984ee344209a1c16b856">digits</a> = _fixed_point_impl::num_bits&lt;ReprType&gt;()-std::is_signed&lt;<a class="el" href="classsg14_1_1fixed__point.html#a0c2813efbdddb7303c65dfde81fe3cd8">repr_type</a>&gt;::value</td></tr>
 <tr class="memdesc:a55176ad805db984ee344209a1c16b856"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of binary digits this type can represent; equivalent to <a href="http://en.cppreference.com/w/cpp/types/numeric_limits/digits">std::numeric_limits::digits</a> <br/></td></tr>
 <tr class="separator:a55176ad805db984ee344209a1c16b856"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a590b5289c9bcbe3f7f55e19c326079eb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a590b5289c9bcbe3f7f55e19c326079eb"></a>
@@ -210,7 +210,7 @@ static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class
 <div class="textblock"><h3>template&lt;class ReprType = int, int Exponent = 0&gt;<br/>
 class sg14::fixed_point&lt; ReprType, Exponent &gt;</h3>
 
-<p>literal arithmetic type which approximates a real number </p>
+<p>literal real number approximation that uses fixed-point arithmetic </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">ReprType</td><td>the underlying type used to represent the value </td></tr>

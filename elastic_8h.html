@@ -83,22 +83,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">elastic.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>essential definitions related to the <code><a class="el" href="classsg14_1_1elastic.html" title="general-purpose real number approximation that avoids overflow ">sg14::elastic</a></code> type  
+<p>essential definitions related to the <code><a class="el" href="classsg14_1_1elastic.html" title="literal real number approximation that uses fixed-point arithmetic and performs operations with expan...">sg14::elastic</a></code> type  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1elastic.html">sg14::elastic&lt; IntegerDigits, FractionalDigits, Archetype &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">general-purpose real number approximation that avoids overflow  <a href="classsg14_1_1elastic.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">literal real number approximation that uses fixed-point arithmetic and performs operations with expanded results to avoid overflow  <a href="classsg14_1_1elastic.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1elastic.html">sg14::elastic&lt; IntegerDigits, FractionalDigits, Archetype &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">general-purpose real number approximation that avoids overflow  <a href="classsg14_1_1elastic.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">literal real number approximation that uses fixed-point arithmetic and performs operations with expanded results to avoid overflow  <a href="classsg14_1_1elastic.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsg14_1_1is__elastic.html">sg14::is_elastic&lt; T &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,6 +125,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsg14_1_1make__unsigned_3_01elastic_3_01IntegerDigits_00_01FractionalDigits_00_01Archetype_01_4_01_4.html">sg14::make_unsigned&lt; elastic&lt; IntegerDigits, FractionalDigits, Archetype &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1numeric__limits_3_01sg14_1_1elastic_3_01IntegerDigits_00_01FractionalDigits_00_01Archetype_01_4_01_4.html">std::numeric_limits&lt; sg14::elastic&lt; IntegerDigits, FractionalDigits, Archetype &gt; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -131,39 +134,62 @@ Namespaces</h2></td></tr>
 <tr class="memdesc:namespacesg14"><td class="mdescLeft">&#160;</td><td class="mdescRight">study group 14 of the C++ working group <br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a578ca4b68c1f5b70c2a88517850bb825"><td class="memTemplParams" colspan="2"><a class="anchor" id="a578ca4b68c1f5b70c2a88517850bb825"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:a578ca4b68c1f5b70c2a88517850bb825"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::make_signed_t</b> = typename make_signed&lt; T &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
+<tr class="separator:a578ca4b68c1f5b70c2a88517850bb825"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a294e7154e2dd11c72ce7f32794925154"><td class="memTemplParams" colspan="2"><a class="anchor" id="a294e7154e2dd11c72ce7f32794925154"></a>
+template&lt;class T &gt; </td></tr>
+<tr class="memitem:a294e7154e2dd11c72ce7f32794925154"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::make_unsigned_t</b> = typename make_unsigned&lt; T &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
+<tr class="separator:a294e7154e2dd11c72ce7f32794925154"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a1cef6b2500aeac45876a2a8dddbfd4fa"><td class="memTemplParams" colspan="2"><a class="anchor" id="a1cef6b2500aeac45876a2a8dddbfd4fa"></a>
-template&lt;class LhsElastic , class RhsElastic , typename  = std::enable_if&lt;sg14::is_elastic&lt;LhsElastic&gt;::value &amp;&amp; sg14::is_elastic&lt;LhsElastic&gt;::value&gt;&gt; </td></tr>
-<tr class="memitem:a1cef6b2500aeac45876a2a8dddbfd4fa"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator!=</b> (const LhsElastic &amp;lhs, const RhsElastic &amp;rhs) -&gt; decltype(lhs._data()!=rhs._data())</td></tr>
-<tr class="separator:a1cef6b2500aeac45876a2a8dddbfd4fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad642d2cafce42d1048c5e661ad5cc824"><td class="memTemplParams" colspan="2"><a class="anchor" id="ad642d2cafce42d1048c5e661ad5cc824"></a>
+<tr class="memitem:a17380b10f4f77730d06edcde242340aa"><td class="memTemplParams" colspan="2">template&lt;std::int64_t Value&gt; </td></tr>
+<tr class="memitem:a17380b10f4f77730d06edcde242340aa"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a17380b10f4f77730d06edcde242340aa">sg14::elasticate</a> () -&gt; _elastic_impl::elasticate_t&lt; std::int64_t, Value &gt;</td></tr>
+<tr class="memdesc:a17380b10f4f77730d06edcde242340aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate an <a class="el" href="classsg14_1_1elastic.html">elastic</a> object of given value  <a href="#a17380b10f4f77730d06edcde242340aa">More...</a><br/></td></tr>
+<tr class="separator:a17380b10f4f77730d06edcde242340aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73baa8d0c213fb3bcdeb44a196b10324"><td class="memTemplParams" colspan="2"><a class="anchor" id="a73baa8d0c213fb3bcdeb44a196b10324"></a>
+template&lt;class Lhs , class Rhs &gt; </td></tr>
+<tr class="memitem:a73baa8d0c213fb3bcdeb44a196b10324"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator!=</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _elastic_impl::either_is_elastic&lt; Lhs, Rhs &gt;(), bool &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
+<tr class="separator:a73baa8d0c213fb3bcdeb44a196b10324"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4a8685b424020aed691def68f03ee5b"><td class="memTemplParams" colspan="2"><a class="anchor" id="ab4a8685b424020aed691def68f03ee5b"></a>
+template&lt;int LhsIntegerDigits, int LhsFractionalDigits, class LhsArchetype , int RhsIntegerDigits, int RhsFractionalDigits, class RhsArchetype &gt; </td></tr>
+<tr class="memitem:ab4a8685b424020aed691def68f03ee5b"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator*</b> (const elastic&lt; LhsIntegerDigits, LhsFractionalDigits, LhsArchetype &gt; &amp;lhs, const elastic&lt; RhsIntegerDigits, RhsFractionalDigits, RhsArchetype &gt; &amp;rhs) -&gt; _elastic_impl::multiply_result_type&lt; LhsIntegerDigits, LhsFractionalDigits, LhsArchetype, RhsIntegerDigits, RhsFractionalDigits, RhsArchetype &gt;</td></tr>
+<tr class="separator:ab4a8685b424020aed691def68f03ee5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3c454db48cf7034d5af8442a8153e40"><td class="memTemplParams" colspan="2"><a class="anchor" id="ac3c454db48cf7034d5af8442a8153e40"></a>
+template&lt;int LhsIntegerDigits, int LhsFractionalDigits, class LhsArchetype , int RhsIntegerDigits, int RhsFractionalDigits, class RhsArchetype &gt; </td></tr>
+<tr class="memitem:ac3c454db48cf7034d5af8442a8153e40"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator+</b> (const elastic&lt; LhsIntegerDigits, LhsFractionalDigits, LhsArchetype &gt; &amp;lhs, const elastic&lt; RhsIntegerDigits, RhsFractionalDigits, RhsArchetype &gt; &amp;rhs) -&gt; _elastic_impl::add_result_type&lt; LhsIntegerDigits, LhsFractionalDigits, LhsArchetype, RhsIntegerDigits, RhsFractionalDigits, RhsArchetype &gt;</td></tr>
+<tr class="separator:ac3c454db48cf7034d5af8442a8153e40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c0cdadbee97a35ed234bdf6b427bc3c"><td class="memTemplParams" colspan="2"><a class="anchor" id="a5c0cdadbee97a35ed234bdf6b427bc3c"></a>
 template&lt;int RhsIntegerDigits, int RhsFractionalDigits, class RhsArchetype &gt; </td></tr>
-<tr class="memitem:ad642d2cafce42d1048c5e661ad5cc824"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator-</b> (const elastic&lt; RhsIntegerDigits, RhsFractionalDigits, RhsArchetype &gt; &amp;rhs) -&gt; elastic&lt; RhsIntegerDigits, RhsFractionalDigits, typename <a class="el" href="structsg14_1_1make__signed.html">sg14::make_signed</a>&lt; RhsArchetype &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a> &gt;</td></tr>
-<tr class="separator:ad642d2cafce42d1048c5e661ad5cc824"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a523a1157301f45106795c5771212475f"><td class="memTemplParams" colspan="2"><a class="anchor" id="a523a1157301f45106795c5771212475f"></a>
-template&lt;class LhsElastic , class RhsElastic , typename  = std::enable_if&lt;sg14::is_elastic&lt;LhsElastic&gt;::value &amp;&amp; sg14::is_elastic&lt;LhsElastic&gt;::value&gt;&gt; </td></tr>
-<tr class="memitem:a523a1157301f45106795c5771212475f"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator&lt;</b> (const LhsElastic &amp;lhs, const RhsElastic &amp;rhs) -&gt; decltype(lhs._data()&lt; rhs._data())</td></tr>
-<tr class="separator:a523a1157301f45106795c5771212475f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8b2626b4592faf74b2e10e56bbd8c03"><td class="memTemplParams" colspan="2"><a class="anchor" id="ad8b2626b4592faf74b2e10e56bbd8c03"></a>
-template&lt;class LhsElastic , class RhsElastic , typename  = std::enable_if&lt;sg14::is_elastic&lt;LhsElastic&gt;::value &amp;&amp; sg14::is_elastic&lt;LhsElastic&gt;::value&gt;&gt; </td></tr>
-<tr class="memitem:ad8b2626b4592faf74b2e10e56bbd8c03"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator&lt;=</b> (const LhsElastic &amp;lhs, const RhsElastic &amp;rhs) -&gt; decltype(lhs._data()&lt;=rhs._data())</td></tr>
-<tr class="separator:ad8b2626b4592faf74b2e10e56bbd8c03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac11461bf8b9e6202b494ecceb5b61be9"><td class="memTemplParams" colspan="2"><a class="anchor" id="ac11461bf8b9e6202b494ecceb5b61be9"></a>
-template&lt;class LhsElastic , class RhsElastic , typename  = std::enable_if&lt;sg14::is_elastic&lt;LhsElastic&gt;::value &amp;&amp; sg14::is_elastic&lt;LhsElastic&gt;::value&gt;&gt; </td></tr>
-<tr class="memitem:ac11461bf8b9e6202b494ecceb5b61be9"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator==</b> (const LhsElastic &amp;lhs, const RhsElastic &amp;rhs) -&gt; decltype(lhs._data()==rhs._data())</td></tr>
-<tr class="separator:ac11461bf8b9e6202b494ecceb5b61be9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a368b03d184bb2f35216946c24e42af95"><td class="memTemplParams" colspan="2"><a class="anchor" id="a368b03d184bb2f35216946c24e42af95"></a>
-template&lt;class LhsElastic , class RhsElastic , typename  = std::enable_if&lt;sg14::is_elastic&lt;LhsElastic&gt;::value &amp;&amp; sg14::is_elastic&lt;LhsElastic&gt;::value&gt;&gt; </td></tr>
-<tr class="memitem:a368b03d184bb2f35216946c24e42af95"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator&gt;</b> (const LhsElastic &amp;lhs, const RhsElastic &amp;rhs) -&gt; decltype(lhs._data()&gt;rhs._data())</td></tr>
-<tr class="separator:a368b03d184bb2f35216946c24e42af95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae48b07693f4103f0f0489d58312f0f04"><td class="memTemplParams" colspan="2"><a class="anchor" id="ae48b07693f4103f0f0489d58312f0f04"></a>
-template&lt;class LhsElastic , class RhsElastic , typename  = std::enable_if&lt;sg14::is_elastic&lt;LhsElastic&gt;::value &amp;&amp; sg14::is_elastic&lt;LhsElastic&gt;::value&gt;&gt; </td></tr>
-<tr class="memitem:ae48b07693f4103f0f0489d58312f0f04"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator&gt;=</b> (const LhsElastic &amp;lhs, const RhsElastic &amp;rhs) -&gt; decltype(lhs._data()&gt;=rhs._data())</td></tr>
-<tr class="separator:ae48b07693f4103f0f0489d58312f0f04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c0cdadbee97a35ed234bdf6b427bc3c"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator-</b> (const elastic&lt; RhsIntegerDigits, RhsFractionalDigits, RhsArchetype &gt; &amp;rhs) -&gt; elastic&lt; RhsIntegerDigits, RhsFractionalDigits, make_signed_t&lt; RhsArchetype &gt;&gt;</td></tr>
+<tr class="separator:a5c0cdadbee97a35ed234bdf6b427bc3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac262113fda8ccc2c59872ecea4ffcd9d"><td class="memTemplParams" colspan="2"><a class="anchor" id="ac262113fda8ccc2c59872ecea4ffcd9d"></a>
+template&lt;class Lhs , class Rhs &gt; </td></tr>
+<tr class="memitem:ac262113fda8ccc2c59872ecea4ffcd9d"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator&lt;</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _elastic_impl::either_is_elastic&lt; Lhs, Rhs &gt;(), bool &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
+<tr class="separator:ac262113fda8ccc2c59872ecea4ffcd9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a014a83bad4a0b87e136cc82953d095e9"><td class="memTemplParams" colspan="2"><a class="anchor" id="a014a83bad4a0b87e136cc82953d095e9"></a>
+template&lt;class Lhs , class Rhs &gt; </td></tr>
+<tr class="memitem:a014a83bad4a0b87e136cc82953d095e9"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator&lt;=</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _elastic_impl::either_is_elastic&lt; Lhs, Rhs &gt;(), bool &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
+<tr class="separator:a014a83bad4a0b87e136cc82953d095e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10a4e8e8b2a6b3409de3c14634bac9ea"><td class="memTemplParams" colspan="2"><a class="anchor" id="a10a4e8e8b2a6b3409de3c14634bac9ea"></a>
+template&lt;class Lhs , class Rhs &gt; </td></tr>
+<tr class="memitem:a10a4e8e8b2a6b3409de3c14634bac9ea"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator==</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _elastic_impl::either_is_elastic&lt; Lhs, Rhs &gt;(), bool &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
+<tr class="separator:a10a4e8e8b2a6b3409de3c14634bac9ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afad830b4e652d4d660489d3967548815"><td class="memTemplParams" colspan="2"><a class="anchor" id="afad830b4e652d4d660489d3967548815"></a>
+template&lt;class Lhs , class Rhs &gt; </td></tr>
+<tr class="memitem:afad830b4e652d4d660489d3967548815"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator&gt;</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _elastic_impl::either_is_elastic&lt; Lhs, Rhs &gt;(), bool &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
+<tr class="separator:afad830b4e652d4d660489d3967548815"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59efbc6797a29a91aca1e7058355265f"><td class="memTemplParams" colspan="2"><a class="anchor" id="a59efbc6797a29a91aca1e7058355265f"></a>
+template&lt;class Lhs , class Rhs &gt; </td></tr>
+<tr class="memitem:a59efbc6797a29a91aca1e7058355265f"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator&gt;=</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _elastic_impl::either_is_elastic&lt; Lhs, Rhs &gt;(), bool &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
+<tr class="separator:a59efbc6797a29a91aca1e7058355265f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>essential definitions related to the <code><a class="el" href="classsg14_1_1elastic.html" title="general-purpose real number approximation that avoids overflow ">sg14::elastic</a></code> type </p>
+<div class="textblock"><p>essential definitions related to the <code><a class="el" href="classsg14_1_1elastic.html" title="literal real number approximation that uses fixed-point arithmetic and performs operations with expan...">sg14::elastic</a></code> type </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -11,7 +11,7 @@ var indexSectionsWithContent =
   1: "efimnrt",
   2: "s",
   3: "eft",
-  4: "defot",
+  4: "defo",
   5: "defi",
   6: "amrt"
 };
