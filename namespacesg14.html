@@ -127,20 +127,16 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:adfab7b3dbdbbaa871587d31890bf3b67"><td class="memTemplParams" colspan="2">template&lt;int IntegerDigits, int FractionalDigits = 0, class Archetype  = signed&gt; </td></tr>
-<tr class="memitem:adfab7b3dbdbbaa871587d31890bf3b67"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#adfab7b3dbdbbaa871587d31890bf3b67">make_fixed</a> = <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; _fixed_point_impl::sufficient_repr&lt; IntegerDigits+FractionalDigits+std::is_signed&lt; Archetype &gt;::value, Archetype &gt;, int(IntegerDigits)+int(std::is_signed&lt; Archetype &gt;::value)-_fixed_point_impl::num_bits&lt; _fixed_point_impl::sufficient_repr&lt; IntegerDigits+FractionalDigits+int(std::is_signed&lt; Archetype &gt;::value), Archetype &gt;&gt;()&gt;</td></tr>
-<tr class="memdesc:adfab7b3dbdbbaa871587d31890bf3b67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Produce a fixed-point type with the given number of integer and fractional digits.  <a href="#adfab7b3dbdbbaa871587d31890bf3b67">More...</a><br/></td></tr>
-<tr class="separator:adfab7b3dbdbbaa871587d31890bf3b67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0830a0a8206f574372e86881db0d5ae"><td class="memTemplParams" colspan="2"><a class="anchor" id="ad0830a0a8206f574372e86881db0d5ae"></a>
-template&lt;class ReprType , int IntegerDigits&gt; </td></tr>
-<tr class="memitem:ad0830a0a8206f574372e86881db0d5ae"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>make_fixed_from_repr</b> = <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; ReprType, IntegerDigits+std::is_signed&lt; ReprType &gt;::value-(signed) sizeof(ReprType)*CHAR_BIT &gt;</td></tr>
-<tr class="separator:ad0830a0a8206f574372e86881db0d5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a105fb7fedf4da94edf340e42786d997e"><td class="memTemplParams" colspan="2">template&lt;int IntegerDigits, int FractionalDigits = 0, class Archetype  = signed&gt; </td></tr>
+<tr class="memitem:a105fb7fedf4da94edf340e42786d997e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a105fb7fedf4da94edf340e42786d997e">make_fixed</a> = <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; _fixed_point_impl::sufficient_repr&lt; IntegerDigits+FractionalDigits+std::is_signed&lt; Archetype &gt;::value, Archetype &gt;,-FractionalDigits &gt;</td></tr>
+<tr class="memdesc:a105fb7fedf4da94edf340e42786d997e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Produce a fixed-point type with the given number of integer and fractional digits.  <a href="#a105fb7fedf4da94edf340e42786d997e">More...</a><br/></td></tr>
+<tr class="separator:a105fb7fedf4da94edf340e42786d997e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a578ca4b68c1f5b70c2a88517850bb825"><td class="memTemplParams" colspan="2"><a class="anchor" id="a578ca4b68c1f5b70c2a88517850bb825"></a>
 template&lt;class T &gt; </td></tr>
 <tr class="memitem:a578ca4b68c1f5b70c2a88517850bb825"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>make_signed_t</b> = typename <a class="el" href="structsg14_1_1make__signed.html">make_signed</a>&lt; T &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a></td></tr>
 <tr class="separator:a578ca4b68c1f5b70c2a88517850bb825"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5103178fc8b5447099bc9bf637e5cb1c"><td class="memTemplParams" colspan="2">template&lt;int IntegerDigits, int FractionalDigits = 0, class Archetype  = unsigned&gt; </td></tr>
-<tr class="memitem:a5103178fc8b5447099bc9bf637e5cb1c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a5103178fc8b5447099bc9bf637e5cb1c">make_ufixed</a> = <a class="el" href="namespacesg14.html#adfab7b3dbdbbaa871587d31890bf3b67">make_fixed</a>&lt; IntegerDigits, FractionalDigits, typename std::make_unsigned&lt; Archetype &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a> &gt;</td></tr>
+<tr class="memitem:a5103178fc8b5447099bc9bf637e5cb1c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a5103178fc8b5447099bc9bf637e5cb1c">make_ufixed</a> = <a class="el" href="namespacesg14.html#a105fb7fedf4da94edf340e42786d997e">make_fixed</a>&lt; IntegerDigits, FractionalDigits, typename std::make_unsigned&lt; Archetype &gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a> &gt;</td></tr>
 <tr class="memdesc:a5103178fc8b5447099bc9bf637e5cb1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Produce an unsigned fixed-point type with the given number of integer and fractional digits.  <a href="#a5103178fc8b5447099bc9bf637e5cb1c">More...</a><br/></td></tr>
 <tr class="separator:a5103178fc8b5447099bc9bf637e5cb1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a294e7154e2dd11c72ce7f32794925154"><td class="memTemplParams" colspan="2"><a class="anchor" id="a294e7154e2dd11c72ce7f32794925154"></a>
@@ -354,14 +350,14 @@ template&lt;class Result , class Lhs , class Rhs &gt; </td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>study group 14 of the C++ working group </p>
 </div><h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="adfab7b3dbdbbaa871587d31890bf3b67"></a>
+<a class="anchor" id="a105fb7fedf4da94edf340e42786d997e"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;int IntegerDigits, int FractionalDigits = 0, class Archetype  = signed&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacesg14.html#adfab7b3dbdbbaa871587d31890bf3b67">sg14::make_fixed</a> = typedef <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; _fixed_point_impl::sufficient_repr&lt;IntegerDigits+FractionalDigits+std::is_signed&lt;Archetype&gt;::value, Archetype&gt;, int(IntegerDigits) +int(std::is_signed&lt;Archetype&gt;::value) -_fixed_point_impl::num_bits&lt; _fixed_point_impl::sufficient_repr&lt; IntegerDigits+FractionalDigits+int(std::is_signed&lt;Archetype&gt;::value), Archetype&gt;&gt;()&gt;</td>
+          <td class="memname">using <a class="el" href="namespacesg14.html#a105fb7fedf4da94edf340e42786d997e">sg14::make_fixed</a> = typedef <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; _fixed_point_impl::sufficient_repr&lt;IntegerDigits+FractionalDigits+std::is_signed&lt;Archetype&gt;::value, Archetype&gt;, -FractionalDigits&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -370,7 +366,7 @@ template&lt;int IntegerDigits, int FractionalDigits = 0, class Archetype  = sign
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">IntegerDigits</td><td>specifies minimum value of <a class="el" href="classsg14_1_1fixed__point.html#a7040f82f68a7d00c08f7d46c4a575545">fixed_point::integer_digits</a> </td></tr>
-    <tr><td class="paramname">FractionalDigits</td><td>specifies minimum value of <a class="el" href="classsg14_1_1fixed__point.html#a192e9fdd163c9c34418e2b4ff241da2f">fixed_point::fractional_digits</a> </td></tr>
+    <tr><td class="paramname">FractionalDigits</td><td>specifies the exact value of <a class="el" href="classsg14_1_1fixed__point.html#a192e9fdd163c9c34418e2b4ff241da2f">fixed_point::fractional_digits</a> </td></tr>
     <tr><td class="paramname">Archetype</td><td>hints at the type of <a class="el" href="classsg14_1_1fixed__point.html#a0c2813efbdddb7303c65dfde81fe3cd8">fixed_point::repr_type</a></td></tr>
   </table>
   </dd>
@@ -381,7 +377,7 @@ Typical choices for <em>Archetype</em>, <code>signed</code> and <code>unsigned</
 <dd>
 Resultant type is signed by default.</dd></dl>
 <dl class="section user"><dt>Example:</dt><dd></dd></dl>
-<p>To generate a 2-byte fixed-point type with a sign bit, 7 integer bits and 8 fractional bits: </p>
+<p>To generate a fixed-point type with a sign bit, 8 fractional bits and at least 7 integer bits: </p>
 <div class="fragment"><div class="line">static_assert(std::is_same&lt;make_fixed&lt;7, 8, signed&gt;, fixed_point&lt;int16_t, -8&gt;&gt;::value, <span class="stringliteral">&quot;failed to use make_fixed&quot;</span>);</div>
 </div><!-- fragment --> <dl class="section see"><dt>See Also</dt><dd><a class="el" href="namespacesg14.html#a5103178fc8b5447099bc9bf637e5cb1c" title="Produce an unsigned fixed-point type with the given number of integer and fractional digits...">make_ufixed</a> </dd></dl>
 
@@ -394,13 +390,13 @@ Resultant type is signed by default.</dd></dl>
 template&lt;int IntegerDigits, int FractionalDigits = 0, class Archetype  = unsigned&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacesg14.html#a5103178fc8b5447099bc9bf637e5cb1c">sg14::make_ufixed</a> = typedef <a class="el" href="namespacesg14.html#adfab7b3dbdbbaa871587d31890bf3b67">make_fixed</a>&lt; IntegerDigits, FractionalDigits, typename std::make_unsigned&lt;Archetype&gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a>&gt;</td>
+          <td class="memname">using <a class="el" href="namespacesg14.html#a5103178fc8b5447099bc9bf637e5cb1c">sg14::make_ufixed</a> = typedef <a class="el" href="namespacesg14.html#a105fb7fedf4da94edf340e42786d997e">make_fixed</a>&lt; IntegerDigits, FractionalDigits, typename std::make_unsigned&lt;Archetype&gt;::<a class="el" href="classstd_1_1enable__if_1_1type.html">type</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Produce an unsigned fixed-point type with the given number of integer and fractional digits. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="namespacesg14.html#adfab7b3dbdbbaa871587d31890bf3b67" title="Produce a fixed-point type with the given number of integer and fractional digits. ">make_fixed</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="namespacesg14.html#a105fb7fedf4da94edf340e42786d997e" title="Produce a fixed-point type with the given number of integer and fractional digits. ">make_fixed</a> </dd></dl>
 
 </div>
 </div>

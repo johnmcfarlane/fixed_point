@@ -114,7 +114,7 @@ using make_ufixed;
 </code></pre>
 <p>They resolve to a <code>fixed_point</code> specialization with the given
 signedness and number of integer and fractional digits. They may
-contain additional integer and fractional digits.</p>
+contain additional integer digits.</p>
 <p>For example, one could define and initialize an 8-bit, unsigned,
 fixed-point variable with four integer digits and four fractional
 digits:</p>
@@ -372,21 +372,22 @@ such that for any Integer, <code>T</code> and positive integer value, 'N':</p>
 <p>For example, the type of <code>resize_t&lt;unsigned, 1&gt;</code> is <code>uint8_t</code>
 and the type of <code>resize_t&lt;int8_t, 8&gt;</code> is <code>int64_t</code>.</p>
 <h3>Example</h3>
-<p>The following example calculates the magnitude of a 3-dimensional vector.</p>
-<pre><code>template &lt;class Fp&gt;
-constexpr auto magnitude(const Fp &amp; x, const Fp &amp; y, const Fp &amp; z)
--&gt; decltype(trunc_sqrt(trunc_add(trunc_square(x), trunc_square(y), trunc_square(z))))
+<p>The following function, <code>magnitude</code>, calculates the magnitude of a 3-dimensional vector.</p>
+<pre><code class="language-c++">template&lt;class Fp&gt;
+constexpr auto magnitude(Fp x, Fp y, Fp z)
 {
-    return trunc_sqrt(trunc_add(trunc_square(x), trunc_square(y), trunc_square(z)));
+    return sqrt(x*x+y*y+z*z);
 }
 </code></pre>
-<p>Calling the above function as follows</p>
-<pre><code>static_cast&lt;double&gt;(magnitude(
-    make_ufixed&lt;4, 12&gt;(1),
-    make_ufixed&lt;4, 12&gt;(4),
-    make_ufixed&lt;4, 12&gt;(9)));
+<p>And here is a call to <code>magnitude</code>.</p>
+<pre><code class="language-c++">auto m = magnitude(
+        make_ufixed&lt;4, 12&gt;(1),
+        make_ufixed&lt;4, 12&gt;(4),
+        make_ufixed&lt;4, 12&gt;(9));
+// m === make_fixed&lt;19, 12&gt;(9.8994140625)
 </code></pre>
-<p>returns the value, 9.890625.</p>
+<p>Observe that the arithmetic operations in <code>magnitude</code> obey the promotion rules of their underlying type.
+Hence <code>m</code> is backed by <code>int</code> - which is 32 bits wide on most modern architectures.</p>
 <h2>V. Technical Specification</h2>
 <h3>Header &lt;fixed_point&gt; Synopsis</h3>
 <pre><code>namespace std {
@@ -396,8 +397,6 @@ constexpr auto magnitude(const Fp &amp; x, const Fp &amp; y, const Fp &amp; z)
     using make_fixed;
   template &lt;int IntegerDigits, int FractionalDigits = 0, class Archetype = unsigned&gt;
     using make_ufixed;
-  template &lt;class ReprType, int IntegerDigits&gt;
-    using make_fixed_from_repr;
 
   template &lt;class ReprType, int Exponent, int NumBytes&gt;
     struct resize&lt;fixed_point&lt;ReprType, Exponent&gt;, NumBytes&gt;;
@@ -531,50 +530,6 @@ constexpr auto magnitude(const Fp &amp; x, const Fp &amp; y, const Fp &amp; z)
   template &lt;class ReprType, int Exponent&gt;
   	constexpr fixed_point&lt;ReprType, Exponent&gt;
   	  sqrt(const fixed_point&lt;ReprType, Exponent&gt; &amp; x) noexcept;
-  template &lt;class FixedPoint, unsigned N = 2&gt;
-  	using trunc_add_result;
-
-  template &lt;class FixedPoint, class ... Tail&gt;
-  	trunc_add_result&lt;FixedPoint, sizeof...(Tail) + 1&gt;
-      constexpr trunc_add(const FixedPoint &amp; addend1, const Tail &amp; ... addend_tail);
-  template &lt;class Lhs, class Rhs = Lhs&gt;
-  	using trunc_subtract_result;
-  template &lt;class Lhs, class Rhs&gt;
-  	trunc_subtract_result&lt;Lhs, Rhs&gt;
-  	  constexpr trunc_subtract(const Lhs &amp; minuend, const Rhs &amp; subtrahend);
-  template &lt;class Lhs, class Rhs = Lhs&gt;
-  	using trunc_multiply_result;
-
-  template &lt;class Lhs, class Rhs&gt;
-  	trunc_multiply_result&lt;Lhs, Rhs&gt;
-  	  constexpr trunc_multiply(const Lhs &amp; lhs, const Rhs &amp; rhs) noexcept;
-  template &lt;class FixedPointDividend, class FixedPointDivisor = FixedPointDividend&gt;
-  	using trunc_divide_result;
-  template &lt;class FixedPointDividend, class FixedPointDivisor&gt;
-  	trunc_divide_result&lt;FixedPointDividend, FixedPointDivisor&gt;
-  	  constexpr trunc_divide(const FixedPointDividend &amp; lhs, const FixedPointDivisor &amp; rhs) noexcept;
-  template &lt;class FixedPoint&gt;
-  	using trunc_reciprocal_result;
-  template &lt;class FixedPoint&gt;
-  	trunc_reciprocal_result&lt;FixedPoint&gt;
-  	  constexpr trunc_reciprocal(const FixedPoint &amp; fixed_point) noexcept;
-  template &lt;class FixedPoint&gt;
-  	using trunc_square_result;
-
-  template &lt;class FixedPoint&gt;
-  	trunc_square_result&lt;FixedPoint&gt;
-  	  constexpr trunc_square(const FixedPoint &amp; root) noexcept;
-  template &lt;class FixedPoint&gt;
-  	using trunc_sqrt_result;
-  template &lt;class FixedPoint&gt;
-  	trunc_sqrt_result&lt;FixedPoint&gt;
-  	  constexpr trunc_sqrt(const FixedPoint &amp; square) noexcept;
-  template &lt;int Integer, class ReprType, int Exponent&gt;
-  	constexpr fixed_point&lt;ReprType, Exponent + Integer&gt;
-  	  trunc_shift_left(const fixed_point&lt;ReprType, Exponent&gt; &amp; fp) noexcept;
-  template &lt;int Integer, class ReprType, int Exponent&gt;
-  	constexpr fixed_point&lt;ReprType, Exponent - Integer&gt;
-  	  trunc_shift_right(const fixed_point&lt;ReprType, Exponent&gt; &amp; fp) noexcept;
 
   template &lt;class Archetype, int NumBytes&gt;
     struct resize;
@@ -648,30 +603,6 @@ particular, the guarantee of setting <code>errno</code> in the case of an error
 prevents a function from being defined as pure. This highlights a
 wider issue surrounding the adoption of the functional approach and
 compile-time computation that is beyond the scope of this document.</p>
-<h3>Bounded Integers</h3>
-<p>The bounded::integer library <a href="http://doublewise.net/c++/bounded/">[3]</a>
-exemplifies the benefits of keeping track of ranges of values in
-arithmetic types at compile time.</p>
-<p>To a limited extent, the <code>trunc_</code> functions defined here also keep
-track of - and modify - the limits of values. However, a combination
-of techniques is capable of producing superior results.</p>
-<p>For instance, consider the following expression:</p>
-<pre><code>make_ufixed&lt;2, 6&gt; three(3);
-auto n = trunc_square(trunc_square(three));
-</code></pre>
-<p>The type of <code>n</code> is <code>make_ufixed&lt;8, 0&gt;</code> but its value does not
-exceed 81. Hence, an integer bit has been wasted. It may be possible
-to track more accurate limits in the same manner as the
-bounded::integer library in order to improve the precision of types
-returned by <code>trunc_</code> functions. For this reason, the exact value of
-the exponents of these return types is not given.</p>
-<p>Notes:</p>
-<ul>
-<li>Bounded::integer is already supported by fixed-point library,
-<em>fp</em> <a href="https://github.com/mizvekov/fp">[4]</a>.</li>
-<li>A similar library is the boost <em>constrained_value</em> library
-<a href="http://rk.hekko.pl/constrained_value/">[5]</a>.</li>
-</ul>
 <h3>Compile-Time Bit-Shift Operations</h3>
 <p>A notable feature of the <em>fp</em> library <a href="https://github.com/mizvekov/fp">[4]</a>
 is the creation of an alias for <code>integral_constant</code> which can be applied to the right-hand side of bit-shift operations.
@@ -688,7 +619,7 @@ but it is by no means the only viable one.</p>
 <p>The <em>fp</em> library <a href="https://github.com/mizvekov/fp">[4]</a> returns a type
 whose size matches the inputs but whose exponent is shifted to preserve high bits.
 The arithmetic types proposed in P0106
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">[9]</a>
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">[8]</a>
 increase capacity to ensure that precision is preserved.
 Even greater control of the required capacity of a fixed-point type can be afforded by
 systems such as the <em>bounded::integer</em> library <a href="http://doublewise.net/c++/bounded/">[3]</a>.</p>
@@ -710,7 +641,7 @@ a discrete selection of fixed-point types and libraries which contain
 a continuous range of exponents through type parameterization.</p>
 <h3>N1169</h3>
 <p>One example of the former is found in proposal N1169
-<a href="http://www.open-std.org/JTC1/SC22/WG14/www/docs/n1169.pdf">[6]</a>,
+<a href="http://www.open-std.org/JTC1/SC22/WG14/www/docs/n1169.pdf">[5]</a>,
 the intent of which is to expose features found in certain embedded
 hardware. It introduces a succinct set of language-level fixed-point
 types and impose constraints on the number of integer or fractional
@@ -727,9 +658,9 @@ fixed-point arithmetic at the hardware level.</p>
 <p>There are many other C++ libraries available which fall into the
 latter category of continuous-range fixed-point arithmetic
 <a href="https://github.com/mizvekov/fp">[4]</a>
-<a href="http://www.codeproject.com/Articles/37636/Fixed-Point-Class">[7]</a>
-<a href="https://github.com/viboes/fixed_point">[8]</a>. In particular, an
-existing library proposal, P0106 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">[9]</a>,
+<a href="http://www.codeproject.com/Articles/37636/Fixed-Point-Class">[6]</a>
+<a href="https://github.com/viboes/fixed_point">[7]</a>. In particular, an
+existing library proposal, P0106 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">[8]</a>,
 aims to achieve very similar goals through similar means and warrants
 closer comparison than N1169.</p>
 <p>P0106 introduces four class templates covering the quadrant of signed
@@ -803,7 +734,6 @@ Sean Middleditch, Paul Robinson, Patrice Roy, Peter Schregle, Ryhor Spivak</p>
 <li>Rounding and Overflow in C++, <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0105r0.html">http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0105r0.html</a></li>
 <li>C++ bounded::integer library, <a href="http://doublewise.net/c++/bounded/">http://doublewise.net/c++/bounded/</a></li>
 <li>fp, C++14 Fixed Point Library, <a href="https://github.com/mizvekov/fp">https://github.com/mizvekov/fp</a></li>
-<li>Boost Constrained Value Libarary, <a href="http://rk.hekko.pl/constrained_value/">http://rk.hekko.pl/constrained_value/</a></li>
 <li>N1169, Extensions to support embedded processors, <a href="http://www.open-std.org/JTC1/SC22/WG14/www/docs/n1169.pdf">http://www.open-std.org/JTC1/SC22/WG14/www/docs/n1169.pdf</a></li>
 <li>fpmath, Fixed Point Math Library, <a href="http://www.codeproject.com/Articles/37636/Fixed-Point-Class">http://www.codeproject.com/Articles/37636/Fixed-Point-Class</a></li>
 <li>Boost fixed_point (proposed), Fixed point integral and fractional types, <a href="https://github.com/viboes/fixed_point">https://github.com/viboes/fixed_point</a></li>
@@ -813,7 +743,7 @@ Sean Middleditch, Paul Robinson, Patrice Roy, Peter Schregle, Ryhor Spivak</p>
 <h2>XI. Appendix 1: Reference Implementation</h2>
 <p>An in-development implementation of the fixed_point class template and
 its essential supporting functions and types is available
-<a href="https://github.com/johnmcfarlane/fixed_point">[10]</a>.</p>
+<a href="https://github.com/johnmcfarlane/fixed_point">[9]</a>.</p>
 <p>Items include:</p>
 <ul>
 <li>utility header containing definitions for:
@@ -822,7 +752,10 @@ its essential supporting functions and types is available
 <li>a partial <code>numeric_limits</code> specialization;</li>
 </ul>
 </li>
-<li>a type, <code>sg14::integer</code>, intended to explore and illustrate the potential of custom <code>ReprType</code>;</li>
+<li>a type, <code>integer</code>, intended to explore and illustrate the potential of custom <code>ReprType</code>;</li>
+<li>a type, <code>elastic</code>, intended to illustrate the use of <code>fixed_point</code>
+to design better-behaved numeric types such as those presented in
+P0106 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">[8]</a>;</li>
 <li>compile-time tests of <code>constexpr</code> operations;</li>
 <li>run-time tests of assignment and exception-throwing behavior and</li>
 <li>benchmarking support (used to generate results in this paper).</li>
