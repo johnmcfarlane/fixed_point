@@ -1,11 +1,10 @@
 var searchData=
 [
-  ['integer_5fdigits',['integer_digits',['../classsg14_1_1elastic.html#a1df6dbcfff01d943c611314006e5a55b',1,'sg14::elastic::integer_digits()'],['../classsg14_1_1fixed__point.html#a7040f82f68a7d00c08f7d46c4a575545',1,'sg14::fixed_point::integer_digits()']]],
-  ['is_5felastic',['is_elastic',['../structsg14_1_1is__elastic.html',1,'sg14']]],
-  ['is_5fsigned',['is_signed',['../structsg14_1_1is__signed.html',1,'sg14']]],
-  ['is_5fsigned_3c_20archetype_20_3e',['is_signed&lt; Archetype &gt;',['../structsg14_1_1is__signed.html',1,'sg14']]],
-  ['is_5fsigned_3c_20elastic_3c_20integerdigits_2c_20fractionaldigits_2c_20archetype_20_3e_20_3e',['is_signed&lt; elastic&lt; IntegerDigits, FractionalDigits, Archetype &gt; &gt;',['../structsg14_1_1is__signed_3_01elastic_3_01IntegerDigits_00_01FractionalDigits_00_01Archetype_01_4_01_4.html',1,'sg14']]],
-  ['is_5fsigned_3c_20fixed_5fpoint_3c_20reprtype_2c_20exponent_20_3e_20_3e',['is_signed&lt; fixed_point&lt; ReprType, Exponent &gt; &gt;',['../structsg14_1_1is__signed_3_01fixed__point_3_01ReprType_00_01Exponent_01_4_01_4.html',1,'sg14']]],
-  ['is_5fsigned_3c_20reprtype_20_3e',['is_signed&lt; ReprType &gt;',['../structsg14_1_1is__signed.html',1,'sg14']]],
-  ['is_5funsigned',['is_unsigned',['../structsg14_1_1is__unsigned.html',1,'sg14']]]
+  ['fixed_5fpoint',['fixed_point',['../classsg14_1_1fixed__point.html',1,'sg14']]],
+  ['fixed_5fpoint',['fixed_point',['../classsg14_1_1fixed__point.html#aa1424ac6d11036c717071d59f0fdf05f',1,'sg14::fixed_point::fixed_point()'],['../classsg14_1_1fixed__point.html#acd967aa14a9ee6ae9e58a27fcf99aca1',1,'sg14::fixed_point::fixed_point(S s)'],['../classsg14_1_1fixed__point.html#acd967aa14a9ee6ae9e58a27fcf99aca1',1,'sg14::fixed_point::fixed_point(S s)'],['../classsg14_1_1fixed__point.html#ad5ff6addcba2d3bbb976dae1383ebc00',1,'sg14::fixed_point::fixed_point(const fixed_point&lt; FromReprType, FromExponent &gt; &amp;rhs)']]],
+  ['fixed_5fpoint_2eh',['fixed_point.h',['../fixed__point_8h.html',1,'']]],
+  ['fixed_5fpoint_3c_20_5finteger_5ftype_2c_20exponent_20_3e',['fixed_point&lt; _integer_type, exponent &gt;',['../classsg14_1_1fixed__point.html',1,'sg14']]],
+  ['fixed_5fpoint_5fextras_2eh',['fixed_point_extras.h',['../fixed__point__extras_8h.html',1,'']]],
+  ['fractional_5fdigits',['fractional_digits',['../classsg14_1_1elastic.html#a6f4cb03255e7d5789f7b22be1c858d21',1,'sg14::elastic::fractional_digits()'],['../classsg14_1_1fixed__point.html#a192e9fdd163c9c34418e2b4ff241da2f',1,'sg14::fixed_point::fractional_digits()']]],
+  ['from_5fdata',['from_data',['../classsg14_1_1fixed__point.html#a1ac2c85b94854788fe1ae3809518c01c',1,'sg14::fixed_point']]]
 ];

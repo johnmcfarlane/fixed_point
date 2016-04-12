@@ -29,7 +29,7 @@ They are composable such that a wide range of trade-offs between speed, accuracy
 <h2>III. Impact On the Standard</h2>
 <p>This proposal is a pure library extension. It does not require
 changes to any standard classes or functions.
-It adds two new class templates, <code>resize&lt;class, int&gt;</code> and <code>resize_t&lt;class, int&gt;</code>,
+It adds three new class templates, <code>width&lt;class&gt;</code>, <code>set_width&lt;class, int&gt;</code> and <code>set_width_t&lt;class, int&gt;</code>,
 to existing header file, <code>&lt;type_traits&gt;</code>.
 It adds several new class and function templates
 to new header file, <code>&lt;fixed_point&gt;</code>.</p>
@@ -93,7 +93,7 @@ range, (<code>INT_MIN / 2</code>, <code>INT_MAX / 2</code>), may result in undef
 behavior and/or overflow or underflow. This range of exponent values
 is far in excess of the largest built-in floting-point type and should
 be adequate for all intents and purposes.</p>
-<h3><code>make_fixed</code> and <code>make_ufixed</code> Helper Type</h3>
+<h3><code>make_fixed</code> and <code>make_ufixed</code> Helper Types</h3>
 <p>The <code>Exponent</code> template parameter is versatile and concise. It is an
 intuitive scale to use when considering the full range of positive and
 negative exponents a fixed-point type might possess. It also
@@ -341,36 +341,44 @@ it must meet the following requirements:</p>
 <ul>
 <li>it must have specialized the following existing standard library types:
 <ul>
-<li><code>is_signed</code> or <code>is_unsigned</code></li>
+<li><code>is_signed</code> and <code>is_unsigned</code></li>
 <li><code>make_signed</code> and <code>make_unsigned</code></li>
 </ul>
 </li>
-<li>it must have specialized the following proposed standard library type:
+<li>it must have specialized the following proposed standard library types:
 <ul>
-<li><code>resize</code></li>
+<li><code>width</code> and <code>set_width</code></li>
 </ul>
 </li>
 </ul>
-<h4><code>resize</code> and <code>resize_t</code> Helper Types</h4>
-<p>Any type used as <code>ReprType</code> (including built-in integers) must define a specialization of <code>resize</code>:</p>
-<pre><code>template &lt;class Archetype, int NumBytes&gt;
-struct resize;
+<h4>The <code>width</code> Helper Type</h4>
+<p>Any type used as <code>ReprType</code> (including built-in integers) must have defined specializations of <code>width</code>:</p>
+<pre><code class="language-c++">template &lt;class T&gt;
+struct width;
 </code></pre>
-<p>An alias to <code>resize</code> is <code>resize_t</code> which can be defined as:</p>
-<pre><code>template &lt;class Archetype, int NumBytes&gt;
-using resize_t = typename resize&lt;Archetype, NumBytes&gt;::type;
+<p>The value, <code>width&lt;T&gt;::value</code>, specifies the width of <code>T</code> in bits such that:</p>
+<pre><code class="language-c++">width&lt;int16_t&gt;::value == 16
+</code></pre>
+<h4>The <code>set_width</code> and <code>set_width_t</code> Helper Types</h4>
+<p>The compliment to <code>width</code> is <code>set_width</code>:</p>
+<pre><code class="language-c++">template &lt;class Archetype, unsigned MinNumBytes&gt;
+struct set_width;
+</code></pre>
+<p>An alias to <code>set_width</code> is <code>set_width_t</code> which can be defined as:</p>
+<pre><code class="language-c++">template &lt;class Archetype, unsigned MinNumBytes&gt;
+using set_width_t = typename set_width&lt;Archetype, NumBytes&gt;::type;
 </code></pre>
 <p>The resultant type is of the same signedness as <code>Archetype</code>
-and has a capacity of no less than <code>NumBytes</code> bytes
-such that for any Integer, <code>T</code> and positive integer value, 'N':</p>
-<pre><code>is_signed_v&lt;resize_t&lt;T, N&gt;&gt; == is_signed_v&lt;T&gt;
+and has a capacity of no less than <code>MinNumBits</code> bits
+such that for any integer, <code>T</code> and positive integer value, 'N':</p>
+<pre><code class="language-c++">is_signed_v&lt;set_width_t&lt;T, N&gt;&gt; == is_signed_v&lt;T&gt;
 </code></pre>
 <p>and</p>
-<pre><code>sizeof(resize_t&lt;T, N&gt;) &gt;= N
+<pre><code class="language-c++">width&lt;set_width_t&lt;T, N&gt;&gt;::value &gt;= N
 </code></pre>
 <p>are both true.</p>
-<p>For example, the type of <code>resize_t&lt;unsigned, 1&gt;</code> is <code>uint8_t</code>
-and the type of <code>resize_t&lt;int8_t, 8&gt;</code> is <code>int64_t</code>.</p>
+<p>For example, the type of <code>set_width_t&lt;unsigned, 8&gt;</code> is <code>uint8_t</code>
+and the type of <code>set_width_t&lt;int8_t, 64&gt;</code> is <code>int64_t</code>.</p>
 <h3>Example</h3>
 <p>The following function, <code>magnitude</code>, calculates the magnitude of a 3-dimensional vector.</p>
 <pre><code class="language-c++">template&lt;class Fp&gt;
@@ -399,7 +407,7 @@ Hence <code>m</code> is backed by <code>int</code> - which is 32 bits wide on mo
     using make_ufixed;
 
   template &lt;class ReprType, int Exponent, int NumBytes&gt;
-    struct resize&lt;fixed_point&lt;ReprType, Exponent&gt;, NumBytes&gt;;
+    struct set_width&lt;fixed_point&lt;ReprType, Exponent&gt;, NumBytes&gt;;
 
   template &lt;class ReprType, int Exponent&gt;
   	constexpr bool operator==(
@@ -532,9 +540,9 @@ Hence <code>m</code> is backed by <code>int</code> - which is 32 bits wide on mo
   	  sqrt(const fixed_point&lt;ReprType, Exponent&gt; &amp; x) noexcept;
 
   template &lt;class Archetype, int NumBytes&gt;
-    struct resize;
+    struct set_width;
   template &lt;class Archetype, int NumBytes&gt;
-    using resize_t;
+    using set_width_t;
 }
 </code></pre>
 <h4><code>fixed_point&lt;&gt;</code> Class Template</h4>
@@ -581,9 +589,9 @@ public:
 <h3>Header &lt;type_traits&gt; Synopsis</h3>
 <p>The following definitions are added to <code>&lt;type_traits&gt;</code>:</p>
 <pre><code>template &lt;class Archetype, int NumBytes&gt;
-  struct resize;
+  struct set_width;
 template &lt;class Archetype, int NumBytes&gt;
-  using resize_t = typename resize&lt;Archetype, NumBytes&gt;::type;
+  using set_width_t = typename set_width&lt;Archetype, NumBytes&gt;::type;
 </code></pre>
 <h2>VI. Future Issues</h2>
 <h3>Library Support</h3>
@@ -718,7 +726,7 @@ Sean Middleditch, Paul Robinson, Patrice Roy, Peter Schregle, Ryhor Spivak</p>
 <ul>
 <li>allows non-built-in types as template parameter to <code>fixed_point</code> to address issues such as rounding and overflow with;</li>
 <li>adds to the list of design considerations;</li>
-<li>adds new types, <code>resize</code> and <code>resize_t</code> to header, <code>type_traits</code>;</li>
+<li>adds new types, <code>set_width</code> and <code>set_width_t</code> to header, <code>type_traits</code>;</li>
 <li>changes parameters of <code>make_fixed</code> and <code>make_ufixed</code>;</li>
 <li>specifies behavior in case of overflow;</li>
 <li>adds extra reason for choice of arithmetic operator return type;</li>

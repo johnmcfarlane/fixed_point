@@ -162,15 +162,18 @@ It must also support bit-shift and comparison operations.</p>
 <p>In addition to these operators, <code>Archetype</code> needs for certain type traits to be specialized.
 Ideally, standard traits which describe built-in types would be permitted to be specialized for this purpose.
 Existing traits include: <code>is_signed</code> and <code>is_unsigned</code>, <code>make_signed</code> and <code>make_unsigned</code>, <code>is_integral</code> and <code>common_type</code>.</p>
-<p>An additional trait that is needed is one which can statically resize types.
-It could take the following form</p>
-<pre><code>template &lt;typename T, std::size_t S&gt;
-struct resize;
+<p>Two additional traits that are needed involve the ability to get and set the width of a type in bits.
+They could take the following form</p>
+<pre><code class="language-c++">template &lt;class Type&gt;
+struct width;
+
+template &lt;class Type, unsigned NumBits&gt;
+struct set_width;
 </code></pre>
-<p>such that <code>sizeof(resize&lt;T, S&gt;::type&gt; &gt;= S)</code> always holds.
-The template would come ready-specialized for built-in types such that <code>resize&lt;int, 2&gt;::type</code> would produce <code>int16_t</code>
-and <code>resize&lt;uint8_t, 8&gt;</code> would produce <code>uint64_t</code>.
-It could be specialized for any custom type in order to make that type suitable for use with <code>elastic</code>.
+<p>such that <code>width&lt;set_width&lt;T, S&gt;::type&gt;::value &gt;= S)</code> always holds.
+The templates would come ready-specialized for built-in types such that <code>set_width&lt;int, 16&gt;::type</code> would produce <code>int16_t</code>
+and <code>width&lt;uint64_t&gt;::value</code> would equal <code>64</code>.
+They could be specialized for any custom type in order to make that type suitable for use with <code>elastic</code>.
 Notably, while it might not be possible to resize built-ins to types that are larger than <code>long long</code>,
 no similar limit would be placed on user-defined integers.</p>
 <h2>Outstanding Feedback</h2>

@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['operator_20bool',['operator bool',['../classsg14_1_1fixed__point.html#a2dc1043ac625ed20f08683ec8c19e683',1,'sg14::fixed_point']]],
-  ['operator_20const_20_5ffixed_5fpoint_5ftype_20_26',['operator const _fixed_point_type &amp;',['../classsg14_1_1elastic.html#a0a972e87e87dbb6c766035ca4dbd9c5a',1,'sg14::elastic']]],
-  ['operator_20s',['operator S',['../classsg14_1_1fixed__point.html#a6d65d4abe0d3cd6fbebffa7b217aaf91',1,'sg14::fixed_point::operator S() const '],['../classsg14_1_1fixed__point.html#a6d65d4abe0d3cd6fbebffa7b217aaf91',1,'sg14::fixed_point::operator S() const ']]],
-  ['operator_3d',['operator=',['../classsg14_1_1fixed__point.html#a7c2c5f29d0015ef66b4d6e6c4d1bac02',1,'sg14::fixed_point::operator=(S s)'],['../classsg14_1_1fixed__point.html#a7c2c5f29d0015ef66b4d6e6c4d1bac02',1,'sg14::fixed_point::operator=(S s)'],['../classsg14_1_1fixed__point.html#a902c34b0287bbd0131cd01b2b6072a46',1,'sg14::fixed_point::operator=(const fixed_point&lt; FromReprType, FromExponent &gt; &amp;rhs)']]]
+  ['numeric_5flimits_3c_20sg14_3a_3aelastic_3c_20integerdigits_2c_20fractionaldigits_2c_20archetype_20_3e_20_3e',['numeric_limits&lt; sg14::elastic&lt; IntegerDigits, FractionalDigits, Archetype &gt; &gt;',['../structstd_1_1numeric__limits_3_01sg14_1_1elastic_3_01IntegerDigits_00_01FractionalDigits_00_01Archetype_01_4_01_4.html',1,'std']]],
+  ['numeric_5flimits_3c_20sg14_3a_3afixed_5fpoint_3c_20reprtype_2c_20exponent_20_3e_20_3e',['numeric_limits&lt; sg14::fixed_point&lt; ReprType, Exponent &gt; &gt;',['../structstd_1_1numeric__limits_3_01sg14_1_1fixed__point_3_01ReprType_00_01Exponent_01_4_01_4.html',1,'std']]]
 ];

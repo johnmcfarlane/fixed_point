@@ -114,7 +114,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa1424ac6d11036c717071d59f0fdf05f"><td class="mdescLeft">&#160;</td><td class="mdescRight">default constructor <br/></td></tr>
 <tr class="separator:aa1424ac6d11036c717071d59f0fdf05f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd967aa14a9ee6ae9e58a27fcf99aca1"><td class="memTemplParams" colspan="2"><a class="anchor" id="acd967aa14a9ee6ae9e58a27fcf99aca1"></a>
-template&lt;class S , typename std::enable_if&lt; std::is_integral&lt; S &gt;::value, int &gt;::type Dummy = 0&gt; </td></tr>
+template&lt;class S , typename std::enable_if&lt; is_integral&lt; S &gt;::value, int &gt;::type Dummy = 0&gt; </td></tr>
 <tr class="memitem:acd967aa14a9ee6ae9e58a27fcf99aca1"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#acd967aa14a9ee6ae9e58a27fcf99aca1">fixed_point</a> (S s)</td></tr>
 <tr class="memdesc:acd967aa14a9ee6ae9e58a27fcf99aca1"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor taking an integer type <br/></td></tr>
 <tr class="separator:acd967aa14a9ee6ae9e58a27fcf99aca1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,7 +137,7 @@ constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 <tr class="memdesc:a2dc1043ac625ed20f08683ec8c19e683"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns non-zeroness represented as boolean <br/></td></tr>
 <tr class="separator:a2dc1043ac625ed20f08683ec8c19e683"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d65d4abe0d3cd6fbebffa7b217aaf91"><td class="memTemplParams" colspan="2"><a class="anchor" id="a6d65d4abe0d3cd6fbebffa7b217aaf91"></a>
-template&lt;class S , typename std::enable_if&lt; std::is_integral&lt; S &gt;::value, int &gt;::type Dummy = 0&gt; </td></tr>
+template&lt;class S , typename std::enable_if&lt; is_integral&lt; S &gt;::value, int &gt;::type Dummy = 0&gt; </td></tr>
 <tr class="memitem:a6d65d4abe0d3cd6fbebffa7b217aaf91"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a6d65d4abe0d3cd6fbebffa7b217aaf91">operator S</a> () const </td></tr>
 <tr class="memdesc:a6d65d4abe0d3cd6fbebffa7b217aaf91"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns value represented as integral <br/></td></tr>
 <tr class="separator:a6d65d4abe0d3cd6fbebffa7b217aaf91"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,7 +165,7 @@ template&lt;class Rhs , typename std::enable_if&lt; std::is_arithmetic&lt; Rhs &
 Exponent &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/=</b> (const Rhs &amp;rhs)</td></tr>
 <tr class="separator:a0d0fab0691a641e606d999305f37c33a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c2c5f29d0015ef66b4d6e6c4d1bac02"><td class="memTemplParams" colspan="2"><a class="anchor" id="a7c2c5f29d0015ef66b4d6e6c4d1bac02"></a>
-template&lt;class S , typename std::enable_if&lt; std::is_integral&lt; S &gt;::value, int &gt;::type Dummy = 0&gt; </td></tr>
+template&lt;class S , typename std::enable_if&lt; is_integral&lt; S &gt;::value, int &gt;::type Dummy = 0&gt; </td></tr>
 <tr class="memitem:a7c2c5f29d0015ef66b4d6e6c4d1bac02"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a7c2c5f29d0015ef66b4d6e6c4d1bac02">operator=</a> (S s)</td></tr>
 <tr class="memdesc:a7c2c5f29d0015ef66b4d6e6c4d1bac02"><td class="mdescLeft">&#160;</td><td class="mdescRight">copy assignment operator taking an integer type <br/></td></tr>
 <tr class="separator:a7c2c5f29d0015ef66b4d6e6c4d1bac02"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,7 +190,7 @@ static constexpr <a class="el" href="classsg14_1_1fixed__point.html">fixed_point
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:a55176ad805db984ee344209a1c16b856"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55176ad805db984ee344209a1c16b856"></a>
-static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a55176ad805db984ee344209a1c16b856">digits</a> = _fixed_point_impl::num_bits&lt;ReprType&gt;()-std::is_signed&lt;<a class="el" href="classsg14_1_1fixed__point.html#a0c2813efbdddb7303c65dfde81fe3cd8">repr_type</a>&gt;::value</td></tr>
+static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a55176ad805db984ee344209a1c16b856">digits</a> = <a class="el" href="structsg14_1_1width.html">width</a>&lt;ReprType&gt;::value-<a class="el" href="structsg14_1_1is__signed.html">is_signed</a>&lt;ReprType&gt;::value</td></tr>
 <tr class="memdesc:a55176ad805db984ee344209a1c16b856"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of binary digits this type can represent; equivalent to <a href="http://en.cppreference.com/w/cpp/types/numeric_limits/digits">std::numeric_limits::digits</a> <br/></td></tr>
 <tr class="separator:a55176ad805db984ee344209a1c16b856"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a590b5289c9bcbe3f7f55e19c326079eb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a590b5289c9bcbe3f7f55e19c326079eb"></a>
@@ -198,7 +198,7 @@ static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class
 <tr class="memdesc:a590b5289c9bcbe3f7f55e19c326079eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">value of template parameter, <em>Exponent</em> <br/></td></tr>
 <tr class="separator:a590b5289c9bcbe3f7f55e19c326079eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a192e9fdd163c9c34418e2b4ff241da2f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a192e9fdd163c9c34418e2b4ff241da2f"></a>
-static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a192e9fdd163c9c34418e2b4ff241da2f">fractional_digits</a> = <a class="el" href="classsg14_1_1fixed__point.html#a55176ad805db984ee344209a1c16b856">digits</a>-<a class="el" href="classsg14_1_1fixed__point.html#a7040f82f68a7d00c08f7d46c4a575545">integer_digits</a></td></tr>
+static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a192e9fdd163c9c34418e2b4ff241da2f">fractional_digits</a> = -<a class="el" href="classsg14_1_1fixed__point.html#a590b5289c9bcbe3f7f55e19c326079eb">exponent</a></td></tr>
 <tr class="memdesc:a192e9fdd163c9c34418e2b4ff241da2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of binary digits devoted to fractional part of value; can be negative for specializations with especially large ranges <br/></td></tr>
 <tr class="separator:a192e9fdd163c9c34418e2b4ff241da2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7040f82f68a7d00c08f7d46c4a575545"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7040f82f68a7d00c08f7d46c4a575545"></a>

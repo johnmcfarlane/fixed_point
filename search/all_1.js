@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['data',['data',['../classsg14_1_1fixed__point.html#af55a440c41dd1550b476d0205ac176f9',1,'sg14::fixed_point']]],
-  ['digits',['digits',['../classsg14_1_1fixed__point.html#a55176ad805db984ee344209a1c16b856',1,'sg14::fixed_point']]]
+  ['common_5ftype',['common_type',['../structsg14_1_1common__type.html',1,'sg14']]],
+  ['common_5ftype_3c_20float_5fof_5fsame_5fsize_3c_20lhsreprtype_20_3e_2c_20float_20_3e',['common_type&lt; float_of_same_size&lt; LhsReprType &gt;, Float &gt;',['../structsg14_1_1common__type.html',1,'sg14']]]
 ];

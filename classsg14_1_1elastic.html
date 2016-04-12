@@ -131,6 +131,11 @@ template&lt;class Rhs &gt; </td></tr>
 constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1elastic.html#a0a972e87e87dbb6c766035ca4dbd9c5a">operator const _fixed_point_type &amp;</a> () const </td></tr>
 <tr class="memdesc:a0a972e87e87dbb6c766035ca4dbd9c5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">conversion operator returning <a class="el" href="classsg14_1_1fixed__point.html" title="literal real number approximation that uses fixed-point arithmetic ">fixed_point</a> type <br/></td></tr>
 <tr class="separator:a0a972e87e87dbb6c766035ca4dbd9c5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1d6ddb18b5e40c56c80bdaa9da26347"><td class="memTemplParams" colspan="2"><a class="anchor" id="aa1d6ddb18b5e40c56c80bdaa9da26347"></a>
+template&lt;class T , class  = typename std::enable_if&lt;!_fixed_point_impl::is_fixed_point&lt;T&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:aa1d6ddb18b5e40c56c80bdaa9da26347"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1elastic.html#aa1d6ddb18b5e40c56c80bdaa9da26347">operator T</a> () const </td></tr>
+<tr class="memdesc:aa1d6ddb18b5e40c56c80bdaa9da26347"><td class="mdescLeft">&#160;</td><td class="mdescRight">conversion operator returning value as arbitrary type <br/></td></tr>
+<tr class="separator:aa1d6ddb18b5e40c56c80bdaa9da26347"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
