@@ -98,7 +98,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1numeric__limits_3_01sg14_1_1fixed__point_3_01ReprType_00_01Exponent_01_4_01_4.html">std::numeric_limits&lt; sg14::fixed_point&lt; ReprType, Exponent &gt; &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1numeric__limits_3_01sg14_1_1fixed__point_3_01Rep_00_01Exponent_01_4_01_4.html">std::numeric_limits&lt; sg14::fixed_point&lt; Rep, Exponent &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -109,48 +109,48 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac87467f9051acf40521960fa722d1bda"><td class="memTemplParams" colspan="2"><a class="anchor" id="ac87467f9051acf40521960fa722d1bda"></a>
-template&lt;class ReprType , int Exponent, typename std::enable_if&lt; std::is_signed&lt; ReprType &gt;::value, int &gt;::type Dummy = 0&gt; </td></tr>
-<tr class="memitem:ac87467f9051acf40521960fa722d1bda"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::abs</b> (const fixed_point&lt; ReprType, Exponent &gt; &amp;x) noexcept-&gt; _fixed_point_impl::common_type_t&lt; decltype(x), decltype(-x)&gt;</td></tr>
-<tr class="separator:ac87467f9051acf40521960fa722d1bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec9e8bd39bb3ccb2e1d6e4a8cd175ee2"><td class="memTemplParams" colspan="2"><a class="anchor" id="aec9e8bd39bb3ccb2e1d6e4a8cd175ee2"></a>
-template&lt;class ReprType , int Exponent, typename std::enable_if&lt; std::is_unsigned&lt; ReprType &gt;::value, int &gt;::type Dummy = 0&gt; </td></tr>
-<tr class="memitem:aec9e8bd39bb3ccb2e1d6e4a8cd175ee2"><td class="memTemplItemLeft" align="right" valign="top">constexpr fixed_point<br class="typebreak"/>
-&lt; ReprType, Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::abs</b> (const fixed_point&lt; ReprType, Exponent &gt; &amp;x) noexcept</td></tr>
-<tr class="separator:aec9e8bd39bb3ccb2e1d6e4a8cd175ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1f15e363e554d28cc666c137ede0b1e"><td class="memTemplParams" colspan="2"><a class="anchor" id="ab1f15e363e554d28cc666c137ede0b1e"></a>
-template&lt;class ReprType , int Exponent&gt; </td></tr>
-<tr class="memitem:ab1f15e363e554d28cc666c137ede0b1e"><td class="memTemplItemLeft" align="right" valign="top">constexpr fixed_point<br class="typebreak"/>
-&lt; ReprType, Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::cos</b> (const fixed_point&lt; ReprType, Exponent &gt; &amp;x) noexcept</td></tr>
-<tr class="separator:ab1f15e363e554d28cc666c137ede0b1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af07c5af1893d0d011d9ea2b2e75d70a8"><td class="memTemplParams" colspan="2"><a class="anchor" id="af07c5af1893d0d011d9ea2b2e75d70a8"></a>
-template&lt;class ReprType , int Exponent&gt; </td></tr>
-<tr class="memitem:af07c5af1893d0d011d9ea2b2e75d70a8"><td class="memTemplItemLeft" align="right" valign="top">constexpr fixed_point<br class="typebreak"/>
-&lt; ReprType, Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::exp</b> (const fixed_point&lt; ReprType, Exponent &gt; &amp;x) noexcept</td></tr>
-<tr class="separator:af07c5af1893d0d011d9ea2b2e75d70a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb5e60a9fbbd2acc30fb3f9ef8820bd9"><td class="memTemplParams" colspan="2"><a class="anchor" id="aeb5e60a9fbbd2acc30fb3f9ef8820bd9"></a>
-template&lt;class ReprType , int Exponent&gt; </td></tr>
-<tr class="memitem:aeb5e60a9fbbd2acc30fb3f9ef8820bd9"><td class="memTemplItemLeft" align="right" valign="top">::std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator&lt;&lt;</b> (::std::ostream &amp;out, const fixed_point&lt; ReprType, Exponent &gt; &amp;fp)</td></tr>
-<tr class="separator:aeb5e60a9fbbd2acc30fb3f9ef8820bd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4617cfadc80cd7ef54adb68377cd26c"><td class="memTemplParams" colspan="2"><a class="anchor" id="ad4617cfadc80cd7ef54adb68377cd26c"></a>
-template&lt;class ReprType , int Exponent&gt; </td></tr>
-<tr class="memitem:ad4617cfadc80cd7ef54adb68377cd26c"><td class="memTemplItemLeft" align="right" valign="top">::std::istream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator&gt;&gt;</b> (::std::istream &amp;in, fixed_point&lt; ReprType, Exponent &gt; &amp;fp)</td></tr>
-<tr class="separator:ad4617cfadc80cd7ef54adb68377cd26c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1874443f94e0b91fc4f73d40af04a94f"><td class="memTemplParams" colspan="2"><a class="anchor" id="a1874443f94e0b91fc4f73d40af04a94f"></a>
-template&lt;class ReprType , int Exponent&gt; </td></tr>
-<tr class="memitem:a1874443f94e0b91fc4f73d40af04a94f"><td class="memTemplItemLeft" align="right" valign="top">constexpr fixed_point<br class="typebreak"/>
-&lt; ReprType, Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::pow</b> (const fixed_point&lt; ReprType, Exponent &gt; &amp;x) noexcept</td></tr>
-<tr class="separator:a1874443f94e0b91fc4f73d40af04a94f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b3c1c68fadcefaf4b6e3e9af0035871"><td class="memTemplParams" colspan="2"><a class="anchor" id="a0b3c1c68fadcefaf4b6e3e9af0035871"></a>
-template&lt;class ReprType , int Exponent&gt; </td></tr>
-<tr class="memitem:a0b3c1c68fadcefaf4b6e3e9af0035871"><td class="memTemplItemLeft" align="right" valign="top">constexpr fixed_point<br class="typebreak"/>
-&lt; ReprType, Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::sin</b> (const fixed_point&lt; ReprType, Exponent &gt; &amp;x) noexcept</td></tr>
-<tr class="separator:a0b3c1c68fadcefaf4b6e3e9af0035871"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1be1db5ffc1aa63455d42e89acabf31"><td class="memTemplParams" colspan="2"><a class="anchor" id="af1be1db5ffc1aa63455d42e89acabf31"></a>
-template&lt;class ReprType , int Exponent&gt; </td></tr>
-<tr class="memitem:af1be1db5ffc1aa63455d42e89acabf31"><td class="memTemplItemLeft" align="right" valign="top">constexpr fixed_point<br class="typebreak"/>
-&lt; ReprType, Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::sqrt</b> (const fixed_point&lt; ReprType, Exponent &gt; &amp;x)</td></tr>
-<tr class="separator:af1be1db5ffc1aa63455d42e89acabf31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a872635dfa3479aaac0e5d0e7d51e1f25"><td class="memTemplParams" colspan="2"><a class="anchor" id="a872635dfa3479aaac0e5d0e7d51e1f25"></a>
+template&lt;class Rep , int Exponent, typename std::enable_if&lt; std::is_signed&lt; Rep &gt;::value, int &gt;::type Dummy = 0&gt; </td></tr>
+<tr class="memitem:a872635dfa3479aaac0e5d0e7d51e1f25"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::abs</b> (const fixed_point&lt; Rep, Exponent &gt; &amp;x) noexcept-&gt; _fixed_point_impl::common_type_t&lt; decltype(x), decltype(-x)&gt;</td></tr>
+<tr class="separator:a872635dfa3479aaac0e5d0e7d51e1f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d10b36e67dc5491414a687b2de97198"><td class="memTemplParams" colspan="2"><a class="anchor" id="a4d10b36e67dc5491414a687b2de97198"></a>
+template&lt;class Rep , int Exponent, typename std::enable_if&lt; std::is_unsigned&lt; Rep &gt;::value, int &gt;::type Dummy = 0&gt; </td></tr>
+<tr class="memitem:a4d10b36e67dc5491414a687b2de97198"><td class="memTemplItemLeft" align="right" valign="top">constexpr fixed_point&lt; Rep, <br class="typebreak"/>
+Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::abs</b> (const fixed_point&lt; Rep, Exponent &gt; &amp;x) noexcept</td></tr>
+<tr class="separator:a4d10b36e67dc5491414a687b2de97198"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a793868cb2847d027b52ceba8dcbd7642"><td class="memTemplParams" colspan="2"><a class="anchor" id="a793868cb2847d027b52ceba8dcbd7642"></a>
+template&lt;class Rep , int Exponent&gt; </td></tr>
+<tr class="memitem:a793868cb2847d027b52ceba8dcbd7642"><td class="memTemplItemLeft" align="right" valign="top">constexpr fixed_point&lt; Rep, <br class="typebreak"/>
+Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::cos</b> (const fixed_point&lt; Rep, Exponent &gt; &amp;x) noexcept</td></tr>
+<tr class="separator:a793868cb2847d027b52ceba8dcbd7642"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30cda72e8fe80e7a71ba58a000f796ce"><td class="memTemplParams" colspan="2"><a class="anchor" id="a30cda72e8fe80e7a71ba58a000f796ce"></a>
+template&lt;class Rep , int Exponent&gt; </td></tr>
+<tr class="memitem:a30cda72e8fe80e7a71ba58a000f796ce"><td class="memTemplItemLeft" align="right" valign="top">constexpr fixed_point&lt; Rep, <br class="typebreak"/>
+Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::exp</b> (const fixed_point&lt; Rep, Exponent &gt; &amp;x) noexcept</td></tr>
+<tr class="separator:a30cda72e8fe80e7a71ba58a000f796ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0059e1caba52abb45ba4ee74860b2a7"><td class="memTemplParams" colspan="2"><a class="anchor" id="aa0059e1caba52abb45ba4ee74860b2a7"></a>
+template&lt;class Rep , int Exponent&gt; </td></tr>
+<tr class="memitem:aa0059e1caba52abb45ba4ee74860b2a7"><td class="memTemplItemLeft" align="right" valign="top">::std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator&lt;&lt;</b> (::std::ostream &amp;out, const fixed_point&lt; Rep, Exponent &gt; &amp;fp)</td></tr>
+<tr class="separator:aa0059e1caba52abb45ba4ee74860b2a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f41fe777e7ef51741434c50a7ac940b"><td class="memTemplParams" colspan="2"><a class="anchor" id="a5f41fe777e7ef51741434c50a7ac940b"></a>
+template&lt;class Rep , int Exponent&gt; </td></tr>
+<tr class="memitem:a5f41fe777e7ef51741434c50a7ac940b"><td class="memTemplItemLeft" align="right" valign="top">::std::istream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator&gt;&gt;</b> (::std::istream &amp;in, fixed_point&lt; Rep, Exponent &gt; &amp;fp)</td></tr>
+<tr class="separator:a5f41fe777e7ef51741434c50a7ac940b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8f899739fc67c493a0d6c0985ffa536"><td class="memTemplParams" colspan="2"><a class="anchor" id="ad8f899739fc67c493a0d6c0985ffa536"></a>
+template&lt;class Rep , int Exponent&gt; </td></tr>
+<tr class="memitem:ad8f899739fc67c493a0d6c0985ffa536"><td class="memTemplItemLeft" align="right" valign="top">constexpr fixed_point&lt; Rep, <br class="typebreak"/>
+Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::pow</b> (const fixed_point&lt; Rep, Exponent &gt; &amp;x) noexcept</td></tr>
+<tr class="separator:ad8f899739fc67c493a0d6c0985ffa536"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91716c84bac5d692ab5d683c6e2b6506"><td class="memTemplParams" colspan="2"><a class="anchor" id="a91716c84bac5d692ab5d683c6e2b6506"></a>
+template&lt;class Rep , int Exponent&gt; </td></tr>
+<tr class="memitem:a91716c84bac5d692ab5d683c6e2b6506"><td class="memTemplItemLeft" align="right" valign="top">constexpr fixed_point&lt; Rep, <br class="typebreak"/>
+Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::sin</b> (const fixed_point&lt; Rep, Exponent &gt; &amp;x) noexcept</td></tr>
+<tr class="separator:a91716c84bac5d692ab5d683c6e2b6506"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fc51de1b01d64d8d204ba880709fa20"><td class="memTemplParams" colspan="2"><a class="anchor" id="a3fc51de1b01d64d8d204ba880709fa20"></a>
+template&lt;class Rep , int Exponent&gt; </td></tr>
+<tr class="memitem:a3fc51de1b01d64d8d204ba880709fa20"><td class="memTemplItemLeft" align="right" valign="top">constexpr fixed_point&lt; Rep, <br class="typebreak"/>
+Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::sqrt</b> (const fixed_point&lt; Rep, Exponent &gt; &amp;x)</td></tr>
+<tr class="separator:a3fc51de1b01d64d8d204ba880709fa20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>supplemental definitions related to the <code><a class="el" href="classsg14_1_1fixed__point.html" title="literal real number approximation that uses fixed-point arithmetic ">sg14::fixed_point</a></code> type; definitions that straddle two 'homes, e.g. <a class="el" href="fixed__point_8h.html" title="essential definitions related to the sg14::fixed_point type ">fixed_point.h</a> and cmath, traits or limits; included from <a class="el" href="fixed__point_8h.html" title="essential definitions related to the sg14::fixed_point type ">sg14/fixed_point.h</a> - do not include directly! </p>

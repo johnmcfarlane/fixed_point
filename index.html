@@ -135,7 +135,7 @@ make
 <ol type="1">
 <li>in <em>src/benchmark/CMakeLists.txt</em>, append <code>-fno-omit-frame-pointer</code> to <code>COMPILE_FLAGS</code>: <pre class="fragment">PROPERTIES COMPILE_FLAGS "${COMMON_CXX_FLAGS} -fno-omit-frame-pointer"
 </pre></li>
-<li>then run: <pre class="fragment">perf stat ./run_benchmarks
+<li>then run: <pre class="fragment">perf record -g ./fp_benchmark
 perf report -g 'graph,0.5,caller'
 </pre></li>
 </ol>

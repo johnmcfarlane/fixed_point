@@ -10,13 +10,16 @@ arithmetic using integral types.</p>
 <p>Floating-point types are an exceedingly versatile and widely supported
 method of expressing real numbers on modern architectures.</p>
 <p>However, there are certain situations where fixed-point arithmetic is
-preferable. Some systems lack native floating-point registers and must
-emulate them in software. Many others are capable of performing some
-or all operations more efficiently using integer arithmetic. Certain
-applications can suffer from the variability in precision which comes
-from a dynamic radix point <a href="http://www.pathengine.com/Contents/Overview/FundamentalConcepts/WhyIntegerCoordinates/page.php">[1]</a>.
-In situations where a variable exponent is not desired, it takes
-valuable space away from the significand and reduces precision.</p>
+preferable:</p>
+<ul>
+<li>Some systems lack native floating-point registers and must emulate them in software;</li>
+<li>many others are capable of performing some or all operations more efficiently using integer arithmetic;</li>
+<li>certain applications can suffer from the variability in precision which comes from a dynamic radix point
+<a href="http://www.pathengine.com/Contents/Overview/FundamentalConcepts/WhyIntegerCoordinates/page.php">[1]</a>;</li>
+<li>in situations where a variable exponent is not desired,
+it takes valuable space away from the significand and reduces precision and</li>
+<li>not all hardware and compilers produce exactly the same results, leading to non-deterministic results.</li>
+</ul>
 <p>Integer types provide the basis for an efficient
 representation of binary fixed-point real numbers. However, laborious,
 error-prone steps are required to normalize the results of certain
@@ -55,17 +58,17 @@ Similarly, orthogonal concerns such as run-time overflow detection and rounding 
 are deferred to the underlying integer types used as storage.</p>
 <h3>Class Template</h3>
 <p>Fixed-point numbers are specializations of</p>
-<pre><code>template &lt;class ReprType, int Exponent&gt;
+<pre><code>template &lt;class Rep, int Exponent&gt;
 class fixed_point;
 </code></pre>
 <p>where the template parameters are described as follows.</p>
-<h4><code>ReprType</code> Type Template Parameter</h4>
+<h4><code>Rep</code> Type Template Parameter</h4>
 <p>This parameter identifies the capacity and signedness of the
 underlying type used to represent the value. In other words, the size
-of the resulting type will be <code>sizeof(ReprType)</code> and it will be
-signed iff <code>is_signed&lt;ReprType&gt;::value</code> is true. The default is
+of the resulting type will be <code>sizeof(Rep)</code> and it will be
+signed iff <code>is_signed&lt;Rep&gt;::value</code> is true. The default is
 <code>int</code>.</p>
-<p><code>ReprType</code> may be a fundamental integral type or similar type with bit-shift and arithmetic operators.
+<p><code>Rep</code> may be a fundamental integral type or similar type with bit-shift and arithmetic operators.
 The most suitable types are: <code>std::int8_t</code>, <code>std::uint8_t</code>,
 <code>std::int16_t</code>, <code>std::uint16_t</code>, <code>std::int32_t</code> and <code>std::uint32_t</code>.
 In limited situations, <code>std::int64_t</code> and <code>std::uint64_t</code> can be used.
@@ -82,10 +85,10 @@ range as <code>T</code>.</p>
 <pre><code>pow(2, Exponent)
 </code></pre>
 <p>and the minimum and maximum values are</p>
-<pre><code>std::numeric_limits&lt;ReprType&gt;::min() * pow(2, Exponent)
+<pre><code>std::numeric_limits&lt;Rep&gt;::min() * pow(2, Exponent)
 </code></pre>
 <p>and</p>
-<pre><code>std::numeric_limits&lt;ReprType&gt;::max() * pow(2, Exponent)
+<pre><code>std::numeric_limits&lt;Rep&gt;::max() * pow(2, Exponent)
 </code></pre>
 <p>respectively.</p>
 <p>Any usage that results in values of <code>Exponent</code> which lie outside the
@@ -125,7 +128,7 @@ fractional digits:</p>
 <pre><code>make_fixed&lt;2, 29&gt; value { 3.141592653 };
 </code></pre>
 <p>Type parameter, <code>Archetype</code>, is provided in the case that a
-<code>fixed_point</code> specialization is desired which has as the <code>ReprType</code>
+<code>fixed_point</code> specialization is desired which has as the <code>Rep</code>
 parameter some type other than a built-in integral. The signedness of
 <code>Archetype</code> corresponds to the signedness of the resultant
 <code>fixed_point</code> specialization although the size does not.</p>
@@ -134,7 +137,7 @@ parameter some type other than a built-in integral. The signedness of
 arithmetic types.</p>
 <p>While effort is made to ensure that significant digits are not lost
 during conversion, no effort is made to avoid rounding errors.
-Whatever would happen when converting to and from <code>ReprType</code> largely
+Whatever would happen when converting to and from <code>Rep</code> largely
 applies to <code>fixed_point</code> objects also. For example:</p>
 <pre><code>make_ufixed&lt;4, 4&gt;(.006) == make_ufixed&lt;4, 4&gt;(0)
 </code></pre>
@@ -155,13 +158,13 @@ can take any combination of:</p>
 promotion-like rules are applied to determine the return type:</p>
 <ol>
 <li>If both arguments are fixed-point,
-then the result has a <code>ReprType</code> which is the common type of the <code>ReprType</code> of the inputs
+then the result has a <code>Rep</code> which is the common type of the <code>Rep</code> of the inputs
 and the <code>Exponent</code> value of the input with the greater integer capacity.</li>
 <li>If one of the arguments is a floating-point type, then the type of
 the result is the smallest floating-point type of equal or greater
 size than the inputs.</li>
 <li>If one of the arguments is an integral type,
-then the result has a <code>ReprType</code> which is the common type of the input fixed-point <code>ReprType</code> and the integral type
+then the result has a <code>Rep</code> which is the common type of the input fixed-point <code>Rep</code> and the integral type
 and the same <code>Exponent</code> value as the input fixed-point type.</li>
 </ol>
 <p>Some examples:</p>
@@ -183,7 +186,7 @@ floating-point to integer and</li>
 <li>preserves the input fixed-point type whose range is far more likely
 to be of deliberate importance to the operation.</li>
 </ol>
-<p>A guiding aim is for specializations with <code>Exponent</code> set to 0 to behave as closely as possible like their <code>ReprType</code>.
+<p>A guiding aim is for specializations with <code>Exponent</code> set to 0 to behave as closely as possible like their <code>Rep</code>.
 For instance, where possible, an object of type, <code>int</code>, should be interchangeable with <code>fixed_point&lt;&gt;</code>.</p>
 <p>Shift operator overloads require an integer type as the right-hand
 parameter and return a type which is adjusted to accommodate the new
@@ -199,7 +202,7 @@ their inputs, they carry a risk of overflow. For instance,</p>
 <p>is zero on architectures where <code>int</code> is 4 bytes because a type with 2 integer bits cannot
 store a value of 4.</p>
 <p>The result of overflow of any bits in a fixed-point value depends
-entirely on how <code>ReprType</code> handles overflow. Thus, for built-in
+entirely on how <code>Rep</code> handles overflow. Thus, for built-in
 signed types, the result is undefined and for built-in unsigned types,
 the value wraps around.</p>
 <h4>Underflow</h4>
@@ -210,7 +213,7 @@ the value wraps around.</p>
 generally considered acceptable.</p>
 <p>However, when all bits are lost due to underflow, the value is said
 to be flushed. As with overflow, the result of a flush is the same for
-a fixed-point type as it is for its underlying <code>ReprType</code>. In the case
+a fixed-point type as it is for its underlying <code>Rep</code>. In the case
 of built-in integral types, the value becomes zero.</p>
 <h3>Dealing With Overflow and Flushes</h3>
 <p>Errors resulting from overflow and flushes are two of the biggest
@@ -222,7 +225,7 @@ these errors by their variable exponent and implicit bit.</p>
 presented:</p>
 <ol>
 <li>simply leave it to the user to avoid overflow;</li>
-<li>allow the user to provide a custom type for <code>ReprType</code>
+<li>allow the user to provide a custom type for <code>Rep</code>
 which behaves differently from built-in integral types;</li>
 <li>promote the result to a larger type to ensure sufficient capacity
 or</li>
@@ -236,7 +239,7 @@ surprise to the fewest users. This makes it far easier to reason
 about in code where functions are written with a particular type in
 mind. It also requires the least computation in most cases.</p>
 <p>Choice 2) is beyond the scope of this proposal
-and is covered in more detail in the section, <strong>Alternative Types for <code>ReprType</code></strong>.</p>
+and is covered in more detail in the section, <strong>Alternative Types for <code>Rep</code></strong>.</p>
 <p>Choices 3) and 4) are reasonably robust to overflow events.
 However, they represent different trade-offs and neither one is the best fit in all situations.
 Notably, where any instance of <code>c = a + b</code> is replaced with <code>a += b</code>, results may change in surprising ways.
@@ -278,7 +281,7 @@ It does a better job at avoiding unnecessary narrowing and catastrophic informat
 auto p = f * f;
 // p === make_fixed&lt;27, 4&gt;&gt;{254.00000000}
 </code></pre>
-<h3>Alternative Types for <code>ReprType</code></h3>
+<h3>Alternative Types for <code>Rep</code></h3>
 <p>Using built-in integral types as the default underlying representation
 minimizes certain costs:</p>
 <ul>
@@ -312,12 +315,12 @@ Such types deserve their place in the standard library.</p>
 template &lt;int NumBytes, bool IsSigned = true&gt;
 class sized_integer;
 
-// may take built-in or sized_integer as Repr parameter
-template &lt;class Repr = int, rounding Rounding = rounding::towards_odd&gt;
+// may take built-in or sized_integer as Rep parameter
+template &lt;class Rep = int, rounding Rounding = rounding::towards_odd&gt;
 class rounding_integer;
 
-// may take built-in, sized_integer or rounding_integer as Repr parameter
-template &lt;class Repr = int, overflow Overflow = overflow::exception&gt;
+// may take built-in, sized_integer or rounding_integer as Rep parameter
+template &lt;class Rep = int, overflow Overflow = overflow::exception&gt;
 class overflow_integer;
 
 // a 'kitchen sink' custom integer type  
@@ -336,13 +339,14 @@ they are not specific to fixed-point.
 It would not only be premature - but inappropriate -
 to attempt to address rounding and error handling at the level of a fixed-point type.</p>
 <h4>Required Specializations</h4>
-<p>For a type to be suitable as parameter, <code>ReprType</code>, of <code>fixed_point</code>,
+<p>For a type to be suitable as parameter, <code>Rep</code>, of <code>fixed_point</code>,
 it must meet the following requirements:</p>
 <ul>
 <li>it must have specialized the following existing standard library types:
 <ul>
 <li><code>is_signed</code> and <code>is_unsigned</code></li>
 <li><code>make_signed</code> and <code>make_unsigned</code></li>
+<li><code>is_integer</code></li>
 </ul>
 </li>
 <li>it must have specialized the following proposed standard library types:
@@ -352,7 +356,7 @@ it must meet the following requirements:</p>
 </li>
 </ul>
 <h4>The <code>width</code> Helper Type</h4>
-<p>Any type used as <code>ReprType</code> (including built-in integers) must have defined specializations of <code>width</code>:</p>
+<p>Any type used as <code>Rep</code> (including built-in integers) must have defined specializations of <code>width</code>:</p>
 <pre><code class="language-c++">template &lt;class T&gt;
 struct width;
 </code></pre>
@@ -398,146 +402,146 @@ constexpr auto magnitude(Fp x, Fp y, Fp z)
 Hence <code>m</code> is backed by <code>int</code> - which is 32 bits wide on most modern architectures.</p>
 <h2>V. Technical Specification</h2>
 <h3>Header &lt;fixed_point&gt; Synopsis</h3>
-<pre><code>namespace std {
-  template &lt;class ReprType, int Exponent&gt; class fixed_point;
+<pre><code class="language-c++">namespace std {
+  template &lt;class Rep, int Exponent&gt; class fixed_point;
 
   template &lt;int IntegerDigits, int FractionalDigits = 0, class Archetype = signed&gt;
     using make_fixed;
   template &lt;int IntegerDigits, int FractionalDigits = 0, class Archetype = unsigned&gt;
     using make_ufixed;
 
-  template &lt;class ReprType, int Exponent, int NumBytes&gt;
-    struct set_width&lt;fixed_point&lt;ReprType, Exponent&gt;, NumBytes&gt;;
+  template &lt;class Rep, int Exponent, int NumBytes&gt;
+    struct set_width&lt;fixed_point&lt;Rep, Exponent&gt;, NumBytes&gt;;
 
-  template &lt;class ReprType, int Exponent&gt;
-  	constexpr bool operator==(
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; lhs,
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; rhs) noexcept;
-  template &lt;class ReprType, int Exponent&gt;
+  template &lt;class Rep, int Exponent&gt;
+    constexpr bool operator==(
+      const fixed_point&lt;Rep, Exponent&gt; &amp; lhs,
+      const fixed_point&lt;Rep, Exponent&gt; &amp; rhs) noexcept;
+  template &lt;class Rep, int Exponent&gt;
     constexpr bool operator!=(
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; lhs,
-      const fixed_point&lt;ReprType, Exponent&gt; &amp; rhs) noexcept;
-  template &lt;class ReprType, int Exponent&gt;
-  	constexpr bool operator&lt;(
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; lhs,
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; rhs) noexcept;
-  template &lt;class ReprType, int Exponent&gt;
-  	constexpr bool operator&gt;(
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; lhs,
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; rhs) noexcept;
-  template &lt;class ReprType, int Exponent&gt;
-  	constexpr bool operator&gt;=(
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; lhs,
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; rhs) noexcept;
-  template &lt;class ReprType, int Exponent&gt;
-  	constexpr bool operator&lt;=(
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; lhs,
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; rhs) noexcept;
+      const fixed_point&lt;Rep, Exponent&gt; &amp; lhs,
+      const fixed_point&lt;Rep, Exponent&gt; &amp; rhs) noexcept;
+  template &lt;class Rep, int Exponent&gt;
+    constexpr bool operator&lt;(
+      const fixed_point&lt;Rep, Exponent&gt; &amp; lhs,
+      const fixed_point&lt;Rep, Exponent&gt; &amp; rhs) noexcept;
+  template &lt;class Rep, int Exponent&gt;
+    constexpr bool operator&gt;(
+      const fixed_point&lt;Rep, Exponent&gt; &amp; lhs,
+      const fixed_point&lt;Rep, Exponent&gt; &amp; rhs) noexcept;
+  template &lt;class Rep, int Exponent&gt;
+    constexpr bool operator&gt;=(
+      const fixed_point&lt;Rep, Exponent&gt; &amp; lhs,
+      const fixed_point&lt;Rep, Exponent&gt; &amp; rhs) noexcept;
+  template &lt;class Rep, int Exponent&gt;
+    constexpr bool operator&lt;=(
+      const fixed_point&lt;Rep, Exponent&gt; &amp; lhs,
+      const fixed_point&lt;Rep, Exponent&gt; &amp; rhs) noexcept;
 
-  template &lt;class ReprType, int Exponent&gt;
-  	constexpr fixed_point&lt;ReprType, Exponent&gt; operator-(
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; rhs) noexcept;
-  template &lt;class ReprType, int Exponent&gt;
-  	constexpr fixed_point&lt;ReprType, Exponent&gt; operator+(
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; lhs,
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; rhs) noexcept;
-  template &lt;class ReprType, int Exponent&gt;
-  	constexpr fixed_point&lt;ReprType, Exponent&gt; operator-(
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; lhs,
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; rhs) noexcept;
-  template &lt;class ReprType, int Exponent&gt;
-  	fixed_point&lt;ReprType, Exponent&gt; &amp; operator+=(
-  	  fixed_point&lt;ReprType, Exponent&gt; &amp; lhs,
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; rhs) noexcept;
-  template &lt;class ReprType, int Exponent&gt;
-  	fixed_point&lt;ReprType, Exponent&gt; &amp; operator-=(
-  	  fixed_point&lt;ReprType, Exponent&gt; &amp; lhs,
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; rhs) noexcept;
-  template &lt;class ReprType, int Exponent&gt;
-  	fixed_point&lt;ReprType, Exponent&gt; &amp; operator*=(
-  	  fixed_point&lt;ReprType, Exponent&gt; &amp; lhs,
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; rhs) noexcept;
-  template &lt;class ReprType, int Exponent&gt;
-  	fixed_point&lt;ReprType, Exponent&gt; &amp; operator/=(
-  	  fixed_point&lt;ReprType, Exponent&gt; &amp; lhs,
-  	  const fixed_point&lt;ReprType, Exponent&gt; &amp; rhs) noexcept;
-
-  template &lt;class Lhs, class Rhs&gt;
-  	constexpr auto operator==(const Lhs &amp; lhs, const Rhs &amp; rhs) noexcept;
-  template &lt;class Lhs, class Rhs&gt;
-  	constexpr auto operator!=(const Lhs &amp; lhs, const Rhs &amp; rhs) noexcept;
-  template &lt;class Lhs, class Rhs&gt;
-  	constexpr auto operator&lt;(const Lhs &amp; lhs, const Rhs &amp; rhs) noexcept;
-  template &lt;class Lhs, class Rhs&gt;
-  	constexpr auto operator&gt;(const Lhs &amp; lhs, const Rhs &amp; rhs) noexcept;
-  template &lt;class Lhs, class Rhs&gt;
-  	constexpr auto operator&gt;=(const Lhs &amp; lhs, const Rhs &amp; rhs) noexcept;
-  template &lt;class Lhs, class Rhs&gt;
-  	constexpr auto operator&lt;=(const Lhs &amp; lhs, const Rhs &amp; rhs) noexcept;
+  template &lt;class Rep, int Exponent&gt;
+    constexpr fixed_point&lt;Rep, Exponent&gt; operator-(
+      const fixed_point&lt;Rep, Exponent&gt; &amp; rhs) noexcept;
+  template &lt;class Rep, int Exponent&gt;
+    constexpr fixed_point&lt;Rep, Exponent&gt; operator+(
+      const fixed_point&lt;Rep, Exponent&gt; &amp; lhs,
+      const fixed_point&lt;Rep, Exponent&gt; &amp; rhs) noexcept;
+  template &lt;class Rep, int Exponent&gt;
+    constexpr fixed_point&lt;Rep, Exponent&gt; operator-(
+      const fixed_point&lt;Rep, Exponent&gt; &amp; lhs,
+      const fixed_point&lt;Rep, Exponent&gt; &amp; rhs) noexcept;
+  template &lt;class Rep, int Exponent&gt;
+    fixed_point&lt;Rep, Exponent&gt; &amp; operator+=(
+      fixed_point&lt;Rep, Exponent&gt; &amp; lhs,
+      const fixed_point&lt;Rep, Exponent&gt; &amp; rhs) noexcept;
+  template &lt;class Rep, int Exponent&gt;
+    fixed_point&lt;Rep, Exponent&gt; &amp; operator-=(
+      fixed_point&lt;Rep, Exponent&gt; &amp; lhs,
+      const fixed_point&lt;Rep, Exponent&gt; &amp; rhs) noexcept;
+  template &lt;class Rep, int Exponent&gt;
+    fixed_point&lt;Rep, Exponent&gt; &amp; operator*=(
+      fixed_point&lt;Rep, Exponent&gt; &amp; lhs,
+      const fixed_point&lt;Rep, Exponent&gt; &amp; rhs) noexcept;
+  template &lt;class Rep, int Exponent&gt;
+    fixed_point&lt;Rep, Exponent&gt; &amp; operator/=(
+      fixed_point&lt;Rep, Exponent&gt; &amp; lhs,
+      const fixed_point&lt;Rep, Exponent&gt; &amp; rhs) noexcept;
 
   template &lt;class Lhs, class Rhs&gt;
-  	constexpr auto operator+(
-  	  const Lhs &amp; lhs,
-  	  const Rhs &amp; rhs) noexcept;
+    constexpr auto operator==(const Lhs &amp; lhs, const Rhs &amp; rhs) noexcept;
   template &lt;class Lhs, class Rhs&gt;
-  	constexpr auto operator-(
-  	  const Lhs &amp; lhs,
-  	  const Rhs &amp; rhs) noexcept;
-  template &lt;class LhsReprType, int LhsExponent, class RhsReprType, int RhsExponent&gt;
-  	constexpr auto operator*(
-  	  const fixed_point&lt;LhsReprType, LhsExponent&gt; &amp; lhs,
-  	  const fixed_point&lt;RhsReprType, RhsExponent&gt; &amp; rhs) noexcept;
-  template &lt;class LhsReprType, int LhsExponent, class RhsReprType, int RhsExponent&gt;
-  	constexpr auto operator/(
-  	  const fixed_point&lt;LhsReprType, LhsExponent&gt; &amp; lhs,
-  	  const fixed_point&lt;RhsReprType, RhsExponent&gt; &amp; rhs) noexcept;
-  template &lt;class LhsReprType, int LhsExponent, class Integer&gt;
-  	constexpr auto operator*(
-  	  const fixed_point&lt;LhsReprType, LhsExponent&gt; &amp; lhs,
-  	  const Integer &amp; rhs) noexcept;
-  template &lt;class LhsReprType, int LhsExponent, class Integer&gt;
-  	constexpr auto operator/(
-  	  const fixed_point&lt;LhsReprType, LhsExponent&gt; &amp; lhs,
-  	  const Integer &amp; rhs) noexcept;
-  template &lt;class Integer, class RhsReprType, int RhsExponent&gt;
-  	constexpr auto operator*(
-  	  const Integer &amp; lhs,
-  	  const fixed_point&lt;RhsReprType, RhsExponent&gt; &amp; rhs) noexcept;
-  template &lt;class Integer, class RhsReprType, int RhsExponent&gt;
-  	constexpr auto operator/(
-  	  const Integer &amp; lhs,
-  	  const fixed_point&lt;RhsReprType, RhsExponent&gt; &amp; rhs) noexcept;
-  template &lt;class LhsReprType, int LhsExponent, class Float&gt;
-  	constexpr auto operator*(
-  	  const fixed_point&lt;LhsReprType, LhsExponent&gt; &amp; lhs,
-  	  const Float &amp; rhs) noexcept;
-  template &lt;class LhsReprType, int LhsExponent, class Float&gt;
-  	constexpr auto operator/(
-  	  const fixed_point&lt;LhsReprType, LhsExponent&gt; &amp; lhs,
-  	  const Float &amp; rhs) noexcept;
-  template &lt;class Float, class RhsReprType, int RhsExponent&gt;
-  	constexpr auto operator*(
-  	  const Float &amp; lhs,
-  	  const fixed_point&lt;RhsReprType, RhsExponent&gt; &amp; rhs) noexcept;
-  template &lt;class Float, class RhsReprType, int RhsExponent&gt;
-  	constexpr auto operator/(
-  	  const Float &amp; lhs,
-  	  const fixed_point&lt;RhsReprType, RhsExponent&gt; &amp; rhs) noexcept;
-  template &lt;class LhsReprType, int Exponent, class Rhs&gt;
-  	fixed_point&lt;LhsReprType, Exponent&gt; &amp; operator+=(fixed_point&lt;LhsReprType, Exponent&gt; &amp; lhs, const Rhs &amp; rhs) noexcept;
-  template &lt;class LhsReprType, int Exponent, class Rhs&gt;
-  	fixed_point&lt;LhsReprType, Exponent&gt; &amp; operator-=(fixed_point&lt;LhsReprType, Exponent&gt; &amp; lhs, const Rhs &amp; rhs) noexcept;
-  template &lt;class LhsReprType, int Exponent&gt;
+    constexpr auto operator!=(const Lhs &amp; lhs, const Rhs &amp; rhs) noexcept;
+  template &lt;class Lhs, class Rhs&gt;
+    constexpr auto operator&lt;(const Lhs &amp; lhs, const Rhs &amp; rhs) noexcept;
+  template &lt;class Lhs, class Rhs&gt;
+    constexpr auto operator&gt;(const Lhs &amp; lhs, const Rhs &amp; rhs) noexcept;
+  template &lt;class Lhs, class Rhs&gt;
+    constexpr auto operator&gt;=(const Lhs &amp; lhs, const Rhs &amp; rhs) noexcept;
+  template &lt;class Lhs, class Rhs&gt;
+    constexpr auto operator&lt;=(const Lhs &amp; lhs, const Rhs &amp; rhs) noexcept;
+
+  template &lt;class Lhs, class Rhs&gt;
+    constexpr auto operator+(
+      const Lhs &amp; lhs,
+      const Rhs &amp; rhs) noexcept;
+  template &lt;class Lhs, class Rhs&gt;
+    constexpr auto operator-(
+      const Lhs &amp; lhs,
+      const Rhs &amp; rhs) noexcept;
+  template &lt;class LhsRep, int LhsExponent, class RhsRep, int RhsExponent&gt;
+    constexpr auto operator*(
+      const fixed_point&lt;LhsRep, LhsExponent&gt; &amp; lhs,
+      const fixed_point&lt;RhsRep, RhsExponent&gt; &amp; rhs) noexcept;
+  template &lt;class LhsRep, int LhsExponent, class RhsRep, int RhsExponent&gt;
+    constexpr auto operator/(
+      const fixed_point&lt;LhsRep, LhsExponent&gt; &amp; lhs,
+      const fixed_point&lt;RhsRep, RhsExponent&gt; &amp; rhs) noexcept;
+  template &lt;class LhsRep, int LhsExponent, class Integer&gt;
+    constexpr auto operator*(
+      const fixed_point&lt;LhsRep, LhsExponent&gt; &amp; lhs,
+      const Integer &amp; rhs) noexcept;
+  template &lt;class LhsRep, int LhsExponent, class Integer&gt;
+    constexpr auto operator/(
+      const fixed_point&lt;LhsRep, LhsExponent&gt; &amp; lhs,
+      const Integer &amp; rhs) noexcept;
+  template &lt;class Integer, class RhsRep, int RhsExponent&gt;
+    constexpr auto operator*(
+      const Integer &amp; lhs,
+      const fixed_point&lt;RhsRep, RhsExponent&gt; &amp; rhs) noexcept;
+  template &lt;class Integer, class RhsRep, int RhsExponent&gt;
+    constexpr auto operator/(
+      const Integer &amp; lhs,
+      const fixed_point&lt;RhsRep, RhsExponent&gt; &amp; rhs) noexcept;
+  template &lt;class LhsRep, int LhsExponent, class Float&gt;
+    constexpr auto operator*(
+      const fixed_point&lt;LhsRep, LhsExponent&gt; &amp; lhs,
+      const Float &amp; rhs) noexcept;
+  template &lt;class LhsRep, int LhsExponent, class Float&gt;
+    constexpr auto operator/(
+      const fixed_point&lt;LhsRep, LhsExponent&gt; &amp; lhs,
+      const Float &amp; rhs) noexcept;
+  template &lt;class Float, class RhsRep, int RhsExponent&gt;
+    constexpr auto operator*(
+      const Float &amp; lhs,
+      const fixed_point&lt;RhsRep, RhsExponent&gt; &amp; rhs) noexcept;
+  template &lt;class Float, class RhsRep, int RhsExponent&gt;
+    constexpr auto operator/(
+      const Float &amp; lhs,
+      const fixed_point&lt;RhsRep, RhsExponent&gt; &amp; rhs) noexcept;
+  template &lt;class LhsRep, int Exponent, class Rhs&gt;
+    fixed_point&lt;LhsRep, Exponent&gt; &amp; operator+=(fixed_point&lt;LhsRep, Exponent&gt; &amp; lhs, const Rhs &amp; rhs) noexcept;
+  template &lt;class LhsRep, int Exponent, class Rhs&gt;
+    fixed_point&lt;LhsRep, Exponent&gt; &amp; operator-=(fixed_point&lt;LhsRep, Exponent&gt; &amp; lhs, const Rhs &amp; rhs) noexcept;
+  template &lt;class LhsRep, int Exponent&gt;
   template &lt;class Rhs, typename std::enable_if&lt;std::is_arithmetic&lt;Rhs&gt;::value, int&gt;::type Dummy&gt;
-  	fixed_point&lt;LhsReprType, Exponent&gt; &amp;
-  	fixed_point&lt;LhsReprType, Exponent&gt;::operator*=(const Rhs &amp; rhs) noexcept;
-  template &lt;class LhsReprType, int Exponent&gt;
+    fixed_point&lt;LhsRep, Exponent&gt; &amp;
+    fixed_point&lt;LhsRep, Exponent&gt;::operator*=(const Rhs &amp; rhs) noexcept;
+  template &lt;class LhsRep, int Exponent&gt;
   template &lt;class Rhs, typename std::enable_if&lt;std::is_arithmetic&lt;Rhs&gt;::value, int&gt;::type Dummy&gt;
-  	fixed_point&lt;LhsReprType, Exponent&gt; &amp;
-  	fixed_point&lt;LhsReprType, Exponent&gt;::operator/=(const Rhs &amp; rhs) noexcept;
-  template &lt;class ReprType, int Exponent&gt;
-  	constexpr fixed_point&lt;ReprType, Exponent&gt;
-  	  sqrt(const fixed_point&lt;ReprType, Exponent&gt; &amp; x) noexcept;
+    fixed_point&lt;LhsRep, Exponent&gt; &amp;
+    fixed_point&lt;LhsRep, Exponent&gt;::operator/=(const Rhs &amp; rhs) noexcept;
+  template &lt;class Rep, int Exponent&gt;
+    constexpr fixed_point&lt;Rep, Exponent&gt;
+      sqrt(const fixed_point&lt;Rep, Exponent&gt; &amp; x) noexcept;
 
   template &lt;class Archetype, int NumBytes&gt;
     struct set_width;
@@ -546,11 +550,11 @@ Hence <code>m</code> is backed by <code>int</code> - which is 32 bits wide on mo
 }
 </code></pre>
 <h4><code>fixed_point&lt;&gt;</code> Class Template</h4>
-<pre><code>template &lt;class ReprType = int, int Exponent = 0&gt;
+<pre><code class="language-c++">template &lt;class Rep = int, int Exponent = 0&gt;
 class fixed_point
 {
 public:
-  using repr_type = ReprType;
+  using rep = Rep;
 
   constexpr static int exponent;
   constexpr static int digits;
@@ -562,14 +566,14 @@ public:
     explicit constexpr fixed_point(S s) noexcept;
   template &lt;class S, typename std::enable_if&lt;std::is_floating_point&lt;S&gt;::value, int&gt;::type Dummy = 0&gt;
     explicit constexpr fixed_point(S s) noexcept;
-  template &lt;class FromReprType, int FromExponent&gt;
-    explicit constexpr fixed_point(const fixed_point&lt;FromReprType, FromExponent&gt; &amp; rhs) noexcept;
+  template &lt;class FromRep, int FromExponent&gt;
+    explicit constexpr fixed_point(const fixed_point&lt;FromRep, FromExponent&gt; &amp; rhs) noexcept;
   template &lt;class S, typename std::enable_if&lt;_impl::is_integral&lt;S&gt;::value, int&gt;::type Dummy = 0&gt;
     fixed_point &amp; operator=(S s) noexcept;
   template &lt;class S, typename std::enable_if&lt;std::is_floating_point&lt;S&gt;::value, int&gt;::type Dummy = 0&gt;
     fixed_point &amp; operator=(S s) noexcept;
-  template &lt;class FromReprType, int FromExponent&gt;
-    fixed_point &amp; operator=(const fixed_point&lt;FromReprType, FromExponent&gt; &amp; rhs) noexcept;
+  template &lt;class FromRep, int FromExponent&gt;
+    fixed_point &amp; operator=(const fixed_point&lt;FromRep, FromExponent&gt; &amp; rhs) noexcept;
 
   template &lt;class S, typename std::enable_if&lt;_impl::is_integral&lt;S&gt;::value, int&gt;::type Dummy = 0&gt;
     explicit constexpr operator S() const noexcept;
@@ -582,8 +586,8 @@ public:
   template &lt;class Rhs, typename std::enable_if&lt;std::is_arithmetic&lt;Rhs&gt;::value, int&gt;::type Dummy = 0&gt;
     fixed_point &amp; operator/=(const Rhs &amp; rhs) noexcept;
 
-  constexpr repr_type data() const noexcept;
-  static constexpr fixed_point from_data(repr_type repr) noexcept;
+  constexpr rep data() const noexcept;
+  static constexpr fixed_point from_data(rep r) noexcept;
 };
 </code></pre>
 <h3>Header &lt;type_traits&gt; Synopsis</h3>
@@ -680,8 +684,8 @@ templates include the storage in bits and - for fractional types - the
 resolution.</p>
 <p>The <code>fixed_point</code> class template could probably - with a few caveats -
 be generated using the two fractional types, <code>nonnegative</code> and
-<code>negatable</code>, replacing the <code>ReprType</code> parameter with the integer bit
-count of <code>ReprType</code>, specifying <code>fastest</code> for the rounding mode and
+<code>negatable</code>, replacing the <code>Rep</code> parameter with the integer bit
+count of <code>Rep</code>, specifying <code>fastest</code> for the rounding mode and
 specifying <code>undefined</code> as the overflow mode.</p>
 <p>However, <code>fixed_point</code> more closely and concisely caters to the needs of
 users who already use integer types and simply desire a more concise,
@@ -731,7 +735,7 @@ Sean Middleditch, Paul Robinson, Patrice Roy, Peter Schregle, Ryhor Spivak</p>
 <li>specifies behavior in case of overflow;</li>
 <li>adds extra reason for choice of arithmetic operator return type;</li>
 <li>corrects factual error in description of <code>trunc_shift_</code> functions;</li>
-<li>adds sub-section, <strong>Alternative Types for <code>ReprType</code></strong>;</li>
+<li>adds sub-section, <strong>Alternative Types for <code>Rep</code></strong>;</li>
 <li>removes sub-section, <strong>Alternatives to Built-in Integer Types</strong>;</li>
 <li>revises sub-section, <strong>Alternative Policies</strong> and renames <strong>Alternative Return Type Policies</strong>;</li>
 <li>adds section, <strong>Revisions</strong>.</li>
@@ -760,7 +764,7 @@ its essential supporting functions and types is available
 <li>a partial <code>numeric_limits</code> specialization;</li>
 </ul>
 </li>
-<li>a type, <code>integer</code>, intended to explore and illustrate the potential of custom <code>ReprType</code>;</li>
+<li>a type, <code>integer</code>, intended to explore and illustrate the potential of custom <code>Rep</code>;</li>
 <li>a type, <code>elastic</code>, intended to illustrate the use of <code>fixed_point</code>
 to design better-behaved numeric types such as those presented in
 P0106 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">[8]</a>;</li>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['repr_5ftype',['repr_type',['../classsg14_1_1fixed__point.html#a0c2813efbdddb7303c65dfde81fe3cd8',1,'sg14::fixed_point']]]
+  ['rep',['rep',['../classsg14_1_1fixed__point.html#a664a5e95783dee0becf9d9470e513e8c',1,'sg14::fixed_point']]]
 ];
