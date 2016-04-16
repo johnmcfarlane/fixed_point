@@ -14,5 +14,6 @@ var searchData=
   ['set_5fwidth_3c_20std_3a_3auint64_5ft_2c_20minnumbits_20_3e',['set_width&lt; std::uint64_t, MinNumBits &gt;',['../structsg14_1_1set__width_3_01std_1_1uint64__t_00_01MinNumBits_01_4.html',1,'sg14']]],
   ['set_5fwidth_3c_20std_3a_3auint8_5ft_2c_20minnumbits_20_3e',['set_width&lt; std::uint8_t, MinNumBits &gt;',['../structsg14_1_1set__width_3_01std_1_1uint8__t_00_01MinNumBits_01_4.html',1,'sg14']]],
   ['set_5fwidth_5ft',['set_width_t',['../namespacesg14.html#ab2937f297d8316987334cf398f6e6020',1,'sg14']]],
-  ['sg14',['sg14',['../namespacesg14.html',1,'']]]
+  ['sg14',['sg14',['../namespacesg14.html',1,'']]],
+  ['subtract',['subtract',['../namespacesg14.html#aacc971e5fbdeb6ff35ab7849068e7dad',1,'sg14']]]
 ];

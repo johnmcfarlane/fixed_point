@@ -6,5 +6,6 @@ var searchData=
   ['make_5fsigned_3c_20elastic_3c_20integerdigits_2c_20fractionaldigits_2c_20archetype_20_3e_20_3e',['make_signed&lt; elastic&lt; IntegerDigits, FractionalDigits, Archetype &gt; &gt;',['../structsg14_1_1make__signed_3_01elastic_3_01IntegerDigits_00_01FractionalDigits_00_01Archetype_01_4_01_4.html',1,'sg14']]],
   ['make_5fufixed',['make_ufixed',['../namespacesg14.html#ab65a38c5bd94875a8e520d4f78df88e0',1,'sg14']]],
   ['make_5funsigned',['make_unsigned',['../structsg14_1_1make__unsigned.html',1,'sg14']]],
-  ['make_5funsigned_3c_20elastic_3c_20integerdigits_2c_20fractionaldigits_2c_20archetype_20_3e_20_3e',['make_unsigned&lt; elastic&lt; IntegerDigits, FractionalDigits, Archetype &gt; &gt;',['../structsg14_1_1make__unsigned_3_01elastic_3_01IntegerDigits_00_01FractionalDigits_00_01Archetype_01_4_01_4.html',1,'sg14']]]
+  ['make_5funsigned_3c_20elastic_3c_20integerdigits_2c_20fractionaldigits_2c_20archetype_20_3e_20_3e',['make_unsigned&lt; elastic&lt; IntegerDigits, FractionalDigits, Archetype &gt; &gt;',['../structsg14_1_1make__unsigned_3_01elastic_3_01IntegerDigits_00_01FractionalDigits_00_01Archetype_01_4_01_4.html',1,'sg14']]],
+  ['multiply',['multiply',['../namespacesg14.html#a5fd2e4fe46d53cc8c8f1f5ece1162ac4',1,'sg14']]]
 ];
