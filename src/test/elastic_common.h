@@ -165,6 +165,8 @@ struct elasticate_test {
 
     static_assert(sg14::is_signed<elastic_type>::value==(Value<0), "signage doesn't match value");
 #if ! defined(_MSC_VER)
+    using butts = sg14::_impl::comparison_policy<decltype(elastic_value), elastic<63, 0>>;
+//    static_assert(butts::_, "");
     static_assert(elastic_value==elastic<63, 0>{Value}, "elasticated value doesn't equal its source value");
 #endif
 };

@@ -364,6 +364,7 @@ static_assert(fixed_point<int8, -7>(1)!=1.L, "sg14::fixed_point test failed");
 
 static_assert(fixed_point<int8, -7>(.5)==.5f, "sg14::fixed_point test failed");
 static_assert(fixed_point<int8, -7>(.125f)==.125L, "sg14::fixed_point test failed");
+static_assert(!(fixed_point<int16, -7>(123.125f)==123), "sg14::fixed_point test failed");
 #if !defined(TEST_IGNORE_MSVC_INTERNAL_ERRORS)
 static_assert(!(fixed_point<int16, -7>(123.125f)==123), "sg14::fixed_point test failed");
 static_assert(fixed_point<int16, -7>(123.125f)!=123, "sg14::fixed_point test failed");

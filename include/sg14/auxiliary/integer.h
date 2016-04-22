@@ -8,6 +8,7 @@
 #define SG14_INTEGER_H 1
 
 #include <sg14/type_traits.h>
+#include <sg14/bits/common.h>
 
 #include <limits>
 #include <stdexcept>
@@ -348,17 +349,29 @@ namespace sg14 {
         rep _r;
     };
 
-    SG14_INTEGER_COMPARISON_DEFINE(==);
+    namespace _impl {
+        ////////////////////////////////////////////////////////////////////////////////
+        // sg14::_impl::comparison_policy<integer>
 
-    SG14_INTEGER_COMPARISON_DEFINE(!=);
+        template<class Lhs, class Rhs>
+        struct comparison_policy<
+                Lhs, Rhs,
+                typename std::enable_if<sg14::_integer_impl::is_integer_class<Lhs>::value || sg14::_integer_impl::is_integer_class<Rhs>::value>::type> {
+            using common_type = typename common_type<Lhs, Rhs>::type::rep;
+            template<class Rep, typename OverflowPolicy>
+            static constexpr common_type param(
+                    const integer<Rep, OverflowPolicy>& p)
+            {
+                return static_cast<common_type>(p.data());
+            }
 
-    SG14_INTEGER_COMPARISON_DEFINE(<);
-
-    SG14_INTEGER_COMPARISON_DEFINE(>);
-
-    SG14_INTEGER_COMPARISON_DEFINE(<=);
-
-    SG14_INTEGER_COMPARISON_DEFINE(>=);
+            template<class Other>
+            static constexpr common_type param(const Other& p)
+            {
+                return static_cast<common_type>(p);
+            }
+        };
+    }
 
     SG14_INTEGER_BINARY_ARITHMETIC_DEFINE(+);
 

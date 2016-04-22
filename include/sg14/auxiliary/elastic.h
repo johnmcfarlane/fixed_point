@@ -1,4 +1,3 @@
-
 //          Copyright John McFarlane 2015 - 2016.
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file ../LICENSE_1_0.txt or copy at
@@ -54,7 +53,7 @@ namespace sg14 {
         template<class Lhs, class Rhs>
         constexpr bool either_is_elastic()
         {
-            return is_elastic<Lhs>::value || is_elastic<Rhs>::value;
+            return is_elastic<typename std::remove_const<Lhs>::type>::value || is_elastic<typename std::remove_const<Rhs>::type>::value;
         }
 
         ////////////////////////////////////////////////////////////////////////////////
@@ -355,52 +354,27 @@ namespace sg14 {
     ////////////////////////////////////////////////////////////////////////////////
     // sg14::elastic comparison operators
 
-    template<class Lhs, class Rhs>
-    constexpr auto operator==(const Lhs& lhs, const Rhs& rhs)
-    -> typename std::enable_if<_elastic_impl::either_is_elastic<Lhs, Rhs>(), bool>::type
-    {
-        return static_cast<_elastic_impl::remove_elasticity_t<Lhs>>(lhs)
-                ==static_cast<_elastic_impl::remove_elasticity_t<Rhs>>(rhs);
-    }
+    namespace _impl {
+        ////////////////////////////////////////////////////////////////////////////////
+        // sg14::_impl::comparison_policy<elastic>
 
-    template<class Lhs, class Rhs>
-    constexpr auto operator!=(const Lhs& lhs, const Rhs& rhs)
-    -> typename std::enable_if<_elastic_impl::either_is_elastic<Lhs, Rhs>(), bool>::type
-    {
-        return static_cast<_elastic_impl::remove_elasticity_t<Lhs>>(lhs)
-                !=static_cast<_elastic_impl::remove_elasticity_t<Rhs>>(rhs);
-    }
+        template<class Lhs, class Rhs>
+        struct comparison_policy<
+                Lhs, Rhs,
+                typename std::enable_if<_elastic_impl::either_is_elastic<Lhs, Rhs>()>::type> {
+            template<int IntegerDigits, int FractionalDigits, class Archetype>
+            static constexpr const typename elastic<IntegerDigits, FractionalDigits, Archetype>::_fixed_point_type& param(
+                    const elastic<IntegerDigits, FractionalDigits, Archetype>& p)
+            {
+                return p._data();
+            }
 
-    template<class Lhs, class Rhs>
-    constexpr auto operator<(const Lhs& lhs, const Rhs& rhs)
-    -> typename std::enable_if<_elastic_impl::either_is_elastic<Lhs, Rhs>(), bool>::type
-    {
-        return static_cast<_elastic_impl::remove_elasticity_t<Lhs>>(lhs)
-                <static_cast<_elastic_impl::remove_elasticity_t<Rhs>>(rhs);
-    }
-
-    template<class Lhs, class Rhs>
-    constexpr auto operator>(const Lhs& lhs, const Rhs& rhs)
-    -> typename std::enable_if<_elastic_impl::either_is_elastic<Lhs, Rhs>(), bool>::type
-    {
-        return static_cast<_elastic_impl::remove_elasticity_t<Lhs>>(lhs)
-                >static_cast<_elastic_impl::remove_elasticity_t<Rhs>>(rhs);
-    }
-
-    template<class Lhs, class Rhs>
-    constexpr auto operator<=(const Lhs& lhs, const Rhs& rhs)
-    -> typename std::enable_if<_elastic_impl::either_is_elastic<Lhs, Rhs>(), bool>::type
-    {
-        return static_cast<_elastic_impl::remove_elasticity_t<Lhs>>(lhs)
-                <=static_cast<_elastic_impl::remove_elasticity_t<Rhs>>(rhs);
-    }
-
-    template<class Lhs, class Rhs>
-    constexpr auto operator>=(const Lhs& lhs, const Rhs& rhs)
-    -> typename std::enable_if<_elastic_impl::either_is_elastic<Lhs, Rhs>(), bool>::type
-    {
-        return static_cast<_elastic_impl::remove_elasticity_t<Lhs>>(lhs)
-                >=static_cast<_elastic_impl::remove_elasticity_t<Rhs>>(rhs);
+            template<class Inelastic>
+            static constexpr const Inelastic& param(const Inelastic& p)
+            {
+                return p;
+            }
+        };
     }
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -539,13 +513,13 @@ namespace sg14 {
     // sg14::elastic streaming - (placeholder implementation)
 
     template<int IntegerDigits, int FractionalDigits, class Archetype>
-    ::std::ostream& operator<<(::std::ostream& out, const elastic <IntegerDigits, FractionalDigits, Archetype>& e)
+    ::std::ostream& operator<<(::std::ostream& out, const elastic<IntegerDigits, FractionalDigits, Archetype>& e)
     {
         return out << e._data();
     }
 
     template<int IntegerDigits, int FractionalDigits, class Archetype>
-    ::std::istream& operator>>(::std::istream& in, elastic <IntegerDigits, FractionalDigits, Archetype>& e)
+    ::std::istream& operator>>(::std::istream& in, elastic<IntegerDigits, FractionalDigits, Archetype>& e)
     {
         return in >> e._data();
     }
