@@ -674,7 +674,7 @@ namespace sg14 {
 
         template<class Rep, int Exponent, class Float>
         struct float_comparison_policy {
-            using common_type = set_width_t<Float, _impl::max(width<Float>::value, width<Rep>::value)>;
+            using common_type = set_width_t<Float, _impl::max<_width_type>(width<Float>::value, width<Rep>::value)>;
 
             static constexpr common_type param(
                     const fixed_point<Rep, Exponent>& p) { return static_cast<common_type>(p); }
