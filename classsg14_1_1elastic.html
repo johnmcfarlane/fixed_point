@@ -157,11 +157,13 @@ class sg14::elastic&lt; IntegerDigits, FractionalDigits, Archetype &gt;</h3>
   <table class="tparams">
     <tr><td class="paramname">IntegerDigits</td><td>the number of integer bits of storage </td></tr>
     <tr><td class="paramname">FractionalDigits</td><td>the number of fractional bits of storage </td></tr>
-    <tr><td class="paramname">Archetype</td><td>a type like the one used to represent to store this value</td></tr>
+    <tr><td class="paramname">Archetype</td><td>the smallest type used are storage</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>This type illustrates an application of <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> as put forth in <a href="http://johnmcfarlane.github.io/fixed_point/papers/elastic.html">this paper</a>. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>If a larger type than Archetype is required, it is determined using <a class="el" href="structsg14_1_1set__width.html">set_width</a>. </dd>
+<dd>
+This type illustrates an application of <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> as put forth in <a href="http://johnmcfarlane.github.io/fixed_point/papers/elastic.html">this paper</a>. </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

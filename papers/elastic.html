@@ -128,6 +128,13 @@ However, it may not be the type that is actually used.
 Where <code>signed</code> is given, any signed, built-in type may be used to store the value.
 Similarly, providing <code>unsigned</code> will ensure that unsigned, built-in types are used instead.
 However, certain operations, such as negation, will transition the result from an unsigned to a signed type.</p>
+<p>As illustrated by the proliferation in the number of elastic types in
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>
+it is clear that there is a tradeoff between speed and storage in play.
+An elastic type which optimizes for the smallest type, e.g. <code>char</code>
+will not perform as well as one which uses <code>int</code>.
+For this reason, <code>Archetype</code> defaults to <code>signed</code> - the best performing type for the host machine.
+The user of <code>elastic</code> may instead choose <code>int8_t</code> if size is most of a concern.</p>
 <p>Elasticity is the defining feature of <code>nonnegative</code> and <code>negatable</code>.
 Inevitably, they - and <code>elastic</code> - rely on fixed-point arithmetic for their implementation.
 In the case of <code>elastic</code> type, that need can be met using a private <code>fixed_point</code> member variable.

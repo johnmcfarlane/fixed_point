@@ -129,13 +129,13 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a17380b10f4f77730d06edcde242340aa"><td class="memTemplParams" colspan="2">template&lt;std::int64_t Value&gt; </td></tr>
-<tr class="memitem:a17380b10f4f77730d06edcde242340aa"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a17380b10f4f77730d06edcde242340aa">sg14::elasticate</a> () -&gt; _elastic_impl::elasticate_t&lt; std::int64_t, Value &gt;</td></tr>
-<tr class="memdesc:a17380b10f4f77730d06edcde242340aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate an <a class="el" href="classsg14_1_1elastic.html">elastic</a> object of given value  <a href="#a17380b10f4f77730d06edcde242340aa">More...</a><br/></td></tr>
-<tr class="separator:a17380b10f4f77730d06edcde242340aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8be2300dd628f8be9f497935572e8029"><td class="memTemplParams" colspan="2">template&lt;std::int64_t Value, class Archetype  = int&gt; </td></tr>
+<tr class="memitem:a8be2300dd628f8be9f497935572e8029"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a8be2300dd628f8be9f497935572e8029">sg14::elasticate</a> () -&gt; _elastic_impl::elasticate_t&lt; std::int64_t, Value, Archetype &gt;</td></tr>
+<tr class="memdesc:a8be2300dd628f8be9f497935572e8029"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate an <a class="el" href="index.html#elastic">Extensible</a> object of given value  <a href="#a8be2300dd628f8be9f497935572e8029">More...</a><br/></td></tr>
+<tr class="separator:a8be2300dd628f8be9f497935572e8029"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a633f45f1f9b0e24bea30b4f1e5963e88"><td class="memTemplParams" colspan="2">template&lt;class Type &gt; </td></tr>
 <tr class="memitem:a633f45f1f9b0e24bea30b4f1e5963e88"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a633f45f1f9b0e24bea30b4f1e5963e88">sg14::make_elastic</a> (const Type &amp;value) -&gt; elastic&lt; std::numeric_limits&lt; Type &gt;::digits, 0, Type &gt;</td></tr>
-<tr class="memdesc:a633f45f1f9b0e24bea30b4f1e5963e88"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate an <a class="el" href="classsg14_1_1elastic.html">elastic</a> object of given value  <a href="#a633f45f1f9b0e24bea30b4f1e5963e88">More...</a><br/></td></tr>
+<tr class="memdesc:a633f45f1f9b0e24bea30b4f1e5963e88"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate an <a class="el" href="index.html#elastic">Extensible</a> object of given value  <a href="#a633f45f1f9b0e24bea30b4f1e5963e88">More...</a><br/></td></tr>
 <tr class="separator:a633f45f1f9b0e24bea30b4f1e5963e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73baa8d0c213fb3bcdeb44a196b10324"><td class="memTemplParams" colspan="2"><a class="anchor" id="a73baa8d0c213fb3bcdeb44a196b10324"></a>
 template&lt;class Lhs , class Rhs &gt; </td></tr>
@@ -165,6 +165,10 @@ template&lt;int LhsIntegerDigits, int LhsFractionalDigits, class LhsArchetype , 
 template&lt;class Lhs , class Rhs &gt; </td></tr>
 <tr class="memitem:ac262113fda8ccc2c59872ecea4ffcd9d"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator&lt;</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _elastic_impl::either_is_elastic&lt; Lhs, Rhs &gt;(), bool &gt;::type</td></tr>
 <tr class="separator:ac262113fda8ccc2c59872ecea4ffcd9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13761471689a73ad45fa9c7be48c7569"><td class="memTemplParams" colspan="2"><a class="anchor" id="a13761471689a73ad45fa9c7be48c7569"></a>
+template&lt;int IntegerDigits, int FractionalDigits, class Archetype &gt; </td></tr>
+<tr class="memitem:a13761471689a73ad45fa9c7be48c7569"><td class="memTemplItemLeft" align="right" valign="top">::std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator&lt;&lt;</b> (::std::ostream &amp;out, const elastic&lt; IntegerDigits, FractionalDigits, Archetype &gt; &amp;e)</td></tr>
+<tr class="separator:a13761471689a73ad45fa9c7be48c7569"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a014a83bad4a0b87e136cc82953d095e9"><td class="memTemplParams" colspan="2"><a class="anchor" id="a014a83bad4a0b87e136cc82953d095e9"></a>
 template&lt;class Lhs , class Rhs &gt; </td></tr>
 <tr class="memitem:a014a83bad4a0b87e136cc82953d095e9"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator&lt;=</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _elastic_impl::either_is_elastic&lt; Lhs, Rhs &gt;(), bool &gt;::type</td></tr>
@@ -181,6 +185,10 @@ template&lt;class Lhs , class Rhs &gt; </td></tr>
 template&lt;class Lhs , class Rhs &gt; </td></tr>
 <tr class="memitem:a59efbc6797a29a91aca1e7058355265f"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator&gt;=</b> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; typename std::enable_if&lt; _elastic_impl::either_is_elastic&lt; Lhs, Rhs &gt;(), bool &gt;::type</td></tr>
 <tr class="separator:a59efbc6797a29a91aca1e7058355265f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ff808c8d42321f0c7820c9432963fe0"><td class="memTemplParams" colspan="2"><a class="anchor" id="a4ff808c8d42321f0c7820c9432963fe0"></a>
+template&lt;int IntegerDigits, int FractionalDigits, class Archetype &gt; </td></tr>
+<tr class="memitem:a4ff808c8d42321f0c7820c9432963fe0"><td class="memTemplItemLeft" align="right" valign="top">::std::istream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>sg14::operator&gt;&gt;</b> (::std::istream &amp;in, elastic&lt; IntegerDigits, FractionalDigits, Archetype &gt; &amp;e)</td></tr>
+<tr class="separator:a4ff808c8d42321f0c7820c9432963fe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>essential definitions related to the <code><a class="el" href="classsg14_1_1elastic.html" title="literal real number approximation that uses fixed-point arithmetic and performs operations with expan...">sg14::elastic</a></code> type </p>

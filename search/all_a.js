@@ -1,6 +1,8 @@
 var searchData=
 [
   ['set_5fwidth',['set_width',['../structsg14_1_1set__width.html',1,'sg14']]],
+  ['set_5fwidth_3c_20_5fbmp_3a_3acpp_5fint_5fbackend_3c_20minbits_2c_20maxbits_2c_20signtype_2c_20checked_20_3e_2c_20minnumbits_20_3e',['set_width&lt; _bmp::cpp_int_backend&lt; MinBits, MaxBits, SignType, Checked &gt;, MinNumBits &gt;',['../structsg14_1_1set__width_3_01__bmp_1_1cpp__int__backend_3_01MinBits_00_01MaxBits_00_01SignType_0f92b1edb49de163317482989fff43699.html',1,'sg14']]],
+  ['set_5fwidth_3c_20_5fbmp_3a_3anumber_3c_20backend_2c_20expressiontemplates_20_3e_2c_20minnumbits_20_3e',['set_width&lt; _bmp::number&lt; Backend, ExpressionTemplates &gt;, MinNumBits &gt;',['../structsg14_1_1set__width_3_01__bmp_1_1number_3_01Backend_00_01ExpressionTemplates_01_4_00_01MinNumBits_01_4.html',1,'sg14']]],
   ['set_5fwidth_3c_20double_2c_20minnumbits_20_3e',['set_width&lt; double, MinNumBits &gt;',['../structsg14_1_1set__width_3_01double_00_01MinNumBits_01_4.html',1,'sg14']]],
   ['set_5fwidth_3c_20fixed_5fpoint_3c_20rep_2c_20exponent_20_3e_2c_20minnumbits_20_3e',['set_width&lt; fixed_point&lt; Rep, Exponent &gt;, MinNumBits &gt;',['../structsg14_1_1set__width_3_01fixed__point_3_01Rep_00_01Exponent_01_4_00_01MinNumBits_01_4.html',1,'sg14']]],
   ['set_5fwidth_3c_20float_2c_20minnumbits_20_3e',['set_width&lt; float, MinNumBits &gt;',['../structsg14_1_1set__width_3_01float_00_01MinNumBits_01_4.html',1,'sg14']]],
