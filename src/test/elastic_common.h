@@ -523,6 +523,18 @@ struct signed_elastic_test :
     static_assert(is_greater_than(negative_min, lowest), "comparison test error");
 
     ////////////////////////////////////////////////////////////////////////////////
+    // test unary operator-
+
+    static_assert(is_equal_to(min, - -min), "unary operator- test failed");
+    static_assert(is_equal_to(max, - -max), "unary operator- test failed");
+    static_assert(is_equal_to(zero, - -zero), "unary operator- test failed");
+    static_assert(is_equal_to(zero, -zero), "unary operator- test failed");
+
+    static_assert(is_greater_than(min, -min), "unary operator- test failed");
+    static_assert(is_greater_than(max, -max), "unary operator- test failed");
+    static_assert(!is_less_than(-max, lowest), "unary operator- test failed");
+
+    ////////////////////////////////////////////////////////////////////////////////
     // test operator+
 
     static_assert(is_equal_to(min+max+lowest, elastic_type{0.}), "operator+ test failed");
