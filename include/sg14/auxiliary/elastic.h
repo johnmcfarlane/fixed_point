@@ -46,15 +46,18 @@ namespace sg14 {
         };
 
         ////////////////////////////////////////////////////////////////////////////////
-        // sg14::_elastic_impl::either_is_elastic
+        // sg14::_elastic_impl::any_is_elastic
         //
         // useful for defining operators overloads
 
-        template<class Lhs, class Rhs>
-        constexpr bool either_is_elastic()
-        {
-            return is_elastic<typename std::remove_const<Lhs>::type>::value || is_elastic<typename std::remove_const<Rhs>::type>::value;
-        }
+        template<class ... T>
+        struct any_is_elastic;
+
+        template<>
+        struct any_is_elastic<> : std::false_type {};
+
+        template<class Head, class...Tail>
+        struct any_is_elastic<Head, Tail...> : std::integral_constant<bool, is_elastic<typename std::remove_cv<Head>::type>::value || any_is_elastic<Tail...>::value> {};
 
         ////////////////////////////////////////////////////////////////////////////////
         // sg14::_elastic_impl::remove_elasticity
@@ -361,7 +364,7 @@ namespace sg14 {
         template<class Lhs, class Rhs>
         struct comparison_policy<
                 Lhs, Rhs,
-                typename std::enable_if<_elastic_impl::either_is_elastic<Lhs, Rhs>()>::type> {
+                typename std::enable_if<sg14::_elastic_impl::any_is_elastic<Lhs, Rhs>::value>::type> {
             template<int IntegerDigits, int FractionalDigits, class Archetype>
             static constexpr const typename elastic<IntegerDigits, FractionalDigits, Archetype>::_fixed_point_type& param(
                     const elastic<IntegerDigits, FractionalDigits, Archetype>& p)
