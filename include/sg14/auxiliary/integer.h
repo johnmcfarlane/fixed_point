@@ -324,11 +324,6 @@ namespace sg14 {
             return static_cast<LhsRep>(_r);
         }
 
-        constexpr friend integer operator-(const integer& rhs)
-        {
-            return integer(-rhs._r);
-        }
-
         SG14_INTEGER_COMPOUND_ASSIGN_DEFINE(+=, +);
 
         SG14_INTEGER_COMPOUND_ASSIGN_DEFINE(-=, -);
@@ -351,8 +346,9 @@ namespace sg14 {
 
     namespace _impl {
         ////////////////////////////////////////////////////////////////////////////////
-        // sg14::_impl::comparison_policy<integer>
+        // operator policy declarations
 
+        // sg14::_impl::comparison_policy<integer>
         template<class Lhs, class Rhs>
         struct comparison_policy<
                 Lhs, Rhs,
@@ -369,6 +365,24 @@ namespace sg14 {
             static constexpr common_type param(const Other& p)
             {
                 return static_cast<common_type>(p);
+            }
+        };
+
+        // sg14::_impl::comparison_policy<integer>
+        template<class Rep, class OverflowPolicy>
+        struct negate_policy<integer<Rep, OverflowPolicy>> {
+            using rhs_type = integer<Rep, OverflowPolicy>;
+            using rep_type = Rep;
+            using result_type = rhs_type;
+
+            static constexpr const rep_type& from(const rhs_type& rhs)
+            {
+                return rhs.data();
+            }
+
+            static constexpr result_type to(const rep_type& r)
+            {
+                return static_cast<result_type>(r);
             }
         };
     }

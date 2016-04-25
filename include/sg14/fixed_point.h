@@ -761,6 +761,26 @@ namespace sg14 {
                 typename std::enable_if<std::is_integral<LhsInteger>::value>::type>
                 : _fixed_point_impl::integer_comparison_policy<RhsRep, RhsExponent, LhsInteger> {
         };
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // sg14::_impl::negate_policy<fixed-point>
+
+        template<class RhsRep, int RhsExponent>
+        struct negate_policy<fixed_point<RhsRep, RhsExponent>> {
+            using rhs_type = fixed_point<RhsRep, RhsExponent>;
+            using rep_type = RhsRep;
+            using result_type = rhs_type;
+
+            static constexpr const rep_type& from(const rhs_type& rhs)
+            {
+                return rhs.data();
+            }
+
+            static constexpr result_type to(const rep_type& r)
+            {
+                return result_type::from_data(r);
+            }
+        };
     }
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -942,18 +962,6 @@ namespace sg14 {
 
     ////////////////////////////////////////////////////////////////////////////////
     // (fixed_point @ fixed_point) arithmetic operators
-
-    // negate
-    template<class RhsRep, int RhsExponent>
-    constexpr auto operator-(const fixed_point<RhsRep, RhsExponent>& rhs)
-    -> typename _fixed_point_impl::default_arithmetic_policy::negate<
-            fixed_point<RhsRep, RhsExponent>>
-
-    ::result_type
-    {
-        return
-                _fixed_point_impl::policy_negate<_fixed_point_impl::default_arithmetic_policy>(rhs);
-    }
 
     template<
             class LhsRep, int LhsExponent,

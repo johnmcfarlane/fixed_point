@@ -1,3 +1,4 @@
+
 //          Copyright John McFarlane 2015 - 2016.
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file ../LICENSE_1_0.txt or copy at
@@ -354,13 +355,11 @@ namespace sg14 {
     ////////////////////////////////////////////////////////////////////////////////
     // sg14::elastic operator overloads
 
-    ////////////////////////////////////////////////////////////////////////////////
-    // sg14::elastic comparison operators
-
     namespace _impl {
         ////////////////////////////////////////////////////////////////////////////////
-        // sg14::_impl::comparison_policy<elastic>
+        // sg14::elastic operator policy definitions
 
+        // sg14::_impl::comparison_policy<elastic>
         template<class Lhs, class Rhs>
         struct comparison_policy<
                 Lhs, Rhs,
@@ -378,22 +377,28 @@ namespace sg14 {
                 return p;
             }
         };
+
+        // sg14::_impl::negate_policy<elastic>
+        template<int IntegerDigits, int FractionalDigits, class Archetype>
+        struct negate_policy<elastic<IntegerDigits, FractionalDigits, Archetype>> {
+            using rhs_type = elastic<IntegerDigits, FractionalDigits, Archetype>;
+            using fixed_point_type = typename rhs_type::_fixed_point_type;
+            using result_type = elastic<IntegerDigits, FractionalDigits, typename make_signed<Archetype>::type>;
+
+            static constexpr const fixed_point_type& from(const rhs_type& rhs)
+            {
+                return static_cast<const fixed_point_type&>(rhs);
+            }
+
+            static constexpr result_type to(const fixed_point_type& fp)
+            {
+                return static_cast<result_type>(fp);
+            }
+        };
     }
 
     ////////////////////////////////////////////////////////////////////////////////
     // sg14::elastic arithmetic operators
-
-    // unary operator-
-    template<int RhsIntegerDigits, int RhsFractionalDigits, class RhsArchetype>
-    constexpr auto operator-(const elastic<RhsIntegerDigits, RhsFractionalDigits, RhsArchetype>& rhs)
-    -> elastic<RhsIntegerDigits, RhsFractionalDigits, typename make_signed<RhsArchetype>::type>
-    {
-        using result_archetype = typename make_signed<RhsArchetype>::type;
-        using result_type = elastic<RhsIntegerDigits, RhsFractionalDigits, result_archetype>;
-        using result_fixed_point_type = typename result_type::_fixed_point_type;
-
-        return result_type{-static_cast<result_fixed_point_type>(rhs._data())};
-    }
 
     // implementation-specific definitions for arithmetic operators
     namespace _elastic_impl {

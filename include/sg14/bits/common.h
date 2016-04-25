@@ -1,3 +1,4 @@
+
 //          Copyright John McFarlane 2015 - 2016.
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file ../LICENSE_1_0.txt or copy at
@@ -20,11 +21,19 @@ namespace sg14 {
         }
 
         ////////////////////////////////////////////////////////////////////////////////
-        // sg14::comparison_policy
+        // operator policy declarations
 
+        // sg14::_impl::comparison_policy
         template<class Lhs, class Rhs, class _Enable = void>
         struct comparison_policy;
+
+        // sg14::_impl::comparison_policy
+        template<class Rhs, class _Enable = void>
+        struct negate_policy;
     }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // policy-based comparison operators
 
     // operator== for types for which sg14::comparison_policy is defined
     template<class Lhs, class Rhs>
@@ -84,6 +93,17 @@ namespace sg14 {
     {
         return _impl::comparison_policy<Lhs, Rhs>::param(lhs)
                 >=_impl::comparison_policy<Lhs, Rhs>::param(rhs);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // policy-based arithmetic operators
+
+    // unary operator- for types for which sg14::comparison_policy is defined
+    template<class Rhs>
+    constexpr auto operator-(const Rhs& rhs)
+    -> decltype(_impl::negate_policy<Rhs>::to(-_impl::negate_policy<Rhs>::from(rhs)))
+    {
+        return _impl::negate_policy<Rhs>::to(-_impl::negate_policy<Rhs>::from(rhs));
     }
 }
 
