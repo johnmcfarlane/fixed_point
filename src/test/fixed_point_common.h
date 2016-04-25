@@ -541,6 +541,12 @@ static_assert(!(fixed_point<int32, -3>(-4.5)<-5.6), "sg14::fixed_point test fail
 ////////////////////////////////////////////////////////////////////////////////
 // arithmetic
 
+// negation
+static_assert(-make_fixed<15, 16>(123.125)==make_fixed<15, 16>(-123.125),
+        "sg14::fixed_point addition operator test failed");
+static_assert(make_fixed<15, 16>(-123.125)==- -make_fixed<15, 16>(-123.125),
+        "sg14::fixed_point addition operator test failed");
+
 // addition
 static_assert((make_fixed<31, 0>(123)+make_fixed<31, 0>(123))==246, "sg14::fixed_point addition operator test failed");
 static_assert((make_fixed<15, 16>(123.125)+make_fixed<15, 16>(123.75))==246.875, "sg14::fixed_point addition operator test failed");
