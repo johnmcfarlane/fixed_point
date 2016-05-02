@@ -80,21 +80,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#declaration">Simple</a></li>
-<li class="level1"><a href="#basic_arithmetic">Intuitive</a></li>
-<li class="level1"><a href="#advanced_arithmetic">Powerful</a></li>
-<li class="level1"><a href="#boost">Composable</a></li>
-<li class="level1"><a href="#elastic">Extensible</a></li>
-<li class="level1"><a href="#tests">Reliable</a></li>
+<ul><li class="level1"><a href="#Introduction"></a><ul><li class="level2"><a href="#Features"></a></li>
+</ul>
+</li>
+<li class="level1"><a href="#Examples"></a><ul><li class="level2"><a href="#declaration">Declaration</a></li>
+<li class="level2"><a href="#basic_arithmetic">Arithmetic Operators</a></li>
+<li class="level2"><a href="#advanced_arithmetic">Arithmetic Functions</a></li>
+<li class="level2"><a href="#boost">Composable</a></li>
+<li class="level2"><a href="#elastic">Extensible</a></li>
+</ul>
+</li>
 </ul>
 </div>
-<div class="textblock"><p>The <a href="http://johnmcfarlane.github.io/fixed_point/">fixed_point</a> library provides a header-only C++11 API for approximating real numbers using binary fixed-point arithmetic.</p>
-<p>It forms the work-in-progress reference implementation for a standard library proposal presented in paper, <a href="papers/p0037.html">P0037</a> and is developed as part of study groups, <a href="https://groups.google.com/a/isocpp.org/forum/#!forum/sg14">SG14</a> and SG6.</p>
-<p>Installation instructions are provided on the <a href="https://github.com/johnmcfarlane/fixed_point">project page</a>.</p>
-<p>Presented here are some examples of what makes this library worth considering for a wide range of applications.</p>
-<h1><a class="anchor" id="declaration"></a>
-Simple</h1>
-<p>The <a class="el" href="classsg14_1_1fixed__point.html">fixed_point&lt;&gt;</a> type extends the behavior of integer types in a natural way. It represents a real number using an integer type, scaled by a power of two.</p>
+<div class="textblock"><h1><a class="anchor" id="Introduction"></a>
+Introduction</h1>
+<p>The <a href="http://johnmcfarlane.github.io/fixed_point/">fixed_point</a> library provides a header-only C++11 API for approximating real numbers using binary fixed-point arithmetic. It forms the reference implementation for a standard library proposal presented in paper, <a href="papers/p0037.html">P0037</a> and is developed as part of study groups, <a href="https://groups.google.com/a/isocpp.org/forum/#!forum/sg14">SG14</a> and SG6. Installation instructions are provided on the <a href="https://github.com/johnmcfarlane/fixed_point">project page</a>.</p>
+<h2><a class="anchor" id="Features"></a>
+Features</h2>
+<p>Header, <a class="el" href="fixed__point_8h.html">sg14/fixed_point.h</a>, defines class template, <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>, with:</p>
+<ul>
+<li>a simple, flexible generic design;</li>
+<li>operator overloads that interface <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> with other numeric types;</li>
+<li>a set of function templates, (e.g. <a class="el" href="namespacesg14.html#a5fd2e4fe46d53cc8c8f1f5ece1162ac4">multiply</a>), for fine-grain control.</li>
+</ul>
+<p>Header, <a class="el" href="type__traits_8h.html">sg14/type_traits.h</a>, contains additions (such as <a class="el" href="structsg14_1_1set__width.html">set_width</a>) that support widening of arithmetic types in order to deal with precision loss.</p>
+<p>Auxiliary modules:</p>
+<ul>
+<li><a class="el" href="multiprecision_8h.html">sg14/auxiliary/multiprecision.h</a> adapts Boost.Multiprecision for use in fixed-point types;</li>
+<li><a class="el" href="elastic_8h.html">sg14/auxiliary/elastic.h</a> defins <a class="el" href="classsg14_1_1elastic.html">elastic</a>, an numeric type that uses fixed-point to avoid overflow.</li>
+</ul>
+<h1><a class="anchor" id="Examples"></a>
+Examples</h1>
+<p>The following examples <a href="https://github.com/johnmcfarlane/fixed_point/blob/master/src/test/index.cpp">can be found</a> in the test suite.</p>
+<h2><a class="anchor" id="declaration"></a>
+Declaration</h2>
+<p>The <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> type extends the behavior of integer types in a natural way. It represents a real number using an integer type, scaled by a power of two.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="fixed__point_8h.html">sg14/fixed_point.h</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"></div>
@@ -119,9 +139,9 @@ Simple</h1>
 <div class="line">    <span class="comment">// like an int, x has limited precision</span></div>
 <div class="line">    cout &lt;&lt; x/2 &lt;&lt; endl;  <span class="comment">// &quot;1.5&quot;</span></div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="basic_arithmetic"></a>
-Intuitive</h1>
-<p>Specializations of <a class="el" href="classsg14_1_1fixed__point.html">fixed_point&lt;&gt;</a> behave a lot like native C/C++ numeric types. Operators are designed to behave in an way which is both predictable and efficient.</p>
+</div><!-- fragment --><h2><a class="anchor" id="basic_arithmetic"></a>
+Arithmetic Operators</h2>
+<p>Specializations of <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> behave a lot like native C/C++ numeric types. Operators are designed to behave in an way which is both predictable and efficient.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> basic_arithmetic_example()</div>
 <div class="line">{</div>
 <div class="line">    <span class="comment">// define a constant signed value with 3 integer and 28 fractional bits (s3:28)</span></div>
@@ -141,9 +161,9 @@ Intuitive</h1>
 <div class="line">    <span class="comment">// &quot;360&quot;</span></div>
 <div class="line">    cout &lt;&lt; degrees &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="advanced_arithmetic"></a>
-Powerful</h1>
-<p>But one size does not fit all. Different applications of the same operation might call for different trade-offs between storage, precision, safety and speed. Named functions - such as <a class="el" href="namespacesg14.html#a5fd2e4fe46d53cc8c8f1f5ece1162ac4">multiply&lt;&gt;</a> - provide fine-tuned control over arithmetic results.</p>
+</div><!-- fragment --><h2><a class="anchor" id="advanced_arithmetic"></a>
+Arithmetic Functions</h2>
+<p>But one size does not fit all. Different applications of the same operation might call for different trade-offs between storage, precision, safety and speed. Named functions - such as <a class="el" href="namespacesg14.html#a5fd2e4fe46d53cc8c8f1f5ece1162ac4">multiply</a> - provide fine-tuned control over arithmetic results.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;iomanip&gt;</span></div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> advanced_arithmetic_example()</div>
@@ -165,8 +185,8 @@ Powerful</h1>
 <div class="line">    cout &lt;&lt; setprecision(12)</div>
 <div class="line">            &lt;&lt; <a class="code" href="namespacesg14.html#a5fd2e4fe46d53cc8c8f1f5ece1162ac4">multiply</a>&lt;fixed_point&lt;uint16_t, -8&gt;&gt;(x, x) &lt;&lt; endl;  <span class="comment">// 254.00390625</span></div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="boost"></a>
-Composable</h1>
+</div><!-- fragment --><h2><a class="anchor" id="boost"></a>
+Composable</h2>
 <p>The API is designed with composability in mind and the <code>Rep</code> template parameter is not limited to built-in integer types. For instance, the <code>number</code> types defined in <a href="http://www.boost.org/doc/libs/release/libs/multiprecision/">Boost.Multiprecision</a> can be adapted to produce fixed-point types of arbitrary range and resolution. To illustrate this, a header, <a href="../../include/sg14/auxiliary/multiprecision.h">sg14/auxiliary/multiprecision.h</a>, is provided, containing all the necessary definitions.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="multiprecision_8h.html">sg14/auxiliary/multiprecision.h</a>&gt;</span></div>
 <div class="line"></div>
@@ -189,9 +209,9 @@ Composable</h1>
 <div class="line">    <span class="comment">// &quot;1e-100&quot; although this calculation is only approximate</span></div>
 <div class="line">    cout &lt;&lt; big_number{1}/googol &lt;&lt; endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="elastic"></a>
-Extensible</h1>
-<p>Because one size does not fit all, <a class="el" href="classsg14_1_1fixed__point.html">fixed_point&lt;&gt;</a> is designed to make it easy to tailor new arithmetic types. The <a class="el" href="classsg14_1_1elastic.html">elastic&lt;&gt;</a> type illustrates this. As each calculation requires more digits, so the results of <a class="el" href="classsg14_1_1elastic.html">elastic&lt;&gt;</a> operations allocate more storage.</p>
+</div><!-- fragment --><h2><a class="anchor" id="elastic"></a>
+Extensible</h2>
+<p>Because one size does not fit all, <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> is designed to make it easy to tailor new arithmetic types. The <a class="el" href="classsg14_1_1elastic.html">elastic</a> type illustrates this. As each calculation requires more digits, so the results of <a class="el" href="classsg14_1_1elastic.html">elastic</a> operations allocate more storage.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="elastic_8h.html">sg14/auxiliary/elastic.h</a>&gt;</span></div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> elastic_example()</div>
@@ -218,10 +238,7 @@ Extensible</h1>
 <div class="line">    static_assert(<span class="keyword">sizeof</span>(compact_xx) == <span class="keyword">sizeof</span>(uint16_t), <span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line">    cout &lt;&lt; compact_xx &lt;&lt; endl;  <span class="comment">// &quot;254.00390625&quot;</span></div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="tests"></a>
-Reliable</h1>
-<p>The library includes an extensive range of compile-time and run-time tests. Even <a href="https://github.com/johnmcfarlane/fixed_point/blob/master/src/test/index.cpp">the examples on this page</a> are tested against each new change. </p>
-</div></div><!-- contents -->
+</div><!-- fragment --></div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
