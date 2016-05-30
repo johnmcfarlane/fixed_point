@@ -18,5 +18,6 @@ var searchData=
   ['width_3c_20unsigned_20int_20_3e',['width&lt; unsigned int &gt;',['../structsg14_1_1width_3_01unsigned_01int_01_4.html',1,'sg14']]],
   ['width_3c_20unsigned_20long_20_3e',['width&lt; unsigned long &gt;',['../structsg14_1_1width_3_01unsigned_01long_01_4.html',1,'sg14']]],
   ['width_3c_20unsigned_20long_20long_20_3e',['width&lt; unsigned long long &gt;',['../structsg14_1_1width_3_01unsigned_01long_01long_01_4.html',1,'sg14']]],
-  ['width_3c_20unsigned_20short_20_3e',['width&lt; unsigned short &gt;',['../structsg14_1_1width_3_01unsigned_01short_01_4.html',1,'sg14']]]
+  ['width_3c_20unsigned_20short_20_3e',['width&lt; unsigned short &gt;',['../structsg14_1_1width_3_01unsigned_01short_01_4.html',1,'sg14']]],
+  ['width_3c_20wchar_5ft_20_3e',['width&lt; wchar_t &gt;',['../structsg14_1_1width_3_01wchar__t_01_4.html',1,'sg14']]]
 ];
