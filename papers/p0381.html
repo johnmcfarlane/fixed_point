@@ -114,7 +114,7 @@ effectively eliminating overflow in many cases.</p>
 to manipulate the width of integer types at compile time.</p>
 <h3>Determining the Width of an Integer</h3>
 <p>The width of a given type can be determined
-using defintions, <code>width&lt;&gt;</code> and <code>width_v&lt;&gt;</code></p>
+using definitions, <code>width&lt;&gt;</code> and <code>width_v&lt;&gt;</code></p>
 <pre><code class="language-c++14">template&lt;class T&gt;
 struct width;
 
@@ -189,7 +189,7 @@ would probably make valuable additions.</p>
 Possible alternatives include <code>size_t</code> and <code>int</code> but
 <code>unsigned</code> happens to have worked best in practice thus far.</p>
 <h3>Non-Integer Types</h3>
-<p>The possability of specializing for the floating-point family
+<p>The possibility of specializing for the floating-point family
 has not been ruled out.
 It is not clear what width means in the context of floating-point types.
 Possibly it means the mantissa or the entire content of a type,

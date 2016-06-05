@@ -99,7 +99,7 @@ range as <code>T</code>.</p>
 <p>Any usage that results in values of <code>Exponent</code> which lie outside the
 range, (<code>INT_MIN / 2</code>, <code>INT_MAX / 2</code>), may result in undefined
 behavior and/or overflow or underflow. This range of exponent values
-is far in excess of the largest built-in floting-point type and should
+is far in excess of the largest built-in floating-point type and should
 be adequate for all intents and purposes.</p>
 <h3><code>make_fixed</code> and <code>make_ufixed</code> Helper Types</h3>
 <p>The <code>Exponent</code> template parameter is versatile and concise. It is an
@@ -606,7 +606,7 @@ which are more expressive than those proposed so far may be necessary.</p>
 constexpr Result fixed_point_multiply(const Lhs &amp; lhs, const Rhs &amp; rhs);
 </code></pre>
 <h3>Non-Binary Radixes</h3>
-<p>Interested in decimal fixed-point arithmetic has been observed.
+<p>Interest in decimal fixed-point arithmetic has been observed.
 It seems plausible that a general-purpose type could support both
 binary and decimal fixed-point types as follows:</p>
 <pre><code class="language-c++14">template&lt;class Rep, int Exponent, int Radix&gt;
