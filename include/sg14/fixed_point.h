@@ -1007,16 +1007,100 @@ namespace sg14 {
         return _fixed_point_impl::policy_multiply<_fixed_point_impl::default_arithmetic_policy>(lhs, rhs);
     }
 
+
+
+
+    template<class Lhs, class Rhs>
+    struct custom_op : std::true_type {
+        using lhs_type = Lhs;
+        using rhs_type = Rhs;
+    };
+
+    template<class Lhs, class Rhs, class _Enable = void>
+    struct custom_op_divide;
+
+    template<class Lhs, class Rhs>
+    struct custom_op_divide<Lhs, Rhs, void> : std::false_type {};
+
+
+    template<class Lhs, class Rhs, class _Enable = void>
+    struct custom_op_divide_asym;
+
+    template<class Lhs, class Rhs>
+    struct custom_op_divide_asym<Lhs, Rhs, typename std::enable_if<custom_op_divide<Lhs, Rhs>::value>::type>
+            : custom_op_divide<Lhs, Rhs> {};
+
+    template<class Lhs, class Rhs>
+    struct custom_op_divide_asym<Lhs, Rhs, typename std::enable_if<custom_op_divide<Rhs, Lhs>::value && !custom_op_divide<Lhs, Rhs>::value>::type>
+            : custom_op_divide<Rhs, Lhs> {};
+
+
+    template<class Lhs, class Rhs>
+    constexpr auto operator/(const Lhs& lhs, const Rhs& rhs)
+    -> typename custom_op_divide<Lhs, Rhs>::result_type {
+        using policy = custom_op_divide_asym<Lhs, Rhs>;
+        return policy()(
+                static_cast<typename policy::lhs_type>(lhs),
+                static_cast<typename policy::rhs_type>(rhs));
+    };
+
+
+
+
     template<class LhsRep, int LhsExponent, class RhsRep, int RhsExponent>
-    constexpr auto operator/(
-            const fixed_point<LhsRep, LhsExponent>& lhs,
-            const fixed_point<RhsRep, RhsExponent>& rhs)
-    -> typename _fixed_point_impl::default_arithmetic_policy::divide<
-            fixed_point<LhsRep, LhsExponent>,
-            fixed_point<RhsRep, RhsExponent>>::result_type
-    {
-        return _fixed_point_impl::policy_divide<_fixed_point_impl::default_arithmetic_policy>(lhs, rhs);
-    }
+    struct custom_op_divide<fixed_point<LhsRep, LhsExponent>, fixed_point<RhsRep, RhsExponent>> :
+            custom_op<fixed_point<LhsRep, LhsExponent>, fixed_point<RhsRep, RhsExponent>> {
+        using lhs_type = _fixed_point_impl::widen_fractional_result_t<fixed_point<LhsRep, LhsExponent>>;
+        using rhs_type = fixed_point<RhsRep, RhsExponent>;
+
+        static constexpr int exponent =
+                (lhs_type::integer_digits>rhs_type::integer_digits)
+                ? LhsExponent
+                : (rhs_type::integer_digits>lhs_type::integer_digits)
+                  ? RhsExponent
+                  : _impl::max<int>(LhsExponent, RhsExponent);
+
+        using result_type = fixed_point<
+                    decltype(std::declval<LhsRep>()/std::declval<RhsRep>()),
+                    exponent>;
+
+        constexpr result_type operator()(const lhs_type& lhs, const rhs_type& rhs) const {
+            return divide<result_type>(
+                    static_cast<lhs_type>(lhs),
+                    static_cast<rhs_type>(rhs));
+        }
+    };
+
+    template<class LhsRep, int LhsExponent, class RhsInteger>
+    struct custom_op_divide<fixed_point<LhsRep, LhsExponent>, RhsInteger, typename std::enable_if<is_integral<RhsInteger>::value>::type> :
+            custom_op<fixed_point<LhsRep, LhsExponent>, RhsInteger> {
+        using lhs_type = fixed_point<LhsRep, LhsExponent>;
+        using rhs_type = RhsInteger;
+
+        using result_type = fixed_point<decltype(std::declval<LhsRep>()/std::declval<RhsInteger>()), LhsExponent>;
+
+        constexpr result_type operator()(const lhs_type& lhs, const rhs_type& rhs) const {
+            return divide<result_type>(
+                    static_cast<lhs_type>(lhs),
+                    fixed_point<RhsInteger>(rhs));
+        }
+    };
+
+//    template<
+//            class Integer,
+//            class Rep, int Exponent,
+//            typename = typename std::enable_if<is_integral<Integer>::value>::type>
+//    constexpr auto operator/(const Integer& lhs, const fixed_point<Rep, Exponent>& rhs)
+//    -> fixed_point<decltype(std::declval<Integer>()/std::declval<Rep>()), Exponent>
+//    {
+//        using result_type = fixed_point<decltype(std::declval<Integer>()/std::declval<Rep>()), Exponent>;
+//        return divide<result_type>(fixed_point<Integer>(lhs), rhs);
+//    }
+
+
+
+
+
 
     ////////////////////////////////////////////////////////////////////////////////
     // (fixed_point @ non-fixed_point) arithmetic operators
@@ -1053,17 +1137,6 @@ namespace sg14 {
         return multiply<rep>(lhs, fixed_point<Integer>(rhs));
     }
 
-    template<
-            class Rep, int Exponent,
-            class Integer,
-            typename = typename std::enable_if<is_integral<Integer>::value>::type>
-    constexpr auto operator/(const fixed_point<Rep, Exponent>& lhs, const Integer& rhs)
-    -> fixed_point<decltype(std::declval<Rep>()/std::declval<Integer>()), Exponent>
-    {
-        using result_type = fixed_point<decltype(std::declval<Rep>()/std::declval<Integer>()), Exponent>;
-        return divide<result_type>(lhs, fixed_point<Integer>(rhs));
-    }
-
     // integer. fixed-point -> fixed-point
     template<
             class Integer,
@@ -1074,17 +1147,6 @@ namespace sg14 {
     {
         using result_type = fixed_point<decltype(std::declval<Integer>()*std::declval<Rep>()), Exponent>;
         return multiply<result_type>(fixed_point<Integer>(lhs), rhs);
-    }
-
-    template<
-            class Integer,
-            class Rep, int Exponent,
-            typename = typename std::enable_if<is_integral<Integer>::value>::type>
-    constexpr auto operator/(const Integer& lhs, const fixed_point<Rep, Exponent>& rhs)
-    -> fixed_point<decltype(std::declval<Integer>()/std::declval<Rep>()), Exponent>
-    {
-        using result_type = fixed_point<decltype(std::declval<Integer>()/std::declval<Rep>()), Exponent>;
-        return divide<result_type>(fixed_point<Integer>(lhs), rhs);
     }
 
     // fixed-point, floating-point -> floating-point
