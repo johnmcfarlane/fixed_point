@@ -19,6 +19,91 @@ namespace sg14 {
         {
             return (a<b) ? b : a;
         }
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // operator policy declarations
+
+        // sg14::_impl::comparison_policy
+        template<class Lhs, class Rhs, class _Enable = void>
+        struct comparison_policy;
+
+        // sg14::_impl::comparison_policy
+        template<class Rhs, class _Enable = void>
+        struct negate_policy;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // policy-based comparison operators
+
+    // operator== for types for which sg14::comparison_policy is defined
+    template<class Lhs, class Rhs>
+    constexpr auto operator==(const Lhs& lhs, const Rhs& rhs)
+    -> decltype(_impl::comparison_policy<Lhs, Rhs>::param(lhs)
+            ==_impl::comparison_policy<Lhs, Rhs>::param(rhs))
+    {
+        return _impl::comparison_policy<Lhs, Rhs>::param(lhs)
+                ==_impl::comparison_policy<Lhs, Rhs>::param(rhs);
+    }
+
+    // operator!= for types for which sg14::comparison_policy is defined
+    template<class Lhs, class Rhs>
+    constexpr auto operator!=(const Lhs& lhs, const Rhs& rhs)
+    -> decltype(_impl::comparison_policy<Lhs, Rhs>::param(lhs)
+            !=_impl::comparison_policy<Lhs, Rhs>::param(rhs))
+    {
+        return _impl::comparison_policy<Lhs, Rhs>::param(lhs)
+                !=_impl::comparison_policy<Lhs, Rhs>::param(rhs);
+    }
+
+    // operator< for types for which sg14::comparison_policy is defined
+    template<class Lhs, class Rhs>
+    constexpr auto operator<(const Lhs& lhs, const Rhs& rhs)
+    -> decltype(_impl::comparison_policy<Lhs, Rhs>::param(lhs)
+            <_impl::comparison_policy<Lhs, Rhs>::param(rhs))
+    {
+        return _impl::comparison_policy<Lhs, Rhs>::param(lhs)
+                <_impl::comparison_policy<Lhs, Rhs>::param(rhs);
+    }
+
+    // operator> for types for which sg14::comparison_policy is defined
+    template<class Lhs, class Rhs>
+    constexpr auto operator>(const Lhs& lhs, const Rhs& rhs)
+    -> decltype(_impl::comparison_policy<Lhs, Rhs>::param(lhs)
+            >_impl::comparison_policy<Lhs, Rhs>::param(rhs))
+    {
+        return _impl::comparison_policy<Lhs, Rhs>::param(lhs)
+                >_impl::comparison_policy<Lhs, Rhs>::param(rhs);
+    }
+
+    // operator<= for types for which sg14::comparison_policy is defined
+    template<class Lhs, class Rhs>
+    constexpr auto operator<=(const Lhs& lhs, const Rhs& rhs)
+    -> decltype(_impl::comparison_policy<Lhs, Rhs>::param(lhs)
+            <=_impl::comparison_policy<Lhs, Rhs>::param(rhs))
+    {
+        return _impl::comparison_policy<Lhs, Rhs>::param(lhs)
+                <=_impl::comparison_policy<Lhs, Rhs>::param(rhs);
+    }
+
+    // operator>= for types for which sg14::comparison_policy is defined
+    template<class Lhs, class Rhs>
+    constexpr auto operator>=(const Lhs& lhs, const Rhs& rhs)
+    -> decltype(_impl::comparison_policy<Lhs, Rhs>::param(lhs)
+            >=_impl::comparison_policy<Lhs, Rhs>::param(rhs))
+    {
+        return _impl::comparison_policy<Lhs, Rhs>::param(lhs)
+                >=_impl::comparison_policy<Lhs, Rhs>::param(rhs);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // policy-based arithmetic operators
+
+    // unary operator- for types for which sg14::comparison_policy is defined
+    template<class Rhs>
+    constexpr auto operator-(const Rhs& rhs)
+    -> decltype(_impl::negate_policy<Rhs>::to(-_impl::negate_policy<Rhs>::from(rhs)))
+    {
+        return _impl::negate_policy<Rhs>::to(-_impl::negate_policy<Rhs>::from(rhs));
     }
 }
 

@@ -161,6 +161,8 @@ struct elasticate_test {
 
     static_assert(sg14::is_signed<elastic_type>::value==(Value<0), "signage doesn't match value");
 #if ! defined(_MSC_VER)
+    using butts = sg14::_impl::comparison_policy<decltype(elastic_value), elastic<63, 0>>;
+//    static_assert(butts::_, "");
     static_assert(elastic_value==elastic<63, 0>{Value}, "elasticated value doesn't equal its source value");
 #endif
 };
@@ -515,6 +517,18 @@ struct signed_elastic_test :
 
     // negative_min vs lowest
     static_assert(is_greater_than(negative_min, lowest), "comparison test error");
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // test unary operator-
+
+    static_assert(is_equal_to(min, - -min), "unary operator- test failed");
+    static_assert(is_equal_to(max, - -max), "unary operator- test failed");
+    static_assert(is_equal_to(zero, - -zero), "unary operator- test failed");
+    static_assert(is_equal_to(zero, -zero), "unary operator- test failed");
+
+    static_assert(is_greater_than(min, -min), "unary operator- test failed");
+    static_assert(is_greater_than(max, -max), "unary operator- test failed");
+    static_assert(!is_less_than(-max, lowest), "unary operator- test failed");
 
     ////////////////////////////////////////////////////////////////////////////////
     // test operator+
