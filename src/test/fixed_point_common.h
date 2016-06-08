@@ -688,87 +688,87 @@ static_assert(y == 5.75, "usage test failed");
 
 template <class Rep, int Exponent>
 struct FixedPointTester {
-    using fixed_point = ::fixed_point<Rep, Exponent>;
+    using type = ::fixed_point<Rep, Exponent>;
 
     // Rep
     using rep = Rep;
-    static_assert(sizeof(rep) == sizeof(fixed_point), "fixed_point must be the same size as its Rep");
+    static_assert(sizeof(rep) == sizeof(type), "fixed_point must be the same size as its Rep");
     static_assert(
-            is_same<rep, typename fixed_point::rep>::value,
+            is_same<rep, typename type::rep>::value,
             "mismatched rep");    // possibly overly restrictive (e.g. hardware-specific specializations)
 
     // Exponent
     static constexpr int exponent = Exponent;
     static_assert(
-            exponent == fixed_point::exponent,
+            exponent == type::exponent,
             "mismatched exponent");
 
 #if ! defined(_MSC_VER)
     // simply assignment to and from underlying representation
-    using numeric_limits = std::numeric_limits<fixed_point>;
-    static constexpr fixed_point min = fixed_point::from_data(rep(1));
+    using numeric_limits = std::numeric_limits<type>;
+    static constexpr type min = type::from_data(rep(1));
     static_assert(min.data() == rep(1), "all Rep types should be able to store the number 1!");
 
     // sg14::_impl::widen_integer_result_t
     static_assert(
-            sizeof(_impl::widen_integer_result_t<fixed_point>) == 2 * sizeof(fixed_point),
+            sizeof(_impl::widen_integer_result_t<type>) == 2 * sizeof(type),
             "widen_integer_result_t did not result in type that was twice the size");
     static_assert(
-            _impl::widen_integer_result_t<fixed_point>::integer_digits > fixed_point::integer_digits,
+            _impl::widen_integer_result_t<type>::integer_digits > type::integer_digits,
             "widen_integer_result_t did not result in type with more integer digits");
     static_assert(
-            _impl::widen_integer_result_t<fixed_point>::fractional_digits == fixed_point::fractional_digits,
+            _impl::widen_integer_result_t<type>::fractional_digits == type::fractional_digits,
             "widen_integer_result_t did not result in type with same number of fractional digits");
 
     // sg14::_impl::widen_fractional_result_t
     static_assert(
-            sizeof(_impl::widen_fractional_result_t<fixed_point>) == 2 * sizeof(fixed_point),
+            sizeof(_impl::widen_fractional_result_t<type>) == 2 * sizeof(type),
             "widen_fractional_result_t did not result in type that was twice the size");
     static_assert(
-            _impl::widen_fractional_result_t<fixed_point>::integer_digits == fixed_point::integer_digits,
+            _impl::widen_fractional_result_t<type>::integer_digits == type::integer_digits,
             "widen_fractional_result_t did not result in type with same number of integer digits");
     static_assert(
-            _impl::widen_fractional_result_t<fixed_point>::fractional_digits > fixed_point::fractional_digits,
+            _impl::widen_fractional_result_t<type>::fractional_digits > type::fractional_digits,
             "widen_fractional_result_t did not result in type with more fractional digits");
 
     // unary common_type_t
     static_assert(is_same<
-                    _impl::common_type_t<fixed_point>,
-                    ::fixed_point<
+                    _impl::common_type_t<type>,
+                    fixed_point<
                             typename sg14::common_type<Rep>::type,
                             Exponent>>::value,
             "a fixed point specialization follows the same implicit promotion rules as its Rep");
 
     static_assert(
             is_same<
-                    fixed_point,
-                    _impl::common_type_t<fixed_point>>::value,
+                    type,
+                    _impl::common_type_t<type>>::value,
             "... and that rule should be to do nothing very exciting at all");
 
     // binary common_type_t
     static_assert(
             is_same<
-                    fixed_point,
-                    _impl::common_type_t<fixed_point, fixed_point>>::value,
+                    type,
+                    _impl::common_type_t<type, type>>::value,
             "a fixed point specialization follows the same implicit promotion rules as its Rep");
 
     // for convenience, fixed_point API assumes binary and unary homogeneous common_types are the same
     static_assert(
             is_same<
-                    _impl::common_type_t<fixed_point>,
-                    _impl::common_type_t<fixed_point, fixed_point>>::value,
+                    _impl::common_type_t<type>,
+                    _impl::common_type_t<type, type>>::value,
             "bad assumption about binary _impl::common_type_t");
 
     // test promotion rules for arithmetic
     static_assert(
             is_same<
                     decltype(min + min),
-                    ::fixed_point<decltype(declval<rep>() + declval<rep>()), exponent>>::value,
+                    fixed_point<decltype(declval<rep>() + declval<rep>()), exponent>>::value,
             "promotion rule for addition fixed_point<Rep> should match its Rep");
     static_assert(
             is_same<
                     decltype(min - min),
-                    ::fixed_point<decltype(declval<rep>() - declval<rep>()), exponent>>::value,
+                    fixed_point<decltype(declval<rep>() - declval<rep>()), exponent>>::value,
             "promotion rule for subtraction fixed_point<Rep> should match its Rep");
 
     // assorted tests of +, -, * and /
