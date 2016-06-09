@@ -619,6 +619,19 @@ static_assert(make_fixed<31, 32>(16777215.996093750)*-123.654f==-2074569855.5169
 static_assert(is_same<decltype(make_fixed<31, 32>(16777215.996093750)*-123.654f), double>::value,
         "sg14::fixed_point multiplication test failed");
 
+static_assert(is_same<
+        decltype(declval<fixed_point<test_int, 0>>()*declval<fixed_point<test_int, 0>>()),
+        fixed_point<decltype(declval<test_int>()*declval<test_int>()), 0>>::value, "");
+static_assert(is_same<
+        decltype(declval<fixed_point<uint8, 5>>()*declval<fixed_point<uint8, 5>>()),
+        fixed_point<decltype(declval<uint8>()*declval<uint8>()), 5>>::value, "");
+static_assert(is_same<
+        decltype(declval<fixed_point<int64, -50>>()*declval<fixed_point<int64, -50>>()),
+        fixed_point<decltype(declval<int64>()*declval<int64>()), -50>>::value, "");
+static_assert(is_same<
+        decltype(declval<fixed_point<uint32, 20>>()*declval<fixed_point<uint32, 20>>()),
+        fixed_point<decltype(declval<uint32>()*declval<uint32>()), 20>>::value, "");
+
 // division
 static_assert(fixed_point<int8, -1>(63) / fixed_point<int8, -1>(-4) == -15.5, "sg14::fixed_point test failed");
 
