@@ -1033,25 +1033,23 @@ namespace sg14 {
     }
 
     template<
-            class Rep, int Exponent,
-            class Integer,
-            typename = typename std::enable_if<is_integral<Integer>::value>::type>
-    constexpr auto operator*(const fixed_point<Rep, Exponent>& lhs, const Integer& rhs)
-    -> fixed_point<decltype(std::declval<Rep>()*std::declval<Integer>()), Exponent>
+            class LhsRep, int LhsExponent,
+            class RhsInteger,
+            typename = typename std::enable_if<is_integral<RhsInteger>::value>::type>
+    constexpr auto operator*(const fixed_point<LhsRep, LhsExponent>& lhs, const RhsInteger& rhs)
+    -> decltype(lhs * fixed_point<RhsInteger>(rhs))
     {
-        using rep = fixed_point<decltype(std::declval<Rep>()*std::declval<Integer>()), Exponent>;
-        return multiply<rep>(lhs, fixed_point<Integer>(rhs));
+        return lhs * fixed_point<RhsInteger>(rhs);
     }
 
     template<
-            class Rep, int Exponent,
-            class Integer,
-            typename = typename std::enable_if<is_integral<Integer>::value>::type>
-    constexpr auto operator/(const fixed_point<Rep, Exponent>& lhs, const Integer& rhs)
-    -> fixed_point<decltype(std::declval<Rep>()/std::declval<Integer>()), Exponent>
+            class LhsRep, int LhsExponent,
+            class RhsInteger,
+            typename = typename std::enable_if<is_integral<RhsInteger>::value>::type>
+    constexpr auto operator/(const fixed_point<LhsRep, LhsExponent>& lhs, const RhsInteger& rhs)
+    -> decltype(lhs / fixed_point<RhsInteger>{rhs})
     {
-        using result_type = fixed_point<decltype(std::declval<Rep>()/std::declval<Integer>()), Exponent>;
-        return divide<result_type>(lhs, fixed_point<Integer>(rhs));
+        return lhs / fixed_point<RhsInteger>{rhs};
     }
 
     // integer. fixed-point -> fixed-point
@@ -1070,20 +1068,19 @@ namespace sg14 {
             class RhsRep, int RhsExponent,
             typename = typename std::enable_if<is_integral<LhsInteger>::value>::type>
     constexpr auto operator-(const LhsInteger& lhs, const fixed_point<RhsRep, RhsExponent>& rhs)
-    -> decltype(fixed_point<LhsInteger, 0>{lhs} - rhs)
+    -> decltype(fixed_point<LhsInteger>{lhs} - rhs)
     {
-        return fixed_point<LhsInteger, 0>{lhs} - rhs;
+        return fixed_point<LhsInteger>{lhs} - rhs;
     }
 
     template<
-            class Integer,
-            class Rep, int Exponent,
-            typename = typename std::enable_if<is_integral<Integer>::value>::type>
-    constexpr auto operator*(const Integer& lhs, const fixed_point<Rep, Exponent>& rhs)
-    -> fixed_point<decltype(std::declval<Integer>()*std::declval<Rep>()), Exponent>
+            class LhsInteger,
+            class RhsRep, int RhsExponent,
+            typename = typename std::enable_if<is_integral<LhsInteger>::value>::type>
+    constexpr auto operator*(const LhsInteger& lhs, const fixed_point<RhsRep, RhsExponent>& rhs)
+    -> decltype(fixed_point<LhsInteger>{lhs} * rhs)
     {
-        using result_type = fixed_point<decltype(std::declval<Integer>()*std::declval<Rep>()), Exponent>;
-        return multiply<result_type>(fixed_point<Integer>(lhs), rhs);
+        return fixed_point<LhsInteger>{lhs} * rhs;
     }
 
     template<

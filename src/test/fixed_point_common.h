@@ -615,12 +615,12 @@ static_assert(is_same<decltype(make_fixed<2, 5, test_int>(2.125)*make_fixed<2, 5
 #if !defined(TEST_IGNORE_MSVC_INTERNAL_ERRORS)
 static_assert(fixed_point<uint8, 10>(10240)*3u==30720, "sg14::fixed_point multiplication test failed");
 #endif
-static_assert(is_same<decltype(fixed_point<uint8, 10>(10240)*3u), fixed_point<test_unsigned, 10>>::value,
+static_assert(is_same<decltype(fixed_point<uint8, 10>(10240)*3u), fixed_point<test_unsigned, 0>>::value,
         "sg14::fixed_point multiplication test failed");
 #if !defined(TEST_IGNORE_MSVC_INTERNAL_ERRORS)
 static_assert(3u*fixed_point<uint8, 10>(10240)==30720, "sg14::fixed_point multiplication test failed");
 #endif
-static_assert(is_same<decltype(3u*fixed_point<uint8, 10>(10240)), fixed_point<test_unsigned, 10>>::value,
+static_assert(is_same<decltype(3u*fixed_point<uint8, 10>(10240)), fixed_point<test_unsigned, 0>>::value,
         "sg14::fixed_point multiplication test failed");
 
 static_assert(-123.654f*make_fixed<31, 32>(16777215.996093750)==-2074569855.5169766,
@@ -655,9 +655,9 @@ static_assert(is_same<decltype(make_fixed<2, 5, test_int>(2.5)/make_fixed<2, 5, 
         "sg14::fixed_point division test failed");
 
 #if !defined(TEST_IGNORE_MSVC_INTERNAL_ERRORS)
-static_assert(fixed_point<uint8, 10>(10240)/3u==3072, "sg14::fixed_point division test failed");
+static_assert(fixed_point<uint8, 10>(10240)/3u==3412, "sg14::fixed_point division test failed");
 #endif
-static_assert(is_same<decltype(fixed_point<uint8, 10>(10240)/3u), fixed_point<test_unsigned, 10>>::value,
+static_assert(is_same<decltype(fixed_point<uint8, 10>(10240)/3u), fixed_point<test_unsigned, 0>>::value,
         "sg14::fixed_point division test failed");
 TEST(TOKENPASTE2(TEST_LABEL, division), int_uint8) {
     int n(10);
