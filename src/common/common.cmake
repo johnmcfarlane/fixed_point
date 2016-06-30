@@ -51,7 +51,7 @@ else (PROFILE)
     set(PROFILE_FLAGS "${PROFILE_DISABLED_FLAGS}")
 endif (PROFILE)
 
-set(COMMON_CXX_FLAGS "${MISC_FLAGS} ${EXCEPTION_FLAGS} ${INT128_FLAGS} ${PROFILE_FLAGS}")
+set(COMMON_CXX_FLAGS "${MISC_FLAGS} ${EXCEPTION_FLAGS} ${INT128_FLAGS} ${PROFILE_FLAGS} -ftemplate-backtrace-limit=0")
 
 include_directories("${CMAKE_CURRENT_LIST_DIR}/../../include")
 include_directories("${CMAKE_CURRENT_LIST_DIR}/.")
