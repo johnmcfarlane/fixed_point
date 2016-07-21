@@ -584,7 +584,7 @@ struct elastic_test_with_integer_digits
         , elastic_test<IntegerDigits, -IntegerDigits+21>
         , elastic_test<IntegerDigits, -IntegerDigits+27>
         , elastic_test<IntegerDigits, -IntegerDigits+31>
-#if defined(SG14_INT128_ENABLED)
+#if defined(SG14_INT128)
         , elastic_test<IntegerDigits, -IntegerDigits+39>
         , elastic_test<IntegerDigits, -IntegerDigits+44>
         , elastic_test<IntegerDigits, -IntegerDigits+55>
