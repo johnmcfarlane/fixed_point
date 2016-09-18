@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['set_5fwidth_5ft',['set_width_t',['../namespacesg14.html#ab2937f297d8316987334cf398f6e6020',1,'sg14']]]
+  ['rep',['rep',['../classsg14_1_1elastic__integer.html#abb8050462a38ec3b85a2372b7aece4ff',1,'sg14::elastic_integer::rep()'],['../classsg14_1_1fixed__point.html#a664a5e95783dee0becf9d9470e513e8c',1,'sg14::fixed_point::rep()']]]
 ];

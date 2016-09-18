@@ -40,8 +40,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -100,6 +100,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>literal real number approximation that uses fixed-point arithmetic  
  <a href="classsg14_1_1fixed__point.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="fixed__point_8h_source.html">sg14/fixed_point.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -115,7 +117,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a35f95fad326a2966dd901777043925c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">default constructor <br /></td></tr>
 <tr class="separator:a35f95fad326a2966dd901777043925c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab71447cf542fb892233bf419a24982ce"><td class="memTemplParams" colspan="2"><a class="anchor" id="ab71447cf542fb892233bf419a24982ce"></a>
-template&lt;class S , typename std::enable_if&lt; is_integral&lt; S &gt;::value, int &gt;::type Dummy = 0&gt; </td></tr>
+template&lt;class S , typename std::enable_if&lt; std::numeric_limits&lt; S &gt;::is_integer, int &gt;::type Dummy = 0&gt; </td></tr>
 <tr class="memitem:ab71447cf542fb892233bf419a24982ce"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#ab71447cf542fb892233bf419a24982ce">fixed_point</a> (S s)</td></tr>
 <tr class="memdesc:ab71447cf542fb892233bf419a24982ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor taking an integer type <br /></td></tr>
 <tr class="separator:ab71447cf542fb892233bf419a24982ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,22 +149,6 @@ template&lt;class S , typename std::enable_if&lt; std::is_floating_point&lt; S &
 <tr class="memitem:a6ede6ddfb18e4af5e9c6a48c854950a4"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a6ede6ddfb18e4af5e9c6a48c854950a4">operator S</a> () const </td></tr>
 <tr class="memdesc:a6ede6ddfb18e4af5e9c6a48c854950a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns value represented as floating-point <br /></td></tr>
 <tr class="separator:a6ede6ddfb18e4af5e9c6a48c854950a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabef9e3a0d44eff2bbe360656383d904"><td class="memTemplParams" colspan="2"><a class="anchor" id="aabef9e3a0d44eff2bbe360656383d904"></a>
-template&lt;class Rhs &gt; </td></tr>
-<tr class="memitem:aabef9e3a0d44eff2bbe360656383d904"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*=</b> (const Rhs &amp;rhs)</td></tr>
-<tr class="separator:aabef9e3a0d44eff2bbe360656383d904"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef3099e3e8ebda5b74552f531f00c1c1"><td class="memTemplParams" colspan="2"><a class="anchor" id="aef3099e3e8ebda5b74552f531f00c1c1"></a>
-template&lt;class Rhs &gt; </td></tr>
-<tr class="memitem:aef3099e3e8ebda5b74552f531f00c1c1"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsRep, Exponent &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator*=</b> (const Rhs &amp;rhs)</td></tr>
-<tr class="separator:aef3099e3e8ebda5b74552f531f00c1c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f0be7a69f78a0ac02d5e8015d3b57bb"><td class="memTemplParams" colspan="2"><a class="anchor" id="a1f0be7a69f78a0ac02d5e8015d3b57bb"></a>
-template&lt;class Rhs &gt; </td></tr>
-<tr class="memitem:a1f0be7a69f78a0ac02d5e8015d3b57bb"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/=</b> (const Rhs &amp;rhs)</td></tr>
-<tr class="separator:a1f0be7a69f78a0ac02d5e8015d3b57bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58e37c9e8975b9f8dbc608d540750a88"><td class="memTemplParams" colspan="2"><a class="anchor" id="a58e37c9e8975b9f8dbc608d540750a88"></a>
-template&lt;class Rhs &gt; </td></tr>
-<tr class="memitem:a58e37c9e8975b9f8dbc608d540750a88"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; LhsRep, Exponent &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator/=</b> (const Rhs &amp;rhs)</td></tr>
-<tr class="separator:a58e37c9e8975b9f8dbc608d540750a88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83257fe0a99cac804a3e8aaf6f58a081"><td class="memTemplParams" colspan="2"><a class="anchor" id="a83257fe0a99cac804a3e8aaf6f58a081"></a>
 template&lt;class S , typename std::enable_if&lt; is_integral&lt; S &gt;::value, int &gt;::type Dummy = 0&gt; </td></tr>
 <tr class="memitem:a83257fe0a99cac804a3e8aaf6f58a081"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a83257fe0a99cac804a3e8aaf6f58a081">operator=</a> (S s)</td></tr>
@@ -189,7 +175,7 @@ static constexpr <a class="el" href="classsg14_1_1fixed__point.html">fixed_point
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:a79af51829ef07804fd752068f43ef68b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79af51829ef07804fd752068f43ef68b"></a>
-static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a79af51829ef07804fd752068f43ef68b">digits</a> = <a class="el" href="structsg14_1_1width.html">width</a>&lt;Rep&gt;::value-<a class="el" href="structsg14_1_1is__signed.html">is_signed</a>&lt;Rep&gt;::value</td></tr>
+static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a79af51829ef07804fd752068f43ef68b">digits</a> = std::numeric_limits&lt;Rep&gt;::digits</td></tr>
 <tr class="memdesc:a79af51829ef07804fd752068f43ef68b"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of binary digits this type can represent; equivalent to <a href="http://en.cppreference.com/w/cpp/types/numeric_limits/digits">std::numeric_limits::digits</a> <br /></td></tr>
 <tr class="separator:a79af51829ef07804fd752068f43ef68b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac3836ae1f50c76a9b67e6ab9d744241"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac3836ae1f50c76a9b67e6ab9d744241"></a>

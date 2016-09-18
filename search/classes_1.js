@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['elastic',['elastic',['../classsg14_1_1elastic.html',1,'sg14']]]
+  ['elastic_5finteger',['elastic_integer',['../classsg14_1_1elastic__integer.html',1,'sg14']]]
 ];

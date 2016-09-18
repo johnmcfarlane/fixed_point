@@ -1,4 +1,4 @@
-<p><strong>Document number</strong>: LEWG, SG14, SG6: P0381R0<br />
+<p><strong>Document number</strong>: LEWG, SG14, SG6: P0381R1_d00<br />
 <strong>Date</strong>: 2016-05-30<br />
 <strong>Reply-to</strong>: John McFarlane, <a href="mailto:mcfarlane.john+fixed-point@gmail.com">mcfarlane.john+fixed-point@gmail.com</a><br />
 <strong>Audience</strong>: SG6, SG14</p>
@@ -143,7 +143,7 @@ which also take one type and produce another (possibly different) type.</p>
 static_assert(is_same&lt;set_width_t&lt;unsigned, 32&gt;, uint32_t&gt;::value, &quot;uint32_t is an unsigned 32-bit integer&quot;);
 static_assert(is_same&lt;set_width_t&lt;uint64_t, 16&gt;, uint16_t&gt;::value, &quot;a 64-bit unsigned integer was narrowed to 16-bits&quot;);
 static_assert(is_same&lt;set_width_t&lt;char, 64&gt;, int64_t&gt;::value || is_same&lt;set_width_t&lt;char, 64&gt;, uint64_t&gt;::value, &quot;char may or may not be signed so the result may be uint64_t or int64_t&quot;);
-static_assert(is_same&lt;set_width_t&lt;int, 10&gt;, int16_t&gt;::value, &quot;result must be at least 10 bits wide&quot;);
+static_assert(width&lt;set_width_t&lt;int, 10&gt;&gt;::value &gt;= 10, &quot;result must be at least 10 bits wide&quot;);
 </code></pre>
 <h3>Families and Archetypes</h3>
 <p>A family is a set of types which differ in width alone.

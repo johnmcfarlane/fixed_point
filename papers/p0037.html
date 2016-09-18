@@ -1,4 +1,4 @@
-<p><strong>Document number</strong>: LEWG, SG14, SG6: P0037R2<br />
+<p><strong>Document number</strong>: LEWG, SG14, SG6: P0037R3_d00<br />
 <strong>Date</strong>: 2016-05-30<br />
 <strong>Reply-to</strong>: John McFarlane, <a href="mailto:mcfarlane.john+fixed-point@gmail.com">mcfarlane.john+fixed-point@gmail.com</a><br />
 <strong>Audience</strong>: SG6, SG14</p>
@@ -164,18 +164,19 @@ promotion-like rules are applied to determine the return type:</p>
 <ol>
 <li>If both arguments are fixed-point,
 then the result has a <code>Rep</code> which is the common type of the <code>Rep</code> of the inputs
-and the <code>Exponent</code> value of the input with the greater integer capacity.</li>
+and a value of <code>Exponent</code> that avoids risk of overflow
+but otherwise is the lower of lower of the two operands' exponents.</li>
 <li>If one of the arguments is a floating-point type, then the type of
 the result is the smallest floating-point type of equal or greater
 size than the inputs.</li>
 <li>If one of the arguments is an integral type,
-then the result has a <code>Rep</code> which is the common type of the input fixed-point <code>Rep</code> and the integral type
-and the same <code>Exponent</code> value as the input fixed-point type.</li>
+then it is converted to a <code>fixed_point&lt;&gt;</code> type with <code>Exponent</code> zero
+such that rule 1) applies.</li>
 </ol>
 <p>Some examples:</p>
-<pre><code>fixed_point&lt;uint8_t, -3&gt;{8} + fixed_point&lt;int8_t, -4&gt;{3} == fixed_point&lt;int, -3&gt;{11};
-fixed_point&lt;uint8_t, -3&gt;{8} + 3 == fixed_point&lt;unsigned, -3&gt;{11};  
-fixed_point&lt;uint8_t, -3&gt;{8} + float{3} == float{11};  
+<pre><code class="language-c++11">fixed_point&lt;uint8_t, -3&gt;{8} + fixed_point&lt;int8_t, -4&gt;{3} === fixed_point&lt;int, -4&gt;{11}
+fixed_point&lt;uint8_t, -3&gt;{8} + 3 === fixed_point&lt;int64_t, -3&gt;{11}
+fixed_point&lt;uint8_t, -3&gt;{8} + float{3} === float{11}
 </code></pre>
 <p>The reasoning behind this choice is a combination of predictability
 and performance. It is explained for each rule as follows:</p>
@@ -214,12 +215,11 @@ the value wraps around.</p>
 <p>The other typical cause of lost bits is underflow where, for example,</p>
 <pre><code>make_fixed&lt;7, 0&gt;(15) / make_fixed&lt;7, 0&gt;(2)
 </code></pre>
-<p>results in a value of 7. This results in loss of precision but is
-generally considered acceptable.</p>
-<p>However, when all bits are lost due to underflow, the value is said
-to be flushed. As with overflow, the result of a flush is the same for
-a fixed-point type as it is for its underlying <code>Rep</code>. In the case
-of built-in integral types, the value becomes zero.</p>
+<p>results in a value of 7.5.
+This is in contrast to equivalent integer results which underflow in the same circumstances.</p>
+<p>Arithmetic operations using <code>fixed_point</code> return results with <code>Exponent</code> adjusted to minimize underflow.
+However, division inevitable often loses precision
+due to the limitations of representing rational numbers using digital systems.</p>
 <h3>Dealing With Overflow and Flushes</h3>
 <p>Errors resulting from overflow and flushes are two of the biggest
 headaches related to fixed-point arithmetic. Integers suffer the same
@@ -251,40 +251,40 @@ Notably, where any instance of <code>c = a + b</code> is replaced with <code>a +
 For these reasons, they are presented as named functions.</p>
 <h4>Named Arithmetic Functions</h4>
 <p>The following named function templates can be used as general-purpose alternatives to arithmetic operators, <code>-</code>, <code>+</code>, <code>*</code> and <code>/</code>.</p>
-<pre><code class="language-c++">template &lt;class Result, class Rhs&gt;
-constexpr Result negate(const Rhs&amp;);
+<pre><code class="language-c++">template&lt;class Rep, int Exponent&gt;
+constexpr auto negate(const fixed_point&lt;RhsRep, RhsExponent&gt;&amp; rhs);
 
-template &lt;class Result, class Lhs, class Rhs&gt;
-constexpr Result add(const Lhs&amp;, const Rhs&amp;);
+template&lt;class Lhs, class Rhs&gt;
+constexpr auto add(const Lhs&amp; lhs, const Rhs&amp; rhs);
 
-template &lt;class Result, class Lhs, class Rhs&gt;
-constexpr Result subtract(const Lhs&amp;, const Rhs&amp;);
+template&lt;class Lhs, class Rhs&gt;
+constexpr auto subtract(const Lhs&amp; lhs, const Rhs&amp; rhs);
 
-template &lt;class Result, class Lhs, class Rhs&gt;
-constexpr Result multiply(const Lhs&amp;, const Rhs&amp;);
+template&lt;class Lhs, class Rhs&gt;
+constexpr auto multiply(const Lhs&amp; lhs, const Rhs&amp; rhs);
 
-template &lt;class Result, class Lhs, class Rhs&gt;
-constexpr Result divide(const Lhs&amp;, const Rhs&amp;);
+template&lt;class Lhs, class Rhs&gt;
+constexpr auto divide(const Lhs&amp; lhs, const Rhs&amp; rhs);
 </code></pre>
-<p>They represent the cornerstone of all other fixed-point arithmetic
-and offer the user maximum control over the computation being performed.
+<p>They apply arithmetic operations to the underlying <code>Rep</code> value
+without performing any scaling or widening - other than what occurs as a result of promotion.
 If used carefully, these functions can provide the same performance as built-in integer arithmetic.</p>
 <p>The following example loses no information and performs no shifts, effectively boiling down to <code>255*255</code>.</p>
-<pre><code class="language-c++">auto f = make_ufixed&lt;4, 4&gt;{15.9375};
-auto p = multiply&lt;make_ufixed&lt;8, 8&gt;&gt;(f, f);
-// p === make_ufixed&lt;8, 8&gt;{254.00390625}
+<pre><code class="language-c++">auto f = fixed_point&lt;uint8_t, -4&gt;{15.9375};
+auto p = multiply(f, f);
+// p === fixed_point&lt;int, -8&gt;{254.00390625}
 </code></pre>
 <p>However, these functions shield the user from none of the pitfalls of fixed-point arithmetic.
 For example, naive use of <code>multiply</code> can easily lead to surprising results.</p>
-<pre><code class="language-c++">auto f = make_ufixed&lt;4, 4&gt;{15.9375};
-auto p = multiply&lt;make_ufixed&lt;4, 4&gt;&gt;(f, f);
-// p === make_ufixed&lt;4, 4&gt;{14.00000000};
+<pre><code class="language-c++">auto f = fixed_point&lt;unsigned, -28&gt;{15.9375};
+auto p = multiply(f, f);
+// p === fixed_point&lt;unsigned, -56&gt;{0}
 </code></pre>
-<p>In contrast, the <code>*</code> operator uses wider intermediate types and language-level promotion rules.
+<p>In contrast, the <code>*</code> operator returns wider results.
 It does a better job at avoiding unnecessary narrowing and catastrophic information loss.</p>
-<pre><code class="language-c++">auto f = make_ufixed&lt;4, 4&gt;{15.9375};
+<pre><code class="language-c++">auto f = fixed_point&lt;unsigned, -28&gt;{15.9375};
 auto p = f * f;
-// p === make_fixed&lt;27, 4&gt;&gt;{254.00000000}
+// p === fixed_point&lt;uint64_t, -56&gt;{254.00390625}
 </code></pre>
 <h3>Alternative Types for <code>Rep</code></h3>
 <p>Using built-in integral types as the default underlying representation
@@ -370,13 +370,11 @@ constexpr auto magnitude(Fp x, Fp y, Fp z)
 </code></pre>
 <p>And here is a call to <code>magnitude</code>.</p>
 <pre><code class="language-c++">auto m = magnitude(
-        make_ufixed&lt;4, 12&gt;(1),
-        make_ufixed&lt;4, 12&gt;(4),
-        make_ufixed&lt;4, 12&gt;(9));
-// m === make_fixed&lt;19, 12&gt;(9.8994140625)
+        fixed_point&lt;uint16_t, -12&gt;(1),
+        fixed_point&lt;uint16_t, -12&gt;(4),
+        fixed_point&lt;uint16_t, -12&gt;(9));
+// m === fixed_point&lt;uint32_t, -24&gt;{9.8994948863983154}
 </code></pre>
-<p>Observe that the arithmetic operations in <code>magnitude</code> obey the promotion rules of their underlying type.
-Hence <code>m</code> is backed by <code>int</code> - which is 32 bits wide on most modern architectures.</p>
 <h2>V. Technical Specification</h2>
 <h3>Header &lt;fixed_point&gt; Synopsis</h3>
 <pre><code class="language-c++">namespace std {
