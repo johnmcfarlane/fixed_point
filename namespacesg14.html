@@ -85,8 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">sg14 Namespace Reference</div>  </div>
 </div><!--header-->
@@ -103,14 +102,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">literal real number approximation that uses fixed-point arithmetic  <a href="classsg14_1_1fixed__point.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsg14_1_1set__width.html">set_width</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">resizes a type; can be specialized for any type for which resizing that type makes sense  <a href="structsg14_1_1set__width.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsg14_1_1set__width_3_01fixed__point_3_01Rep_00_01Exponent_01_4_00_01MinNumBits_01_4.html">set_width&lt; fixed_point&lt; Rep, Exponent &gt;, MinNumBits &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">produces equivalent fixed-point type at a new width  <a href="structsg14_1_1set__width_3_01fixed__point_3_01Rep_00_01Exponent_01_4_00_01MinNumBits_01_4.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsg14_1_1width.html">width</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides width of numeric type  <a href="structsg14_1_1width.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsg14_1_1width_3_01fixed__point_3_01Rep_00_01Exponent_01_4_01_4.html">width&lt; fixed_point&lt; Rep, Exponent &gt; &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">determines the width of given <a class="el" href="classsg14_1_1fixed__point.html" title="literal real number approximation that uses fixed-point arithmetic ">fixed_point</a> type  <a href="structsg14_1_1width_3_01fixed__point_3_01Rep_00_01Exponent_01_4_01_4.html#details">More...</a><br /></td></tr>
@@ -122,29 +115,25 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a270ff592f206dee332277b78e0e896e5"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a270ff592f206dee332277b78e0e896e5">elastic</a> = <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; <a class="el" href="classsg14_1_1elastic__integer.html">elastic_integer</a>&lt; IntegerDigits+FractionalDigits, Archetype &gt;,-FractionalDigits &gt;</td></tr>
 <tr class="memdesc:a270ff592f206dee332277b78e0e896e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">literal real number approximation that uses fixed-point arithmetic and auto-widens to avoid overflow  <a href="#a270ff592f206dee332277b78e0e896e5">More...</a><br /></td></tr>
 <tr class="separator:a270ff592f206dee332277b78e0e896e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a554818ae14ccdf74abc7895b9d6ae435"><td class="memTemplParams" colspan="2">template&lt;int IntegerDigits, int FractionalDigits = 0, class Archetype  = signed&gt; </td></tr>
-<tr class="memitem:a554818ae14ccdf74abc7895b9d6ae435"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a554818ae14ccdf74abc7895b9d6ae435">make_fixed</a> = <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; <a class="el" href="namespacesg14.html#ab2937f297d8316987334cf398f6e6020">set_width_t</a>&lt; Archetype, IntegerDigits+FractionalDigits+is_signed&lt; Archetype &gt;::value &gt;,-FractionalDigits &gt;</td></tr>
-<tr class="memdesc:a554818ae14ccdf74abc7895b9d6ae435"><td class="mdescLeft">&#160;</td><td class="mdescRight">specializes <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> with the given number of integer and fractional digits  <a href="#a554818ae14ccdf74abc7895b9d6ae435">More...</a><br /></td></tr>
-<tr class="separator:a554818ae14ccdf74abc7895b9d6ae435"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65ad8cb3ddf886cec140e012306df74e"><td class="memTemplParams" colspan="2">template&lt;int IntegerDigits, int FractionalDigits = 0, class Archetype  = signed&gt; </td></tr>
+<tr class="memitem:a65ad8cb3ddf886cec140e012306df74e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a65ad8cb3ddf886cec140e012306df74e">make_fixed</a> = <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; set_width_t&lt; Archetype, IntegerDigits+FractionalDigits+std::numeric_limits&lt; Archetype &gt;::is_signed &gt;,-FractionalDigits &gt;</td></tr>
+<tr class="memdesc:a65ad8cb3ddf886cec140e012306df74e"><td class="mdescLeft">&#160;</td><td class="mdescRight">specializes <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> with the given number of integer and fractional digits  <a href="#a65ad8cb3ddf886cec140e012306df74e">More...</a><br /></td></tr>
+<tr class="separator:a65ad8cb3ddf886cec140e012306df74e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab65a38c5bd94875a8e520d4f78df88e0"><td class="memTemplParams" colspan="2">template&lt;int IntegerDigits, int FractionalDigits = 0, class Archetype  = unsigned&gt; </td></tr>
-<tr class="memitem:ab65a38c5bd94875a8e520d4f78df88e0"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#ab65a38c5bd94875a8e520d4f78df88e0">make_ufixed</a> = <a class="el" href="namespacesg14.html#a554818ae14ccdf74abc7895b9d6ae435">make_fixed</a>&lt; IntegerDigits, FractionalDigits, typename make_unsigned&lt; Archetype &gt;::type &gt;</td></tr>
+<tr class="memitem:ab65a38c5bd94875a8e520d4f78df88e0"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#ab65a38c5bd94875a8e520d4f78df88e0">make_ufixed</a> = <a class="el" href="namespacesg14.html#a65ad8cb3ddf886cec140e012306df74e">make_fixed</a>&lt; IntegerDigits, FractionalDigits, typename make_unsigned&lt; Archetype &gt;::type &gt;</td></tr>
 <tr class="memdesc:ab65a38c5bd94875a8e520d4f78df88e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">specializes <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> with the given number of integer and fractional digits; produces an unsigned type  <a href="#ab65a38c5bd94875a8e520d4f78df88e0">More...</a><br /></td></tr>
 <tr class="separator:ab65a38c5bd94875a8e520d4f78df88e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2937f297d8316987334cf398f6e6020"><td class="memTemplParams" colspan="2">template&lt;class Archetype , _width_type MinNumBits&gt; </td></tr>
-<tr class="memitem:ab2937f297d8316987334cf398f6e6020"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#ab2937f297d8316987334cf398f6e6020">set_width_t</a> = typename <a class="el" href="structsg14_1_1set__width.html">set_width</a>&lt; Archetype, MinNumBits &gt;::type</td></tr>
-<tr class="memdesc:ab2937f297d8316987334cf398f6e6020"><td class="mdescLeft">&#160;</td><td class="mdescRight">resizes a type  <a href="#ab2937f297d8316987334cf398f6e6020">More...</a><br /></td></tr>
-<tr class="separator:ab2937f297d8316987334cf398f6e6020"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac05d1f65d18695bf6733fc4d9a372f82"><td class="memTemplParams" colspan="2">template&lt;class Lhs , class Rhs &gt; </td></tr>
-<tr class="memitem:ac05d1f65d18695bf6733fc4d9a372f82"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#ac05d1f65d18695bf6733fc4d9a372f82">add</a> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; decltype(_fixed_point_impl::operate&lt; _fixed_point_impl::named_function_tag, _impl::add_tag &gt;(lhs, rhs))</td></tr>
-<tr class="memdesc:ac05d1f65d18695bf6733fc4d9a372f82"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the sum of two <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> values  <a href="#ac05d1f65d18695bf6733fc4d9a372f82">More...</a><br /></td></tr>
-<tr class="separator:ac05d1f65d18695bf6733fc4d9a372f82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c3fa0c739d0787621649dbd9fcc26bc"><td class="memTemplParams" colspan="2">template&lt;class Lhs , class Rhs &gt; </td></tr>
-<tr class="memitem:a5c3fa0c739d0787621649dbd9fcc26bc"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a5c3fa0c739d0787621649dbd9fcc26bc">divide</a> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; decltype(_fixed_point_impl::operate&lt; _fixed_point_impl::named_function_tag, _impl::divide_tag &gt;(lhs, rhs))</td></tr>
-<tr class="memdesc:a5c3fa0c739d0787621649dbd9fcc26bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the quotient of two <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> values  <a href="#a5c3fa0c739d0787621649dbd9fcc26bc">More...</a><br /></td></tr>
-<tr class="separator:a5c3fa0c739d0787621649dbd9fcc26bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4329830caf2f89a8b651acd74568f0ff"><td class="memTemplParams" colspan="2">template&lt;class Lhs , class Rhs &gt; </td></tr>
+<tr class="memitem:a4329830caf2f89a8b651acd74568f0ff"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a4329830caf2f89a8b651acd74568f0ff">add</a> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; decltype(_impl::fp::operate&lt; _impl::fp::named_function_tag, _impl::add_tag &gt;(lhs, rhs))</td></tr>
+<tr class="memdesc:a4329830caf2f89a8b651acd74568f0ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the sum of two <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> values  <a href="#a4329830caf2f89a8b651acd74568f0ff">More...</a><br /></td></tr>
+<tr class="separator:a4329830caf2f89a8b651acd74568f0ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d6ac26af619d11bb7e2aa8ccdcc2ad4"><td class="memTemplParams" colspan="2">template&lt;class Lhs , class Rhs &gt; </td></tr>
+<tr class="memitem:a0d6ac26af619d11bb7e2aa8ccdcc2ad4"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a0d6ac26af619d11bb7e2aa8ccdcc2ad4">divide</a> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; decltype(_impl::fp::operate&lt; _impl::fp::division_named_function_tag, _impl::divide_tag &gt;(lhs, rhs))</td></tr>
+<tr class="memdesc:a0d6ac26af619d11bb7e2aa8ccdcc2ad4"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the quotient of two <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> values  <a href="#a0d6ac26af619d11bb7e2aa8ccdcc2ad4">More...</a><br /></td></tr>
+<tr class="separator:a0d6ac26af619d11bb7e2aa8ccdcc2ad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8be2300dd628f8be9f497935572e8029"><td class="memTemplParams" colspan="2">template&lt;std::int64_t Value, class Archetype  = int&gt; </td></tr>
 <tr class="memitem:a8be2300dd628f8be9f497935572e8029"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a8be2300dd628f8be9f497935572e8029">elasticate</a> () -&gt; _elastic_impl::elasticate_t&lt; std::int64_t, Value, Archetype &gt;</td></tr>
 <tr class="memdesc:a8be2300dd628f8be9f497935572e8029"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate an <a class="el" href="index.html#elastic">Extensible</a> object of given value  <a href="#a8be2300dd628f8be9f497935572e8029">More...</a><br /></td></tr>
@@ -153,10 +142,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a3cdd4cc99979ba17ab2d973410ba2cbc"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; Rep, Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a3cdd4cc99979ba17ab2d973410ba2cbc">exp2</a> (<a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; Rep, Exponent &gt; x)</td></tr>
 <tr class="memdesc:a3cdd4cc99979ba17ab2d973410ba2cbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates exp2(x), i.e. 2^xAccurate to 1LSB for up to 32 bit underlying representation.  <a href="#a3cdd4cc99979ba17ab2d973410ba2cbc">More...</a><br /></td></tr>
 <tr class="separator:a3cdd4cc99979ba17ab2d973410ba2cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec53e3fed9783bb9098227c3ed655c61"><td class="memTemplParams" colspan="2">template&lt;class Lhs , class Rhs &gt; </td></tr>
-<tr class="memitem:aec53e3fed9783bb9098227c3ed655c61"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#aec53e3fed9783bb9098227c3ed655c61">multiply</a> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; decltype(_fixed_point_impl::operate&lt; _fixed_point_impl::named_function_tag, _impl::multiply_tag &gt;(lhs, rhs))</td></tr>
-<tr class="memdesc:aec53e3fed9783bb9098227c3ed655c61"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the product of two <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> factors  <a href="#aec53e3fed9783bb9098227c3ed655c61">More...</a><br /></td></tr>
-<tr class="separator:aec53e3fed9783bb9098227c3ed655c61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dc9761bf4e7e29edede26ad4f989593"><td class="memTemplParams" colspan="2">template&lt;class Lhs , class Rhs &gt; </td></tr>
+<tr class="memitem:a4dc9761bf4e7e29edede26ad4f989593"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a4dc9761bf4e7e29edede26ad4f989593">multiply</a> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; decltype(_impl::fp::operate&lt; _impl::fp::named_function_tag, _impl::multiply_tag &gt;(lhs, rhs))</td></tr>
+<tr class="memdesc:a4dc9761bf4e7e29edede26ad4f989593"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the product of two <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> factors  <a href="#a4dc9761bf4e7e29edede26ad4f989593">More...</a><br /></td></tr>
+<tr class="separator:a4dc9761bf4e7e29edede26ad4f989593"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03fe4ee59d6bb3e36129865fe6eb7a51"><td class="memTemplParams" colspan="2">template&lt;class RhsRep , int RhsExponent&gt; </td></tr>
 <tr class="memitem:a03fe4ee59d6bb3e36129865fe6eb7a51"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a03fe4ee59d6bb3e36129865fe6eb7a51">negate</a> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; RhsRep, RhsExponent &gt; &amp;rhs) -&gt; <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; decltype(-rhs.data()), RhsExponent &gt;</td></tr>
 <tr class="memdesc:a03fe4ee59d6bb3e36129865fe6eb7a51"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the negative of a <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> value  <a href="#a03fe4ee59d6bb3e36129865fe6eb7a51">More...</a><br /></td></tr>
@@ -165,17 +154,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a3fc51de1b01d64d8d204ba880709fa20"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; Rep, Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a3fc51de1b01d64d8d204ba880709fa20">sqrt</a> (const <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; Rep, Exponent &gt; &amp;x)</td></tr>
 <tr class="memdesc:a3fc51de1b01d64d8d204ba880709fa20"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the square root of a <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> value  <a href="#a3fc51de1b01d64d8d204ba880709fa20">More...</a><br /></td></tr>
 <tr class="separator:a3fc51de1b01d64d8d204ba880709fa20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d5fff8437b2363d40d92800c388fdb6"><td class="memTemplParams" colspan="2">template&lt;class Lhs , class Rhs &gt; </td></tr>
-<tr class="memitem:a5d5fff8437b2363d40d92800c388fdb6"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a5d5fff8437b2363d40d92800c388fdb6">subtract</a> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; decltype(_fixed_point_impl::operate&lt; _fixed_point_impl::named_function_tag, _impl::subtract_tag &gt;(lhs, rhs))</td></tr>
-<tr class="memdesc:a5d5fff8437b2363d40d92800c388fdb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the difference of two <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> values  <a href="#a5d5fff8437b2363d40d92800c388fdb6">More...</a><br /></td></tr>
-<tr class="separator:a5d5fff8437b2363d40d92800c388fdb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:abf924048d3c7b6f542d16479690f825d"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:abf924048d3c7b6f542d16479690f825d"><td class="memTemplItemLeft" align="right" valign="top">constexpr unsigned&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#abf924048d3c7b6f542d16479690f825d">width_v</a> = <a class="el" href="structsg14_1_1width.html">width</a>&lt;T&gt;::value</td></tr>
-<tr class="memdesc:abf924048d3c7b6f542d16479690f825d"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides width of numeric type  <a href="#abf924048d3c7b6f542d16479690f825d">More...</a><br /></td></tr>
-<tr class="separator:abf924048d3c7b6f542d16479690f825d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31db89d9b2f53b5c3d553b0949199750"><td class="memTemplParams" colspan="2">template&lt;class Lhs , class Rhs &gt; </td></tr>
+<tr class="memitem:a31db89d9b2f53b5c3d553b0949199750"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a31db89d9b2f53b5c3d553b0949199750">subtract</a> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; decltype(_impl::fp::operate&lt; _impl::fp::named_function_tag, _impl::subtract_tag &gt;(lhs, rhs))</td></tr>
+<tr class="memdesc:a31db89d9b2f53b5c3d553b0949199750"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the difference of two <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> values  <a href="#a31db89d9b2f53b5c3d553b0949199750">More...</a><br /></td></tr>
+<tr class="separator:a31db89d9b2f53b5c3d553b0949199750"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>study group 14 of the C++ working group </p>
@@ -205,14 +187,14 @@ template&lt;int IntegerDigits, int FractionalDigits = 0, class Archetype  = sign
 
 </div>
 </div>
-<a class="anchor" id="a554818ae14ccdf74abc7895b9d6ae435"></a>
+<a class="anchor" id="a65ad8cb3ddf886cec140e012306df74e"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;int IntegerDigits, int FractionalDigits = 0, class Archetype  = signed&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacesg14.html#a554818ae14ccdf74abc7895b9d6ae435">sg14::make_fixed</a> = typedef <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; <a class="el" href="namespacesg14.html#ab2937f297d8316987334cf398f6e6020">set_width_t</a>&lt;Archetype, IntegerDigits+FractionalDigits+is_signed&lt;Archetype&gt;::value&gt;, -FractionalDigits&gt;</td>
+          <td class="memname">using <a class="el" href="namespacesg14.html#a65ad8cb3ddf886cec140e012306df74e">sg14::make_fixed</a> = typedef <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; set_width_t&lt;Archetype, IntegerDigits+FractionalDigits+std::numeric_limits&lt;Archetype&gt;::is_signed&gt;, -FractionalDigits&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -243,42 +225,18 @@ Resultant type is signed by default.</dd></dl>
 template&lt;int IntegerDigits, int FractionalDigits = 0, class Archetype  = unsigned&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacesg14.html#ab65a38c5bd94875a8e520d4f78df88e0">sg14::make_ufixed</a> = typedef <a class="el" href="namespacesg14.html#a554818ae14ccdf74abc7895b9d6ae435">make_fixed</a>&lt; IntegerDigits, FractionalDigits, typename make_unsigned&lt;Archetype&gt;::type&gt;</td>
+          <td class="memname">using <a class="el" href="namespacesg14.html#ab65a38c5bd94875a8e520d4f78df88e0">sg14::make_ufixed</a> = typedef <a class="el" href="namespacesg14.html#a65ad8cb3ddf886cec140e012306df74e">make_fixed</a>&lt; IntegerDigits, FractionalDigits, typename make_unsigned&lt;Archetype&gt;::type&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>specializes <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> with the given number of integer and fractional digits; produces an unsigned type </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacesg14.html#a554818ae14ccdf74abc7895b9d6ae435" title="specializes fixed_point with the given number of integer and fractional digits ">make_fixed</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacesg14.html#a65ad8cb3ddf886cec140e012306df74e" title="specializes fixed_point with the given number of integer and fractional digits ">make_fixed</a> </dd></dl>
 
-</div>
-</div>
-<a class="anchor" id="ab2937f297d8316987334cf398f6e6020"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class Archetype , _width_type MinNumBits&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="namespacesg14.html#ab2937f297d8316987334cf398f6e6020">sg14::set_width_t</a> = typedef typename <a class="el" href="structsg14_1_1set__width.html">set_width</a>&lt;Archetype, MinNumBits&gt;::type</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>resizes a type </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Archetype</td><td>the type to resize </td></tr>
-    <tr><td class="paramname">MinNumBits</td><td>the desired width in bits</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section user"><dt>Examples</dt><dd></dd></dl>
-<p>To resize a native-sized unsigned int to 2-bytes: </p><div class="fragment"><div class="line"><span class="keyword">using</span> new_type = set_width_t&lt;unsigned, 16&gt;;</div><div class="line">static_assert(std::is_same&lt;new_type, uint16_t&gt;::value, <span class="stringliteral">&quot;failed to resize an unsigned int to 16-bytes&quot;</span>);</div></div><!-- fragment --><p> To resize a signed byte type to a built-in signed type of at least 5 bytes: </p><div class="fragment"><div class="line"><span class="keyword">using</span> new_type = set_width_t&lt;signed char, 35&gt;;</div><div class="line">static_assert(std::is_same&lt;new_type, int64_t&gt;::value, <span class="stringliteral">&quot;failed to resize a signed char to a type of at least 35 bits&quot;</span>);</div></div><!-- fragment --><p> To resize a signed, 1-byte fixed-point type to a fixed-point type of at least 3 bytes: </p><div class="fragment"><div class="line"><span class="keyword">using</span> new_type = set_width_t&lt;fixed_point&lt;int8_t&gt;, 24&gt;;</div><div class="line">static_assert(std::is_same&lt;new_type, fixed_point&lt;int32_t&gt;&gt;::value, <span class="stringliteral">&quot;failed to resize a signed, 1-byte fixed-point type to a fixed-point type of at least 3 bytes&quot;</span>);</div></div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="ac05d1f65d18695bf6733fc4d9a372f82"></a>
+<a class="anchor" id="a4329830caf2f89a8b651acd74568f0ff"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -299,7 +257,7 @@ template&lt;class Lhs , class Rhs &gt; </div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; decltype(_fixed_point_impl::operate&lt;_fixed_point_impl::named_function_tag, _impl::add_tag&gt;(lhs, rhs))
+          <td></td><td> -&gt; decltype(_impl::fp::operate&lt;_impl::fp::named_function_tag, _impl::add_tag&gt;(lhs, rhs))
     </td>
         </tr>
       </table>
@@ -314,11 +272,11 @@ template&lt;class Lhs , class Rhs &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>sum: lhs + rhs</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This function add the values without performing any additional scaling or conversion.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacesg14.html#a03fe4ee59d6bb3e36129865fe6eb7a51" title="calculates the negative of a fixed_point value ">negate</a>, <a class="el" href="namespacesg14.html#a5d5fff8437b2363d40d92800c388fdb6" title="calculates the difference of two fixed_point values ">subtract</a>, <a class="el" href="namespacesg14.html#aec53e3fed9783bb9098227c3ed655c61" title="calculates the product of two fixed_point factors ">multiply</a>, <a class="el" href="namespacesg14.html#a5c3fa0c739d0787621649dbd9fcc26bc" title="calculates the quotient of two fixed_point values ">divide</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacesg14.html#a03fe4ee59d6bb3e36129865fe6eb7a51" title="calculates the negative of a fixed_point value ">negate</a>, <a class="el" href="namespacesg14.html#a31db89d9b2f53b5c3d553b0949199750" title="calculates the difference of two fixed_point values ">subtract</a>, <a class="el" href="namespacesg14.html#a4dc9761bf4e7e29edede26ad4f989593" title="calculates the product of two fixed_point factors ">multiply</a>, <a class="el" href="namespacesg14.html#a0d6ac26af619d11bb7e2aa8ccdcc2ad4" title="calculates the quotient of two fixed_point values ">divide</a> </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a5c3fa0c739d0787621649dbd9fcc26bc"></a>
+<a class="anchor" id="a0d6ac26af619d11bb7e2aa8ccdcc2ad4"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -339,7 +297,7 @@ template&lt;class Lhs , class Rhs &gt; </div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; decltype(_fixed_point_impl::operate&lt;_fixed_point_impl::named_function_tag, _impl::divide_tag&gt;(lhs,
+          <td></td><td> -&gt; decltype(_impl::fp::operate&lt;_impl::fp::division_named_function_tag, _impl::divide_tag&gt;(lhs,
             rhs))
     </td>
         </tr>
@@ -355,7 +313,7 @@ template&lt;class Lhs , class Rhs &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>quotient: lhs / rhs</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This function divides the values without performing any additional scaling or conversion.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacesg14.html#a03fe4ee59d6bb3e36129865fe6eb7a51" title="calculates the negative of a fixed_point value ">negate</a>, <a class="el" href="namespacesg14.html#ac05d1f65d18695bf6733fc4d9a372f82" title="calculates the sum of two fixed_point values ">add</a>, <a class="el" href="namespacesg14.html#a5d5fff8437b2363d40d92800c388fdb6" title="calculates the difference of two fixed_point values ">subtract</a>, <a class="el" href="namespacesg14.html#aec53e3fed9783bb9098227c3ed655c61" title="calculates the product of two fixed_point factors ">multiply</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacesg14.html#a03fe4ee59d6bb3e36129865fe6eb7a51" title="calculates the negative of a fixed_point value ">negate</a>, <a class="el" href="namespacesg14.html#a4329830caf2f89a8b651acd74568f0ff" title="calculates the sum of two fixed_point values ">add</a>, <a class="el" href="namespacesg14.html#a31db89d9b2f53b5c3d553b0949199750" title="calculates the difference of two fixed_point values ">subtract</a>, <a class="el" href="namespacesg14.html#a4dc9761bf4e7e29edede26ad4f989593" title="calculates the product of two fixed_point factors ">multiply</a> </dd></dl>
 
 </div>
 </div>
@@ -416,7 +374,7 @@ template&lt;class Rep , int Exponent&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="aec53e3fed9783bb9098227c3ed655c61"></a>
+<a class="anchor" id="a4dc9761bf4e7e29edede26ad4f989593"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -437,7 +395,7 @@ template&lt;class Lhs , class Rhs &gt; </div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; decltype(_fixed_point_impl::operate&lt;_fixed_point_impl::named_function_tag, _impl::multiply_tag&gt;(lhs, rhs))
+          <td></td><td> -&gt; decltype(_impl::fp::operate&lt;_impl::fp::named_function_tag, _impl::multiply_tag&gt;(lhs, rhs))
     </td>
         </tr>
       </table>
@@ -452,7 +410,7 @@ template&lt;class Lhs , class Rhs &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>product: lhs * rhs</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This function multiplies the values without performing any additional scaling or conversion.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacesg14.html#a03fe4ee59d6bb3e36129865fe6eb7a51" title="calculates the negative of a fixed_point value ">negate</a>, <a class="el" href="namespacesg14.html#ac05d1f65d18695bf6733fc4d9a372f82" title="calculates the sum of two fixed_point values ">add</a>, <a class="el" href="namespacesg14.html#a5d5fff8437b2363d40d92800c388fdb6" title="calculates the difference of two fixed_point values ">subtract</a>, <a class="el" href="namespacesg14.html#a5c3fa0c739d0787621649dbd9fcc26bc" title="calculates the quotient of two fixed_point values ">divide</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacesg14.html#a03fe4ee59d6bb3e36129865fe6eb7a51" title="calculates the negative of a fixed_point value ">negate</a>, <a class="el" href="namespacesg14.html#a4329830caf2f89a8b651acd74568f0ff" title="calculates the sum of two fixed_point values ">add</a>, <a class="el" href="namespacesg14.html#a31db89d9b2f53b5c3d553b0949199750" title="calculates the difference of two fixed_point values ">subtract</a>, <a class="el" href="namespacesg14.html#a0d6ac26af619d11bb7e2aa8ccdcc2ad4" title="calculates the quotient of two fixed_point values ">divide</a> </dd></dl>
 
 </div>
 </div>
@@ -482,7 +440,7 @@ template&lt;class RhsRep , int RhsExponent&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>negative: - rhs</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This function negates the value without performing any additional scaling or conversion.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacesg14.html#ac05d1f65d18695bf6733fc4d9a372f82" title="calculates the sum of two fixed_point values ">add</a>, <a class="el" href="namespacesg14.html#a5d5fff8437b2363d40d92800c388fdb6" title="calculates the difference of two fixed_point values ">subtract</a>, <a class="el" href="namespacesg14.html#aec53e3fed9783bb9098227c3ed655c61" title="calculates the product of two fixed_point factors ">multiply</a>, <a class="el" href="namespacesg14.html#a5c3fa0c739d0787621649dbd9fcc26bc" title="calculates the quotient of two fixed_point values ">divide</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacesg14.html#a4329830caf2f89a8b651acd74568f0ff" title="calculates the sum of two fixed_point values ">add</a>, <a class="el" href="namespacesg14.html#a31db89d9b2f53b5c3d553b0949199750" title="calculates the difference of two fixed_point values ">subtract</a>, <a class="el" href="namespacesg14.html#a4dc9761bf4e7e29edede26ad4f989593" title="calculates the product of two fixed_point factors ">multiply</a>, <a class="el" href="namespacesg14.html#a0d6ac26af619d11bb7e2aa8ccdcc2ad4" title="calculates the quotient of two fixed_point values ">divide</a> </dd></dl>
 
 </div>
 </div>
@@ -513,13 +471,13 @@ template&lt;class Rep , int Exponent&gt; </div>
 <dl class="section note"><dt>Note</dt><dd>This function is a placeholder implementation with poor run-time performance characteristics. </dd>
 <dd>
 It uses divides the values without performing any additional scaling or conversion.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacesg14.html#a03fe4ee59d6bb3e36129865fe6eb7a51" title="calculates the negative of a fixed_point value ">negate</a>, <a class="el" href="namespacesg14.html#ac05d1f65d18695bf6733fc4d9a372f82" title="calculates the sum of two fixed_point values ">add</a>, <a class="el" href="namespacesg14.html#a5d5fff8437b2363d40d92800c388fdb6" title="calculates the difference of two fixed_point values ">subtract</a>, <a class="el" href="namespacesg14.html#aec53e3fed9783bb9098227c3ed655c61" title="calculates the product of two fixed_point factors ">multiply</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacesg14.html#a03fe4ee59d6bb3e36129865fe6eb7a51" title="calculates the negative of a fixed_point value ">negate</a>, <a class="el" href="namespacesg14.html#a4329830caf2f89a8b651acd74568f0ff" title="calculates the sum of two fixed_point values ">add</a>, <a class="el" href="namespacesg14.html#a31db89d9b2f53b5c3d553b0949199750" title="calculates the difference of two fixed_point values ">subtract</a>, <a class="el" href="namespacesg14.html#a4dc9761bf4e7e29edede26ad4f989593" title="calculates the product of two fixed_point factors ">multiply</a> </dd></dl>
 
 <p>References <a class="el" href="classsg14_1_1fixed__point.html#a6931bd4a9b423d368967ea7c9a8b979f">sg14::fixed_point&lt; Rep, Exponent &gt;::data()</a>, and <a class="el" href="classsg14_1_1fixed__point.html#ab93367fad34087ab98ce92cd737e1c92">sg14::fixed_point&lt; Rep, Exponent &gt;::from_data()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a5d5fff8437b2363d40d92800c388fdb6"></a>
+<a class="anchor" id="a31db89d9b2f53b5c3d553b0949199750"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -540,7 +498,7 @@ template&lt;class Lhs , class Rhs &gt; </div>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; decltype(_fixed_point_impl::operate&lt;_fixed_point_impl::named_function_tag, _impl::subtract_tag&gt;(lhs,
+          <td></td><td> -&gt; decltype(_impl::fp::operate&lt;_impl::fp::named_function_tag, _impl::subtract_tag&gt;(lhs,
             rhs))
     </td>
         </tr>
@@ -556,31 +514,7 @@ template&lt;class Lhs , class Rhs &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>difference: lhs - rhs</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>This function subtracts the values without performing any additional scaling or conversion.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacesg14.html#a03fe4ee59d6bb3e36129865fe6eb7a51" title="calculates the negative of a fixed_point value ">negate</a>, <a class="el" href="namespacesg14.html#ac05d1f65d18695bf6733fc4d9a372f82" title="calculates the sum of two fixed_point values ">add</a>, <a class="el" href="namespacesg14.html#aec53e3fed9783bb9098227c3ed655c61" title="calculates the product of two fixed_point factors ">multiply</a>, <a class="el" href="namespacesg14.html#a5c3fa0c739d0787621649dbd9fcc26bc" title="calculates the quotient of two fixed_point values ">divide</a> </dd></dl>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="abf924048d3c7b6f542d16479690f825d"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr unsigned sg14::width_v = <a class="el" href="structsg14_1_1width.html">width</a>&lt;T&gt;::value</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>provides width of numeric type </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">T</td><td>given numeric type</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section remark"><dt>Remarks</dt><dd>The width is defined as the number of digits including any sign bit. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacesg14.html#a03fe4ee59d6bb3e36129865fe6eb7a51" title="calculates the negative of a fixed_point value ">negate</a>, <a class="el" href="namespacesg14.html#a4329830caf2f89a8b651acd74568f0ff" title="calculates the sum of two fixed_point values ">add</a>, <a class="el" href="namespacesg14.html#a4dc9761bf4e7e29edede26ad4f989593" title="calculates the product of two fixed_point factors ">multiply</a>, <a class="el" href="namespacesg14.html#a0d6ac26af619d11bb7e2aa8ccdcc2ad4" title="calculates the quotient of two fixed_point values ">divide</a> </dd></dl>
 
 </div>
 </div>

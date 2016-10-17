@@ -63,7 +63,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -98,12 +97,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>produces equivalent fixed-point type at a new width  
  <a href="structsg14_1_1set__width_3_01fixed__point_3_01Rep_00_01Exponent_01_4_00_01MinNumBits_01_4.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="fixed__point_8h_source.html">sg14/fixed_point.h</a>&gt;</code></p>
+<p><code>#include &lt;sg14/fixed_point&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a3a7a1039a6529abdd6def5a5fa642ba0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a7a1039a6529abdd6def5a5fa642ba0"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsg14_1_1set__width_3_01fixed__point_3_01Rep_00_01Exponent_01_4_00_01MinNumBits_01_4.html#a3a7a1039a6529abdd6def5a5fa642ba0">type</a> = <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; <a class="el" href="namespacesg14.html#ab2937f297d8316987334cf398f6e6020">set_width_t</a>&lt; Rep, MinNumBits &gt;, Exponent &gt;</td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsg14_1_1set__width_3_01fixed__point_3_01Rep_00_01Exponent_01_4_00_01MinNumBits_01_4.html#a3a7a1039a6529abdd6def5a5fa642ba0">type</a> = <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; set_width_t&lt; Rep, MinNumBits &gt;, Exponent &gt;</td></tr>
 <tr class="memdesc:a3a7a1039a6529abdd6def5a5fa642ba0"><td class="mdescLeft">&#160;</td><td class="mdescRight">resultant type; a <a class="el" href="classsg14_1_1fixed__point.html" title="literal real number approximation that uses fixed-point arithmetic ">fixed_point</a> specialization that is at least <em>MinNumBits</em> bytes in width <br /></td></tr>
 <tr class="separator:a3a7a1039a6529abdd6def5a5fa642ba0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -116,11 +115,11 @@ struct sg14::set_width&lt; fixed_point&lt; Rep, Exponent &gt;, MinNumBits &gt;</
   <table class="tparams">
     <tr><td class="paramname">Rep</td><td>the <em>Rep</em> parameter of <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> </td></tr>
     <tr><td class="paramname">Exponent</td><td>the <em>Exponent</em> parameter of <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> </td></tr>
-    <tr><td class="paramname">MinNumBits</td><td>the desired size of the resultant type such that <code>(<a class="el" href="structsg14_1_1width.html" title="provides width of numeric type ">sg14::width</a>&lt;fixed_point&lt;Rep, Exponent&gt;&gt;::value &gt;= MinNumBytes)</code></td></tr>
+    <tr><td class="paramname">MinNumBits</td><td>the desired size of the resultant type such that <code>(sg14::width&lt;fixed_point&lt;Rep, Exponent&gt;&gt;::value &gt;= MinNumBytes)</code></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="structsg14_1_1width.html" title="provides width of numeric type ">width</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>width </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
