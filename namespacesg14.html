@@ -83,6 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
@@ -94,6 +95,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>study group 14 of the C++ working group  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespacesg14_1_1literals"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesg14_1_1literals.html">literals</a></td></tr>
+<tr class="memdesc:namespacesg14_1_1literals"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate an <a class="el" href="namespacesg14.html#a270ff592f206dee332277b78e0e896e5">sg14::elastic</a> object using a literal <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1elastic__integer.html">elastic_integer</a></td></tr>
@@ -134,14 +141,14 @@ Functions</h2></td></tr>
 <tr class="memitem:a0d6ac26af619d11bb7e2aa8ccdcc2ad4"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a0d6ac26af619d11bb7e2aa8ccdcc2ad4">divide</a> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; decltype(_impl::fp::operate&lt; _impl::fp::division_named_function_tag, _impl::divide_tag &gt;(lhs, rhs))</td></tr>
 <tr class="memdesc:a0d6ac26af619d11bb7e2aa8ccdcc2ad4"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the quotient of two <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> values  <a href="#a0d6ac26af619d11bb7e2aa8ccdcc2ad4">More...</a><br /></td></tr>
 <tr class="separator:a0d6ac26af619d11bb7e2aa8ccdcc2ad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8be2300dd628f8be9f497935572e8029"><td class="memTemplParams" colspan="2">template&lt;std::int64_t Value, class Archetype  = int&gt; </td></tr>
-<tr class="memitem:a8be2300dd628f8be9f497935572e8029"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a8be2300dd628f8be9f497935572e8029">elasticate</a> () -&gt; _elastic_impl::elasticate_t&lt; std::int64_t, Value, Archetype &gt;</td></tr>
-<tr class="memdesc:a8be2300dd628f8be9f497935572e8029"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate an <a class="el" href="index.html#elastic">Extensible</a> object of given value  <a href="#a8be2300dd628f8be9f497935572e8029">More...</a><br /></td></tr>
-<tr class="separator:a8be2300dd628f8be9f497935572e8029"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3cdd4cc99979ba17ab2d973410ba2cbc"><td class="memTemplParams" colspan="2">template&lt;class Rep , int Exponent&gt; </td></tr>
 <tr class="memitem:a3cdd4cc99979ba17ab2d973410ba2cbc"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; Rep, Exponent &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a3cdd4cc99979ba17ab2d973410ba2cbc">exp2</a> (<a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a>&lt; Rep, Exponent &gt; x)</td></tr>
 <tr class="memdesc:a3cdd4cc99979ba17ab2d973410ba2cbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates exp2(x), i.e. 2^xAccurate to 1LSB for up to 32 bit underlying representation.  <a href="#a3cdd4cc99979ba17ab2d973410ba2cbc">More...</a><br /></td></tr>
 <tr class="separator:a3cdd4cc99979ba17ab2d973410ba2cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a436bc2889911d8bb376cfc9ae1ccd8e4"><td class="memTemplParams" colspan="2">template&lt;std::int64_t Value, class Archetype  = int&gt; </td></tr>
+<tr class="memitem:a436bc2889911d8bb376cfc9ae1ccd8e4"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a436bc2889911d8bb376cfc9ae1ccd8e4">make_elastic</a> (std::integral_constant&lt; std::int64_t, Value &gt;=std::integral_constant&lt; std::int64_t, Value &gt;()) -&gt; <a class="el" href="namespacesg14.html#a270ff592f206dee332277b78e0e896e5">elastic</a>&lt; _const_integer_impl::num_integer_bits(Value),-_const_integer_impl::num_integer_zeros(Value), Archetype &gt;</td></tr>
+<tr class="memdesc:a436bc2889911d8bb376cfc9ae1ccd8e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">generate an <a class="el" href="index.html#elastic">Extensible</a> object of given value  <a href="#a436bc2889911d8bb376cfc9ae1ccd8e4">More...</a><br /></td></tr>
+<tr class="separator:a436bc2889911d8bb376cfc9ae1ccd8e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4dc9761bf4e7e29edede26ad4f989593"><td class="memTemplParams" colspan="2">template&lt;class Lhs , class Rhs &gt; </td></tr>
 <tr class="memitem:a4dc9761bf4e7e29edede26ad4f989593"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesg14.html#a4dc9761bf4e7e29edede26ad4f989593">multiply</a> (const Lhs &amp;lhs, const Rhs &amp;rhs) -&gt; decltype(_impl::fp::operate&lt; _impl::fp::named_function_tag, _impl::multiply_tag &gt;(lhs, rhs))</td></tr>
 <tr class="memdesc:a4dc9761bf4e7e29edede26ad4f989593"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the product of two <a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> factors  <a href="#a4dc9761bf4e7e29edede26ad4f989593">More...</a><br /></td></tr>
@@ -317,36 +324,6 @@ template&lt;class Lhs , class Rhs &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a8be2300dd628f8be9f497935572e8029"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;std::int64_t Value, class Archetype  = int&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr auto sg14::elasticate </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> -&gt; _elastic_impl::elasticate_t&lt;std::int64_t, Value, Archetype&gt;
-    </td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>generate an <a class="el" href="index.html#elastic">Extensible</a> object of given value </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Value</td><td>the integer number to be represented </td></tr>
-    <tr><td class="paramname">Archetype</td><td>the archetype of the resultant <a class="el" href="index.html#elastic">Extensible</a> object</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the given value represented using an <a class="el" href="index.html#elastic">Extensible</a> type</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>The return type is guaranteed to be no larger than is necessary to represent the value.</dd></dl>
-<dl class="section user"><dt>Example</dt><dd></dd></dl>
-<p>To define a 1-byte object with value 1024: </p><div class="fragment"><div class="line">constexpr <span class="keyword">auto</span> n = elasticate&lt;1024, char&gt;();</div><div class="line"></div><div class="line">static_assert(n==1024, <span class="stringliteral">&quot;n now has the value, 1024&quot;</span>);</div><div class="line">static_assert(<span class="keyword">sizeof</span>(n)==<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>), <span class="stringliteral">&quot;by default elasticate uses the most eficient type it can&quot;</span>);</div></div><!-- fragment --><p> To define a int-sized object with value 1024: </p><div class="fragment"><div class="line">constexpr <span class="keyword">auto</span> n = elasticate&lt;1024&gt;();</div><div class="line"></div><div class="line">static_assert(n==1024, <span class="stringliteral">&quot;n now has the value, 1024&quot;</span>);</div><div class="line">static_assert(<span class="keyword">sizeof</span>(n)==<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>), <span class="stringliteral">&quot;by default elasticate uses the most eficient type it can&quot;</span>);</div></div><!-- fragment -->
-</div>
-</div>
 <a class="anchor" id="a3cdd4cc99979ba17ab2d973410ba2cbc"></a>
 <div class="memitem">
 <div class="memproto">
@@ -372,6 +349,37 @@ template&lt;class Rep , int Exponent&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the result of the exponential, in the same representation as x </dd></dl>
 
+</div>
+</div>
+<a class="anchor" id="a436bc2889911d8bb376cfc9ae1ccd8e4"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::int64_t Value, class Archetype  = int&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto sg14::make_elastic </td>
+          <td>(</td>
+          <td class="paramtype">std::integral_constant&lt; std::int64_t, Value &gt;&#160;</td>
+          <td class="paramname"> = <code>std::integral_constant&lt;std::int64_t,&#160;Value&gt;()</code></td><td>)</td>
+          <td> -&gt; <a class="el" href="namespacesg14.html#a270ff592f206dee332277b78e0e896e5">elastic</a>&lt;_const_integer_impl::num_integer_bits(Value), -_const_integer_impl::num_integer_zeros(Value), Archetype&gt;
+    </td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>generate an <a class="el" href="index.html#elastic">Extensible</a> object of given value </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value</td><td>the integer number to be represented </td></tr>
+    <tr><td class="paramname">Archetype</td><td>the archetype of the resultant <a class="el" href="index.html#elastic">Extensible</a> object</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the given value represented using an <a class="el" href="index.html#elastic">Extensible</a> type</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The return type is guaranteed to be no larger than is necessary to represent the value.</dd></dl>
+<dl class="section user"><dt>Example</dt><dd></dd></dl>
+<p>To define a 1-byte object with value 1024: </p><div class="fragment"><div class="line">constexpr <span class="keyword">auto</span> n = make_elastic&lt;1024, char&gt;();</div><div class="line"></div><div class="line">static_assert(n==1024, <span class="stringliteral">&quot;n now has the value, 1024&quot;</span>);</div><div class="line">static_assert(<span class="keyword">sizeof</span>(n)==<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>), <span class="stringliteral">&quot;by default make_elastic uses the most eficient type it can&quot;</span>);</div></div><!-- fragment --><p> To define a int-sized object with value 1024: </p><div class="fragment"><div class="line">constexpr <span class="keyword">auto</span> n = make_elastic&lt;1024&gt;();</div><div class="line"></div><div class="line">static_assert(n==1024, <span class="stringliteral">&quot;n now has the value, 1024&quot;</span>);</div><div class="line">static_assert(<span class="keyword">sizeof</span>(n)==<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>), <span class="stringliteral">&quot;by default make_elastic uses the most eficient type it can&quot;</span>);</div></div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a4dc9761bf4e7e29edede26ad4f989593"></a>
@@ -473,7 +481,7 @@ template&lt;class Rep , int Exponent&gt; </div>
 It uses divides the values without performing any additional scaling or conversion.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacesg14.html#a03fe4ee59d6bb3e36129865fe6eb7a51" title="calculates the negative of a fixed_point value ">negate</a>, <a class="el" href="namespacesg14.html#a4329830caf2f89a8b651acd74568f0ff" title="calculates the sum of two fixed_point values ">add</a>, <a class="el" href="namespacesg14.html#a31db89d9b2f53b5c3d553b0949199750" title="calculates the difference of two fixed_point values ">subtract</a>, <a class="el" href="namespacesg14.html#a4dc9761bf4e7e29edede26ad4f989593" title="calculates the product of two fixed_point factors ">multiply</a> </dd></dl>
 
-<p>References <a class="el" href="classsg14_1_1fixed__point.html#a6931bd4a9b423d368967ea7c9a8b979f">sg14::fixed_point&lt; Rep, Exponent &gt;::data()</a>, and <a class="el" href="classsg14_1_1fixed__point.html#ab93367fad34087ab98ce92cd737e1c92">sg14::fixed_point&lt; Rep, Exponent &gt;::from_data()</a>.</p>
+<p>References <a class="el" href="classsg14_1_1fixed__point.html#ad73a779f0a7bbbcc90eda06bb4466c15">sg14::fixed_point&lt; Rep, Exponent &gt;::data()</a>, and <a class="el" href="classsg14_1_1fixed__point.html#a17465c19e2e4aac2ec62f4bd3bee4541">sg14::fixed_point&lt; Rep, Exponent &gt;::from_data()</a>.</p>
 
 </div>
 </div>

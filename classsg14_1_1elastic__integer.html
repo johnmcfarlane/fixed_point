@@ -115,16 +115,25 @@ using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac29168103b6ac949ee6013866d43fe40"><td class="memTemplParams" colspan="2"><a class="anchor" id="ac29168103b6ac949ee6013866d43fe40"></a>
-template&lt;class S &gt; </td></tr>
-<tr class="memitem:ac29168103b6ac949ee6013866d43fe40"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1elastic__integer.html#ac29168103b6ac949ee6013866d43fe40">elastic_integer</a> (S s)</td></tr>
-<tr class="memdesc:ac29168103b6ac949ee6013866d43fe40"><td class="mdescLeft">&#160;</td><td class="mdescRight">common copy constructor <br /></td></tr>
-<tr class="separator:ac29168103b6ac949ee6013866d43fe40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe93d3e0fb9eb7a5aaabb96c5915a8c0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe93d3e0fb9eb7a5aaabb96c5915a8c0"></a>
+constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1elastic__integer.html#abe93d3e0fb9eb7a5aaabb96c5915a8c0">elastic_integer</a> (const <a class="el" href="classsg14_1_1elastic__integer.html">elastic_integer</a> &amp;rhs)</td></tr>
+<tr class="memdesc:abe93d3e0fb9eb7a5aaabb96c5915a8c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">common copy constructor <br /></td></tr>
+<tr class="separator:abe93d3e0fb9eb7a5aaabb96c5915a8c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85446dec9af06376911c7ef9db5e3db3"><td class="memTemplParams" colspan="2"><a class="anchor" id="a85446dec9af06376911c7ef9db5e3db3"></a>
+template&lt;class Number , typename std::enable_if&lt; std::numeric_limits&lt; Number &gt;::is_specialized, int &gt;::type Dummy = 0&gt; </td></tr>
+<tr class="memitem:a85446dec9af06376911c7ef9db5e3db3"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1elastic__integer.html#a85446dec9af06376911c7ef9db5e3db3">elastic_integer</a> (Number n)</td></tr>
+<tr class="memdesc:a85446dec9af06376911c7ef9db5e3db3"><td class="mdescLeft">&#160;</td><td class="mdescRight">construct from integer type <br /></td></tr>
+<tr class="separator:a85446dec9af06376911c7ef9db5e3db3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7475381be77dac7e2a79683d40fe8e0"><td class="memTemplParams" colspan="2"><a class="anchor" id="aa7475381be77dac7e2a79683d40fe8e0"></a>
 template&lt;int FromWidth, class FromArchetype &gt; </td></tr>
 <tr class="memitem:aa7475381be77dac7e2a79683d40fe8e0"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1elastic__integer.html#aa7475381be77dac7e2a79683d40fe8e0">elastic_integer</a> (const <a class="el" href="classsg14_1_1elastic__integer.html">elastic_integer</a>&lt; FromWidth, FromArchetype &gt; &amp;rhs)</td></tr>
 <tr class="memdesc:aa7475381be77dac7e2a79683d40fe8e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor taking an <a class="el" href="classsg14_1_1elastic__integer.html" title="literal integer type that encodes its width in bits within its type ">elastic_integer</a> type <br /></td></tr>
 <tr class="separator:aa7475381be77dac7e2a79683d40fe8e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cbe9fa86601c875a5af7e3a7e2ea397"><td class="memTemplParams" colspan="2"><a class="anchor" id="a6cbe9fa86601c875a5af7e3a7e2ea397"></a>
+template&lt;typename Integral , Integral Value, int Exponent&gt; </td></tr>
+<tr class="memitem:a6cbe9fa86601c875a5af7e3a7e2ea397"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1elastic__integer.html#a6cbe9fa86601c875a5af7e3a7e2ea397">elastic_integer</a> (const_integer&lt; Integral, Value, Digits, Exponent &gt;)</td></tr>
+<tr class="memdesc:a6cbe9fa86601c875a5af7e3a7e2ea397"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor taking an integral constant <br /></td></tr>
+<tr class="separator:a6cbe9fa86601c875a5af7e3a7e2ea397"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dc0f36d4c2679fab4d139ea9c01e0eb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7dc0f36d4c2679fab4d139ea9c01e0eb"></a>
 constexpr <a class="el" href="classsg14_1_1elastic__integer.html#abb8050462a38ec3b85a2372b7aece4ff">rep</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1elastic__integer.html#a7dc0f36d4c2679fab4d139ea9c01e0eb">data</a> () const </td></tr>
 <tr class="memdesc:a7dc0f36d4c2679fab4d139ea9c01e0eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns internal representation of value <br /></td></tr>

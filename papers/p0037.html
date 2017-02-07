@@ -141,21 +141,6 @@ parameter some type other than a built-in integral. The signedness of
 <code>Archetype</code> corresponds to the signedness of the resultant
 <code>fixed_point</code> specialization although the size does not.</p>
 <h3>Conversion</h3>
-<p>Fixed-point numbers can be converted to and from other arithmetic types.
-A precondition is that the conversion is supported by the <code>Rep</code> type.
-Implicit conversion is allowed
-in cases where the destination type can store all values of the source type.</p>
-<p>For example, this implicit initialization is valid
-because all values of <code>uint8_t</code> can be stored in <code>a</code></p>
-<pre><code class="language-c++11">fixed_point&lt;uint16_t, -8&gt; a = uint8_t{};
-</code></pre>
-<p>but none of these implicit initializations compile:</p>
-<pre><code class="language-c++11">fixed_point&lt;uint16_t, -8&gt; b = uint16_t{};  // maximum value exceeded
-fixed_point&lt;uint16_t, -8&gt; c = int8_t{};  // minimum value exceeded
-fixed_point&lt;uint16_t, -8&gt; d = fixed_point&lt;uint16_t, -16&gt;{};  // precision loss
-uint16_t e = fixed_point&lt;uint16_t, -8&gt;{};  // precision loss
-fixed_point&lt;uint16_t, -8&gt; f = double{};  // all of the above
-</code></pre>
 <p>While effort is made to ensure that significant digits are not lost
 during conversion, no effort is made to avoid rounding errors.
 Whatever would happen when converting to and from <code>Rep</code> largely
