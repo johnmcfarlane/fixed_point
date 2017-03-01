@@ -67,12 +67,10 @@ using set_width_t = sg14::set_width_t<Type, MinNumBits>;
 
 using sg14::divide;
 using sg14::multiply;
-using sg14::fixed_point_reciprocal;
 
 using std::numeric_limits;
 
 using sg14::_impl::identical;
-using namespace sg14::literals;
 
 ////////////////////////////////////////////////////////////////////////////////
 // copy assignment
@@ -749,17 +747,6 @@ static_assert(identical(divide(fixed_point<uint32, 0>{0xFFFE0001LL}, fixed_point
         fixed_point<uint32, 0>{0xffff}), "sg14::fixed_point test failed");
 static_assert(identical(divide(make_fixed<1, 14>{1}, make_fixed<7, 0>{127}), fixed_point<test_int, -14>{1./127}),
         "sg14::fixed_point test failed");
-
-// sg14::fixed_point_reciprocal
-static_assert(identical(fixed_point_reciprocal<uint8>(1_c), fixed_point<uint16, -8>{1}), "sg14::fixed_point_reciprocal test failed");
-static_assert(identical(fixed_point_reciprocal<uint8>(2_c), fixed_point<uint16, -9>{0.5}), "sg14::fixed_point_reciprocal test failed");
-static_assert(identical(fixed_point_reciprocal<int32>(3_c), fixed_point<int64, -32>{1. / 3}), "sg14::fixed_point_reciprocal test failed");
-static_assert(identical(fixed_point_reciprocal<int16>(77_c), fixed_point<int32, -21>{1. / 77}), "sg14::fixed_point_reciprocal test failed");
-
-static_assert(identical(int{2147483647 * fixed_point_reciprocal<int32>(1_c)}, 2147483647), "sg14::fixed_point_reciprocal test failed");
-static_assert(identical(int{2147483647 * fixed_point_reciprocal<int32>(13_c)}, 2147483647/13), "sg14::fixed_point_reciprocal test failed");
-static_assert(identical(int{324871 * fixed_point_reciprocal<int32>(98372_c)}, 324871/98372), "sg14::fixed_point_reciprocal test failed");
-static_assert(identical(int{55 * fixed_point_reciprocal<uint16>(5_c)}, 10), "sg14::fixed_point_reciprocal test failed");
 
 ////////////////////////////////////////////////////////////////////////////////
 // std::numeric_limits<fixed_point<>>

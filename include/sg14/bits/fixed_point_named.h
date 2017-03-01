@@ -118,46 +118,6 @@ namespace sg14 {
         return _impl::fp::operate<_impl::fp::division_named_function_tag, _impl::divide_tag>(lhs,
                 rhs);
     }
-
-    ////////////////////////////////////////////////////////////////////////////////
-    // fixed_point_reciprocal
-
-    namespace _fixed_point_named_impl {
-        template<typename Dividend, typename Integer, Integer Value>
-        struct fixed_point_reciprocal_result {
-            using divisor_type = sg14::const_integer<Integer, Value>;
-            static constexpr auto divisor_digits = divisor_type::digits;
-            static constexpr auto dividend_digits = std::numeric_limits<Dividend>::digits;
-
-            // TODO: determine whether the -1 actually makes the code faster
-            static constexpr auto result_digits = dividend_digits + divisor_digits - 1;
-
-            using type = make_fixed<1, result_digits, Dividend>;
-        };
-    }
-
-    /// \brief produces a fixed-point variable which serves as a reciprocal for the given divisor
-    /// \headerfile sg14/fixed_point
-    ///
-    /// \tparam Dividend the type of values by which the reciprocal will be multiplied
-    /// \tparam Integer the type of Value
-    /// \tparam Value the value of the divisor, passed in as /ref divisor
-    ///
-    /// \param divisor the divisor from which to calculate the reciprocal
-    ///
-    /// \return the reciprocal as an optimally-typed fixed_point instantiation;
-    /// an approximation of 1 / divisor
-
-    template<typename Dividend = int, typename Integer = int, Integer Value = 0>
-    constexpr auto fixed_point_reciprocal(sg14::const_integer<Integer, Value>)
-    -> typename _fixed_point_named_impl::fixed_point_reciprocal_result<Dividend, Integer, Value>::type {
-        static_assert(Value != 0, "divide by zero");
-
-        using result_type = typename _fixed_point_named_impl::fixed_point_reciprocal_result<Dividend, Integer, Value>::type;
-
-        // TODO: improve rounding
-        return divide(result_type{1}, Value);
-    }
 }
 
 #endif	// SG14_FIXED_POINT_NAMED_H
