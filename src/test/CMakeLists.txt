@@ -38,6 +38,7 @@ add_executable(fp_test
         ${CMAKE_CURRENT_LIST_DIR}/snippets.cpp
         ${CMAKE_CURRENT_LIST_DIR}/fixed_point_math.cpp
         ${CMAKE_CURRENT_LIST_DIR}/zero_cost_average.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/zero_cost_reciprocal.cpp
         ${CMAKE_CURRENT_LIST_DIR}/zero_cost_square.cpp
 
         # likely to fail if other files with simpler tests fail

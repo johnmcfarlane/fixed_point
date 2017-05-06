@@ -562,12 +562,6 @@ static_assert(identical(multiply(make_ufixed<4, 4>{2}, make_ufixed<4, 4>{7.5}), 
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////
-// sg14::divide
-
-static_assert(identical(divide(make_fixed<1, 14>{1}, make_fixed<7, 0>{127}), fixed_point<test_int, -14>{1./127}),
-        "sg14::divide test failed");
-
-////////////////////////////////////////////////////////////////////////////////
 // comparison
 
 // heterogeneous fixed-point to fixed-point comparison
@@ -761,6 +755,8 @@ static_assert(identical(divide(fixed_point<uint64, 0>{0xFFFFFFFE00000001LL}, fix
 #endif
 static_assert(identical(divide(fixed_point<uint32, 0>{0xFFFE0001LL}, fixed_point<uint32, 0>{0xffff}),
         fixed_point<uint32, 0>{0xffff}), "sg14::fixed_point test failed");
+static_assert(identical(divide(make_fixed<1, 14>{1}, make_fixed<7, 0>{127}), fixed_point<test_int, -14>{1./127}),
+        "sg14::fixed_point test failed");
 
 ////////////////////////////////////////////////////////////////////////////////
 // std::numeric_limits<fixed_point<>>
