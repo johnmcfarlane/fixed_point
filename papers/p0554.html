@@ -2,8 +2,8 @@
 <strong>Date</strong>: 2017-02-06<br />
 <strong>Reply-to</strong>: John McFarlane, <a href="mailto:mcfarlane.john+fixed-point@gmail.com">mcfarlane.john+fixed-point@gmail.com</a><br />
 <strong>Audience</strong>: SG6, SG14</p>
-<h1>Composition of Arithmetic Types</h1>
-<h2>Contents</h2>
+<h1 id="composition-of-arithmetic-types">Composition of Arithmetic Types</h1>
+<h2 id="contents">Contents</h2>
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#goals">Goals</a>
@@ -11,29 +11,25 @@
 <li><a href="#goals-efficiency">Efficiency</a></li>
 <li><a href="#goals-correctness">Correctness</a></li>
 <li><a href="#goals-usability">Usability</a></li>
-</ul>
-</li>
+</ul></li>
 <li><a href="#definitions">Definitions</a></li>
 <li><a href="#prior_art">Prior Art</a>
 <ul>
 <li><a href="#prior_art-compositional">Compositional</a></li>
 <li><a href="#prior_art-non_compositional">Non-Compositional</a></li>
-</ul>
-</li>
+</ul></li>
 <li><a href="#componentization">Componentization</a>
 <ul>
 <li><a href="#componentization-safety">Example A: Safety</a></li>
 <li><a href="#componentization-safety_elasticity">Example B: Elasticity</a></li>
 <li><a href="#componentization-scale">Example C: Scale</a></li>
-</ul>
-</li>
+</ul></li>
 <li><a href="#composition">Composition</a>
 <ul>
 <li><a href="#composition-fixed_point">Example A: Elastic Fixed-Point</a></li>
 <li><a href="#composition-safe_elastic_integer">Example B: Safe Elastic Integer</a></li>
 <li><a href="#composition-safe_elastic_fixed_point">Example C: Safe Elastic Fixed-point</a></li>
-</ul>
-</li>
+</ul></li>
 <li><a href="#advanced_topics">Advanced Topics</a>
 <ul>
 <li><a href="#advanced_topics-leaky_abstractions">Leaky Abstractions</a></li>
@@ -43,52 +39,32 @@
 <li><a href="#advanced_topics-operator_overloads">Operator Overloads</a></li>
 <li><a href="#advanced_topics-integral_constants">Integral Constants</a></li>
 <li><a href="#advanced_topics-user_defined_literals">User-defined Literals</a></li>
-</ul>
-</li>
+</ul></li>
 <li><a href="#acknowledgements">Acknowledgements</a></li>
 <li><a href="#references">References</a></li>
 </ul>
-<h2><a id="introduction"></a>Introduction</h2>
-<p>One of the goals of the Numerics TS is to add general-purpose arithmetic types to the library
-[<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0101r0.html#Bounded">P0101</a>].
-These types are to provide much needed safety and correctness features which are absent from fundamental types.</p>
-<p>This paper puts the case for expressing those features as individual components
-which can then be composed into types with the desired feature set.
-This approach is referred to as the <em>compositional</em> approach
-and is characterized by class templates with <em>type</em> parameters:</p>
-<pre><code class="language-c++">// approximate a real number by scaling an int32_t down by 16 bits
-using f = fixed_point&lt;int32_t, -16&gt;;
-</code></pre>
-<p>The compositional approach is contrasted with the <em>comprehensive</em> approach
-which aims to achieve similar goals using class templates with <em>non-type</em> parameters:</p>
-<pre><code class="language-c++">// approximate a real number with 15 integer and 16 fractional digits
-using f = fixed_point&lt;15, 16&gt;;
-</code></pre>
-<h2><a id="goals"></a>Goals</h2>
-<p>The design space of arithmetic types aims to satisfy goals which fall into three competing categories:
-<em>efficiency</em>, <em>correctness</em> and <em>usability</em>.</p>
-<h3><a id="goals-efficiency"></a>Efficiency</h3>
-<p>One aim of a library-based solution should be to maintain the efficiency of fundamental arithmetic types.
-Some run-time costs are inevitable additions to existing computation.
-All other run-time costs should be avoided in pursuit of zero-cost abstraction.</p>
-<p>Further, a new wave of specialized hardware is reaching maturity in the form of heterogeneous processing units.
-These include the GPUs which provide the majority of computing power on modern PCs and mobile devices.
-The design and capabilities of these units is continually changing in ways which are difficult to predict.
-An interface which can easily be employed to harness these capabilities is highly valuable.
-And this may improve on the performance of existing fundamental types.</p>
-<p>Over the past few decades, floating-point performance has largely caught up with integer performance.
-However, this has come at the cost of increased energy consumption.
-As performance per watt becomes the limiting factor for cloud and mobile platforms,
-so the economic impetus to use integers to approximate real numbers increases.</p>
+<h2 id="introduction"><a id="introduction"></a>Introduction</h2>
+<p>One of the goals of the Numerics TS is to add general-purpose arithmetic types to the library [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0101r0.html#Bounded">P0101</a>]. These types are to provide much needed safety and correctness features which are absent from fundamental types.</p>
+<p>This paper puts the case for expressing those features as individual components which can then be composed into types with the desired feature set. This approach is referred to as the <em>compositional</em> approach and is characterized by class templates with <em>type</em> parameters:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// approximate a real number by scaling an int32_t down by 16 bits</span>
+<span class="kw">using</span> f = fixed_point&lt;<span class="dt">int32_t</span>, <span class="dv">-16</span>&gt;;</code></pre></div>
+<p>The compositional approach is contrasted with the <em>comprehensive</em> approach which aims to achieve similar goals using class templates with <em>non-type</em> parameters:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// approximate a real number with 15 integer and 16 fractional digits</span>
+<span class="kw">using</span> f = fixed_point&lt;<span class="dv">15</span>, <span class="dv">16</span>&gt;;</code></pre></div>
+<h2 id="goals"><a id="goals"></a>Goals</h2>
+<p>The design space of arithmetic types aims to satisfy goals which fall into three competing categories: <em>efficiency</em>, <em>correctness</em> and <em>usability</em>.</p>
+<h3 id="efficiency"><a id="goals-efficiency"></a>Efficiency</h3>
+<p>One aim of a library-based solution should be to maintain the efficiency of fundamental arithmetic types. Some run-time costs are inevitable additions to existing computation. All other run-time costs should be avoided in pursuit of zero-cost abstraction.</p>
+<p>Further, a new wave of specialized hardware is reaching maturity in the form of heterogeneous processing units. These include the GPUs which provide the majority of computing power on modern PCs and mobile devices. The design and capabilities of these units is continually changing in ways which are difficult to predict. An interface which can easily be employed to harness these capabilities is highly valuable. And this may improve on the performance of existing fundamental types.</p>
+<p>Over the past few decades, floating-point performance has largely caught up with integer performance. However, this has come at the cost of increased energy consumption. As performance per watt becomes the limiting factor for cloud and mobile platforms, so the economic impetus to use integers to approximate real numbers increases.</p>
 <p>In summary, three efficiency-driven goals are:</p>
 <ul>
 <li>zero-cost abstraction over existing fundamental types;</li>
 <li>extensibility and</li>
 <li>increased applicability of integer hardware units.</li>
 </ul>
-<h3><a id="goals-correctness"></a>Correctness</h3>
-<p>Native numeric types have a variety of characteristics that can make them difficult to use correctly.
-Among those within the scope of this document are:</p>
+<h3 id="correctness"><a id="goals-correctness"></a>Correctness</h3>
+<p>Native numeric types have a variety of characteristics that can make them difficult to use correctly. Among those within the scope of this document are:</p>
 <p>Integers:</p>
 <ul>
 <li>operator overflow from: cast to float, shift left, multiplication, addition;</li>
@@ -112,92 +88,61 @@ Among those within the scope of this document are:</p>
 <li>non-determinism;</li>
 <li>divide-by-zero.</li>
 </ul>
-<p>One reason the list is shorter for floating-point is because of extra work it performs at run-time.
-But opportunities exist to address many of these items without run-time cost:
-increasingly, smarter numeric types can shift cost to the compiler.
-However, one problem is that the range of solutions is wide with no single solution to satisfy all use cases.</p>
-<h3><a id="goals-usability"></a>Usability</h3>
+<p>One reason the list is shorter for floating-point is because of extra work it performs at run-time. But opportunities exist to address many of these items without run-time cost: increasingly, smarter numeric types can shift cost to the compiler. However, one problem is that the range of solutions is wide with no single solution to satisfy all use cases.</p>
+<h3 id="usability"><a id="goals-usability"></a>Usability</h3>
 <p>There are two overwhelming reasons why any new arithmetic types should emulate existing fundamental ones:</p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>They require little more than a rudimentary grasp of elementary algebra.</li>
 <li>They are a language feature with which almost all users are familiar.</li>
 </ol>
-<p>It is true that many users complain that arithmetic types are hard to use.
-What they often mean is that they are hard to use <em>correctly</em>:
-the learning curve is mostly smooth
-but hits a bump whenever a <a href="#goals-correctness">Correctness</a> issue is encountered.</p>
-<h2><a id="definitions"></a>Definitions</h2>
-<p>A class is recognized as an arithmetic type if it possesses certain similarities with fundamental arithmetic types.
-In particular, it must have value semantics and arithmetic operators.
-It is often composed of simpler types such as fundamental arithmetic types.
-However, it is only said to have a compositional interface if the choice of type is a feature of its interface.
-Thus compositional interfaces tend to be part of class templates.</p>
+<p>It is true that many users complain that arithmetic types are hard to use. What they often mean is that they are hard to use <em>correctly</em>: the learning curve is mostly smooth but hits a bump whenever a <a href="#goals-correctness">Correctness</a> issue is encountered.</p>
+<h2 id="definitions"><a id="definitions"></a>Definitions</h2>
+<p>A class is recognized as an arithmetic type if it possesses certain similarities with fundamental arithmetic types. In particular, it must have value semantics and arithmetic operators. It is often composed of simpler types such as fundamental arithmetic types. However, it is only said to have a compositional interface if the choice of type is a feature of its interface. Thus compositional interfaces tend to be part of class templates.</p>
 <p>For example,</p>
-<pre><code class="language-c++">template&lt;class Rep&gt;
-class A {
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> Rep&gt;
+<span class="kw">class</span> A {
     Rep data;
 };
 
-template&lt;int Bits, bool Signed&gt;
-class B;
+<span class="kw">template</span>&lt;<span class="dt">int</span> Bits, <span class="dt">bool</span> Signed&gt;
+<span class="kw">class</span> B;
 
-template&lt;&gt;
-class B&lt;32, false&gt; {
-    uint32_t data;
+<span class="kw">template</span>&lt;&gt;
+<span class="kw">class</span> B&lt;<span class="dv">32</span>, <span class="kw">false</span>&gt; {
+    <span class="dt">uint32_t</span> data;
 };
 
-A&lt;uint32_t&gt; a;
-B&lt;32, false&gt; b;
-</code></pre>
+A&lt;<span class="dt">uint32_t</span>&gt; a;
+B&lt;<span class="dv">32</span>, <span class="kw">false</span>&gt; b;</code></pre></div>
 <p>both <code>a</code> and <code>b</code> are composed of the same data type but only <code>a</code> is said to have a compositional interface.</p>
 <p>An important property of compositional interfaces are that they can be nested:</p>
-<pre><code class="language-c++">template&lt;class T&gt;
-class C;
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt;
+<span class="kw">class</span> C;
 
-C&lt;A&lt;T&gt;&gt; c;
-</code></pre>
-<h2><a id="prior_art"></a>Prior Art</h2>
-<h3><a id="prior_art-compositional"></a>Compositional</h3>
+C&lt;A&lt;T&gt;&gt; c;</code></pre></div>
+<h2 id="prior-art"><a id="prior_art"></a>Prior Art</h2>
+<h3 id="compositional"><a id="prior_art-compositional"></a>Compositional</h3>
 <p>Examples of existing types with a compositional interface include:</p>
 <ul>
-<li>integer types which test for overflow at run-time
-[<a href="https://cs.chromium.org/search/?q=file:src/base/numerics/safe_%5B%5E.%5D*%5C.h$&amp;sq=package:chromium&amp;type=cs">Chromium</a>,
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0228r0.pdf">P0228</a>,
-<a href="http://foonathan.net/doc/type_safe/">type_safe</a>];</li>
-<li>fixed-point real number approximations
-[<a href="http://johnmcfarlane.github.io/fixed_point/papers/p0037r3.html">P0037</a>,
-<a href="https://github.com/mizvekov/fp">fp</a>];</li>
-<li>arbitrarily wide integers
-[<a href="http://www.boost.org/doc/libs/release/libs/multiprecision/doc/html/boost_multiprecision/tut/ints/cpp_int.html">Boost.Multiprecision</a>];</li>
+<li>integer types which test for overflow at run-time [<a href="https://cs.chromium.org/search/?q=file:src/base/numerics/safe_%5B%5E.%5D*%5C.h$&amp;sq=package:chromium&amp;type=cs">Chromium</a>, <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0228r0.pdf">P0228</a>, <a href="http://foonathan.net/doc/type_safe/">type_safe</a>];</li>
+<li>fixed-point real number approximations [<a href="http://johnmcfarlane.github.io/fixed_point/papers/p0037r3.html">P0037</a>, <a href="https://github.com/mizvekov/fp">fp</a>];</li>
+<li>arbitrarily wide integers [<a href="http://www.boost.org/doc/libs/release/libs/multiprecision/doc/html/boost_multiprecision/tut/ints/cpp_int.html">Boost.Multiprecision</a>];</li>
 <li>auto-widening integers [<a href="http://johnmcfarlane.github.io/fixed_point/index.html#elastic">elastic_integer</a>);</li>
 <li>complex numbers (<code>std::complex</code>) and</li>
 <li>statically scaled time interval (<code>std::chrono::duration</code>).</li>
 </ul>
-<h3><a id="prior_art-non_compositional"></a>Non-Compositional</h3>
-<p>Counter-examples include Lawrence Crowl's fixed-point paper
-[<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>]
-which proposes a set of <em>comprehensive</em> class templates.
-These produce types which solve all or most of the integer correctness issues listed in section, <a href="#goals-correctness">Correctness</a>.</p>
+<h3 id="non-compositional"><a id="prior_art-non_compositional"></a>Non-Compositional</h3>
+<p>Counter-examples include Lawrence Crowl's fixed-point paper [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>] which proposes a set of <em>comprehensive</em> class templates. These produce types which solve all or most of the integer correctness issues listed in section, <a href="#goals-correctness">Correctness</a>.</p>
 <p>Other counter-examples include:</p>
 <ul>
-<li>arbitrarily wide integers
-[<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0104r0.html">P0104</a>,
-<a href="https://cerevra.github.io/int/">wide_int</a>,
-<a href="http://www.boost.org/doc/libs/release/libs/multiprecision/doc/html/boost_multiprecision/tut/ints/cpp_int.html">Boost.Multiprecision</a>] and</li>
-<li>an integer type which detects overflow conditions
-[<a href="https://bitbucket.org/davidstone/bounded_integer">bounded::integer</a>].</li>
+<li>arbitrarily wide integers [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0104r0.html">P0104</a>, <a href="https://cerevra.github.io/int/">wide_int</a>, <a href="http://www.boost.org/doc/libs/release/libs/multiprecision/doc/html/boost_multiprecision/tut/ints/cpp_int.html">Boost.Multiprecision</a>] and</li>
+<li>an integer type which detects overflow conditions [<a href="https://bitbucket.org/davidstone/bounded_integer">bounded::integer</a>].</li>
 </ul>
-<p>(Note that
-[<a href="http://www.boost.org/doc/libs/release/libs/multiprecision/doc/html/boost_multiprecision/tut/ints/cpp_int.html">Boost.Multiprecision</a>]
-earns a place on both lists as it uses both compositional and non-compositional techniques.)</p>
-<h2><a id="componentization"></a>Componentization</h2>
-<p>This section introduces several examples of arithmetic components
-and explores how they behave when specialized using fundamental types.
-Each is compared to equivalent comprehensive classes and functionality from
-[<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>].</p>
-<h3><a id="componentization-safety"></a>Example A: Safety</h3>
-<p>There are many examples of libraries which aim to add run-time error detection to integers.
-These are useful for addressing:</p>
+<p>(Note that [<a href="http://www.boost.org/doc/libs/release/libs/multiprecision/doc/html/boost_multiprecision/tut/ints/cpp_int.html">Boost.Multiprecision</a>] earns a place on both lists as it uses both compositional and non-compositional techniques.)</p>
+<h2 id="componentization"><a id="componentization"></a>Componentization</h2>
+<p>This section introduces several examples of arithmetic components and explores how they behave when specialized using fundamental types. Each is compared to equivalent comprehensive classes and functionality from [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>].</p>
+<h3 id="example-a-safety"><a id="componentization-safety"></a>Example A: Safety</h3>
+<p>There are many examples of libraries which aim to add run-time error detection to integers. These are useful for addressing:</p>
 <ul>
 <li>uninitialized data;</li>
 <li>divide by zero;</li>
@@ -206,456 +151,285 @@ These are useful for addressing:</p>
 <li>overflow due to cast from floating-point type and</li>
 <li>most negative value.</li>
 </ul>
-<p>The <code>integral</code> (signed) and <code>cardinal</code> (unsigned) class templates from
-[<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>]
-perform such a role using non-type template parameters, e.g.</p>
-<pre><code class="language-c++">template&lt;int Crng, overflow Covf = overflow::exception&gt;
-class integral;
-</code></pre>
-<p>where <code>Crng</code> specifies the range of the value in bits
-and <code>overflow</code> is an enum which specifies what happens if overflow is detected.
-The values of <code>overflow</code> include:</p>
+<p>The <code>integral</code> (signed) and <code>cardinal</code> (unsigned) class templates from [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>] perform such a role using non-type template parameters, e.g.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="dt">int</span> Crng, overflow Covf = overflow::exception&gt;
+<span class="kw">class</span> integral;</code></pre></div>
+<p>where <code>Crng</code> specifies the range of the value in bits and <code>overflow</code> is an enum which specifies what happens if overflow is detected. The values of <code>overflow</code> include:</p>
 <ul>
 <li><code>undefined</code> - much like signed integer overflow behavior;</li>
 <li><code>abort</code> - forces program termination;</li>
 <li><code>exception</code> - throws an exception;</li>
 <li><code>saturate</code> - limits the value to the maximum/minimum allowed by the range.</li>
 </ul>
-<p>The complete list of values is found in
-[<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0105r0.html#OverMode">P0105</a>]
-and covers a wide range of use cases.
-However, it is necessarily finite.
-If any new mode is desired, it must wait on a revision to the standard.</p>
+<p>The complete list of values is found in [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0105r0.html#OverMode">P0105</a>] and covers a wide range of use cases. However, it is necessarily finite. If any new mode is desired, it must wait on a revision to the standard.</p>
 <p>The compositional equivalent might look like</p>
-<pre><code class="language-c++">template&lt;class Rep = int, class ErrorHandler = throwing_handler&lt;Rep&gt;&gt;
-class safe_integer {
-    Rep rep_;
-  public:
-    // ...
-};
-</code></pre>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> Rep = <span class="dt">int</span>, <span class="kw">class</span> ErrorHandler = throwing_handler&lt;Rep&gt;&gt;
+<span class="kw">class</span> safe_integer {
+    Rep <span class="va">rep_</span>;
+  <span class="kw">public</span>:
+    <span class="co">// ...</span>
+};</code></pre></div>
 <p>where <code>ErrorHandler&lt;Rep&gt;</code> specifies what happens under various overflow conditions:</p>
-<pre><code class="language-c++">template&lt;class Rep&gt;
-struct throwing_handler {
-    static constexpr Rep const&amp; max_overflow(Rep const&amp; r) noexcept {
-        throw std::overflow_error(&quot;positive overflow&quot;);
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> Rep&gt;
+<span class="kw">struct</span> throwing_handler {
+    <span class="at">static</span> <span class="kw">constexpr</span> Rep <span class="at">const</span>&amp; max_overflow(Rep <span class="at">const</span>&amp; r) <span class="kw">noexcept</span> {
+        <span class="cf">throw</span> <span class="bu">std::</span>overflow_error(<span class="st">&quot;positive overflow&quot;</span>);
     }
-    // ...
-};
-</code></pre>
-<p>Alternatives to <code>throwing_handler</code> will match the values of enum, <code>overflow</code>.
-For example, <code>saturate_handler</code> might correspond to <code>overflow::saturate</code>.
-However, the user is free to implement alternative handlers as they choose.</p>
-<p>In practice, all of these integer types: <code>safe_integer</code>, <code>integral</code> and <code>cardinal</code>
-behave similarly to fundamental integers <em>until</em> overflow occurs:</p>
-<pre><code class="language-c++">safe_integer&lt;uint8_t&gt; n = 255;  // interface hints that n will resemble uint8_t
-++ n;  // but when its range is exceeded, an exception is thrown
+    <span class="co">// ...</span>
+};</code></pre></div>
+<p>Alternatives to <code>throwing_handler</code> will match the values of enum, <code>overflow</code>. For example, <code>saturate_handler</code> might correspond to <code>overflow::saturate</code>. However, the user is free to implement alternative handlers as they choose.</p>
+<p>In practice, all of these integer types: <code>safe_integer</code>, <code>integral</code> and <code>cardinal</code> behave similarly to fundamental integers <em>until</em> overflow occurs:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">safe_integer&lt;<span class="dt">uint8_t</span>&gt; n = <span class="dv">255</span>;  <span class="co">// interface hints that n will resemble uint8_t</span>
+++ n;  <span class="co">// but when its range is exceeded, an exception is thrown</span>
 
-safe_integer&lt;int, saturate_handler&lt;int&gt;&gt; i = 1e100;  // i == INT_MAX
-</code></pre>
-<p>Crucially, <code>safe_integer&lt;T&gt;</code> gives the user a strong hint that they can expect similar characteristics to <code>T</code>.
-If the user is familiar with <code>int</code> and chooses it to specialize <code>safe_integer</code>,
-they should have a good idea of how it will behave.</p>
-<p>But the most remarkable safety feature of
-[<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>]'s
-types is not supported by <code>safe_integer</code> at all.</p>
-<h3><a id="componentization-safety_elasticity"></a>Example B: Elasticity</h3>
-<p>Elasticity is the ability to expand range in order to contain a growing value.
-For instance, when two 8-bit numbers are summed, the result cannot exceed 9 bits.
-And when two 20-bit numbers are multiplied, the result cannot exceed 40 bits.
-Thus, an elastic type tracks the exact number of bits used
-and returns suitably widened results from binary arithmetic operations.
-This eliminates a common class of overflow errors without the need for run-time checks.</p>
-<p>[<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>]'s
-integer types achieve elasticity by adjusting range:</p>
-<pre><code class="language-c++">integer&lt;4&gt; n = 15;  // 4-digit signed integer
-auto nn = n * n;  // 8-digit signed integer
-</code></pre>
-<p>Consider an equivalent compositional type,
-[<a href="http://johnmcfarlane.github.io/fixed_point/index.html#elastic">elastic_integer</a>]:</p>
-<pre><code class="language-c++">template&lt;int Digits, class Narrowest = int&gt;
-class elastic_integer;
-</code></pre>
+safe_integer&lt;<span class="dt">int</span>, saturate_handler&lt;<span class="dt">int</span>&gt;&gt; i = <span class="fl">1e100</span>;  <span class="co">// i == INT_MAX</span></code></pre></div>
+<p>Crucially, <code>safe_integer&lt;T&gt;</code> gives the user a strong hint that they can expect similar characteristics to <code>T</code>. If the user is familiar with <code>int</code> and chooses it to specialize <code>safe_integer</code>, they should have a good idea of how it will behave.</p>
+<p>But the most remarkable safety feature of [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>]'s types is not supported by <code>safe_integer</code> at all.</p>
+<h3 id="example-b-elasticity"><a id="componentization-safety_elasticity"></a>Example B: Elasticity</h3>
+<p>Elasticity is the ability to expand range in order to contain a growing value. For instance, when two 8-bit numbers are summed, the result cannot exceed 9 bits. And when two 20-bit numbers are multiplied, the result cannot exceed 40 bits. Thus, an elastic type tracks the exact number of bits used and returns suitably widened results from binary arithmetic operations. This eliminates a common class of overflow errors without the need for run-time checks.</p>
+<p>[<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>]'s integer types achieve elasticity by adjusting range:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">integer&lt;<span class="dv">4</span>&gt; n = <span class="dv">15</span>;  <span class="co">// 4-digit signed integer</span>
+<span class="kw">auto</span> nn = n * n;  <span class="co">// 8-digit signed integer</span></code></pre></div>
+<p>Consider an equivalent compositional type, [<a href="http://johnmcfarlane.github.io/fixed_point/index.html#elastic">elastic_integer</a>]:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="dt">int</span> Digits, <span class="kw">class</span> Narrowest = <span class="dt">int</span>&gt;
+<span class="kw">class</span> elastic_integer;</code></pre></div>
 <p><code>Digits</code> is equivalent to <code>Crng</code> - the number of digits of capacity.</p>
-<p><code>Narrowest</code> serves a similar purpose to the <code>Rep</code> parameter of <a href="#componentization-safety"><code>safe_integer</code></a>.
-However, it is not guaranteed to be the type of <code>elastic_integer</code>'s member variable.
-For example,</p>
-<pre><code class="language-c++">elastic_integer&lt;10, int16_t&gt; n;
-</code></pre>
-<p>uses an <code>int16_t</code> to store a value in the range, (1024..1024].
-To avoid overflow, <code>elastic_integer</code>'s binary arithmetic operators 'stretch' the value of <code>Digits</code>:</p>
-<pre><code class="language-c++">auto nn = n * n;  // elastic_integer&lt;20, int16_t&gt;
-</code></pre>
-<p>As <code>int16_t</code> cannot store a 20-bit value, a wider type is used.
-<code>Narrowest</code> might seem superfluous - given <code>Digits</code> can override the type's width.
-However, it serves two important purposes.</p>
-<p>Firstly, storage requirements vary depending on use case.
-When serializing to file, compactness may be preferable, in which case, <code>int8_t</code> or <code>uint8_t</code> is appropriate.
-In most other situations, performance is paramount and <code>int</code> makes a better choice.
-It is hoped that <code>Narrowest</code> makes the most sense to users who are already familiar with this trade-off.</p>
-<p>Secondly, <code>Narrowest</code> determines the set of types from which a member variable will be chosen.
-If <code>int8_t</code> is specified, then <code>int16_t</code>, <code>int32_t</code> and <code>int64_t</code> will be used as width dictates
-whereas <code>uint8_t</code> will expand to <code>uint16_t</code>, <code>uint32_t</code> and <code>uint64_t</code>.</p>
-<p>There is nothing to prevent <code>Narrowest</code> being a custom arithmetic type of the user's choosing.
-One stipulation, however, is that <code>elastic_integer</code> is able to choose a wider type as required.
-The details of how this is achieved are covered in
-[<a href="http://johnmcfarlane.github.io/fixed_point/papers/p0381.html">P0381</a>].</p>
-<h3><a id="componentization-scale"></a>Example C: Scale</h3>
-<p>Fixed-point numbers have always held certain efficiency and correctness advantages over floating-point types.
-Modern language features mean that they are also much simpler to work with.</p>
-<p>[<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>]'s
-<code>integral</code> and <code>cardinal</code> class templates are complemented by fixed-point templates,
-<code>negatable</code> and <code>nonnegative</code> respectively, e.g.:</p>
-<pre><code class="language-c++">template&lt;int Crng, int Crsl, round Crnd = rounding::tie_to_odd, overflow Covf = overflow::exception&gt;
-class negatable;
-</code></pre>
-<p>They come with two additional template parameters. <code>Crsl</code> specifies resolution.
-For example,</p>
-<pre><code class="language-c++">nonnegative&lt;8, -4&gt; n;
-</code></pre>
-<p>instantiates a variable with 8 integer bits and 4 fractional bits.
-Its maximum, minimum and lowest values are <code>255.9375</code>, <code>0.0625</code> and <code>0</code> respectively.</p>
-<p><code>Crnd</code> specifies the rounding mode as described in
-[<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0105r0.html">P0105</a>].
-The default, <code>rounding::tie_to_odd</code>, represents the best information preservation.
-The list of alternatives supplied by <code>rounding</code> is extensive but - just as with <code>overflow</code> - it is finite.</p>
-<p>An alternative, compositional fixed-point solution is proposed in
-[<a href="http://johnmcfarlane.github.io/fixed_point/papers/p0037r3.html">P0037</a>]:</p>
-<pre><code class="language-c++">template&lt;typename Rep = int, int Exponent = 0&gt;
-class fixed_point;
-</code></pre>
-<p><code>Exponent</code> governs scaling in much the same way as the exponent of an IEEE 754 floating-point type.
-It is equivalent to <code>Crsl</code>.</p>
-<p>Aside from its compositional interface the most obvious difference is that <code>fixed_point</code> does not handle rounding.
-Rounding and scaling are orthogonal concerns.
-It should be possible to devise a <code>rounding_integer</code> component which handles rounding separately.
-See <a href="#advanced_topics-rounding">Rounding</a> for further discussion.</p>
-<p>There are a wide variety of strategies for performing fixed-point arithmetic.
-However, <code>fixed_point</code> is in a category which - broadly-speaking - follows the lead of
-[<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>]
-and tracks the result of <code>Rep</code>'s arithmetic - rather than imposing a different result.</p>
-<p>For instance, when two <code>fixed_point</code> values are multiplied together,
-all that happens is that their internal values are multiplied
-and the result is used to create a new <code>fixed_point</code> object of the appropriate type.
-No scaling or conversion occurs, resulting in the highest chance of zero-cost abstraction.</p>
+<p><code>Narrowest</code> serves a similar purpose to the <code>Rep</code> parameter of <a href="#componentization-safety"><code>safe_integer</code></a>. However, it is not guaranteed to be the type of <code>elastic_integer</code>'s member variable. For example,</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">elastic_integer&lt;<span class="dv">10</span>, <span class="dt">int16_t</span>&gt; n;</code></pre></div>
+<p>uses an <code>int16_t</code> to store a value in the range, (1024..1024]. To avoid overflow, <code>elastic_integer</code>'s binary arithmetic operators 'stretch' the value of <code>Digits</code>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">auto</span> nn = n * n;  <span class="co">// elastic_integer&lt;20, int16_t&gt;</span></code></pre></div>
+<p>As <code>int16_t</code> cannot store a 20-bit value, a wider type is used. <code>Narrowest</code> might seem superfluous - given <code>Digits</code> can override the type's width. However, it serves two important purposes.</p>
+<p>Firstly, storage requirements vary depending on use case. When serializing to file, compactness may be preferable, in which case, <code>int8_t</code> or <code>uint8_t</code> is appropriate. In most other situations, performance is paramount and <code>int</code> makes a better choice. It is hoped that <code>Narrowest</code> makes the most sense to users who are already familiar with this trade-off.</p>
+<p>Secondly, <code>Narrowest</code> determines the set of types from which a member variable will be chosen. If <code>int8_t</code> is specified, then <code>int16_t</code>, <code>int32_t</code> and <code>int64_t</code> will be used as width dictates whereas <code>uint8_t</code> will expand to <code>uint16_t</code>, <code>uint32_t</code> and <code>uint64_t</code>.</p>
+<p>There is nothing to prevent <code>Narrowest</code> being a custom arithmetic type of the user's choosing. One stipulation, however, is that <code>elastic_integer</code> is able to choose a wider type as required. The details of how this is achieved are covered in [<a href="http://johnmcfarlane.github.io/fixed_point/papers/p0381.html">P0381</a>].</p>
+<h3 id="example-c-scale"><a id="componentization-scale"></a>Example C: Scale</h3>
+<p>Fixed-point numbers have always held certain efficiency and correctness advantages over floating-point types. Modern language features mean that they are also much simpler to work with.</p>
+<p>[<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>]'s <code>integral</code> and <code>cardinal</code> class templates are complemented by fixed-point templates, <code>negatable</code> and <code>nonnegative</code> respectively, e.g.:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="dt">int</span> Crng, <span class="dt">int</span> Crsl, round Crnd = rounding::tie_to_odd, overflow Covf = overflow::exception&gt;
+<span class="kw">class</span> negatable;</code></pre></div>
+<p>They come with two additional template parameters. <code>Crsl</code> specifies resolution. For example,</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">nonnegative&lt;<span class="dv">8</span>, <span class="dv">-4</span>&gt; n;</code></pre></div>
+<p>instantiates a variable with 8 integer bits and 4 fractional bits. Its maximum, minimum and lowest values are <code>255.9375</code>, <code>0.0625</code> and <code>0</code> respectively.</p>
+<p><code>Crnd</code> specifies the rounding mode as described in [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0105r0.html">P0105</a>]. The default, <code>rounding::tie_to_odd</code>, represents the best information preservation. The list of alternatives supplied by <code>rounding</code> is extensive but - just as with <code>overflow</code> - it is finite.</p>
+<p>An alternative, compositional fixed-point solution is proposed in [<a href="http://johnmcfarlane.github.io/fixed_point/papers/p0037r3.html">P0037</a>]:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">typename</span> Rep = <span class="dt">int</span>, <span class="dt">int</span> Exponent = <span class="dv">0</span>&gt;
+<span class="kw">class</span> fixed_point;</code></pre></div>
+<p><code>Exponent</code> governs scaling in much the same way as the exponent of an IEEE 754 floating-point type. It is equivalent to <code>Crsl</code>.</p>
+<p>Aside from its compositional interface the most obvious difference is that <code>fixed_point</code> does not handle rounding. Rounding and scaling are orthogonal concerns. It should be possible to devise a <code>rounding_integer</code> component which handles rounding separately. See <a href="#advanced_topics-rounding">Rounding</a> for further discussion.</p>
+<p>There are a wide variety of strategies for performing fixed-point arithmetic. However, <code>fixed_point</code> is in a category which - broadly-speaking - follows the lead of [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>] and tracks the result of <code>Rep</code>'s arithmetic - rather than imposing a different result.</p>
+<p>For instance, when two <code>fixed_point</code> values are multiplied together, all that happens is that their internal values are multiplied and the result is used to create a new <code>fixed_point</code> object of the appropriate type. No scaling or conversion occurs, resulting in the highest chance of zero-cost abstraction.</p>
 <p>To illustrate, the operator overload looks something like</p>
-<pre><code class="language-c++">template&lt;class RepA, int ExponentA, class RepB, int ExponentB&gt;
-auto operator*(fixed_point&lt;RepA, ExponentA&gt; const &amp; a, fixed_point&lt;RepB, ExponentB&gt; const &amp; b) {
-    // deduce the type of the raw result
-    using result_rep = decltype(b.data() * a.data());
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> RepA, <span class="dt">int</span> ExponentA, <span class="kw">class</span> RepB, <span class="dt">int</span> ExponentB&gt;
+<span class="kw">auto</span> <span class="kw">operator</span>*(fixed_point&lt;RepA, ExponentA&gt; <span class="at">const</span> &amp; a, fixed_point&lt;RepB, ExponentB&gt; <span class="at">const</span> &amp; b) {
+    <span class="co">// deduce the type of the raw result</span>
+    <span class="kw">using</span> result_rep = <span class="kw">decltype</span>(b.data() * a.data());
     
-    // calculate the resultant exponent
-    constexpr auto result_exponent = ExponentA + ExponentB;
+    <span class="co">// calculate the resultant exponent</span>
+    <span class="kw">constexpr</span> <span class="kw">auto</span> result_exponent = ExponentA + ExponentB;
     
-    // multiply the raw values and store the result in a new object of a new type
-    return fixed_point&lt;result_rep, result_exponent&gt;::from_data(b.data() * a.data());
-}
-</code></pre>
-<p>where <code>data()</code> and <code>from_data()</code> access <code>fixed_point</code>'s private member variable.
-(See section, &quot;<a href="#advanced_topics-leaky_abstractions">Leaky Abstractions</a>&quot;,
-for a discussion of this aspect of interface design.)</p>
-<p>The aim of <code>fixed_point</code> operators is to avoid adding any complexity to underlying arithmetic operations.
-For example, these two samples are equivalent:</p>
-<pre><code class="language-c++">// sample 1 - bare-metal fixed-point arithmetic
-auto a = (int8_t)(7.f * 8);      // the value 7 stored in a byte with 3 fractional bits
-auto b = (int8_t)(3.125f * 16);  // the value 3.125 stored in a byte with 4 fractional bits
-auto c = a * b;                  // the value 21.875 stored in an `int` with 7 fractional bits
-auto d = (float)c / 128;         // 21.875f
+    <span class="co">// multiply the raw values and store the result in a new object of a new type</span>
+    <span class="cf">return</span> fixed_point&lt;result_rep, result_exponent&gt;::from_data(b.data() * a.data());
+}</code></pre></div>
+<p>where <code>data()</code> and <code>from_data()</code> access <code>fixed_point</code>'s private member variable. (See section, &quot;<a href="#advanced_topics-leaky_abstractions">Leaky Abstractions</a>&quot;, for a discussion of this aspect of interface design.)</p>
+<p>The aim of <code>fixed_point</code> operators is to avoid adding any complexity to underlying arithmetic operations. For example, these two samples are equivalent:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// sample 1 - bare-metal fixed-point arithmetic</span>
+<span class="kw">auto</span> a = (<span class="dt">int8_t</span>)(<span class="fl">7.f</span> * <span class="dv">8</span>);      <span class="co">// the value 7 stored in a byte with 3 fractional bits</span>
+<span class="kw">auto</span> b = (<span class="dt">int8_t</span>)(<span class="fl">3.</span><span class="er">125f</span> * <span class="dv">16</span>);  <span class="co">// the value 3.125 stored in a byte with 4 fractional bits</span>
+<span class="kw">auto</span> c = a * b;                  <span class="co">// the value 21.875 stored in an `int` with 7 fractional bits</span>
+<span class="kw">auto</span> d = (<span class="dt">float</span>)c / <span class="dv">128</span>;         <span class="co">// 21.875f</span>
 
-// sample 2 - type-safe fixed-point arithmetic
-auto a = fixed_point&lt;int8_t, -3&gt;(7.f);     // the value 7 stored in a byte with 3 fractional bits
-auto b = fixed_point&lt;int8_t, -4&gt;(3.125f);  // the value 3.125 stored in a byte with 4 fractional bits
-auto c = a * b;                            // the value 21.875 stored in an `int` with 7 fractional bits
-auto d = (float)c;                         // 21.875f
-</code></pre>
-<p>Here we see that promotion rules help avoid errors and maximize hardware resources.
-In this case, the fundamental integral type system shines and the results are efficient, correct and usable.
-Unfortunately, a fair degree of good fortune is involved.
-Without safety or elasticity, <code>fixed_point&lt;int, E&gt;</code> types have a tendency to overflow.</p>
-<h2><a id="composition"></a>Composition</h2>
-<p>In the previous section, three possible arithmetic components are introduced.
-Each component can be instantiated using fundamental integer types such as <code>int</code>.
-The results are incrementally enhancements to <code>int</code>.
-This section illustrates ways in which nested composition can combine these enhancements.</p>
-<h3><a id="composition-fixed_point"></a>Example A: Elastic Fixed-Point</h3>
-<p>Fixed-point arithmetic is especially susceptible to overflow.
-Integers typically represent small quantities whereas fixed-point values often saturate their range:</p>
-<pre><code class="language-c++">int32_t toes = 10;  // uses 4 bits
-fixed_point&lt;int32_t, -30&gt; probability = 0.9;  // uses 30 bits
-</code></pre>
-<p>This means that hand-rolled fixed-point arithmetic involves keeping track of -
-not only scale but also - range:</p>
-<pre><code class="language-c++">// square a floating-point value with 16 bits of fractional precision
-float square(float input) {
-    auto fixed = static_cast&lt;int32_t&gt;{input * 65536.f};
-    auto prod = int64_t{fixed} * fixed; // result must be widened
-    return prod / 4294967296.f; // gotcha: scale has changed
-}
-</code></pre>
+<span class="co">// sample 2 - type-safe fixed-point arithmetic</span>
+<span class="kw">auto</span> a = fixed_point&lt;<span class="dt">int8_t</span>, <span class="dv">-3</span>&gt;(<span class="fl">7.f</span>);     <span class="co">// the value 7 stored in a byte with 3 fractional bits</span>
+<span class="kw">auto</span> b = fixed_point&lt;<span class="dt">int8_t</span>, <span class="dv">-4</span>&gt;(<span class="fl">3.</span><span class="er">125f</span>);  <span class="co">// the value 3.125 stored in a byte with 4 fractional bits</span>
+<span class="kw">auto</span> c = a * b;                            <span class="co">// the value 21.875 stored in an `int` with 7 fractional bits</span>
+<span class="kw">auto</span> d = (<span class="dt">float</span>)c;                         <span class="co">// 21.875f</span></code></pre></div>
+<p>Here we see that promotion rules help avoid errors and maximize hardware resources. In this case, the fundamental integral type system shines and the results are efficient, correct and usable. Unfortunately, a fair degree of good fortune is involved. Without safety or elasticity, <code>fixed_point&lt;int, E&gt;</code> types have a tendency to overflow.</p>
+<h2 id="composition"><a id="composition"></a>Composition</h2>
+<p>In the previous section, three possible arithmetic components are introduced. Each component can be instantiated using fundamental integer types such as <code>int</code>. The results are incrementally enhancements to <code>int</code>. This section illustrates ways in which nested composition can combine these enhancements.</p>
+<h3 id="example-a-elastic-fixed-point"><a id="composition-fixed_point"></a>Example A: Elastic Fixed-Point</h3>
+<p>Fixed-point arithmetic is especially susceptible to overflow. Integers typically represent small quantities whereas fixed-point values often saturate their range:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int32_t</span> toes = <span class="dv">10</span>;  <span class="co">// uses 4 bits</span>
+fixed_point&lt;<span class="dt">int32_t</span>, <span class="dv">-30</span>&gt; probability = <span class="fl">0.9</span>;  <span class="co">// uses 30 bits</span></code></pre></div>
+<p>This means that hand-rolled fixed-point arithmetic involves keeping track of - not only scale but also - range:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// square a floating-point value with 16 bits of fractional precision</span>
+<span class="dt">float</span> square(<span class="dt">float</span> input) {
+    <span class="kw">auto</span> fixed = <span class="kw">static_cast</span>&lt;<span class="dt">int32_t</span>&gt;{input * <span class="fl">65536.f</span>};
+    <span class="kw">auto</span> prod = <span class="dt">int64_t</span>{fixed} * fixed; <span class="co">// result must be widened</span>
+    <span class="cf">return</span> prod / <span class="fl">4294967296.f</span>; <span class="co">// gotcha: scale has changed</span>
+}</code></pre></div>
 <p>This error-prone work can be automated with a template composed of <code>fixed_point</code> and <code>elastic_integer</code>:</p>
-<pre><code class="language-c++">template&lt;int IntegerDigits, int FractionalDigits, class Narrowest = int&gt;
-using elastic_fixed_point = fixed_point&lt;elastic_integer&lt;IntegerDigits+FractionalDigits, Narrowest&gt;, -FractionalDigits&gt;;
-</code></pre>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="dt">int</span> IntegerDigits, <span class="dt">int</span> FractionalDigits, <span class="kw">class</span> Narrowest = <span class="dt">int</span>&gt;
+<span class="kw">using</span> elastic_fixed_point = fixed_point&lt;elastic_integer&lt;IntegerDigits+FractionalDigits, Narrowest&gt;, -FractionalDigits&gt;;</code></pre></div>
 <p>The same <code>square</code> function is now clearer:</p>
-<pre><code class="language-c++">float square(float input) {
-    auto fixed = elastic_fixed_point&lt;15, 16&gt;{input};
-    auto prod = fixed * fixed;
-    return static_cast&lt;float&gt;(prod);
-}
-</code></pre>
-<p>In both cases, a modern optimizing compiler produces the same x86-64 assembler instructions
-[<a href="https://godbolt.org/g/mWTmlv">godbolt</a>], e.g.:</p>
-<pre><code class="language-asm">square(float):
-        mulss   xmm0, DWORD PTR .LC0[rip]
-        cvttss2si       eax, xmm0
-        pxor    xmm0, xmm0
-        cdqe
-        imul    rax, rax
-        cvtsi2ssq       xmm0, rax
-        mulss   xmm0, DWORD PTR .LC1[rip]
-        ret
-.LC0:
-        .long   1199570944
-.LC1:
-        .long   796917760
-</code></pre>
-<p>Multiplication is the easiest arithmetic operator to deal with.
-Addition and subtraction require that both operands be scaled to the same amount before addition.
-But toughest of all is division.
-Consider:</p>
-<pre><code class="language-c++">fixed_point&lt;int8_t, -6&gt; dividend = 0.5, divisor = 1.0;
-auto quotient = dividend / divisor;
-</code></pre>
-<p>Under the hood, <code>dividend</code> and <code>divisor</code> are represented by values <code>32</code> and <code>64</code> respectively.
-Whenever the divisor is greater than that dividend, integer division results is <code>0</code>.</p>
-<p>The problem is that integer and floating-point types deal with division in a different way.
-Integers produce a remainder, whereas floating-point types have fractional values.
-Despite being represented by integer arithmetic, fixed-point arithmetic favors the fractional approach.</p>
-<p>To implement fractional division in a practical way
-(and excepting inevitable precision loss that comes from digital representation of rational numbers),
-<code>fixed_point</code> automatically widens and shifts the dividend prior to division.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">float</span> square(<span class="dt">float</span> input) {
+    <span class="kw">auto</span> fixed = elastic_fixed_point&lt;<span class="dv">15</span>, <span class="dv">16</span>&gt;{input};
+    <span class="kw">auto</span> prod = fixed * fixed;
+    <span class="cf">return</span> <span class="kw">static_cast</span>&lt;<span class="dt">float</span>&gt;(prod);
+}</code></pre></div>
+<p>In both cases, a modern optimizing compiler produces the same x86-64 assembler instructions [<a href="https://godbolt.org/g/mWTmlv">godbolt</a>], e.g.:</p>
+<div class="sourceCode"><pre class="sourceCode asm"><code class="sourceCode fasm">square(float):
+        <span class="bu">mulss</span>   <span class="kw">xmm0</span>, <span class="dt">DWORD</span> <span class="dt">PTR</span> .LC0[rip]
+        <span class="bu">cvttss2si</span>       <span class="kw">eax</span>, <span class="kw">xmm0</span>
+        <span class="bu">pxor</span>    <span class="kw">xmm0</span>, <span class="kw">xmm0</span>
+        <span class="bu">cdqe</span>
+        <span class="bu">imul</span>    <span class="kw">rax</span>, <span class="kw">rax</span>
+        cvtsi2ssq       <span class="kw">xmm0</span>, <span class="kw">rax</span>
+        <span class="bu">mulss</span>   <span class="kw">xmm0</span>, <span class="dt">DWORD</span> <span class="dt">PTR</span> .LC1[rip]
+        <span class="bu">ret</span>
+<span class="fu">.LC0:</span>
+        .long   <span class="dv">1199570944</span>
+<span class="fu">.LC1:</span>
+        .long   <span class="dv">796917760</span></code></pre></div>
+<p>Multiplication is the easiest arithmetic operator to deal with. Addition and subtraction require that both operands be scaled to the same amount before addition. But toughest of all is division. Consider:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">fixed_point&lt;<span class="dt">int8_t</span>, <span class="dv">-6</span>&gt; dividend = <span class="fl">0.5</span>, divisor = <span class="fl">1.0</span>;
+<span class="kw">auto</span> quotient = dividend / divisor;</code></pre></div>
+<p>Under the hood, <code>dividend</code> and <code>divisor</code> are represented by values <code>32</code> and <code>64</code> respectively. Whenever the divisor is greater than that dividend, integer division results is <code>0</code>.</p>
+<p>The problem is that integer and floating-point types deal with division in a different way. Integers produce a remainder, whereas floating-point types have fractional values. Despite being represented by integer arithmetic, fixed-point arithmetic favors the fractional approach.</p>
+<p>To implement fractional division in a practical way (and excepting inevitable precision loss that comes from digital representation of rational numbers), <code>fixed_point</code> automatically widens and shifts the dividend prior to division.</p>
 <p>In the above example, the integer arithmetic occurs as follows:</p>
-<pre><code class="language-c++">int8_t dividend = 0.5 * 64;    // 32 ; fixed_point&lt;int8_t, -6&gt;{.5}
-int8_t divisor = 1.0 * 64;    // 64 ; fixed_point&lt;int8_t, -6&gt;{1.}
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int8_t</span> dividend = <span class="fl">0.5</span> * <span class="dv">64</span>;    <span class="co">// 32 ; fixed_point&lt;int8_t, -6&gt;{.5}</span>
+<span class="dt">int8_t</span> divisor = <span class="fl">1.0</span> * <span class="dv">64</span>;    <span class="co">// 64 ; fixed_point&lt;int8_t, -6&gt;{1.}</span>
 
-// result adds number of divisor's integer digits to number of dividend's fractional digits,
-// producing fixed_point&lt;int16_t, -7&gt;
-auto intermediate = (decltype(dividend*divisor){dividend} &lt;&lt; 7)   // 4096 ; fixed_point&lt;int, -13&gt;{.5}
-auto q = intermediate / divisor;  // 64 ; fixed_point&lt;int, -7&gt;{.5}
-</code></pre>
-<p>The <code>intermediate</code> variable is added here to illustrate how the dividend is shifted ahead of integer division
-in order to ensure correct scale and resolution.
-The result is an <code>int</code> - the same type as a multiplication -
-because both fixed-point multiplication and division results require the same number of digits.
-While this is twice as wide as necessary in the case of fundamental types,
-<code>elastic_integer</code> tracks bits more accurately and no unnecessary width is added.</p>
+<span class="co">// result adds number of divisor&#39;s integer digits to number of dividend&#39;s fractional digits,</span>
+<span class="co">// producing fixed_point&lt;int16_t, -7&gt;</span>
+<span class="kw">auto</span> intermediate = (<span class="kw">decltype</span>(dividend*divisor){dividend} &lt;&lt; <span class="dv">7</span>)   <span class="co">// 4096 ; fixed_point&lt;int, -13&gt;{.5}</span>
+<span class="kw">auto</span> q = intermediate / divisor;  <span class="co">// 64 ; fixed_point&lt;int, -7&gt;{.5}</span></code></pre></div>
+<p>The <code>intermediate</code> variable is added here to illustrate how the dividend is shifted ahead of integer division in order to ensure correct scale and resolution. The result is an <code>int</code> - the same type as a multiplication - because both fixed-point multiplication and division results require the same number of digits. While this is twice as wide as necessary in the case of fundamental types, <code>elastic_integer</code> tracks bits more accurately and no unnecessary width is added.</p>
 <p>So using <code>elastic_fixed_point</code>, <code>quotient</code> becomes <code>elastic&lt;7, 7&gt;{.5}</code>.</p>
-<h3><a id="composition-safe_elastic_integer"></a>Example B: Safe Elastic Integer</h3>
-<p>With the correct set of behaviors it's possible to instantiate an integer type
-which has excellent correctness and usability characteristics.
-The following composite is practically overflow-proof and performs minimal run-time checks:</p>
-<pre><code class="language-c++">template&lt;int IntegerDigits, class Rep = int, class ErrorHandler = throwing_handler&lt;Rep&gt;&gt;
-using safe_elastic_integer = safe_integer&lt;elastic_integer&lt;IntegerDigits, Rep&gt;, class ErrorHandler&gt;;
-</code></pre>
-<p>The order of the nesting is crucial in ensuring that checks are minimized.
-This is because there is overlap in the concerns of the two components:
-<code>safe_integer</code> traps binary arithmetic overflow whereas <code>elastic_integer</code> avoids it.
-Detection of something that isn't going to happen is a needless cost.
-By being aware of the types involved in operations, <code>safe_integer</code> can be more selective about checks.</p>
+<h3 id="example-b-safe-elastic-integer"><a id="composition-safe_elastic_integer"></a>Example B: Safe Elastic Integer</h3>
+<p>With the correct set of behaviors it's possible to instantiate an integer type which has excellent correctness and usability characteristics. The following composite is practically overflow-proof and performs minimal run-time checks:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="dt">int</span> IntegerDigits, <span class="kw">class</span> Rep = <span class="dt">int</span>, <span class="kw">class</span> ErrorHandler = throwing_handler&lt;Rep&gt;&gt;
+<span class="kw">using</span> safe_elastic_integer = safe_integer&lt;elastic_integer&lt;IntegerDigits, Rep&gt;, <span class="kw">class</span> ErrorHandler&gt;;</code></pre></div>
+<p>The order of the nesting is crucial in ensuring that checks are minimized. This is because there is overlap in the concerns of the two components: <code>safe_integer</code> traps binary arithmetic overflow whereas <code>elastic_integer</code> avoids it. Detection of something that isn't going to happen is a needless cost. By being aware of the types involved in operations, <code>safe_integer</code> can be more selective about checks.</p>
 <p>Consider <code>safe_integer</code>'s multiplication operator:</p>
-<pre><code class="language-c++">template&lt;class RepA, class RepB, class ErrorHandler&gt;
-auto operator*(safe_integer&lt;RepA, ErrorHandler&gt; const &amp; a, safe_integer&lt;RepB, ErrorHandler&gt; const &amp; b) {
-    using result_type = decltype(a.data() * b.data());
-    constexpr auto digits_a = std::numeric_limits&lt;RepA&gt;::digits;
-    constexpr auto digits_b = std::numeric_limits&lt;RepB&gt;::digits;
-    constexpr auto digits_result = std::numeric_limits&lt;result_type&gt;::digits;
-    if constexpr (digits_a + digits_b &gt;= digits_result) {
-        // perform overflow test
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> RepA, <span class="kw">class</span> RepB, <span class="kw">class</span> ErrorHandler&gt;
+<span class="kw">auto</span> <span class="kw">operator</span>*(safe_integer&lt;RepA, ErrorHandler&gt; <span class="at">const</span> &amp; a, safe_integer&lt;RepB, ErrorHandler&gt; <span class="at">const</span> &amp; b) {
+    <span class="kw">using</span> <span class="dt">result_type</span> = <span class="kw">decltype</span>(a.data() * b.data());
+    <span class="kw">constexpr</span> <span class="kw">auto</span> digits_a = <span class="bu">std::</span>numeric_limits&lt;RepA&gt;::digits;
+    <span class="kw">constexpr</span> <span class="kw">auto</span> digits_b = <span class="bu">std::</span>numeric_limits&lt;RepB&gt;::digits;
+    <span class="kw">constexpr</span> <span class="kw">auto</span> digits_result = <span class="bu">std::</span>numeric_limits&lt;<span class="dt">result_type</span>&gt;::digits;
+    <span class="cf">if</span> <span class="kw">constexpr</span> (digits_a + digits_b &gt;= digits_result) {
+        <span class="co">// perform overflow test</span>
     }
-    else {
-        // skip overflow test
+    <span class="cf">else</span> {
+        <span class="co">// skip overflow test</span>
     }
-    return a.data() * b.data();
-}
-</code></pre>
+    <span class="cf">return</span> a.data() * b.data();
+}</code></pre></div>
 <p>We see that unnecessary run-time checks are eliminated.</p>
 <p>This holds - not only for <code>elastic_integer</code> but also - for fundamental types that are implicitly promoted:</p>
-<pre><code class="language-c++">safe_integer&lt;int8_t&gt; a, b;
-auto c = a * b;  // c is safe_integer&lt;int&gt;; no need for run-time check
-</code></pre>
-<h3><a id="composition-safe_elastic_fixed_point"></a>Example C: Safe Elastic Fixed-point</h3>
-<p>This sub-section passes over the third and final pairing of components, <code>safe_fixed_point</code>,
-and instead considers the composition of all three components:</p>
-<pre><code class="language-c++">template&lt;
-    int IntegerDigits, 
-    int FractionalDigits = 0, 
-    class Narrowest = int, 
-    class ErrorHandler = throwing_handler&lt;Narrowest&gt;&gt;
-using safe_elastic_fixed_point = 
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">safe_integer&lt;<span class="dt">int8_t</span>&gt; a, b;
+<span class="kw">auto</span> c = a * b;  <span class="co">// c is safe_integer&lt;int&gt;; no need for run-time check</span></code></pre></div>
+<h3 id="example-c-safe-elastic-fixed-point"><a id="composition-safe_elastic_fixed_point"></a>Example C: Safe Elastic Fixed-point</h3>
+<p>This sub-section passes over the third and final pairing of components, <code>safe_fixed_point</code>, and instead considers the composition of all three components:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;
+    <span class="dt">int</span> IntegerDigits, 
+    <span class="dt">int</span> FractionalDigits = <span class="dv">0</span>, 
+    <span class="kw">class</span> Narrowest = <span class="dt">int</span>, 
+    <span class="kw">class</span> ErrorHandler = throwing_handler&lt;Narrowest&gt;&gt;
+<span class="kw">using</span> safe_elastic_fixed_point = 
     fixed_point&lt;
         safe_integer&lt;
             elastic_integer&lt;
                 IntegerDigits+FractionalDigits, 
                 Narrowest&gt;,
             ErrorHandler&gt;, 
-        -FractionalDigits&gt;;
-</code></pre>
+        -FractionalDigits&gt;;</code></pre></div>
 <p>This type is a run-time-efficient, overflow-proof real number approximation:</p>
-<pre><code class="language-c++">safe_elastic_fixed_point&lt;5, 0&gt; a = 30;
-safe_elastic_fixed_point&lt;2, 0&gt; b = 2;
-auto c = a * b; // safe_elastic_fixed_point&lt;7, 0&gt;{60}
-auto d = a + b; // safe_elastic_fixed_point&lt;6, 0&gt;{32}
-auto e = c / d; // safe_elastic_fixed_point&lt;7, 6&gt;{1.875}
-a -= 10;    // safe_elastic_fixed_point&lt;5&gt;{20}
-++ b;   // safe_elastic_fixed_point&lt;2&gt;{3}
-++ b;   // exception!
-</code></pre>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">safe_elastic_fixed_point&lt;<span class="dv">5</span>, <span class="dv">0</span>&gt; a = <span class="dv">30</span>;
+safe_elastic_fixed_point&lt;<span class="dv">2</span>, <span class="dv">0</span>&gt; b = <span class="dv">2</span>;
+<span class="kw">auto</span> c = a * b; <span class="co">// safe_elastic_fixed_point&lt;7, 0&gt;{60}</span>
+<span class="kw">auto</span> d = a + b; <span class="co">// safe_elastic_fixed_point&lt;6, 0&gt;{32}</span>
+<span class="kw">auto</span> e = c / d; <span class="co">// safe_elastic_fixed_point&lt;7, 6&gt;{1.875}</span>
+a -= <span class="dv">10</span>;    <span class="co">// safe_elastic_fixed_point&lt;5&gt;{20}</span>
+++ b;   <span class="co">// safe_elastic_fixed_point&lt;2&gt;{3}</span>
+++ b;   <span class="co">// exception!</span></code></pre></div>
 <p>The above is an abstraction over the following code</p>
-<pre><code class="language-c++">int a = limit&lt;overflow::exception&gt;(-32, 31, 30);
-int b = limit&lt;overflow::exception&gt;(-4, 3, 2);
-int c = a * b;
-int d = a + b;
-int e = (c * (1 &lt;&lt; 6)) / d;
-a = limit&lt;overflow::exception&gt;(-32, 31, a - 10);
-b = limit&lt;overflow::exception&gt;(-4, 3, b + 1);
-b = limit&lt;overflow::exception&gt;(-4, 3, b + 1);
-</code></pre>
-<p>where <code>limit</code> is a function template which handles overflow at run-time.
-(A similar facility is detailed in
-[<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0105r0.html#OverFunctions">P0105</a>].)</p>
-<h2><a id="advanced_topics"></a>Advanced Topics</h2>
-<p>It is not claimed that a complete set of solutions has been presented so far.
-However, it is hoped that much of the appeal of the compositional approach is apparent.
-This section is a grab bag of topics of relevance to the types of a numerics TS.
-These topics are discussed with the compositional approach in mind.</p>
-<h3><a id="advanced_topics-leaky_abstractions"></a>Leaky Abstractions</h3>
-<p>As mentioned in section, <a href="#componentization-scale">Scale</a>,
-<code>fixed_point</code> has member functions for accessing its data member:</p>
-<pre><code class="language-c++">template&lt;class Rep, int Exponent&gt;
-Rep const &amp; fixed_point&lt;Rep, Exponent&gt;::data() const;
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> a = limit&lt;overflow::exception&gt;(<span class="dv">-32</span>, <span class="dv">31</span>, <span class="dv">30</span>);
+<span class="dt">int</span> b = limit&lt;overflow::exception&gt;(<span class="dv">-4</span>, <span class="dv">3</span>, <span class="dv">2</span>);
+<span class="dt">int</span> c = a * b;
+<span class="dt">int</span> d = a + b;
+<span class="dt">int</span> e = (c * (<span class="dv">1</span> &lt;&lt; <span class="dv">6</span>)) / d;
+a = limit&lt;overflow::exception&gt;(<span class="dv">-32</span>, <span class="dv">31</span>, a - <span class="dv">10</span>);
+b = limit&lt;overflow::exception&gt;(<span class="dv">-4</span>, <span class="dv">3</span>, b + <span class="dv">1</span>);
+b = limit&lt;overflow::exception&gt;(<span class="dv">-4</span>, <span class="dv">3</span>, b + <span class="dv">1</span>);</code></pre></div>
+<p>where <code>limit</code> is a function template which handles overflow at run-time. (A similar facility is detailed in [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0105r0.html#OverFunctions">P0105</a>].)</p>
+<h2 id="advanced-topics"><a id="advanced_topics"></a>Advanced Topics</h2>
+<p>It is not claimed that a complete set of solutions has been presented so far. However, it is hoped that much of the appeal of the compositional approach is apparent. This section is a grab bag of topics of relevance to the types of a numerics TS. These topics are discussed with the compositional approach in mind.</p>
+<h3 id="leaky-abstractions"><a id="advanced_topics-leaky_abstractions"></a>Leaky Abstractions</h3>
+<p>As mentioned in section, <a href="#componentization-scale">Scale</a>, <code>fixed_point</code> has member functions for accessing its data member:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> Rep, <span class="dt">int</span> Exponent&gt;
+Rep <span class="at">const</span> &amp; fixed_point&lt;Rep, Exponent&gt;::data() <span class="at">const</span>;
 
-template&lt;class Rep, int Exponent&gt;
-static Rep const &amp; fixed_point&lt;Rep, Exponent&gt;::from_data(Rep const &amp;) const;
-</code></pre>
-<p>These are analogous to the <code>data()</code> member function and allocator of <code>vector</code>.
-They are provided for situations when the user wishes to lift the hood and access the engine directly.
-For example, a certain serialization or compression strategy may be easier to implement with raw integers.</p>
-<p>It's important to note that these accessors are named functions.
-They don't exist for fundamental types and the user should know
-that they are intentionally violating the abstraction whenever they use them.</p>
-<h3><a id="advanced_topics-generic_numeric_functions"></a>Generic Numeric Functions</h3>
-<p>An example of when accessing the underlying representation may be necessary
-is with the numeric support functions described in
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0105r0.html">P0105</a>].
-For instance, consider the conversion function prototype:</p>
-<pre><code class="language-c++">template&lt;rounding mode, typename T, typename U&gt; 
-T convert(U value);
-</code></pre>
+<span class="kw">template</span>&lt;<span class="kw">class</span> Rep, <span class="dt">int</span> Exponent&gt;
+<span class="at">static</span> Rep <span class="at">const</span> &amp; fixed_point&lt;Rep, Exponent&gt;::from_data(Rep <span class="at">const</span> &amp;) <span class="at">const</span>;</code></pre></div>
+<p>These are analogous to the <code>data()</code> member function and allocator of <code>vector</code>. They are provided for situations when the user wishes to lift the hood and access the engine directly. For example, a certain serialization or compression strategy may be easier to implement with raw integers.</p>
+<p>It's important to note that these accessors are named functions. They don't exist for fundamental types and the user should know that they are intentionally violating the abstraction whenever they use them.</p>
+<h3 id="generic-numeric-functions"><a id="advanced_topics-generic_numeric_functions"></a>Generic Numeric Functions</h3>
+<p>An example of when accessing the underlying representation may be necessary is with the numeric support functions described in <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0105r0.html">P0105</a>]. For instance, consider the conversion function prototype:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;rounding mode, <span class="kw">class</span> T, <span class="kw">class</span> U&gt; 
+T convert(U value);</code></pre></div>
 <p>It is expected that overloads of <code>convert</code> will perform rounding on fundamental floating point types.</p>
-<p>However, applying such functions to composite types might also be desirable.
-For this reason a generic overload is worth considering:</p>
-<pre><code class="language-c++">template&lt;rounding mode, typename T, typename U&gt; T convert(U const &amp; value) {
-    return T::from_data(convert(value.data()));
-}
-</code></pre>
-<p>Such functions can form chains which 'mine' into a composite type for its fundamental type
-and perform the desired operation on it.
-This is only possible where all components have a common set of accessors.</p>
-<h3><a id="advanced_topics-rounding"></a>Rounding</h3>
-<p>[<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>]'s
-<code>negatable</code> and <code>nonnegative</code> offer a choice of rounding modes whereas their integer equivalents do not.
-However, rounding is orthogonal to real number approximation
-and might best be embodied in its own component, <code>rounding_integer</code>.</p>
-<p>However, it is yet to be determined whether such a component is the right approach.
-It may be a more practical solution to roll rounding functionality into <code>safe_integer</code>.</p>
-<h3><a id="advanced_topics-64_bit_limit"></a>The 64-bit Limit</h3>
-<p>Another component which has been brushed over so far is <code>wide_integer</code>.
-Multiplication of <code>elastic_integer</code> results in double-wide types.
-This quickly hits limits:</p>
-<pre><code class="language-c++">elastic_integer&lt;&gt; n;  // typically 31 digits
-auto n2 = n * n;    // 62 digits
-auto n4 = n2 * n2;  // 124 digits
-</code></pre>
-<p>There is no standard facility to represent values greater than 64 bits with fundamental types.
-This limit routinely causes expressions to fail compilation.
-For this reason, either a <code>wide_integer</code> is needed or <code>elastic_integer</code> must handle multi-word values.
-Papers, [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0104r0.html">P0104</a>]
-and [<a href="https://cerevra.github.io/int/">wide_int</a>] both explore this topic.</p>
-<h3><a id="advanced_topics-operator_overloads"></a>Operator Overloads</h3>
-<p>This paper is also light on details regarding operator overloads.
-However, they play a vital role in providing the semantics of arithmetic types.
-It is a non-trivial undertaking to support a complete set of operators for a single interface
-yet the compositional approach requires multiple interfaces.
-Thus the number of operator overloads (and special functions) is a burden.
-Any language features which can reduce this boilerplate are welcome.</p>
-<p>Many functions are lightweight wrappers over a <code>Rep</code> type.
-An example of a feature which could reduce such boilerplate is default comparison
-[<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/n4475.pdf">N4475</a>].</p>
-<h3><a id="advanced_topics-integral_constants"></a>Integral Constants</h3>
-<p>As shown in sub-section, <a href="#advanced_topics-64_bit_limit">The 64-bit Limit</a>,
-<code>elastic_integer</code> be excessively 'stretched' by literal type, <code>int</code>:</p>
-<pre><code class="language-c++">elastic_integer&lt;2&gt; x = 3;   // x uses 2 digits
-auto y = x * 2; // suddenly result uses over 30 digits to store value 6
-</code></pre>
-<p>If the value (and therefore the range) is known at compile time,
-a much narrower result type can be generated:</p>
-<pre><code class="language-c++">auto z = x * std::integral_constant&lt;int, 2&gt;; // only 4 digits used in result
-</code></pre>
-<p>Binary bit shift operations are a major benefactor if <code>integral_constant</code> operands.
-In this example</p>
-<pre><code class="language-c++">auto a = fixed_point&lt;int, 0&gt;{1};
-auto b = a &lt;&lt; std::integral_constant&lt;int, 10&gt;;   // fixed_point&lt;int, 10&gt;{1024}
-</code></pre>
-<p>both <code>a</code> and <code>b</code> store the same underlying value.
-No actual shift is required.</p>
-<p>Another technique which uses compile-time constants to avoid run-time computation involves division.
-Any division can be approximated to varying degrees by different combinations of multiplication and bit shift.
-For example, to divide an <code>int16_t</code> by <code>7</code> using an <code>int32_t</code>:</p>
-<pre><code class="language-c++">int16_t divide_by_seven(int16_t n) {
-    return (n * 37449) &gt;&gt; 18;
-}
-</code></pre>
-<p>Unfortunately, the coefficient is costly to calculate and the operation requires additional width.
-If the divisor and headroom is known at compile-time,
-the calculation can potentially outperform a division operation.</p>
-<h3><a id="advanced_topics-user_defined_literals"></a>User-defined Literals</h3>
-<p>It is possible to improve on <code>std::integral_constant</code> in various ways.
-Consider:</p>
-<pre><code class="language-c++">template&lt;
-    class Integral,
+<p>However, applying such functions to composite types might also be desirable. For this reason a generic overload is worth considering:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;rounding mode, <span class="kw">class</span> T, <span class="kw">class</span> U&gt; T convert(U <span class="at">const</span> &amp; value) {
+    <span class="cf">return</span> T::from_data(convert(value.data()));
+}</code></pre></div>
+<p>Such functions can form chains which 'mine' into a composite type for its fundamental type and perform the desired operation on it. This is only possible where all components have a common set of accessors.</p>
+<h3 id="rounding"><a id="advanced_topics-rounding"></a>Rounding</h3>
+<p>[<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>]'s <code>negatable</code> and <code>nonnegative</code> offer a choice of rounding modes whereas their integer equivalents do not. However, rounding is orthogonal to real number approximation and might best be embodied in its own component, <code>rounding_integer</code>.</p>
+<p>However, it is yet to be determined whether such a component is the right approach. It may be a more practical solution to roll rounding functionality into <code>safe_integer</code>.</p>
+<h3 id="the-64-bit-limit"><a id="advanced_topics-64_bit_limit"></a>The 64-bit Limit</h3>
+<p>Another component which has been brushed over so far is <code>wide_integer</code>. Multiplication of <code>elastic_integer</code> results in double-wide types. This quickly hits limits:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">elastic_integer&lt;&gt; n;  <span class="co">// typically 31 digits</span>
+<span class="kw">auto</span> n2 = n * n;    <span class="co">// 62 digits</span>
+<span class="kw">auto</span> n4 = n2 * n2;  <span class="co">// 124 digits</span></code></pre></div>
+<p>There is no standard facility to represent values greater than 64 bits with fundamental types. This limit routinely causes expressions to fail compilation. For this reason, either a <code>wide_integer</code> is needed or <code>elastic_integer</code> must handle multi-word values. Papers, [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0104r0.html">P0104</a>] and [<a href="https://cerevra.github.io/int/">wide_int</a>] both explore this topic.</p>
+<h3 id="operator-overloads"><a id="advanced_topics-operator_overloads"></a>Operator Overloads</h3>
+<p>This paper is also light on details regarding operator overloads. However, they play a vital role in providing the semantics of arithmetic types. It is a non-trivial undertaking to support a complete set of operators for a single interface yet the compositional approach requires multiple interfaces. Thus the number of operator overloads (and special functions) is a burden. Any language features which can reduce this boilerplate are welcome.</p>
+<p>Many functions are lightweight wrappers over a <code>Rep</code> type. An example of a feature which could reduce such boilerplate is default comparison [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/n4475.pdf">N4475</a>].</p>
+<h3 id="integral-constants"><a id="advanced_topics-integral_constants"></a>Integral Constants</h3>
+<p>As shown in sub-section, <a href="#advanced_topics-64_bit_limit">The 64-bit Limit</a>, <code>elastic_integer</code> be excessively 'stretched' by literal type, <code>int</code>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">elastic_integer&lt;<span class="dv">2</span>&gt; x = <span class="dv">3</span>;   <span class="co">// x uses 2 digits</span>
+<span class="kw">auto</span> y = x * <span class="dv">2</span>; <span class="co">// suddenly result uses over 30 digits to store value 6</span></code></pre></div>
+<p>If the value (and therefore the range) is known at compile time, a much narrower result type can be generated:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">auto</span> z = x * <span class="bu">std::</span>integral_constant&lt;<span class="dt">int</span>, <span class="dv">2</span>&gt;; <span class="co">// only 4 digits used in result</span></code></pre></div>
+<p>Binary bit shift operations are a major benefactor if <code>integral_constant</code> operands. In this example</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">auto</span> a = fixed_point&lt;<span class="dt">int</span>, <span class="dv">0</span>&gt;{<span class="dv">1</span>};
+<span class="kw">auto</span> b = a &lt;&lt; <span class="bu">std::</span>integral_constant&lt;<span class="dt">int</span>, <span class="dv">10</span>&gt;;   <span class="co">// fixed_point&lt;int, 10&gt;{1024}</span></code></pre></div>
+<p>both <code>a</code> and <code>b</code> store the same underlying value. No actual shift is required.</p>
+<p>Another technique which uses compile-time constants to avoid run-time computation involves division. Any division can be approximated to varying degrees by different combinations of multiplication and bit shift. For example, to divide an <code>int16_t</code> by <code>7</code> using an <code>int32_t</code>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int16_t</span> divide_by_seven(<span class="dt">int16_t</span> n) {
+    <span class="cf">return</span> (n * <span class="dv">37449</span>) &gt;&gt; <span class="dv">18</span>;
+}</code></pre></div>
+<p>Unfortunately, the coefficient is costly to calculate and the operation requires additional width. If the divisor and headroom is known at compile-time, the calculation can potentially outperform a division operation.</p>
+<h3 id="user-defined-literals"><a id="advanced_topics-user_defined_literals"></a>User-defined Literals</h3>
+<p>It is possible to improve on <code>std::integral_constant</code> in various ways. Consider:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;
+    <span class="kw">class</span> Integral,
     Integral Value,
-    int Digits = calculate_digits(Value),
-    int Zeros = calculate_zeros(Value)&gt;
-class const_integer {};
-</code></pre>
+    <span class="dt">int</span> Digits = calculate_digits(Value),
+    <span class="dt">int</span> Zeros = calculate_zeros(Value)&gt;
+<span class="kw">class</span> const_integer {};</code></pre></div>
 <p>This type resembles <code>integral_constant</code> with two additional non-type parameters:</p>
 <ul>
 <li>Digits - the numbers of digits required to store <code>Value</code>;</li>
 <li>Zeros - the number of trailing binary <code>0</code>s between the least significant binary <code>1</code> and the radix position.</li>
 </ul>
 <p>For example:</p>
-<pre><code class="language-c++">auto m = const_integer&lt;int, 10&gt;{};  // Value = 0b1010, Digits = 4, Zeros = 1
-auto n = const_integer&lt;int, 96&gt;{};  //xx Value = 0b1100000, Digits = 7, Zeros = 5
-</code></pre>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">auto</span> m = const_integer&lt;<span class="dt">int</span>, <span class="dv">10</span>&gt;{};  <span class="co">// Value = 0b1010, Digits = 4, Zeros = 1</span>
+<span class="kw">auto</span> n = const_integer&lt;<span class="dt">int</span>, <span class="dv">96</span>&gt;{};  <span class="co">//xx Value = 0b1100000, Digits = 7, Zeros = 5</span></code></pre></div>
 <p>Now consider a user-defined literal which provides a shorthand for <code>const_integer</code> values:</p>
-<pre><code class="language-c++">auto m = 10_c;  // const_integer&lt;int, 10&gt;{}
-auto n = 96_c;  // const_integer&lt;int, 96&gt;{}
-</code></pre>
-<p>Finally, combine these user-defined literals with class template deduction.
-The <code>Digits</code> and <code>Zeros</code> parameters of <code>const_integer</code> can be matched with the template parameters of composite types:</p>
-<pre><code class="language-c++">auto e = elastic_integer(10_c);  // elastic_integer&lt;4, int&gt;{10}
-auto f = fixed_point(96_c); // fixed_point&lt;int, 5&gt;{96}
-</code></pre>
-<p>The result is easy to read formulation of tailored composite types.
-Unfortunately, class template deduction does not extend to aliases.
-Because of this, it is not yet possible to write definitions such as:</p>
-<pre><code class="language-c++">auto kibi = elastic_fixed_point(1024_c);  // stores value 1024 using 2 bits
-auto half = kibi / 2048_c;  // stores value 0.5 using 3 bits
-</code></pre>
-<h2><a id="acknowledgements"></a>Acknowledgements</h2>
-<p>Thanks to Lawrence Crowl and Jens Maurer for valuable feedback on early drafts.
-Special thanks to Michael Wong.</p>
-<h2><a id="references"></a>References</h2>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">auto</span> m = <span class="dv">10_c</span>;  <span class="co">// const_integer&lt;int, 10&gt;{}</span>
+<span class="kw">auto</span> n = <span class="dv">96_c</span>;  <span class="co">// const_integer&lt;int, 96&gt;{}</span></code></pre></div>
+<p>Finally, combine these user-defined literals with class template deduction. The <code>Digits</code> and <code>Zeros</code> parameters of <code>const_integer</code> can be matched with the template parameters of composite types:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">auto</span> e = elastic_integer(<span class="dv">10_c</span>);  <span class="co">// elastic_integer&lt;4, int&gt;{10}</span>
+<span class="kw">auto</span> f = fixed_point(<span class="dv">96_c</span>); <span class="co">// fixed_point&lt;int, 5&gt;{96}</span></code></pre></div>
+<p>The result is easy to read formulation of tailored composite types. Unfortunately, class template deduction does not extend to aliases. Because of this, it is not yet possible to write definitions such as:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">auto</span> kibi = elastic_fixed_point(<span class="dv">1024_c</span>);  <span class="co">// stores value 1024 using 2 bits</span>
+<span class="kw">auto</span> half = kibi / <span class="dv">2048_c</span>;  <span class="co">// stores value 0.5 using 3 bits</span></code></pre></div>
+<h2 id="acknowledgements"><a id="acknowledgements"></a>Acknowledgements</h2>
+<p>Thanks to Lawrence Crowl and Jens Maurer for valuable feedback on early drafts. Special thanks to Michael Wong.</p>
+<h2 id="references"><a id="references"></a>References</h2>
 <p><a href="http://www.boost.org/doc/libs/release/libs/multiprecision/doc/html/boost_multiprecision/tut/ints/cpp_int.html">Boost.Multiprecision</a>, cpp_int, John Maddock and Christopher Kormanyos<br />
 <a href="https://bitbucket.org/davidstone/bounded_integer">bounded::integer</a>, bounded::integer, David Stone<br />
 <a href="http://johnmcfarlane.github.io/fixed_point/index.html#elastic">elastic_integer</a>, elastic_integer, John McFarlane<br />
@@ -668,8 +442,7 @@ Special thanks to Michael Wong.</p>
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0104r0.html">P0104</a>, Multi-Word Integer Operations and Types, Lawrence Crowl<br />
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0105r0.html">P0105</a>, Rounding and Overflow in C++, Lawrence Crowl<br />
 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>, C++ Binary Fixed-Point Arithmetic, Lawrence Crowl<br />
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0228r0.pdf">P0228</a>, A Proposal to Add Safe Integer Types to the Standard
-Library Technical Report, Robert Ramey<br />
+<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0228r0.pdf">P0228</a>, A Proposal to Add Safe Integer Types to the Standard Library Technical Report, Robert Ramey<br />
 <a href="http://johnmcfarlane.github.io/fixed_point/papers/p0381.html">P0381</a>, Numeric Width, John McFarlane<br />
 <a href="http://foonathan.net/doc/type_safe/">type_safe</a>, type_safe, Jonathan Muller<br />
 <a href="https://cerevra.github.io/int/">wide_int</a>, A Proposal to add wide_int Template Class, Igor Klevanets, Antony Polukhin</p>

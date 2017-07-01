@@ -1,0 +1,99 @@
+<p><strong>Document number</strong>: P0675R0<br />
+<strong>Date</strong>: 2017-06-19<br />
+<strong>Reply-to</strong>: John McFarlane, <a href="mailto:fixed-point@john.mcfarlane.name">fixed-point@john.mcfarlane.name</a><br />
+<strong>Audience</strong>: SG6, SG14, LEWG</p>
+<h1 id="numeric-traits-for-type-composition">Numeric Traits for Type Composition</h1>
+<h2 id="introduction">Introduction</h2>
+<p>This paper identifies a core set of trait-like definitions necessary to support arbitrary numeric types.</p>
+<p>It adds to numeric traits proposal, [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0437r0.pdf">P0437</a>], and aims to facilitate the compositional style of numeric type generation described in [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0554r0.html">P0554</a>]. It contains replacements for the two definitions introduced in [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0381r1.html">P0381</a>]. An example of a type which greatly benefits from this support is the fixed-point type detailed in [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0037r3.html">P0037</a>].</p>
+<h2 id="motivation">Motivation</h2>
+<p>The aim is to achieve a high degree of interoperability between fundamental numeric types (such as <code>int</code>), existing custom numeric types (such as <code>chrono::duration</code> and those found in [<a href="http://www.boost.org/doc/libs/1_62_0/libs/multiprecision/doc/html/boost_multiprecision/tut/ints/cpp_int.html">Boost.Multiprecision</a>]) and future types (such as through the Numerics TS [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0101r0.html">P0101</a>]) which will be able to apply the types described here.</p>
+<p>Interoperability is often assumed to mean the ability to mix different types in algebraic expressions. However, it is also advantageous to compose types from one another (as described in [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0554r0.html">P0554</a>]). For example, to compose custom types from fundamental integers:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// use an unsigned 16-bit integer to approximate a real number with 2 integer and 14 fractional digits</span>
+<span class="kw">auto</span> pi = fixed_point&lt;<span class="dt">uint16_t</span>, <span class="dv">-14</span>&gt;{<span class="fl">3.141</span>};
+assert(pi &gt; <span class="fl">3.1</span> &amp;&amp; pi &lt; <span class="fl">3.2</span>);
+
+<span class="co">// use int to store value gained using accurate rounding mode</span>
+<span class="kw">auto</span> num_children = rounded_integer&lt;<span class="dt">int</span>&gt;{<span class="fl">2.6</span>};
+assert(num_children == <span class="dv">3</span>);</code></pre></div>
+<p>The versatility of such types is increased if they can be composed from one another:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// 8-bit type with good rounding characteristics and resolution of 1/16</span>
+<span class="kw">auto</span> num = fixed_point&lt;rounded_integer&lt;<span class="dt">uint8_t</span>&gt;, <span class="dv">-4</span>&gt;{<span class="fl">15.9375</span>};</code></pre></div>
+<p>In order to be generic, these custom types often require information about the underlying type with which they are instantiated. For instance, the signedness of the type might be important:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// smart_integer chooses appropriate signedness for results of arithmetic operations</span>
+<span class="kw">auto</span> a = smart_integer{<span class="dv">7u</span>};
+<span class="kw">auto</span> b = smart_integer{<span class="dv">-3</span>};
+<span class="kw">auto</span> c = a * b;  <span class="co">// smart_integer&lt;int&gt;{-21}</span></code></pre></div>
+<p>To determine the signedness of <code>c</code>, <code>smart_integer</code> must know about the signedness of <code>a</code> and <code>b</code>. Because <code>a</code> and <code>b</code> are composed of fundamental types (<code>unsigned int</code> and <code>signed int</code>), <code>numeric_limits::is_signed</code> is already specialized for them. If they were custom numeric types, custom <code>numeric_limits</code> specializations would be required.</p>
+<p>But <code>numeric_limits</code> contains only a few of the necessary attributes. For example, once <code>smart_integer</code> has determined that a signed type is required, it may need to convert an existing type:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">auto</span> m = smart_integer{<span class="dv">5u</span>};
+<span class="kw">auto</span> s = smart_integer{<span class="dv">10u</span>};
+<span class="kw">auto</span> d = m - s;  <span class="co">// smart_integer&lt;int&gt;{-5}</span></code></pre></div>
+<p>Here, the representational type of <code>d</code> can be determined using <code>make_signed_t&lt;uint32_t&gt;</code> but <code>make_signed</code> must not be specialized for custom numeric types.</p>
+<p>[<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0437r0.pdf">P0437</a>] proposes a new header, <em>&lt;num_traits&gt;</em>, containing free-standing equivalents of most of the attributes currently found in <em>&lt;limits&gt;</em>. Crucially, they are user-customizable, thus lifting a heavy restriction on most of the definitions in <em>&lt;type_traits&gt;</em>.</p>
+<p>This proposal begins the task of extending the contents of <em>/<num_traits/></em> with definitions that make numeric types more generic. In doing so, it makes it possible for those types to be used to instantiate compositional numeric types.</p>
+<p>A parallel can be found in existing support for iterators. Facilities such as <code>iterator_traits</code> and <code>advance</code> provide equivalence between custom integer types and raw pointers. This makes it possible to use efficient language-level features in expressive high-level abstractions.</p>
+<h2 id="desirata">Desirata</h2>
+<p>The following class templates are user-customizable. (Where appropriate, accompanying type aliases ending in <code>_t</code> and variable templates ending in <code>_v</code> are assumed.)</p>
+<h3 id="general-traits">General Traits</h3>
+<p>The most common required traits are as follows.</p>
+<h4 id="num_digits---determine-the-number-of-digits-in-a-given-type"><code>num_digits</code> - Determine the Number of Digits in a Given Type</h4>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt;
+<span class="kw">struct</span> num_digits;
+
+<span class="kw">static_assert</span>(num_digits_v&lt;<span class="dt">int64_t</span>&gt; == <span class="dv">63</span>);</code></pre></div>
+<p>This trait is a free equivalent of <code>numeric_limits&lt;T&gt;::digits</code> and is present in [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0437r0.pdf">P0437</a>].</p>
+<h4 id="set_num_digits---produce-a-type-with-the-desired-number-of-digits"><code>set_num_digits</code> - Produce a Type With the Desired Number of Digits</h4>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T, <span class="dt">int</span> MinDigits&gt;
+<span class="kw">struct</span> set_num_digits;
+
+<span class="kw">static_assert</span>(<span class="bu">std::</span>is_same_v&lt;<span class="dt">set_num_digits_t</span>&lt;<span class="dt">unsigned</span>, <span class="dv">8</span>&gt;, <span class="bu">std::</span>uint8_t&gt;);</code></pre></div>
+<p>This class complements <code>num_digits</code> and produces a type which is the same as the input except for its width. (Note: it replaces the <code>set_width</code> type proposed in [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0381r1.html">P0381</a>].)</p>
+<h4 id="is_signed-make_signed-make_unsigned---manipulate-signedness"><code>is_signed</code> / <code>make_signed</code> / <code>make_unsigned</code> - Manipulate Signedness</h4>
+<p>These are all present in <em>&lt;type_traits&gt;</em> but user-specialization is not allowed. Either this restriction needs to be lifted or alternative definitions must be found.</p>
+<h3 id="composition-specific-additions">Composition-specific Additions</h3>
+<p>Additional definitions which are only required for implementing compositional types are as follows.</p>
+<h4 id="is_composite---determine-if-type-is-composite"><code>is_composite</code> - Determine if Type is Composite</h4>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt;
+<span class="kw">struct</span> is_composite;
+
+<span class="kw">static_assert</span>(!is_composite_v&lt;<span class="dt">short</span>&gt;);
+<span class="kw">static_assert</span>(is_composite_v&lt;fixed_point&lt;<span class="dt">short</span>&gt;&gt;);</code></pre></div>
+<p>This trait is necessary to distinguish between fundamental types which have no underlying representational value and custom types which conform to the proposed compositional approach.</p>
+<h4 id="to_rep---extract-underlying-value"><code>to_rep</code> - Extract Underlying Value</h4>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt;
+<span class="kw">struct</span> to_rep;
+
+<span class="co">// a fundamental type is its own representation; it wraps nothing</span>
+<span class="dt">long</span> r = to_rep&lt;<span class="dt">long</span>&gt;()(<span class="dv">1L</span>);
+
+<span class="co">// a compositional type is a value wrapper; to_rep unwraps it</span>
+<span class="dt">long</span> r = to_rep&lt;smart_integer&lt;<span class="dt">long</span>&gt;&gt;()(smart_integer&lt;<span class="dt">long</span>&gt;{<span class="dv">1L</span>});</code></pre></div>
+<p>This type is a function object - rather than a type trait. It is used to extract the underlying representational value from the composite type. For fundamental values, it simply returns that value.</p>
+<p>If it were specialized for <code>chrono::duration</code>, it would take an object of type <code>chrono::duration</code> and return the result of <code>chrono::duration::count()</code>.</p>
+<h4 id="from_rep---create-from-underlying-value"><code>from_rep</code> - Create from Underlying Value</h4>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T&gt;
+<span class="kw">struct</span> from_rep;
+
+<span class="co">// like to_rep, from_rep leaves its argument unchanged when instantiated with fundamental types</span>
+<span class="dt">int</span> i = from_rep&lt;<span class="dt">int</span>&gt;()(<span class="dv">7</span>);
+
+<span class="co">// for compositional types, it can be used to create objects</span>
+<span class="kw">auto</span> f = from_rep&lt;fixed_point&lt;<span class="dt">int</span>, <span class="dv">-1</span>&gt;&gt;()(<span class="dv">99</span>);
+<span class="co">// f is now fixed_point&lt;int, -1&gt;{49.5}</span></code></pre></div>
+<p>The complement to <code>to_rep</code>, this function object is a factory function.</p>
+<h4 id="from_value---determine-type-from-initial-value"><code>from_value</code> - Determine Type from Initial Value</h4>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">template</span>&lt;<span class="kw">class</span> T, <span class="kw">class</span> Value&gt;
+<span class="kw">struct</span> from_value;
+
+<span class="kw">auto</span> s = <span class="dt">from_value_t</span>&lt;fixed_point&lt;<span class="dt">int16_t</span>, <span class="dv">-1</span>&gt;, <span class="dt">unsigned</span> <span class="dt">long</span>&gt;{<span class="dv">99UL</span>};
+<span class="co">// s is now fixed_point&lt;unsigned long, 0&gt;{99}</span></code></pre></div>
+<p>This type trait transforms <code>T</code> into whatever equivalent type best suits assignment from <code>Value</code>. In the case of composite types of <code>T</code>, that will typically mean replacing <code>T</code>'s representational type with <code>Value</code>.</p>
+<p>In the above example, the fixed-point exponent is also set to zero. This reflects the fact that integers implicitly all have a radix position of zero.</p>
+<h2 id="discussion">Discussion</h2>
+<h3 id="relation-to-fixed_point">Relation to <code>fixed_point</code></h3>
+<p>Many of the traits presented here were identified during the design of the <code>fixed_point</code> type proposed in [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0037r3.html">P0037</a>]. Without them, <code>fixed_point</code> can only be specialized for fundamental numeric types which greatly reduces its usefulness. However, this proposal is not a strict prerequisite for [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0037r3.html">P0037</a>].</p>
+<h3 id="missing-traits">Missing Traits</h3>
+<p>Some numeric types which have been prototyped do not require all of the above traits. And it is likely that some numeric types - which have yet to be written - require traits which are not listed here. But it is hoped that this list is a good starting point and will allow users to create many of the types they desire.</p>
+<h3 id="bikeshedding">Bikeshedding</h3>
+<p>All names in this document are placeholders. The choice of <code>set_digits</code> in particular is problematic but no satisfactory alternative has yet found consensus. Use of the term <code>rep</code> comes from <code>chrono::duration</code>.</p>

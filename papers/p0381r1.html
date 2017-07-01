@@ -3,165 +3,95 @@
 <strong>Reply-to</strong>: John McFarlane, <a href="mailto:mcfarlane.john+fixed-point@gmail.com">mcfarlane.john+fixed-point@gmail.com</a><br />
 <strong>Reply-to</strong>: Michael Wong, <a href="mailto:fraggamuffin@gmail.com">fraggamuffin@gmail.com</a><br />
 <strong>Audience</strong>: SG6, SG14, LEWG</p>
-<h1>Numeric Width</h1>
-<h2>I. Introduction</h2>
-<p>This paper proposes a number of template definitions
-for manipulating the width of numeric types.
-It's primary aim is to make it easier to widen numeric types
-in the case that arithmetic operations would otherwise cause overflow.
-It's specific application is the <code>fixed_point&lt;&gt;</code> class template
-detailed in <a href="http://johnmcfarlane.github.io/fixed_point/papers/p0037r3.html">P0037R3</a>.</p>
-<h2>II. Impact on the Standard</h2>
+<h1 id="numeric-width">Numeric Width</h1>
+<h2 id="i.-introduction">I. Introduction</h2>
+<p>This paper proposes a number of template definitions for manipulating the width of numeric types. It's primary aim is to make it easier to widen numeric types in the case that arithmetic operations would otherwise cause overflow. It's specific application is the <code>fixed_point&lt;&gt;</code> class template detailed in <a href="http://johnmcfarlane.github.io/fixed_point/papers/p0037r3.html">P0037R3</a>.</p>
+<h2 id="ii.-impact-on-the-standard">II. Impact on the Standard</h2>
 <p>The following definitions are proposed for addition to header, <em>&lt;cstdint&gt;</em>:</p>
 <ul>
 <li>class templates, <code>width&lt;&gt;</code> and <code>set_width&lt;&gt;</code>;</li>
 <li>helper alias template, <code>set_width_t&lt;&gt;</code> and</li>
 <li>helper variable template, <code>width_v&lt;&gt;</code>.</li>
 </ul>
-<h2>III. Prior Art</h2>
-<p><a href="http://en.cppreference.com/w/cpp/types/integer">Fixed width integer types</a>
-provide width-specific aliases to built-in integer types.
-However, they do not provide a generic way
-to specify a type from a given width value.
-<a href="http://www.boost.org/doc/libs/release/libs/integer/">Boost.Integer</a>,
-on the other hand, provides this functionality through
-<a href="http://www.boost.org/doc/libs/release/libs/integer/doc/html/boost_integer/integer.html">Integer Type Selection</a>.</p>
-<p>Both sets of definitions have variants that allow the user
-to choose between the fastest and most compact alternatives.
-However, resultant types are confined to built-in integers;
-there is no way to specify user-defined types.</p>
-<p>In contrast, this proposal aims specifically
-to facilitate generic widening of integer types -
-including user-defined types.
-Most of the functionality was present in
-<a href="http://johnmcfarlane.github.io/fixed_point/papers/p0037r1.html">revision 1</a>
-of fixed-point arithmetic proposal, P0037, as the <code>resize&lt;&gt;</code> class template.
-A current implementation can be found in the
-<a href="https://github.com/johnmcfarlane/fixed_point/blob/157_cstdint/include/sg14/cstdint">reference implementation</a>
-of P0037.</p>
-<h2>IV. Motivation</h2>
-<p>Results of arithmetic operations - such as addition and multiplication -
-have greater range than their operands.
-This means that overflow errors are possible in common situations.
-For instance:</p>
-<ol>
-<li>
-<p>When the result is stored in a type that is the same as the operands:</p>
-<pre><code class="language-c++14">// range of a*b is UCHAR_MAX*UCHAR_MAX but range of return value is UCHAR_MAX
+<h2 id="iii.-prior-art">III. Prior Art</h2>
+<p><a href="http://en.cppreference.com/w/cpp/types/integer">Fixed width integer types</a> provide width-specific aliases to built-in integer types. However, they do not provide a generic way to specify a type from a given width value. <a href="http://www.boost.org/doc/libs/release/libs/integer/">Boost.Integer</a>, on the other hand, provides this functionality through <a href="http://www.boost.org/doc/libs/release/libs/integer/doc/html/boost_integer/integer.html">Integer Type Selection</a>.</p>
+<p>Both sets of definitions have variants that allow the user to choose between the fastest and most compact alternatives. However, resultant types are confined to built-in integers; there is no way to specify user-defined types.</p>
+<p>In contrast, this proposal aims specifically to facilitate generic widening of integer types - including user-defined types. Most of the functionality was present in <a href="http://johnmcfarlane.github.io/fixed_point/papers/p0037r1.html">revision 1</a> of fixed-point arithmetic proposal, P0037, as the <code>resize&lt;&gt;</code> class template. A current implementation can be found in the <a href="https://github.com/johnmcfarlane/fixed_point/blob/157_cstdint/include/sg14/cstdint">reference implementation</a> of P0037.</p>
+<h2 id="iv.-motivation">IV. Motivation</h2>
+<p>Results of arithmetic operations - such as addition and multiplication - have greater range than their operands. This means that overflow errors are possible in common situations. For instance:</p>
+<ol style="list-style-type: decimal">
+<li><p>When the result is stored in a type that is the same as the operands:</p>
+<pre class="c++14"><code>// range of a*b is UCHAR_MAX*UCHAR_MAX but range of return value is UCHAR_MAX
 uint8_t multiply(uint8_t a, uint8_t b) {
   return a*b;
-}
-</code></pre>
-</li>
-<li>
-<p>When the result is stored in an automatically deduced type
-but the range is too great:</p>
-<pre><code class="language-c++14">// range of a*b is UINT_MAX*UINT_MAX but range of return value is UINT_MAX
+}</code></pre></li>
+<li><p>When the result is stored in an automatically deduced type but the range is too great:</p>
+<pre class="c++14"><code>// range of a*b is UINT_MAX*UINT_MAX but range of return value is UINT_MAX
 auto multiply(unsigned a, unsigned b) {
   return a * b;
-}
-</code></pre>
-</li>
+}</code></pre></li>
 </ol>
 <p>It is left up to the user to ensure that capacity meets demand:</p>
-<pre><code class="language-c++14">auto multiply(uint32_t a, uint32_t b) {
+<pre class="c++14"><code>auto multiply(uint32_t a, uint32_t b) {
   using result_type = uint64_t;
   return result_type{a} * result_type{b};
-}
-</code></pre>
+}</code></pre>
 <p>Currently, the standard does not support a generic implementation of the above:</p>
-<pre><code class="language-c++14">template&lt;class Operand&gt;
+<pre class="c++14"><code>template&lt;class Operand&gt;
 auto multiply(Operand a, Operand b) {
   using result_type = ???;
   return result_type{a} * result_type{b};
-}
-</code></pre>
-<p>Boost.Integer provides a generic API
-which works for built-in integers of a known signedness:</p>
-<pre><code class="language-c++14">template&lt;class Operand&gt;
+}</code></pre>
+<p>Boost.Integer provides a generic API which works for built-in integers of a known signedness:</p>
+<pre class="c++14"><code>template&lt;class Operand&gt;
 auto multiply(Operand a, Operand b)
 {
     constexpr auto operand_width = sizeof(Operand)*CHAR_BIT*2;
     using result_type = typename boost::uint_t&lt;operand_width&gt;::fast;
     return result_type{a}*result_type{b};
-}
-</code></pre>
-<p>A more broadly-applicable solution
-should take the type of <code>Operand</code> into account
-and not just its capacity.</p>
-<h3>Use Case: Fixed-point Arithmetic</h3>
-<p>One benefactor of such a generic solution is
-class template, <code>fixed_point&lt;&gt;</code>, from
-<a href="http://johnmcfarlane.github.io/fixed_point/papers/p0037r3.html">P0037R3</a>:</p>
-<pre><code class="language-c++14">template&lt;class Rep, int Exponent&gt;
-class fixed_point;
-</code></pre>
-<p>The default type for <code>Rep</code> is <code>int</code>.
-This means that <code>fixed_point&lt;int&gt;</code> uses <code>int</code> as its underlying storage.
-However, any suitably integer-like type can be specified for <code>Rep</code>.</p>
-<p>There are certain situations
-where use of <code>fixed_point&lt;&gt;</code> requires generic widening of type.
-These mostly relate to arithmetic operations.
-For instance, the binary multiply operator widens the intermediate type
-in order to store the extra digits involved.
-A more advanced application of <code>fixed_point&lt;&gt;</code>
-is to produce auto-widening types -
-such as those introduced by Lawrence Crowl in
-<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>.
-Such types have operators which return results of larger types than their operands,
-effectively eliminating overflow in many cases.</p>
-<h2>V. Design</h2>
-<p>The proposed library additions are intended
-to manipulate the width of integer types at compile time.</p>
-<h3>Determining the Width of an Integer</h3>
-<p>The width of a given type can be determined
-using definitions, <code>width&lt;&gt;</code> and <code>width_v&lt;&gt;</code></p>
-<pre><code class="language-c++14">template&lt;class T&gt;
+}</code></pre>
+<p>A more broadly-applicable solution should take the type of <code>Operand</code> into account and not just its capacity.</p>
+<h3 id="use-case-fixed-point-arithmetic">Use Case: Fixed-point Arithmetic</h3>
+<p>One benefactor of such a generic solution is class template, <code>fixed_point&lt;&gt;</code>, from <a href="http://johnmcfarlane.github.io/fixed_point/papers/p0037r3.html">P0037R3</a>:</p>
+<pre class="c++14"><code>template&lt;class Rep, int Exponent&gt;
+class fixed_point;</code></pre>
+<p>The default type for <code>Rep</code> is <code>int</code>. This means that <code>fixed_point&lt;int&gt;</code> uses <code>int</code> as its underlying storage. However, any suitably integer-like type can be specified for <code>Rep</code>.</p>
+<p>There are certain situations where use of <code>fixed_point&lt;&gt;</code> requires generic widening of type. These mostly relate to arithmetic operations. For instance, the binary multiply operator widens the intermediate type in order to store the extra digits involved. A more advanced application of <code>fixed_point&lt;&gt;</code> is to produce auto-widening types - such as those introduced by Lawrence Crowl in <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html">P0106</a>. Such types have operators which return results of larger types than their operands, effectively eliminating overflow in many cases.</p>
+<h2 id="v.-design">V. Design</h2>
+<p>The proposed library additions are intended to manipulate the width of integer types at compile time.</p>
+<h3 id="determining-the-width-of-an-integer">Determining the Width of an Integer</h3>
+<p>The width of a given type can be determined using definitions, <code>width&lt;&gt;</code> and <code>width_v&lt;&gt;</code></p>
+<pre class="c++14"><code>template&lt;class T&gt;
 struct width;
 
 template&lt;class T&gt;
-constexpr unsigned width_v = width&lt;T&gt;::value;
-</code></pre>
+constexpr unsigned width_v = width&lt;T&gt;::value;</code></pre>
 <p>such that the following assertions always hold:</p>
-<pre><code class="language-c++14">static_assert(width&lt;uint16_t&gt;::value == 16, &quot;the width of uint16_t is exactly 16 bits&quot;);
+<pre class="c++14"><code>static_assert(width&lt;uint16_t&gt;::value == 16, &quot;the width of uint16_t is exactly 16 bits&quot;);
 static_assert(width&lt;long long&gt;::value &gt;= 64, &quot;long long has a width of at least 64 bits&quot;);
 static_assert(width&lt;long&gt;::value &gt;= width&lt;short&gt;::value, &quot;short is not longer than long&quot;);
-static_assert(width&lt;wchar_t&gt;::value &gt;= width&lt;char&gt;::value, &quot;a wide character is at least as wide as a character&quot;);
-</code></pre>
-<h3>Specifying the Width of an Integer</h3>
-<p>Definitions, <code>set_width&lt;&gt;</code> and <code>set_width_t&lt;&gt;</code>, take an input type and a width in bits
-and yield an equivalent type which has at least that many bits.</p>
-<pre><code class="language-c++14">template&lt;class Archetype, unsigned MinNumBits&gt;
+static_assert(width&lt;wchar_t&gt;::value &gt;= width&lt;char&gt;::value, &quot;a wide character is at least as wide as a character&quot;);</code></pre>
+<h3 id="specifying-the-width-of-an-integer">Specifying the Width of an Integer</h3>
+<p>Definitions, <code>set_width&lt;&gt;</code> and <code>set_width_t&lt;&gt;</code>, take an input type and a width in bits and yield an equivalent type which has at least that many bits.</p>
+<pre class="c++14"><code>template&lt;class Archetype, unsigned MinNumBits&gt;
 struct set_width;
 
 template&lt;class Archetype, unsigned MinNumBits&gt;
-using set_width_t = typename set_width&lt;Archetype, MinNumBits&gt;::type;
-</code></pre>
-<p>They are similar in usage to <code>make_signed</code>/<code>make_signed_t</code> and <code>make_unsigned</code>/<code>make_unsigned_t</code>
-which also take one type and produce another (possibly different) type.</p>
+using set_width_t = typename set_width&lt;Archetype, MinNumBits&gt;::type;</code></pre>
+<p>They are similar in usage to <code>make_signed</code>/<code>make_signed_t</code> and <code>make_unsigned</code>/<code>make_unsigned_t</code> which also take one type and produce another (possibly different) type.</p>
 <p>The following assertions either fail to compile or hold true:</p>
-<pre><code class="language-c++14">static_assert(is_same&lt;set_width_t&lt;signed, 8&gt;, int8_t&gt;::value, &quot;int8_t is a signed 8-bit integer&quot;);
+<pre class="c++14"><code>static_assert(is_same&lt;set_width_t&lt;signed, 8&gt;, int8_t&gt;::value, &quot;int8_t is a signed 8-bit integer&quot;);
 static_assert(is_same&lt;set_width_t&lt;unsigned, 32&gt;, uint32_t&gt;::value, &quot;uint32_t is an unsigned 32-bit integer&quot;);
 static_assert(is_same&lt;set_width_t&lt;uint64_t, 16&gt;, uint16_t&gt;::value, &quot;a 64-bit unsigned integer was narrowed to 16-bits&quot;);
 static_assert(is_same&lt;set_width_t&lt;char, 64&gt;, int64_t&gt;::value || is_same&lt;set_width_t&lt;char, 64&gt;, uint64_t&gt;::value, &quot;char may or may not be signed so the result may be uint64_t or int64_t&quot;);
-static_assert(width&lt;set_width_t&lt;int, 10&gt;&gt;::value &gt;= 10, &quot;result must be at least 10 bits wide&quot;);
-</code></pre>
-<h3>Families and Archetypes</h3>
-<p>A family is a set of types which differ in width alone.
-The set of <em>signed</em> built-in integers is one family.
-The set of <em>unsigned</em> built-in integers is another.
-No type can belong to more than one family.</p>
-<p>The <code>Archetype</code> parameter of <code>set_width</code>
-identifies a family by any one of its members.
-The result of <code>set_width</code> is defined as
-the most narrow family member with at least <code>MinNumBits</code> of width.
-If <code>width_v&lt;T&gt;</code> equals <code>N</code>,
-then <code>set_width_t&lt;T, N&gt;</code> is guaranteed to be <code>T</code>.</p>
-<p>Specializations of <code>width</code> and <code>set_width</code> are provided for built-in types.
-However, custom types may be specialized by the user.</p>
-<h2>VI. Technical Specification</h2>
-<h3>Header <em>&lt;cstdint&gt;</em> Synopsis</h3>
-<pre><code class="language-c++14">namespace std {
+static_assert(width&lt;set_width_t&lt;int, 10&gt;&gt;::value &gt;= 10, &quot;result must be at least 10 bits wide&quot;);</code></pre>
+<h3 id="families-and-archetypes">Families and Archetypes</h3>
+<p>A family is a set of types which differ in width alone. The set of <em>signed</em> built-in integers is one family. The set of <em>unsigned</em> built-in integers is another. No type can belong to more than one family.</p>
+<p>The <code>Archetype</code> parameter of <code>set_width</code> identifies a family by any one of its members. The result of <code>set_width</code> is defined as the most narrow family member with at least <code>MinNumBits</code> of width. If <code>width_v&lt;T&gt;</code> equals <code>N</code>, then <code>set_width_t&lt;T, N&gt;</code> is guaranteed to be <code>T</code>.</p>
+<p>Specializations of <code>width</code> and <code>set_width</code> are provided for built-in types. However, custom types may be specialized by the user.</p>
+<h2 id="vi.-technical-specification">VI. Technical Specification</h2>
+<h3 id="header-cstdint-synopsis">Header <em>&lt;cstdint&gt;</em> Synopsis</h3>
+<pre class="c++14"><code>namespace std {
     template&lt;class T&gt;
     struct width;
 
@@ -173,13 +103,10 @@ However, custom types may be specialized by the user.</p>
 
     template&lt;class Archetype, unsigned MinNumBits&gt;
     using set_width_t = typename set_width&lt;Archetype, MinNumBits&gt;::type;
-}
-</code></pre>
-<h2>VII. Outstanding Issues</h2>
-<h3>API Details</h3>
-<p>The name <code>set_width_t</code> is almost certainly the wrong choice.
-The use of the word 'set' makes it sound like a run-time operation.
-Possible alternatives include:</p>
+}</code></pre>
+<h2 id="vii.-outstanding-issues">VII. Outstanding Issues</h2>
+<h3 id="api-details">API Details</h3>
+<p>The name <code>set_width_t</code> is almost certainly the wrong choice. The use of the word 'set' makes it sound like a run-time operation. Possible alternatives include:</p>
 <ul>
 <li><code>make_width_t</code></li>
 <li><code>of_width_t</code></li>
@@ -188,33 +115,16 @@ Possible alternatives include:</p>
 <li><code>int_t</code></li>
 <li><code>make_bitwidth_t</code></li>
 </ul>
-<p>The order of the two template parameters for <code>set_width</code> and <code>set_width_t</code>
-is by no means cast in stone.
-It may be that defaulting <code>Archetype</code> to <code>int</code> is a good idea
-in which case, swapping the order would certainly be on the cards.</p>
-<p><em>Fast</em> and <em>least</em> variants to <code>set_width</code> and <code>set_width_t</code>
-would probably make valuable additions.</p>
-<p>The choice of <code>unsigned</code> as the type used to express width is by no means final.
-Possible alternatives include <code>size_t</code> and <code>int</code> but
-<code>unsigned</code> happens to have worked best in practice thus far.</p>
-<h3>Non-Integer Types</h3>
-<p>The possibility of specializing for the floating-point family
-has not been ruled out.
-It is not clear what width means in the context of floating-point types.
-Possibly it means the mantissa or the entire content of a type,
-in which case <code>width_v&lt;float&gt;</code> is either 24 or 32.</p>
-<h3>Extended / Future Standard Integer Types</h3>
-<p>Some compilers define a non-standard 128-bit integer type.
-Types of this width may enter the standard in the future.
-For this reason, it is left unspecified whether
-these types join in the families of built-in integers.
-Whether a library implementation chooses for <code>set_width_t&lt;signed, 128&gt;</code>
-to cause a compiler error or yield <code>__int128</code> on supported compilers
-is a matter for consideration.</p>
-<h2>Acknowledgements</h2>
-<p>Special thanks to Brent Friedman, Marco Foco, Arthur O'Dwyer
-and Michael Wong for their valuable input.</p>
-<h2>Revisions</h2>
+<p>The order of the two template parameters for <code>set_width</code> and <code>set_width_t</code> is by no means cast in stone. It may be that defaulting <code>Archetype</code> to <code>int</code> is a good idea in which case, swapping the order would certainly be on the cards.</p>
+<p><em>Fast</em> and <em>least</em> variants to <code>set_width</code> and <code>set_width_t</code> would probably make valuable additions.</p>
+<p>The choice of <code>unsigned</code> as the type used to express width is by no means final. Possible alternatives include <code>size_t</code> and <code>int</code> but <code>unsigned</code> happens to have worked best in practice thus far.</p>
+<h3 id="non-integer-types">Non-Integer Types</h3>
+<p>The possibility of specializing for the floating-point family has not been ruled out. It is not clear what width means in the context of floating-point types. Possibly it means the mantissa or the entire content of a type, in which case <code>width_v&lt;float&gt;</code> is either 24 or 32.</p>
+<h3 id="extended-future-standard-integer-types">Extended / Future Standard Integer Types</h3>
+<p>Some compilers define a non-standard 128-bit integer type. Types of this width may enter the standard in the future. For this reason, it is left unspecified whether these types join in the families of built-in integers. Whether a library implementation chooses for <code>set_width_t&lt;signed, 128&gt;</code> to cause a compiler error or yield <code>__int128</code> on supported compilers is a matter for consideration.</p>
+<h2 id="acknowledgements">Acknowledgements</h2>
+<p>Special thanks to Brent Friedman, Marco Foco, Arthur O'Dwyer and Michael Wong for their valuable input.</p>
+<h2 id="revisions">Revisions</h2>
 <p>This paper revises <a href="http://johnmcfarlane.github.io/fixed_point/papers/p0381r0.html">P0381R0</a>:</p>
 <ul>
 <li><code>width</code>, <code>set_width</code> etc. are moved from &lt;type_traits&gt; to &lt;cstdint&gt;;</li>
