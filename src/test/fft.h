@@ -4,13 +4,12 @@
 //  (See accompanying file ../../LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef FIXED_POINT_SAFFT_H
-#define FIXED_POINT_SAFFT_H
+#ifndef FIXED_POINT_FFT_H
+#define FIXED_POINT_FFT_H
 
 #include <type_traits>
 #include <cmath>
 #include <sg14/fixed_point>
-#include "safft.h"
 
 //#define CALCULATE_TWIDDLES_IN_NATIVE_DATATYPE
 //#define CALCULATE_WITH_COMPLEX_DATATYPE
@@ -19,39 +18,39 @@
 namespace Algorithms {
 
 /**
-* Stockham Autosort FFT
-* Reference: "Computational Frameworks for the Fast Fourier Transform",
-* Charles Van Loan, SIAM, 1992.
-* Algorithm 1.7.2. pp. 56-57.
-* Memory access pattern suitable for vector machines compared to
-* traditional Cooley-Tukey.
+* Various fixedpoint FFT implementations
 */
     template<class T>
-    class SaFFT {
+    class FFT {
     public:
         /**
          * @param maxSize Maximum size for FFT
          */
-        SaFFT(unsigned int maxSize);
+        FFT(unsigned int maxSize);
 
-        ~SaFFT();
+        ~FFT();
 
         /**
+         * Stockham Autosort FFT
+         * Reference: "Computational Frameworks for the Fast Fourier Transform",
+         * Charles Van Loan, SIAM, 1992.
+         * Algorithm 1.7.2. pp. 56-57.
          * Calculates FFT using caller provided work buffers
          * @param vec1 Input data array and will be used as first work array
          * @param vec2 Second work array
          * @return returns 0 if result is in vec1 and 1 if in vec2
          */
-        unsigned int fft(std::vector<std::complex<T>> &vec1,
+        unsigned int sa_fft(std::vector<std::complex<T>> &vec1,
                          std::vector<std::complex<T>> &vec2);
 
         /**
+         * Stockham Autosort IFFT
          * Calculates IFFT using caller provided work buffers
          * @param vec1 Input data array and will be used as first work array
          * @param vec2 Second work array
          * @return returns 0 if result is in vec1 and 1 if in vec2
          */
-        unsigned int ifft(std::vector<std::complex<T>> &vec1,
+        unsigned int sa_ifft(std::vector<std::complex<T>> &vec1,
                           std::vector<std::complex<T>> &vec2);
 
     protected:
@@ -63,7 +62,7 @@ namespace Algorithms {
     };
 
     template<class T>
-    SaFFT<T>::SaFFT(unsigned int maxSize) {
+    FFT<T>::FFT(unsigned int maxSize) {
 #ifdef CALCULATE_TWIDDLES_IN_NATIVE_DATATYPE
         //TODO: Unsatisfactory performance with fixed_point datatype
         T PI = static_cast<T>(M_PI);
@@ -87,14 +86,15 @@ namespace Algorithms {
     }
 
     template<class T>
-    SaFFT<T>::~SaFFT() {
+    FFT<T>::~FFT() {
     }
 
     template<class Rep, int Exponent>
-    unsigned int fft_core(std::vector<std::complex<sg14::fixed_point<Rep, Exponent>>> &vec1,
-                          std::vector<std::complex<sg14::fixed_point<Rep, Exponent>>> &vec2,
-                          std::vector<std::complex<sg14::fixed_point<Rep, Exponent>>> &twiddles,
-                          int direction_flag) {
+    static unsigned int sa_fft_core(
+            std::vector<std::complex<sg14::fixed_point<Rep, Exponent>>> &vec1,
+            std::vector<std::complex<sg14::fixed_point<Rep, Exponent>>> &vec2,
+            std::vector<std::complex<sg14::fixed_point<Rep, Exponent>>> &twiddles,
+            int direction_flag) {
         using fixed_point = sg14::fixed_point<Rep, Exponent>;
         using complex = std::complex<fixed_point>;
         unsigned int N = (unsigned int) vec1.size();
@@ -157,10 +157,11 @@ namespace Algorithms {
     }
 
     template<class T>
-    unsigned int fft_core(std::vector<std::complex<T>> &vec1,
-                          std::vector<std::complex<T>> &vec2,
-                          std::vector<std::complex<T>> &twiddles,
-                          int direction_flag) {
+    static unsigned int sa_fft_core(
+            std::vector<std::complex<T>> &vec1,
+            std::vector<std::complex<T>> &vec2,
+            std::vector<std::complex<T>> &twiddles,
+            int direction_flag) {
         unsigned int N = (unsigned int) vec1.size();
         unsigned int S = (unsigned int) (std::log10((double) N) /
                                          std::log10((double) 2));
@@ -199,24 +200,24 @@ namespace Algorithms {
     }
 
     template<class T>
-    unsigned int SaFFT<T>::fft(std::vector<std::complex<T>> &vec1,
+    unsigned int FFT<T>::sa_fft(std::vector<std::complex<T>> &vec1,
                                std::vector<std::complex<T>> &vec2) {
         //TODO: check that the requested FFT size < supported by twiddle table
         vec2.resize(vec1.size());
-        unsigned int ret = fft_core(vec1, vec2, m_TwiddleTable, 1);
+        unsigned int ret = sa_fft_core(vec1, vec2, m_TwiddleTable, 1);
         return ret;
     }
 
 
     template<class T>
-    unsigned int SaFFT<T>::ifft(std::vector<std::complex<T>> &vec1,
+    unsigned int FFT<T>::sa_ifft(std::vector<std::complex<T>> &vec1,
                                 std::vector<std::complex<T>> &vec2) {
         //TODO: check that the requested FFT size < supported by twiddle table
         vec2.resize(vec1.size());
-        unsigned int ret = fft_core(vec1, vec2, m_TwiddleTable, -1);
+        unsigned int ret = sa_fft_core(vec1, vec2, m_TwiddleTable, -1);
         return ret;
     }
 }
-#endif //FIXED_POINT_SAFFT_H
+#endif //FIXED_POINT_FFT_H
 
 
