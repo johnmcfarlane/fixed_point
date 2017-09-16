@@ -3,6 +3,12 @@
 [![Build Status](https://travis-ci.org/johnmcfarlane/fixed_point.svg?branch=develop)](https://travis-ci.org/johnmcfarlane/fixed_point)
 [![Build status](https://ci.appveyor.com/api/projects/status/p60lpkq9u90h83fi/branch/develop?svg=true)](https://ci.appveyor.com/project/johnmcfarlane/fixed-point/branch/develop)
 
+**Notice**: *This library is in maintenance mode*. 
+Pull requests with fixes and enhancements are gratefully accepted, but no new features are planned.
+Please consider switching to [CNL](https://github.com/johnmcfarlane/cnl), the successor to *fixed_point* for many new features and improvements.
+
+## Description
+
 The [fixed_point](https://github.com/johnmcfarlane/fixed_point) library provides 
 a header-only C++11 API for approximating real numbers using binary fixed-point arithmetic.
 It forms the reference implementation of a standard library proposal presented in paper, [P0037](doc/p0037.md)
