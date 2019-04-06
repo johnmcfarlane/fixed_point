@@ -1,4 +1,4 @@
-PROJECT_NAME = "fixed_point"
+PROJECT_NAME = "fixed_point (deprecated)"
 PROJECT_BRIEF = "Binary Fixed-Point Arithmetic Library in C++"
 PROJECT_LOGO =
 PROJECT_NUMBER = rev.2

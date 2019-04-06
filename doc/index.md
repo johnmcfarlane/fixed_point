@@ -6,6 +6,9 @@ User Manual       {#mainpage}
 
 \section Introduction
 
+The fixed_point library is **deprecated**.
+Please consider using [CNL](http://johnmcfarlane.github.io/cnl/) instead.
+
 The [fixed_point](http://johnmcfarlane.github.io/fixed_point/) library provides 
 a header-only C++11 API for approximating real numbers using binary fixed-point arithmetic.
 It forms the reference implementation for a standard library proposal presented in paper, [P0037](papers/p0037.html)
