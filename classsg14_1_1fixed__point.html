@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>fixed_point: sg14::fixed_point&lt; Rep, Exponent &gt; Class Template Reference</title>
+<title>fixed_point (deprecated): sg14::fixed_point&lt; Rep, Exponent &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">fixed_point
+   <div id="projectname">fixed_point (deprecated)
    &#160;<span id="projectnumber">rev.2</span>
    </div>
    <div id="projectbrief">Binary Fixed-Point Arithmetic Library in C++</div>
@@ -116,31 +116,32 @@ template&lt;class Integral , Integral Value, int Digits&gt; </td></tr>
 <tr class="memdesc:a860a5f139a76a5fb9411731bb5965e03"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor taking an integral_constant type <br /></td></tr>
 <tr class="separator:a860a5f139a76a5fb9411731bb5965e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab71447cf542fb892233bf419a24982ce"><td class="memTemplParams" colspan="2"><a id="ab71447cf542fb892233bf419a24982ce"></a>
-template&lt;class S , _impl::enable_if_t&lt; std::is_floating_point&lt; S &gt;::value, int &gt; Dummy = 0&gt; </td></tr>
+template&lt;class S , _impl::enable_if_t&lt; std::numeric_limits&lt; S &gt;::is_iec559, int &gt; Dummy = 0&gt; </td></tr>
 <tr class="memitem:ab71447cf542fb892233bf419a24982ce"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#ab71447cf542fb892233bf419a24982ce">fixed_point</a> (S s)</td></tr>
 <tr class="memdesc:ab71447cf542fb892233bf419a24982ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor taking a floating-point type <br /></td></tr>
 <tr class="separator:ab71447cf542fb892233bf419a24982ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a291beee495f779d277a2f0fe33e3586f"><td class="memItemLeft" align="right" valign="top"><a id="a291beee495f779d277a2f0fe33e3586f"></a>
-constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a291beee495f779d277a2f0fe33e3586f">operator bool</a> () const</td></tr>
-<tr class="memdesc:a291beee495f779d277a2f0fe33e3586f"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns value represented as bool <br /></td></tr>
-<tr class="separator:a291beee495f779d277a2f0fe33e3586f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d44142820943030ba0a8bc748742846"><td class="memTemplParams" colspan="2"><a id="a0d44142820943030ba0a8bc748742846"></a>
 template&lt;class S , _impl::enable_if_t&lt; std::numeric_limits&lt; S &gt;::is_integer, int &gt; Dummy = 0&gt; </td></tr>
 <tr class="memitem:a0d44142820943030ba0a8bc748742846"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a0d44142820943030ba0a8bc748742846">operator S</a> () const</td></tr>
 <tr class="memdesc:a0d44142820943030ba0a8bc748742846"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns value represented as integral <br /></td></tr>
 <tr class="separator:a0d44142820943030ba0a8bc748742846"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d44142820943030ba0a8bc748742846"><td class="memTemplParams" colspan="2"><a id="a0d44142820943030ba0a8bc748742846"></a>
-template&lt;class S , _impl::enable_if_t&lt; std::is_floating_point&lt; S &gt;::value, int &gt; Dummy = 0&gt; </td></tr>
+template&lt;class S , _impl::enable_if_t&lt; std::numeric_limits&lt; S &gt;::is_iec559, int &gt; Dummy = 0&gt; </td></tr>
 <tr class="memitem:a0d44142820943030ba0a8bc748742846"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a0d44142820943030ba0a8bc748742846">operator S</a> () const</td></tr>
 <tr class="memdesc:a0d44142820943030ba0a8bc748742846"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns value represented as floating-point <br /></td></tr>
 <tr class="separator:a0d44142820943030ba0a8bc748742846"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43d1637ff121db0151b725be26061cb7"><td class="memTemplParams" colspan="2"><a id="a43d1637ff121db0151b725be26061cb7"></a>
+template&lt;typename R  = Rep&gt; </td></tr>
+<tr class="memitem:a43d1637ff121db0151b725be26061cb7"><td class="memTemplItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a43d1637ff121db0151b725be26061cb7">operator typename std::enable_if&lt; std::is_convertible&lt; Rep, bool &gt;::value, bool &gt;</a> () const</td></tr>
+<tr class="memdesc:a43d1637ff121db0151b725be26061cb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns value represented as bool <br /></td></tr>
+<tr class="separator:a43d1637ff121db0151b725be26061cb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83257fe0a99cac804a3e8aaf6f58a081"><td class="memTemplParams" colspan="2"><a id="a83257fe0a99cac804a3e8aaf6f58a081"></a>
 template&lt;class S , _impl::enable_if_t&lt; std::numeric_limits&lt; S &gt;::is_integer, int &gt; Dummy = 0&gt; </td></tr>
 <tr class="memitem:a83257fe0a99cac804a3e8aaf6f58a081"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a83257fe0a99cac804a3e8aaf6f58a081">operator=</a> (S s)</td></tr>
 <tr class="memdesc:a83257fe0a99cac804a3e8aaf6f58a081"><td class="mdescLeft">&#160;</td><td class="mdescRight">copy assignment operator taking an integer type <br /></td></tr>
 <tr class="separator:a83257fe0a99cac804a3e8aaf6f58a081"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83257fe0a99cac804a3e8aaf6f58a081"><td class="memTemplParams" colspan="2"><a id="a83257fe0a99cac804a3e8aaf6f58a081"></a>
-template&lt;class S , _impl::enable_if_t&lt; std::is_floating_point&lt; S &gt;::value, int &gt; Dummy = 0&gt; </td></tr>
+template&lt;class S , _impl::enable_if_t&lt; std::numeric_limits&lt; S &gt;::is_iec559, int &gt; Dummy = 0&gt; </td></tr>
 <tr class="memitem:a83257fe0a99cac804a3e8aaf6f58a081"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classsg14_1_1fixed__point.html">fixed_point</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classsg14_1_1fixed__point.html#a83257fe0a99cac804a3e8aaf6f58a081">operator=</a> (S s)</td></tr>
 <tr class="memdesc:a83257fe0a99cac804a3e8aaf6f58a081"><td class="mdescLeft">&#160;</td><td class="mdescRight">copy assignment operator taking a floating-point type <br /></td></tr>
 <tr class="separator:a83257fe0a99cac804a3e8aaf6f58a081"><td class="memSeparator" colspan="2">&#160;</td></tr>
