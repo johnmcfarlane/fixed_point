@@ -3,8 +3,7 @@
 [![Build Status](https://travis-ci.org/johnmcfarlane/fixed_point.svg?branch=develop)](https://travis-ci.org/johnmcfarlane/fixed_point)
 [![Build status](https://ci.appveyor.com/api/projects/status/p60lpkq9u90h83fi/branch/develop?svg=true)](https://ci.appveyor.com/project/johnmcfarlane/fixed-point/branch/develop)
 
-**Notice**: *This library is in maintenance mode*. 
-Pull requests with fixes and enhancements are gratefully accepted, but no new features are planned.
+**Notice**: *This library is deprecated.* 
 Please consider switching to [CNL](https://github.com/johnmcfarlane/cnl), the successor to *fixed_point* for many new features and improvements.
 
 ## Description
